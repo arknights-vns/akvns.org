@@ -17,9 +17,9 @@ export default function MainPage() {
             <h1 className="text-4xl font-bold mb-6 text-[#F25C5C]">Nhân sự tại Arknights VNS</h1>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-12">
-                {members[activeTab as keyof typeof members].map((member: Member) => (
-                    // The card individual card
-                    <Card key={member.name} className="flex flex-col items-center p-4 mt-4 shadow-md/12 bg-gray-100">
+                {members[activeTab as keyof typeof members].map((member: Member, id: number) => (
+                    // The individual card
+                    <Card key={`${member.name}-${id}`} className="flex flex-col items-center p-4 mt-4 shadow-md/12 bg-gray-100">
                         {/* Profile picture */}
                         <div className="rounded-full border-1 border-black -mt-12 mb-2 bg-white overflow-hidden w-20 h-20 flex items-center justify-center">
                             <Image
