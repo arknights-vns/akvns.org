@@ -39,8 +39,8 @@ export default function MainPage() {
                             <Image
                                 src={member.avatar}
                                 alt={member.name}
-                                width={80}
-                                height={80}
+                                width={100}
+                                height={100}
                                 className="rounded-full object-cover"
                             />
                         </div>
