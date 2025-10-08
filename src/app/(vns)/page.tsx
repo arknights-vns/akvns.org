@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import type { Member, MemberLink } from "@/components/members";
+import { members } from "@/components/members";
 // import { Button } from "@/components/ui/button"; might need this for later
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import type { Member, MemberLink } from "./data/members";
-import { members } from "./data/members";
 
 const tabs = Object.keys(members);
 
@@ -19,9 +19,9 @@ export default function MainPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-12">
                 {members[activeTab as keyof typeof members].map((member: Member) => (
                     // The card individual card
-                    <Card key={member.name} className="flex flex-col items-center p-4 mt-4 shadow-md/12 bg-gray-100">
+                    <Card key={member.name} className="flex flex-col items-center p-4 mt-20 shadow-md/12 bg-gray-100">
                         {/* Profile picture */}
-                        <div className="rounded-full border-1 border-black -mt-12 mb-2 bg-white overflow-hidden w-20 h-20 flex items-center justify-center">
+                        <div className="rounded-full border-1 border-black -mt-20 bg-white overflow-hidden w-30 h-30 flex items-center justify-center">
                             <Image
                                 src={member.avatar}
                                 alt={member.name}
@@ -33,7 +33,7 @@ export default function MainPage() {
 
                         {/* Display member information */}
                         <CardContent className="flex flex-col items-center">
-                            <div className="font-bold text-lg">{member.name}</div>
+                            <div className="font-bold text-lg text-black">{member.name}</div>
                             <div className="text-[#F25C5C] text-sm">{member.role}</div>
                             <div className="italic text-xs text-gray-400 mt-1">"{member.quote}"</div>
                         </CardContent>
