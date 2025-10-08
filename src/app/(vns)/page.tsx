@@ -19,7 +19,9 @@ export default function MainPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-12">
                 {members[activeTab as keyof typeof members].map((member: Member, id: number) => (
                     // The individual card
-                    <Card key={`${member.name}-${id}`} className="flex flex-col items-center p-4 mt-4 shadow-md/12 bg-gray-100">
+                    <Card
+                        key={`${member.name}-${id}`}
+                        className="flex flex-col items-center p-4 mt-4 shadow-md/12 bg-gray-100">
                         {/* Profile picture */}
                         <div className="rounded-full border-1 border-black -mt-12 mb-2 bg-white overflow-hidden w-20 h-20 flex items-center justify-center">
                             <Image
@@ -38,8 +40,8 @@ export default function MainPage() {
                             <div className="italic text-xs text-gray-400 mt-1">"{member.quote}"</div>
                         </CardContent>
                         <CardFooter className="flex gap-4 mt-2">
-                            {member.links.map((link: MemberLink, _i: number) => (
-                                <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer">
+                            {member.links.map((link: MemberLink, _id: number) => (
+                                <a key={`${link.url}-${_id}`} href={link.url} target="_blank" rel="noopener noreferrer">
                                     {link.icon}
                                 </a>
                             ))}
