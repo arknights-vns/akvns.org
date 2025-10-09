@@ -12,8 +12,6 @@ const tabs = Object.keys(members);
 export default function MainPage() {
     const [activeTab, setActiveTab] = useState(tabs[0]);
     return (
-
-
         <div className="flex flex-col items-center py-8">
             <h1 className="text-4xl font-bold mb-6 text-[#F25C5C]">Nhân sự tại Arknights VNS</h1>
             {/* Tabs for contributor */}
@@ -24,8 +22,7 @@ export default function MainPage() {
                         onClick={() => setActiveTab(tab)}
                         className={`px-5 py-2 rounded-full font-semibold transition-colors
                             ${activeTab === tab ? "bg-[#F25C5C] text-white" : "bg-gray-200 text-black hover:bg-gray-300"}
-                            `}
-                        >
+                            `}>
                         {tab}
                     </Button>
                 ))}
