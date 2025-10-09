@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-// import { Button } from "@/components/ui/button"; might need this for later
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import type { Member, MemberLink } from "./data/members";
 import { members } from "./data/members";
@@ -10,11 +10,26 @@ import { members } from "./data/members";
 const tabs = Object.keys(members);
 
 export default function MainPage() {
-    const [activeTab] = useState(tabs[0]);
-
+    const [activeTab, setActiveTab] = useState(tabs[0]);
     return (
+        
+        
         <div className="flex flex-col items-center py-8">
             <h1 className="text-4xl font-bold mb-6 text-[#F25C5C]">Nhân sự tại Arknights VNS</h1>
+            {/* Tabs for contributor */}
+            <div className="flex gap-4 mb-8">
+                {tabs.map((tab) => (
+                    <Button
+                        key={tab}
+                        onClick={() => setActiveTab(tab)}
+                        className={`px-5 py-2 rounded-full font-semibold transition-colors
+                            ${activeTab === tab ? "bg-[#F25C5C] text-white" : "bg-gray-200 text-black hover:bg-gray-300"} 
+                            `}
+                        >
+                        {tab}
+                    </Button>
+                ))}
+            </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-12">
                 {members[activeTab as keyof typeof members].map((member: Member, id: number) => (
