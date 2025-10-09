@@ -131,7 +131,7 @@ export const members = {
             name: "Con Dấu Hồng",
             role: "Tiểu tam giật chồng với PRTS",
             quote: "Nghỉ mệt sau story Babel",
-            avatar: "https://placehold.co/80x80",
+            avatar: "/amiya.png",
             links: [
                 { icon: <Github size={18} />, url: "#" },
                 { icon: <Linkedin size={18} />, url: "#" },
@@ -143,7 +143,7 @@ export const members = {
             name: "Con Dấu Hồng",
             role: "Tiểu tam giật chồng với PRTS",
             quote: "Nghỉ mệt sau story Babel",
-            avatar: "https://placehold.co/80x80",
+            avatar: "/amiya.png",
             links: [
                 { icon: <Github size={18} />, url: "#" },
                 { icon: <Linkedin size={18} />, url: "#" },
@@ -155,7 +155,7 @@ export const members = {
             name: "Con Dấu Hồng",
             role: "Tiểu tam giật chồng với PRTS",
             quote: "Nghỉ mệt sau story Babel",
-            avatar: "https://placehold.co/80x80",
+            avatar: "/amiya.png",
             links: [
                 { icon: <Github size={18} />, url: "#" },
                 { icon: <Linkedin size={18} />, url: "#" },
@@ -164,10 +164,10 @@ export const members = {
     ],
     Partners: [
         {
-            name: "Con Dấu Hồng",
+            name: "Aririn",
             role: "Tiểu tam giật chồng với PRTS",
             quote: "Nghỉ mệt sau story Babel",
-            avatar: "https://placehold.co/80x80",
+            avatar: "/amiya.png",
             links: [
                 { icon: <Github size={18} />, url: "#" },
                 { icon: <Linkedin size={18} />, url: "#" },
