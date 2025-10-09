@@ -27,7 +27,7 @@ export const members = {
             ],
         },
         {
-            name: "Con Dấu Hồng",
+            name: "Con Dấu Hồng 1",
             role: "Tiểu tam giật chồng với PRTS",
             quote: "Nghỉ mệt sau story Babel",
             avatar: "/amiya.png",
@@ -38,7 +38,7 @@ export const members = {
             ],
         },
         {
-            name: "Con Dấu Hồng",
+            name: "Con Dấu Hồng 2",
             role: "Tiểu tam giật chồng với PRTS",
             quote: "Nghỉ mệt sau story Babel",
             avatar: "/amiya.png",
@@ -49,7 +49,7 @@ export const members = {
             ],
         },
         {
-            name: "Con Dấu Hồng",
+            name: "Con Dấu Hồng 3",
             role: "Tiểu tam giật chồng với PRTS",
             quote: "Nghỉ mệt sau story Babel",
             avatar: "/amiya.png",
@@ -60,7 +60,7 @@ export const members = {
             ],
         },
         {
-            name: "Con Dấu Hồng",
+            name: "Con Dấu Hồng 4",
             role: "Tiểu tam giật chồng với PRTS",
             quote: "Nghỉ mệt sau story Babel",
             avatar: "/amiya.png",
@@ -135,7 +135,6 @@ export const members = {
             links: [
                 { icon: <Github size={18} />, url: "#" },
                 { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
             ],
         },
     ],
@@ -148,7 +147,6 @@ export const members = {
             links: [
                 { icon: <Github size={18} />, url: "#" },
                 { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
             ],
         },
     ],
@@ -161,20 +159,18 @@ export const members = {
             links: [
                 { icon: <Github size={18} />, url: "#" },
                 { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
             ],
         },
     ],
     Partners: [
         {
-            name: "Con Dấu Hồng",
+            name: "Aririn",
             role: "Tiểu tam giật chồng với PRTS",
             quote: "Nghỉ mệt sau story Babel",
             avatar: "/amiya.png",
             links: [
                 { icon: <Github size={18} />, url: "#" },
                 { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
             ],
         },
     ],
