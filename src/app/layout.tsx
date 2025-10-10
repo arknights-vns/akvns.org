@@ -1,6 +1,6 @@
 import type { Viewport } from "next";
-import { Quicksand as VNS_Font, Geist_Mono as VNS_Font_Mono } from "next/font/google";
 import type React from "react";
+import { Quicksand as VNS_Font, Geist_Mono as VNS_Font_Mono } from "next/font/google";
 import { TerraTheme } from "@/components/TerraTheme";
 import "./globals.css";
 
@@ -23,11 +23,11 @@ export const viewport: Viewport = {
 export default function RootLayout({
     children,
 }: Readonly<{
-    children: React.ReactNode;
+    children: React.ReactNode
 }>) {
     return (
-        <html lang="en" suppressHydrationWarning>
-            <body className={`${font.variable} ${fontMono.variable} antialiased font-sans`}>
+        <html lang={"en"} suppressHydrationWarning>
+            <body className={`${font.variable} ${fontMono.variable} font-sans antialiased`}>
                 <TerraTheme>{children}</TerraTheme>
             </body>
         </html>

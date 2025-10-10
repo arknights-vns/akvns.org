@@ -31,10 +31,11 @@ export default function BackToTop() {
 
     return (
         <Button
-            className={clsx("bg-primary bottom-4 right-4", showTopBtn && "fixed", !showTopBtn && "hidden")}
-            size="icon-lg"
+            className={clsx("right-4 bottom-4 bg-primary", showTopBtn && "fixed", !showTopBtn && "hidden")}
+            size={"icon-lg"}
             onClick={goToTop}
-            aria-label="back-to-top">
+            aria-label={"back-to-top"}
+        >
             <ArrowUpToLine />
         </Button>
     );

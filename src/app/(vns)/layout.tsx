@@ -33,12 +33,12 @@ export const metadata: Metadata = {
 export default function RootLayout({
     children,
 }: Readonly<{
-    children: ReactNode;
+    children: ReactNode
 }>) {
     return (
         <>
             <NavigationBar />
-            <div className="max-w-screen min-h-screen scroll-smooth">{children}</div>
+            <div className={"min-h-screen max-w-screen scroll-smooth"}>{children}</div>
             <BackToTop />
             <FatFooter />
         </>
