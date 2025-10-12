@@ -2,32 +2,33 @@
 
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuRadioGroup,
     DropdownMenuRadioItem,
-    DropdownMenuTrigger
+    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 export function ThemeSwitcher() {
-    const { theme, setTheme, } = useTheme();
+    const { setTheme, theme } = useTheme();
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button className={"mr-4"} size={"icon"} aria-label={"theme-switcher"}>
+                <Button aria-label={"theme-switcher"} className={"mr-4"} size={"icon"}>
                     <Sun className={"size-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"} />
                     <Moon className={"absolute size-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"} />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align={"end"} className={"mt-1"}>
-                <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
-                    <DropdownMenuRadioItem value={"light"} aria-label={"theme-light"}>
+                <DropdownMenuRadioGroup onValueChange={setTheme} value={theme}>
+                    <DropdownMenuRadioItem aria-label={"theme-light"} value={"light"}>
                         Sáng
                     </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value={"dark"} aria-label={"theme-dark"}>
+                    <DropdownMenuRadioItem aria-label={"theme-dark"} value={"dark"}>
                         Tối
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem value={"system"}>Thiết bị</DropdownMenuRadioItem>

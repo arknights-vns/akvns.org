@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
+
 import Amiya from "@public/amiya.png";
 import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "404",
     description: "You found something...",
+    title: "404",
 };
 
 export default function NotFound() {
     return (
         <div className={"flex min-h-screen flex-1/2 flex-col items-center justify-center gap-4 text-center"}>
-            <Image src={Amiya} alt={"Amiya"} width={240} />
+            <Image alt={"Amiya"} src={Amiya} width={240} />
             <div className={"text-4xl font-bold"}>Hông có gì ở đây hết...</div>
             <div>
-                <Link href={"/"} className={"font-extrabold underline"}>
+                <Link className={"font-extrabold underline"} href={"/"}>
                     Bấm vào đây
                 </Link>
                 {" "}
