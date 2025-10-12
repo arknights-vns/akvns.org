@@ -1,5 +1,8 @@
 name: arknights-vns
 
+include:
+  - docker/postgres/docker-compose.yml
+
 services:
   web:
     build: .
