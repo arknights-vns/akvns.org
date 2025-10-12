@@ -1,46 +1,104 @@
-import antfu from "@antfu/eslint-config";
-import eslintParserTypeScript from "@typescript-eslint/parser";
-import eslintPluginBetterTailwindcss from "eslint-plugin-better-tailwindcss";
+import react from "@eslint-react/eslint-plugin";
+import eslint from "@eslint/js";
+import nextjs from "@next/eslint-plugin-next";
+import stylistic from "@stylistic/eslint-plugin";
+import tailwindcss from "eslint-plugin-better-tailwindcss";
+import importLite from "eslint-plugin-import-lite";
+import perfectionist from "eslint-plugin-perfectionist";
 import playwright from "eslint-plugin-playwright";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
+import eslintPluginUnicorn from "eslint-plugin-unicorn";
+import { defineConfig } from "eslint/config";
+import tseslint from "typescript-eslint";
 
-export default antfu(
+export default defineConfig([
+    // global ignore list
     {
-        type: "app",
-        stylistic: {
-            jsx: true,
-            indent: 4,
-            quotes: "double",
-        },
-        typescript: true,
-        react: true,
-        nextjs: true,
-        jsx: true,
-        json: false,
-        jsonc: false,
-        yaml: false,
-        formatters: {
-            css: true,
-        },
-        lessOpinionated: true,
         ignores: [
-            ".next",
-            "node_modules",
-            "public",
-            "src/components/ui/**/",
-            "src/generated/prisma/**"
+            ".next/*",
+            "next-env.d.ts",
+            "node_modules/*",
+            "src/generated/prisma/*",
+            "src/components/ui/*",
         ],
     },
+    // TS & React & its slow af parser.
+    // Yes, I am losing it.
     {
-        files: ["**/*.{ts,tsx,cts,mts}"],
+        extends: [
+            eslint.configs.recommended,
+            importLite.configs.recommended,
+            tseslint.configs.strict,
+            tseslint.configs.stylistic,
+            react.configs["recommended-typescript"],
+            reactHooks.configs["recommended-latest"],
+            reactRefresh.configs.recommended,
+            reactRefresh.configs.next,
+        ],
+        files: ["**/*.ts", "**/*.tsx"],
         languageOptions: {
-            parser: eslintParserTypeScript,
+            parser: tseslint.parser,
             parserOptions: {
-                project: true,
+                projectService: true,
+                tsconfigRootDir: import.meta.dirname,
             },
         },
+        rules: {
+            "@eslint-react/jsx-shorthand-boolean": "error",
+            "@eslint-react/jsx-shorthand-fragment": "error",
+            "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+            "no-console": "error",
+        },
     },
+    // Next.js
     {
-        files: ["**/*.{jsx,tsx}"],
+        plugins: {
+            "@next/next": nextjs,
+        },
+        rules: {
+            ...nextjs.configs.recommended.rules,
+            ...nextjs.configs["core-web-vitals"].rules,
+        },
+    },
+    // Stylistic
+    stylistic.configs.customize({
+        braceStyle: "1tbs",
+        commaDangle: "always-multiline",
+        indent: 4,
+        jsx: true,
+        quotes: "double",
+        semi: true,
+    }),
+    {
+        rules: {
+            "@stylistic/jsx-curly-brace-presence": [
+                "warn",
+                {
+                    children: "never",
+                    propElementValues: "always",
+                    props: "always",
+                },
+            ],
+            "@stylistic/max-len": ["error", {
+                code: 120,
+                ignoreComments: true,
+                ignoreStrings: true,
+                ignoreTemplateLiterals: true,
+            }],
+        },
+    },
+    // Playwright
+    {
+        files: ["tests/**/*.spec.ts"],
+        ...playwright.configs["flat/recommended"],
+        rules: {
+            ...playwright.configs["flat/recommended"].rules,
+        },
+    },
+    // TailwindCSS
+    {
+        files: ["**/*.{tsx}"],
         languageOptions: {
             parserOptions: {
                 ecmaFeatures: {
@@ -49,60 +107,28 @@ export default antfu(
             },
         },
         plugins: {
-            "better-tailwindcss": eslintPluginBetterTailwindcss,
+            "better-tailwindcss": tailwindcss,
         },
         rules: {
-            ...eslintPluginBetterTailwindcss.configs["recommended-error"].rules,
+            ...tailwindcss.configs["recommended-error"].rules,
             "better-tailwindcss/enforce-consistent-line-wrapping": ["off"],
         },
         settings: {
             "better-tailwindcss": {
-                entryPoint: "src/app/globals.css",
+                entryPoint: `${import.meta.dirname}/src/app/globals.css`,
             },
         },
     },
+    // Unicorn
+    eslintPluginUnicorn.configs.recommended,
     {
-        ...playwright.configs["flat/recommended"],
-        files: ["tests/**"],
         rules: {
-            ...playwright.configs["flat/recommended"].rules,
+            "unicorn/filename-case": "off",
+            "unicorn/prevent-abbreviations": ["error", {
+                checkFilenames: false,
+            }],
         },
     },
-    {
-        rules: {
-            "no-console": ["warn", { allow: ["warn", "error", "info"], }],
-            "ts/consistent-type-definitions": ["error", "type"],
-            "node/prefer-global/process": "off",
-            "@eslint-react/prefer-shorthand-fragment": "error",
-            "@eslint-react/prefer-shorthand-boolean": "error",
-            "style/semi": ["error", "always"],
-            "style/brace-style": ["error", "1tbs"],
-            "style/comma-dangle": ["error", {
-                objects: "always",
-                enums: "always",
-                arrays: "only-multiline",
-            }],
-            "style/max-len": ["error", {
-                code: 120,
-                ignoreStrings: true,
-                ignoreComments: true,
-                ignoreTemplateLiterals: true,
-            }],
-            "style/jsx-curly-brace-presence": [
-                "warn",
-                {
-                    props: "always",
-                    children: "never",
-                    propElementValues: "always",
-                }
-            ],
-            "react-refresh/only-export-components": [
-                "error",
-                {
-                    allowExportNames: ["metadata", "viewport"],
-                    allowConstantExport: true,
-                }
-            ],
-        },
-    }
-);
+    // perfectionist
+    perfectionist.configs["recommended-natural"],
+]);
