@@ -1,24 +1,11 @@
-import path from "node:path";
 import { defineConfig, devices } from "@playwright/test";
+import path from "node:path";
 
 const PORT = process.env.PORT || 3000;
 const baseURL = `http://localhost:${PORT}`;
 
 export default defineConfig({
-    timeout: 30 * 1000,
-    testDir: path.join(__dirname, "tests"),
-    retries: 1,
     outputDir: "playwright-report/",
-    webServer: {
-        command: "npm run dev",
-        url: baseURL,
-        timeout: 120 * 1000,
-        reuseExistingServer: !process.env.CI,
-    },
-    use: {
-        baseURL,
-        trace: "retry-with-trace",
-    },
     projects: [
         {
             name: "Desktop Chrome",
@@ -39,4 +26,17 @@ export default defineConfig({
             },
         },
     ],
+    retries: 1,
+    testDir: path.join(__dirname, "tests"),
+    timeout: 30 * 1000,
+    use: {
+        baseURL,
+        trace: "retry-with-trace",
+    },
+    webServer: {
+        command: "npm run dev",
+        reuseExistingServer: !process.env.CI,
+        timeout: 120 * 1000,
+        url: baseURL,
+    },
 });

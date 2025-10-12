@@ -1,8 +1,10 @@
 import type { Route } from "next";
+
 import VNS_Logo from "@public/VNS.svg";
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,15 +12,15 @@ import {
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
-    navigationMenuTriggerStyle
+    navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
-const links: { label: string, href: Route }[] = [
-    { label: "Về chúng mình", href: "#about", },
-    { label: "Dự án", href: "#projects", },
-    { label: "Nhân sự", href: "#human-resources", },
-    { label: "Truyện tại Trạm", href: "#translations", },
+const links: { href: Route; label: string }[] = [
+    { href: "#about", label: "Về chúng mình" },
+    { href: "#projects", label: "Dự án" },
+    { href: "#human-resources", label: "Nhân sự" },
+    { href: "#translations", label: "Truyện tại Trạm" },
 ];
 
 export default function NavigationBar() {
@@ -28,10 +30,10 @@ export default function NavigationBar() {
                 <Sheet>
                     <SheetTrigger asChild>
                         <Button
+                            aria-label={"burger-menu"}
                             className={"ml-4 self-center lg:hidden"}
                             size={"icon"}
                             variant={"outline"}
-                            aria-label={"burger-menu"}
                         >
                             <Menu />
                         </Button>
@@ -44,7 +46,7 @@ export default function NavigationBar() {
                         <div className={"mt-2 ml-4 grid gap-2 py-6"}>
                             {links.map((entry) => {
                                 return (
-                                    <Link key={entry.label} href={entry.href}>
+                                    <Link href={entry.href} key={entry.label}>
                                         {entry.label}
                                     </Link>
                                 );
@@ -56,15 +58,15 @@ export default function NavigationBar() {
                     <Image alt={"VNS_Logo_Header"} className={"size-[50px] dark:invert"} src={VNS_Logo} />
                 </Link>
             </div>
-            <NavigationMenu className={"hidden gap-6 lg:flex"} viewport aria-label={"nav-bar"}>
+            <NavigationMenu aria-label={"nav-bar"} className={"hidden gap-6 lg:flex"} viewport>
                 <NavigationMenuList className={"gap-x-8"}>
                     {links.map((entry) => {
                         return (
                             <NavigationMenuItem key={entry.label}>
                                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                                     <Link
-                                        href={entry.href}
                                         className={"relative inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:-translate-x-1/2 after:bg-current after:transition-[width] after:duration-300 hover:after:w-full"}
+                                        href={entry.href}
                                     >
                                         {entry.label}
                                     </Link>
