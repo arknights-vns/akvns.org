@@ -1,0 +1,11 @@
+name: arknights-vns
+
+services:
+  web:
+    build: .
+    hostname: akvns
+    restart: unless-stopped
+    environment:
+      PORT: ${PORT}
+    ports:
+      - ${PORT:-3000}:3000
