@@ -83,3 +83,22 @@ model Verification {
     @@index([identifier])
     @@map("verification")
 }
+
+enum ProjectType {
+    FAN_PROJECT
+    EVENT
+    CROSSOVER
+}
+
+model Project {
+    id          String      @id
+    title       String
+    type        ProjectType @default(EVENT)
+    mainImg     String
+    date        DateTime    @default(now())
+    description String
+
+    //temporairly indexing by date for now
+    @@index([date])
+    @@map("project")
+}
