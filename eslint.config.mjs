@@ -53,9 +53,7 @@ export default defineConfig([
     },
     // Next.js
     {
-        plugins: {
-            "@next/next": nextjs,
-        },
+        plugins: { "@next/next": nextjs },
         rules: {
             ...nextjs.configs.recommended.rules,
             ...nextjs.configs["core-web-vitals"].rules,
@@ -63,7 +61,7 @@ export default defineConfig([
     },
     // Stylistic
     stylistic.configs.customize({
-        braceStyle: "1tbs",
+        braceStyle: "stroustrup",
         commaDangle: "always-multiline",
         indent: 4,
         jsx: true,
@@ -80,53 +78,33 @@ export default defineConfig([
                     props: "always",
                 },
             ],
-            "@stylistic/max-len": ["error", {
-                code: 120,
-                ignoreComments: true,
-                ignoreStrings: true,
-                ignoreTemplateLiterals: true,
-            }],
+            "@stylistic/object-curly-newline": ["error"],
+            "@stylistic/object-property-newline": "error",
         },
     },
     // Playwright
     {
         files: ["tests/**/*.spec.ts"],
         ...playwright.configs["flat/recommended"],
-        rules: {
-            ...playwright.configs["flat/recommended"].rules,
-        },
+        rules: { ...playwright.configs["flat/recommended"].rules },
     },
     // TailwindCSS
     {
         files: ["**/*.{tsx}"],
-        languageOptions: {
-            parserOptions: {
-                ecmaFeatures: {
-                    jsx: true,
-                },
-            },
-        },
-        plugins: {
-            "better-tailwindcss": tailwindcss,
-        },
+        languageOptions: { parserOptions: { ecmaFeatures: { jsx: true } } },
+        plugins: { "better-tailwindcss": tailwindcss },
         rules: {
             ...tailwindcss.configs["recommended-error"].rules,
             "better-tailwindcss/enforce-consistent-line-wrapping": ["off"],
         },
-        settings: {
-            "better-tailwindcss": {
-                entryPoint: `${import.meta.dirname}/src/app/globals.css`,
-            },
-        },
+        settings: { "better-tailwindcss": { entryPoint: `${import.meta.dirname}/src/app/globals.css` } },
     },
     // Unicorn
     eslintPluginUnicorn.configs.recommended,
     {
         rules: {
             "unicorn/filename-case": "off",
-            "unicorn/prevent-abbreviations": ["error", {
-                checkFilenames: false,
-            }],
+            "unicorn/prevent-abbreviations": ["error", { checkFilenames: false }],
         },
     },
     // perfectionist

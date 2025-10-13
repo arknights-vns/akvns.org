@@ -9,21 +9,15 @@ export default defineConfig({
     projects: [
         {
             name: "Desktop Chrome",
-            use: {
-                ...devices["Desktop Chrome"],
-            },
+            use: { ...devices["Desktop Chrome"] },
         },
         {
             name: "Desktop Firefox",
-            use: {
-                ...devices["Desktop Firefox"],
-            },
+            use: { ...devices["Desktop Firefox"] },
         },
         {
             name: "Mobile Chrome",
-            use: {
-                ...devices["Galaxy S24"],
-            },
+            use: { ...devices["Galaxy S24"] },
         },
     ],
     retries: 1,

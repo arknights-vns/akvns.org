@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
 
 import BackToTop from "@/components/BackToTop";
 import FatFooter from "@/components/FatFooter";
 import NavigationBar from "@/components/NavigationBar";
 
-const production_url = process.env.PRODUCTION_URL ?? "http://localhost:3000";
+const production_url = process.env.PRODUCTION_URL || "http://localhost:3000";
 
 export const metadata: Metadata = {
     authors: [
@@ -31,17 +30,15 @@ export const metadata: Metadata = {
     title: "Arknights Vietnam Station",
 };
 
-export default function RootLayout({
-    children,
-}: Readonly<{
-    children: ReactNode;
-}>) {
+export default function RootLayout(properties: LayoutProps<"/">) {
     return (
-        <>
+        <main>
             <NavigationBar />
-            <div className={"min-h-screen max-w-screen scroll-smooth"}>{children}</div>
-            <BackToTop />
+            <section className={"min-h-screen max-w-screen scroll-smooth"}>
+                {properties.children}
+                <BackToTop />
+            </section>
             <FatFooter />
-        </>
+        </main>
     );
 }
