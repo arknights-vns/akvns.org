@@ -9,6 +9,4 @@ const buildEslintCommand = filenames =>
         .map(f => path.relative(process.cwd(), f))
         .join(" ")}`;
 
-module.exports = {
-    "*.{js,mjs,ts,tsx}": [buildEslintCommand],
-};
+module.exports = { "*.{js,mjs,ts,tsx}": [buildEslintCommand] };

@@ -1,6 +1,6 @@
 import type { Route } from "next";
 
-import VNS_Logo from "@public/VNS.svg";
+import VNS_Icon from "@public/VNS_Icon.svg";
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,11 +16,26 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
-const links: { href: Route; label: string }[] = [
-    { href: "#about", label: "Về chúng mình" },
-    { href: "#projects", label: "Dự án" },
-    { href: "#human-resources", label: "Nhân sự" },
-    { href: "#translations", label: "Truyện tại Trạm" },
+const links: {
+    href: Route;
+    label: string;
+}[] = [
+    {
+        href: "#about",
+        label: "Về chúng mình",
+    },
+    {
+        href: "#projects",
+        label: "Dự án",
+    },
+    {
+        href: "#human-resources",
+        label: "Nhân sự",
+    },
+    {
+        href: "#translations",
+        label: "Truyện tại Trạm",
+    },
 ];
 
 export default function NavigationBar() {
@@ -55,7 +70,7 @@ export default function NavigationBar() {
                     </SheetContent>
                 </Sheet>
                 <Link className={"ml-4 flex items-center gap-4 md:ml-12"} href={"/"}>
-                    <Image alt={"VNS_Logo_Header"} className={"size-[50px] dark:invert"} src={VNS_Logo} />
+                    <Image alt={"VNS_Logo_Header"} className={"size-[50px] dark:invert"} src={VNS_Icon} />
                 </Link>
             </div>
             <NavigationMenu aria-label={"nav-bar"} className={"hidden gap-6 lg:flex"} viewport>
