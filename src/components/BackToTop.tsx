@@ -19,7 +19,8 @@ export default function BackToTop() {
     const scrollHandle = useCallback(() => {
         if (window.scrollY >= 25) {
             setShowTopButton(true);
-        } else {
+        }
+        else {
             setShowTopButton(false);
         }
     }, []);

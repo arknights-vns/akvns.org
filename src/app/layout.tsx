@@ -23,15 +23,11 @@ export const viewport: Viewport = {
     themeColor: "#fe0606",
 };
 
-export default function RootLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
+export default function RootLayout(properties: LayoutProps<"/">) {
     return (
         <html lang={"en"} suppressHydrationWarning>
             <body className={`${font.variable} ${fontMono.variable} font-sans antialiased`}>
-                <TerraTheme>{children}</TerraTheme>
+                <TerraTheme>{properties.children}</TerraTheme>
             </body>
         </html>
     );

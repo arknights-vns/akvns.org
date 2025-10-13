@@ -6,6 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
+    "typegen": "next typegen",
     "lint": "eslint",
     "format": "eslint --fix",
     "prepare": "husky",
