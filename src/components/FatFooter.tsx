@@ -26,9 +26,9 @@ const navigations: {
                 href: "https://discord.gg/arknights-vns",
             }, {
                 cloak: true,
-                displayText: "Dreamchasers",
+                displayText: "Phoenix Frontiers Hub",
                 heading: "Discord",
-                href: "https://discord.gg/arknights-vns",
+                href: "https://discord.gg/dgTVWerfUk",
             },
         ],
     },
