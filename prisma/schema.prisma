@@ -98,7 +98,6 @@ model Project {
     date        DateTime    @default(now())
     description String
 
-    //temporairly indexing by date for now
-    @@index([date])
+    @@index([title, type, date])
     @@map("project")
 }
