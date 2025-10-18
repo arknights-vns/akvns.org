@@ -21,13 +21,10 @@ export default function MainPage() {
                     <Button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={clsx(
-                            "px-5 py-2 rounded-full font-semibold transition-colors",
-                            {
-                                "bg-[#F25C5C] text-white": activeTab === tab,
-                                "bg-gray-200 text-black hover:bg-gray-300": activeTab !== tab,
-                            },
-                        )}>
+                        className={clsx("px-5 py-2 rounded-full font-semibold transition-colors", {
+                            "bg-[#F25C5C] text-white": activeTab === tab,
+                            "bg-gray-200 text-black hover:bg-gray-300": activeTab !== tab,
+                        })}>
                         {tab}
                     </Button>
                 ))}
