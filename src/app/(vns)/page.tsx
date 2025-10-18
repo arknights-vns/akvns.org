@@ -13,7 +13,7 @@ export default function MainPage() {
     const [activeTab, setActiveTab] = useState(tabs[0]);
     return (
         <div className="flex flex-col items-center py-8">
-            <h1 className="text-4xl font-bold mb-6 text-[#F25C5C]">Nhân sự tại Arknights VNS</h1>
+            <div className="text-5xl font-bold mb-6 text-[#F25C5C]">Nhân sự tại Arknights VNS</div>
             {/* Tabs for contributor */}
             <div className="flex gap-4 mb-8">
                 {tabs.map((tab) => (
