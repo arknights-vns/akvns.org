@@ -30,5 +30,5 @@ export const members = Object.fromEntries(
                 icon: iconMap[link.icon as keyof typeof iconMap],
             })),
         })),
-    ])
+    ]),
 );
