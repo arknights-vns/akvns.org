@@ -1,0 +1,14 @@
+name: arknights-vns
+
+include:
+  - docker/postgres/docker-compose.yml
+
+services:
+  web:
+    build: .
+    hostname: akvns
+    restart: unless-stopped
+    environment:
+      PORT: ${PORT}
+    ports:
+      - ${PORT:-3000}:3000
