@@ -12,7 +12,7 @@ interface item {
 }
 
 export default function Carousel() {
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 4000 })]);
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" }, [Autoplay({ delay: 4000 })]);
 
     const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
     const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
@@ -45,7 +45,7 @@ export default function Carousel() {
     };
 
     return (
-        <div className="embla items-center relative">
+        <div className="embla items-center relative border-y-2 border-gray-400">
             <div className="embla__viewport overflow-hidden" ref={emblaRef}>
                 <div className="embla__container flex">
                     {/* holds all slides horizontal */}
@@ -56,6 +56,7 @@ export default function Carousel() {
                         flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%]
                         flex flex-col items-center justify-center"
                             key={item.title}>
+                                {/* no idea how to display 2 picture in one slide */}
                             <Image
                                 src={item.image}
                                 alt={item.title}
