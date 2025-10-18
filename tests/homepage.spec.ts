@@ -2,25 +2,37 @@ import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
     await page.goto("/");
-    await page.mouse.wheel(0, -1_000_000_000);
+    await page.evaluate(() => window.scrollTo({
+        left: 0,
+        top: 0,
+    }));
 });
 
 test("back-to-top conditional render", async ({ page }) => {
-    expect(!(await page.getByLabel("back-to-top").isVisible()));
+    await expect(page.getByLabel("back-to-top")).toBeHidden();
 
-    await page.mouse.wheel(0, 25);
+    await page.evaluate(() => window.scrollTo({
+        left: 0,
+        top: 25,
+    }));
 
-    expect(await page.getByLabel("back-to-top").isVisible());
+    await expect(page.getByLabel("back-to-top")).toBeVisible();
 });
 
-test("navbar responsive", async ({ page, isMobile }) => {
-    if (isMobile) {
-        expect(!(await page.getByLabel("nav-bar").isVisible()));
-        expect(await page.getByLabel("burger-menu").isVisible());
-    } else {
-        expect(await page.getByLabel("nav-bar").isVisible());
-        expect(!(await page.getByLabel("burger-menu").isVisible()));
-    }
+test("navbar should hidden on mobile", async ({ isMobile, page }) => {
+    // eslint-disable-next-line playwright/no-skipped-test
+    test.skip(!isMobile, "Test is mobile-only");
+
+    await expect(page.getByLabel("nav-bar")).toBeHidden();
+    await expect(page.getByLabel("burger-menu")).toBeVisible();
+});
+
+test("navbar should visible on desktop", async ({ isMobile, page }) => {
+    // eslint-disable-next-line playwright/no-skipped-test
+    test.skip(isMobile, "Test is desktop-only");
+
+    await expect(page.getByLabel("nav-bar")).toBeVisible();
+    await expect(page.getByLabel("burger-menu")).toBeHidden();
 });
 
 test("theme switcher", async ({ page }) => {

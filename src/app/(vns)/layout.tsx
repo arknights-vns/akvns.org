@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+
 import BackToTop from "@/components/BackToTop";
 import FatFooter from "@/components/FatFooter";
 import NavigationBar from "@/components/NavigationBar";
 
-const prod_url = process.env.PRODUCTION_URL ?? "http://localhost:3000";
+const production_url = process.env.PRODUCTION_URL || "http://localhost:3000";
 
 export const metadata: Metadata = {
-    metadataBase: new URL(prod_url),
-    title: "Arknights Vietnam Station",
-    description: "For the Doctors, by the Doctors.",
     authors: [
         {
             name: "Trạm dừng chân chốn Terra",
@@ -20,27 +17,28 @@ export const metadata: Metadata = {
             url: "https://github.com/arknights-vns",
         },
     ],
+    description: "For the Doctors, by the Doctors.",
+    metadataBase: new URL(production_url),
     openGraph: {
-        url: prod_url,
-        title: "Arknights Vietnam Station",
-        siteName: "Arknights Vietnam Station",
-        description: "For the Doctors, by the Doctors.",
         countryName: "Vietnam",
+        description: "For the Doctors, by the Doctors.",
         locale: "vi-VN",
+        siteName: "Arknights Vietnam Station",
+        title: "Arknights Vietnam Station",
+        url: production_url,
     },
+    title: "Arknights Vietnam Station",
 };
 
-export default function RootLayout({
-    children,
-}: Readonly<{
-    children: ReactNode;
-}>) {
+export default function RootLayout(properties: LayoutProps<"/">) {
     return (
-        <>
+        <main>
             <NavigationBar />
-            <div className="max-w-screen min-h-screen scroll-smooth">{children}</div>
-            <BackToTop />
+            <section className={"min-h-screen max-w-screen scroll-smooth"}>
+                {properties.children}
+                <BackToTop />
+            </section>
             <FatFooter />
-        </>
+        </main>
     );
 }

@@ -1,10 +1,10 @@
 {
   "recommendations": [
-    "biomejs.biome",
+    "dbaeumer.vscode-eslint",
     "bradlc.vscode-tailwindcss",
     "EditorConfig.EditorConfig",
     "Prisma.prisma",
     "ms-playwright.playwright"
   ],
-  "unwantedRecommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+  "unwantedRecommendations": ["esbenp.prettier-vscode"]
 }
