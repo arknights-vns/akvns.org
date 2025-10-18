@@ -28,6 +28,14 @@ export default function Carousel() {
         } else {
             scrollNext();
         }
+
+        // disable autoplay until next page
+        const autoplayInstance = emblaApi?.plugins()?.autoplay;
+        if (autoplayInstance) {
+            const resetOrStop =
+                autoplayInstance.options.stopOnInteraction === false ? autoplayInstance.reset : autoplayInstance.stop;
+            resetOrStop();
+        }
     };
 
     const handleKeyboard = (e: React.KeyboardEvent<HTMLButtonElement>) => {
