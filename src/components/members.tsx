@@ -1,4 +1,5 @@
 import { Github, Globe, Linkedin } from "lucide-react";
+import membersData from "../../public/members.json";
 
 export interface MemberLink {
     icon: React.ReactNode;
@@ -13,165 +14,21 @@ export interface Member {
     links: MemberLink[];
 }
 
-export const members = {
-    Leader: [
-        {
-            name: "Tus",
-            role: "Da The",
-            quote: "real",
-            avatar: "/tus.jpg",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
-            ],
-        },
-        {
-            name: "Con Dấu Hồng 1",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
-            ],
-        },
-        {
-            name: "Con Dấu Hồng 2",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
-            ],
-        },
-        {
-            name: "Con Dấu Hồng 3",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
-            ],
-        },
-        {
-            name: "Con Dấu Hồng 4",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
-            ],
-        },
-        {
-            name: "Kurome",
-            role: "Eyja",
-            quote: "ˈmɛr.ʊ.koʊ/ 'mɛl.ʊ.koʊ",
-            avatar: "/meruko.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
-            ],
-        },
-        {
-            name: "Con Dấu Hồng 5",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
-            ],
-        },
-        {
-            name: "Con Dấu Hồng 6",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
-            ],
-        },
-        {
-            name: "Con Dấu Hồng 7",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
-            ],
-        },
-        {
-            name: "Con Dấu Hồng 8",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-                { icon: <Globe size={18} />, url: "#" },
-            ],
-        },
-    ],
-    Translator: [
-        {
-            name: "Con Dấu Hồng",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-            ],
-        },
-    ],
-    Dreamchasers: [
-        {
-            name: "Con Dấu Hồng",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-            ],
-        },
-    ],
-    "Ph. Frontiers": [
-        {
-            name: "Con Dấu Hồng",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-            ],
-        },
-    ],
-    Partners: [
-        {
-            name: "Aririn",
-            role: "Tiểu tam giật chồng với PRTS",
-            quote: "Nghỉ mệt sau story Babel",
-            avatar: "/amiya.png",
-            links: [
-                { icon: <Github size={18} />, url: "#" },
-                { icon: <Linkedin size={18} />, url: "#" },
-            ],
-        },
-    ],
+const iconMap: Record<string, React.ReactNode> = {
+    Github: <Github size={18} />,
+    Linkedin: <Linkedin size={18} />,
+    Globe: <Globe size={18} />,
 };
+
+export const members = Object.fromEntries(
+    Object.entries(membersData).map(([category, members]) => [
+        category,
+        (members as Member[]).map((member) => ({
+            ...member,
+            links: member.links.map((link) => ({
+                ...link,
+                icon: iconMap[link.icon as keyof typeof iconMap],
+            })),
+        })),
+    ])
+);
