@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
 import type { Member, MemberLink } from "@/components/members";
@@ -20,9 +21,13 @@ export default function MainPage() {
                     <Button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`px-5 py-2 rounded-full font-semibold transition-colors
-                            ${activeTab === tab ? "bg-[#F25C5C] text-white" : "bg-gray-200 text-black hover:bg-gray-300"}
-                            `}>
+                        className={clsx(
+                            "px-5 py-2 rounded-full font-semibold transition-colors",
+                            {
+                                "bg-[#F25C5C] text-white": activeTab === tab,
+                                "bg-gray-200 text-black hover:bg-gray-300": activeTab !== tab,
+                            },
+                        )}>
                         {tab}
                     </Button>
                 ))}
