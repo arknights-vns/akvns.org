@@ -2,7 +2,7 @@
 
 import DiscordLogo from "@public/brand/discord.svg";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useCallback } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -11,8 +11,6 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { authClient } from "@/lib/auth-client";
@@ -20,6 +18,7 @@ import { authClient } from "@/lib/auth-client";
 export default function DiscordInfoPill() {
     const { data: session, isPending } = authClient.useSession();
     const pathname = usePathname();
+    const router = useRouter();
 
     const handleLoginClick = useCallback(() => {
         authClient.signIn.social({
@@ -29,8 +28,12 @@ export default function DiscordInfoPill() {
     }, [pathname]);
 
     const handleLogoutClick = useCallback(() => {
-        authClient.signOut();
-    }, []);
+        // in case you ask for double reload code
+        // https://stackoverflow.com/a/75829540
+        // dunno if it really works.
+        authClient.signOut().then(() => globalThis.location.reload());
+        router.refresh();
+    }, [router]);
 
     const allowLogin = Number.parseInt(process.env.NEXT_PUBLIC_DISCORD_LOGIN_ENABLED as string);
 
@@ -56,8 +59,8 @@ export default function DiscordInfoPill() {
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align={"end"} className={"mt-1"}>
-                        <DropdownMenuLabel className={"font-bold"}>Tài khoản</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
+                        {/* <DropdownMenuLabel className={"font-bold"}>Tài khoản</DropdownMenuLabel> */}
+                        {/* <DropdownMenuSeparator /> */}
                         {/* <DropdownMenuItem><Link href={"/profile"}>Hồ sơ</Link></DropdownMenuItem> */}
                         <DropdownMenuItem className={"font-extrabold text-red-400"} onClick={handleLogoutClick}>Đăng xuất</DropdownMenuItem>
                     </DropdownMenuContent>
