@@ -9,6 +9,7 @@ import carouselData from "@/app/(vns)/data/carouselData.json";
 interface item {
     image: string;
     title: string;
+    url: string;
 }
 
 export default function Carousel() {
@@ -48,36 +49,47 @@ export default function Carousel() {
         <div className="embla items-center relative border-y-2 border-gray-400">
             <div className="embla__viewport overflow-hidden" ref={emblaRef}>
                 <div className="embla__container flex">
-                    {/* holds all slides horizontal */}
                     {carouselData.map((item: item) => (
                         <div
                             className="
-                        embla__slide 
-                        flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%]
-                        flex flex-col items-center justify-center"
+                                embla__slide 
+                                flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%]
+                                flex flex-col items-center justify-center"
                             key={item.title}>
-                                {/* no idea how to display 2 picture in one slide */}
-                            <Image
-                                src={item.image}
-                                alt={item.title}
-                                width={120}
-                                height={180}
-                                className="w-38 h-full object-fit-cover"
-                            />
-                            <h1 className="font-bold mt-2 text-center">{item.title}</h1>
+                            <div className="relative flex items-center justify-center w-full">
+                                <Image
+                                    src={item.image}
+                                    alt={item.title}
+                                    width={120}
+                                    height={180}
+                                    className="w-38 h-full object-fit-cover"
+                                />
+                                <button
+                                    type="button"
+                                    tabIndex={0}
+                                    aria-label="Navigate carousel"
+                                    onClick={handleClick}
+                                    onKeyDown={handleKeyboard}
+                                    className="absolute inset-0 z-10 cursor-pointer border-none bg-transparent"
+                                    style={{ outline: "none" }}
+                                />
+                            </div>
+                            {item.url ? (
+                                <a
+                                    href={item.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="font-bold mb-2 text-center hover:text-red-500 transition-colors"
+                                >
+                                    {item.title}
+                                </a>
+                            ) : (
+                                <h1 className="font-bold mt-2 text-center">{item.title}</h1>
+                            )}
                         </div>
                     ))}
                 </div>
             </div>
-            {/* handles both mouse and keyboard action (a pain in the ass to figure out) */}
-            <button
-                type="button"
-                tabIndex={0}
-                aria-label="Navigate carousel"
-                onClick={handleClick}
-                onKeyDown={handleKeyboard}
-                className="absolute inset-0 z-10 cursor-pointer border-none"
-            />
         </div>
     );
 }

@@ -1,22 +1,27 @@
 [
   {
     "image": "/amiya.png",
-    "title": "Amiya"
+    "title": "Amiya",
+    "url": "#"
   },
   {
     "image": "/youtube.svg",
-    "title": "YOUTUBE"
+    "title": "YOUTUBE",
+    "url": "#"
   },
   {
     "image": "/VNS.svg",
-    "title": "VNS LOGO"
+    "title": "VNS LOGO",
+    "url": "#"
   },
   {
     "image": "/steam.svg",
-    "title": "STEAM"
+    "title": "STEAM",
+    "url": "#"
   },
   {
     "image": "/facebook.svg",
-    "title": "FACEBOOK"
+    "title": "FACEBOOK",
+    "url": "#"
   }
 ]
