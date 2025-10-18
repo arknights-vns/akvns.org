@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import DiscordInfoPill from "@/components/DiscordInfoPill";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +15,15 @@ import {
     NavigationMenuList,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet";
 
 const links: {
     href: Route;
@@ -67,6 +76,11 @@ export default function NavigationBar() {
                                 );
                             })}
                         </div>
+                        <SheetFooter className={"flex flex-row"}>
+                            {/* Anh dùng máy bằng tay trái - Đụt */}
+                            <ThemeSwitcher />
+                            <DiscordInfoPill />
+                        </SheetFooter>
                     </SheetContent>
                 </Sheet>
                 <Link className={"ml-4 flex items-center gap-4 md:ml-12"} href={"/"}>
@@ -92,6 +106,7 @@ export default function NavigationBar() {
                 </NavigationMenuList>
             </NavigationMenu>
             <div className={"flex items-center space-x-2"}>
+                <div className={"hidden md:block"}><DiscordInfoPill /></div>
                 <ThemeSwitcher />
             </div>
         </header>
