@@ -48,3 +48,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Docker
+/docker/minio/storage
+/docker/postgres/pgdata
