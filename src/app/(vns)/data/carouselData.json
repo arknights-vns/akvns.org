@@ -1,0 +1,27 @@
+[
+  {
+    "image": "/amiya.png",
+    "title": "Amiya",
+    "url": "#"
+  },
+  {
+    "image": "/youtube.svg",
+    "title": "YOUTUBE",
+    "url": "#"
+  },
+  {
+    "image": "/VNS.svg",
+    "title": "VNS LOGO",
+    "url": "#"
+  },
+  {
+    "image": "/steam.svg",
+    "title": "STEAM",
+    "url": "#"
+  },
+  {
+    "image": "/facebook.svg",
+    "title": "FACEBOOK",
+    "url": "#"
+  }
+]
