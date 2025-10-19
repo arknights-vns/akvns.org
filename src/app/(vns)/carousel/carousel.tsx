@@ -3,7 +3,7 @@
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import carouselData from "@/app/(vns)/data/carouselData.json";
 
 interface item {
@@ -13,7 +13,7 @@ interface item {
 }
 
 export default function Carousel() {
-    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" }, [Autoplay({ delay: 4000 })]);
+    const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center", dragFree: true  }, [Autoplay({ delay: 4000 })]);
 
     const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
     const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
@@ -45,6 +45,19 @@ export default function Carousel() {
         }
     };
 
+    useEffect(() => {
+        if (emblaApi) {
+            emblaApi.scrollTo(0, true);
+
+            // Snaping
+            emblaApi.on("pointerUp", () => {
+                setTimeout(() => {
+                    emblaApi.scrollTo(emblaApi.selectedScrollSnap());
+                }, 500); //Snap delay
+            });
+        }
+    }, [emblaApi]);
+
     return (
         <div className="embla items-center relative border-y-2 border-gray-400">
             <div className="embla__viewport overflow-hidden" ref={emblaRef}>
@@ -52,7 +65,7 @@ export default function Carousel() {
                     {carouselData.map((item: item) => (
                         <div
                             className="
-                                embla__slide 
+                                embla__slide
                                 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%]
                                 flex flex-col items-center justify-center"
                             key={item.title}>
