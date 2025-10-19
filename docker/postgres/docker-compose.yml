@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:17-alpine
+    build: .
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
