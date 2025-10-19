@@ -29,6 +29,6 @@ services:
       entrypoint: >
         /bin/sh -c "
         /usr/bin/mc alias set akvns http://minio:9000 $$MINIO_ROOT_USER $$MINIO_ROOT_PASSWORD &&
-        /usr/bin/mc mb akvns/$$GLOBAL_S3_BUCKET &&
+        /usr/bin/mc mb akvns/$$DEFAULT_BUCKET &&
         exit 0
         "
