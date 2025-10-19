@@ -13,6 +13,16 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+model Feature {
+    id          String  @id
+    description String
+    group       String  @default("NORMAL")
+    enable      Boolean @default(false)
+
+    @@index([id, description, group, enable])
+    @@map("feature")
+}
+
 model User {
     id            String    @id
     name          String
