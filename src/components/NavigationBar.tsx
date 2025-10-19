@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import DiscordInfoPill from "@/components/DiscordInfoPill";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
 import {
@@ -78,6 +79,7 @@ export default function NavigationBar() {
                         <SheetFooter className={"flex flex-row"}>
                             {/* Anh dùng máy bằng tay trái - Đụt */}
                             <ThemeSwitcher />
+                            <DiscordInfoPill />
                         </SheetFooter>
                     </SheetContent>
                 </Sheet>
@@ -104,6 +106,7 @@ export default function NavigationBar() {
                 </NavigationMenuList>
             </NavigationMenu>
             <div className={"flex justify-end items-center space-x-2 w-[25vw]"}>
+                <DiscordInfoPill />
                 <ThemeSwitcher />
             </div>
         </header>

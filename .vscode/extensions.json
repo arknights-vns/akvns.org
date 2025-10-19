@@ -4,7 +4,8 @@
     "bradlc.vscode-tailwindcss",
     "EditorConfig.EditorConfig",
     "Prisma.prisma",
-    "ms-playwright.playwright"
+    "ms-playwright.playwright",
+    "ms-azuretools.vscode-docker"
   ],
   "unwantedRecommendations": ["esbenp.prettier-vscode"]
 }
