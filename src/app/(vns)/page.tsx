@@ -35,7 +35,7 @@ export default function MainPage() {
                             </Link>
                         </Button>
                     </div>
-                    <div className={"text-xs text-neutral-400"}>* Tus không trả lương team IT để làm cái này.</div>
+                    <div className={"text-xs text-muted-foreground"}>* Tus không trả lương team IT để làm cái này.</div>
                 </CardFooter>
             </Card>
         </div>
