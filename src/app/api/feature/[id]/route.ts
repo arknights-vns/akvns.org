@@ -1,6 +1,33 @@
+import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+
+/**
+  * DELETE THE FEATURE FLAG.
+  */
+export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/feature/[id]">) {
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    if (!session || session.user.role !== "admin") {
+        return NextResponse.json({ message: "Shoo" }, { status: 403 });
+    }
+
+    const parameterList = await parameters.params;
+
+    await prisma.feature.deleteMany({
+        where: {
+            id: parameterList.id,
+        },
+    });
+
+    return NextResponse.json({}, {
+        status: 200,
+    });
+}
 
 /**
  * Get availability of a "feature flag".

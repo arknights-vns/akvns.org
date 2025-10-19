@@ -82,14 +82,20 @@ export default function AdminLayout(properties: LayoutProps<"/manage">) {
                     <DiscordInfoPill />
                 </SidebarFooter>
             </Sidebar>
-            <main className={"flex flex-col p-4 gap-4 flex-1"}>
-                <div className={"flex place-items-center-safe gap-4"}>
-                    <SidebarTrigger />
-                    <Separator orientation={"vertical"} />
-                    <div>idk what to write here?</div>
+            <main className={"flex flex-col p-4 gap-2 flex-1 ml-1"}>
+                <div className={"flex justify-between"}>
+                    <div className={"flex place-items-center-safe gap-3"}>
+                        <SidebarTrigger />
+                        <Separator orientation={"vertical"} />
+                        <span className={"italic"}>"Totally not written from scratch" CMS</span>
+                    </div>
+                    <div className={"flex gap-2"}>
+                        <DiscordInfoPill />
+                        <ThemeSwitcher />
+                    </div>
                 </div>
                 <Separator />
-                <section>{properties.children}</section>
+                <section className={"mt-4"}>{properties.children}</section>
             </main>
         </SidebarProvider>
     );
