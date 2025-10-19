@@ -22,5 +22,10 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/feature
         return NextResponse.json({}, { status: 400 });
     }
 
-    return NextResponse.json({}, { status: result.enable ? 200 : 418 });
+    return NextResponse.json({}, {
+        headers: {
+            "Cache-Control": "public, max-age=1800, s-maxage=3600",
+        },
+        status: result.enable ? 200 : 418,
+    });
 }
