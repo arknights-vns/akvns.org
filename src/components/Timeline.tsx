@@ -67,7 +67,7 @@ export default function Timeline({ selectedType }: { selectedType: keyof Project
                         const leftPercent = (index_ + ((visibleItems.length - 1) / 2 - index_) * 0.1) / (visibleItems.length - 1) * 100;
                         return (
                             <div
-                                className={"absolute top-2/4 -translate-y-1/2 w-[18px] h-[18px] bg-[#fff] border-[3px] border-[#000] rounded-[50%] cursor-pointer [transition:transform_0.2s_ease] hover:-translate-y-1/2 hover:scale-[1.2]"}
+                                className={"absolute top-2/4 -translate-y-1/2 w-[18px] h-[18px] bg-[#fff] border-[3px] border-[#000] rounded-[50%] cursor-pointer [transition:transform_0.2s_ease]"}
                                 key={item.name}
                                 style={{ left: `${leftPercent}%` }}
                             >
