@@ -13,7 +13,7 @@ type Properties = {
     selected: ProjectType;
 };
 
-const ProjectsHeader: FC<Properties> = ({ onSelect, selected }) => {
+export default function ProjectHeader({ onSelect, selected }) => {
     return (
         <div className={"max-w-6xl mx-auto mb-8"}>
             <div className={"flex items-center justify-between mb-4"}>
