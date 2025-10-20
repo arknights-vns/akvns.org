@@ -37,10 +37,10 @@ export default function Timeline({ selectedType }: { selectedType: keyof Project
     }, []);
 
     useEffect(() => {
-        if (index > 0) {
+        if (selectedType) {
             setIndex(0);
         }
-    }, [selectedType, index]);
+    }, [selectedType]);
 
     if (!projects) {
         return <p>Loading...</p>;

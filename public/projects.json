@@ -23,6 +23,12 @@
       "date": "2025-09-25",
       "content": "Welcome to maimai my ass",
       "bg": "@/placeholder.png"
+    },
+    {
+      "name": "Cannot Goodenough",
+      "date": "2025-09-25",
+      "content": "Amiya, we lost the ship, again",
+      "bg": "@/placeholder.png"
     }
   ],
   "event": [
