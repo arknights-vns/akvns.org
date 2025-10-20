@@ -1,19 +1,10 @@
 "use client";
 
-import type { FC } from "react";
-
 import React from "react";
 
 import { Button } from "@/components/ui/button";
 
-export type ProjectType = "cross" | "event" | "fanProjects";
-
-type Properties = {
-    onSelect: (t: ProjectType) => void;
-    selected: ProjectType;
-};
-
-export default function ProjectHeader({ onSelect, selected }) => {
+export default function ProjectHeader({ onSelect, selected }) {
     return (
         <div className={"max-w-6xl mx-auto mb-8"}>
             <div className={"flex items-center justify-between mb-4"}>
@@ -33,5 +24,3 @@ export default function ProjectHeader({ onSelect, selected }) => {
         </div>
     );
 };
-
-export default ProjectsHeader;

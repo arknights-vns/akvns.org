@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 
-import ProjectsHeader, { ProjectType } from "@/components/projectHeader";
+import ProjectsHeader from "@/components/projectHeader";
 import Timeline from "@/components/Timeline";
+type ProjectType = "cross" | "event" | "fanProjects";
 
 export default function MainPage() {
     const [selectedType, setSelectedType] = useState<ProjectType>("fanProjects");
