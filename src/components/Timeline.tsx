@@ -62,7 +62,7 @@ export default function Timeline({ selectedType }: { selectedType: keyof Project
     return (
         <div>
             <div className={"relative max-w-[900px] w-full mx-auto my-[60px] px-] py-[20px] flex justify-center items-center"}>
-                <div className={"relative w-[1000px] h-[4px] bg-[linear-gradient(to right, lightgray, darkgray, gray, black, gray, darkgray, lightgray)] rounded-[4px]"}>
+                <div className={"relative w-[1000px] h-[4px] bg-[linear-gradient(to_right,_lightgray,_darkgray,_gray,_black,_gray,_darkgray,_lightgray)] rounded-[4px]"}>
                     {visibleItems.map((item, index_) => {
                         const leftPercent = (index_ + ((visibleItems.length - 1) / 2 - index_) * 0.1) / (visibleItems.length - 1) * 100;
                         return (
