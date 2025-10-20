@@ -82,7 +82,7 @@ export default function Timeline({ selectedType }: { selectedType: keyof Project
                 </div>
             </div>
 
-            <div className={"flex justify-center gap-4 relative mx-auto my-auto"}>
+            <div className={"flex justify-center gap-4 relative mx-auto my-auto top-60"}>
                 <Button disabled={index === 0} onClick={stepBackward}>
                     Previous
                 </Button>
