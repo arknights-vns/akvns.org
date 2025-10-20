@@ -72,7 +72,7 @@ export default function Timeline({ selectedType }: { selectedType: keyof Project
                                 style={{ left: `${leftPercent}%` }}
                             >
                                 <div className={"absolute top-[28px] left-2/4 -translate-x-1/2 text-[14px] font-semibold whitespace-nowrap"}>{item.date}</div>
-                                <div className={"relative top-[50px] left-2/4 -translate-x-1/2 min-w-[180px] min-h-[200px] p-[10px] bg-[var(--background)] border-[1px] border-[#ccc] rounded-[8px] text-center [box-shadow:0_0_8px_rgba(0, 0, 0, 0.15)] opacity-100 block z-10"}>
+                                <div className={"relative top-[50px] left-1/2 -translate-x-1/2 min-w-[180px] min-h-[200px] p-[10px] bg-background border border-[#ccc] rounded-[8px] text-center [box-shadow:0_0_8px_rgba(0, 0, 0, 0.15)] block z-10"}>
                                     <div className={"text-2xl mb-5"}>{item.name}</div>
                                     <div className={"text-base"}>{item.content}</div>
                                 </div>
