@@ -1,0 +1,50 @@
+{
+  "fanProjects":[
+    {
+      "name": "Grandé 'Lọ tập thể'",
+      "date": "2025-09-25",
+      "content": "Dolor impedit voluptas ad recusandae neque magni cupiditate. Ut nobis corporis quisquam nihil accusamus earum",
+      "bg": "@/placeholder.png"
+    },
+    {
+      "name": "Umapyoi",
+      "date": "2025-09-25",
+      "content": "DO NOT THE HORSE",
+      "bg": "@/placeholder.png"
+    },
+    {
+      "name": "DAS FINALE",
+      "date": "2025-09-25",
+      "content": "CAN YOU REACH THE FINALS???????",
+      "bg": "@/placeholder.png"
+    },
+    {
+      "name": "maimaiDX CiRCLES",
+      "date": "2025-09-25",
+      "content": "Welcome to maimai my ass",
+      "bg": "@/placeholder.png"
+    }
+  ],
+  "event": [
+    {
+      "name": "The show must go on",
+      "date": "idk",
+      "content": "The show uhhh, ended?",
+      "bg": "@/placeholder.png"
+    },
+    {
+      "name": "Dreamchasers",
+      "date": "idk",
+      "content": "WE. ARE. THE JOHN DREAMCHASERS",
+      "bg": "@/placeholder.png"
+    }
+  ],
+  "cross": [
+    {
+      "name": "Nutbreakers",
+      "date": "idk",
+      "content": "The coconut nut is a big big nut",
+      "bg": "@/placeholder.png"
+    }
+  ]
+}
