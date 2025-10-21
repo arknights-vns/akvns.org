@@ -1,10 +1,5 @@
 {
-  "[json]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
+  "typescript.tsdk": "node_modules\\typescript\\lib",
   "[typescriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
@@ -15,9 +10,13 @@
     "source.fixAll.eslint": "explicit"
   },
   "files.associations": {
-    "globals.css": "tailwindcss"
+    "src/app/globals.css": "tailwindcss"
   },
   "editor.quickSuggestions": {
     "strings": "on"
-  }
+  },
+  "tailwindCSS.classFunctions": [
+    "cn",
+    "clsx",
+  ],
 }
