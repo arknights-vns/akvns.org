@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import FavIconDark from "@public/favicon-dark.ico";
+import FavIconLight from "@public/favicon.ico";
+
 import BackToTop from "@/components/BackToTop";
 import FatFooter from "@/components/FatFooter";
 import NavigationBar from "@/components/NavigationBar";
@@ -18,6 +21,20 @@ export const metadata: Metadata = {
         },
     ],
     description: "For the Doctors, by the Doctors.",
+    icons: {
+        icon: [
+            {
+                href: FavIconLight.src,
+                media: "(prefers-color-scheme: light)",
+                url: FavIconLight.src,
+            },
+            {
+                href: FavIconDark.src,
+                media: "(prefers-color-scheme: dark)",
+                url: FavIconDark.src,
+            },
+        ],
+    },
     metadataBase: new URL(production_url),
     openGraph: {
         countryName: "Vietnam",
@@ -32,13 +49,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout(properties: LayoutProps<"/">) {
     return (
-        <main>
+        <>
             <NavigationBar />
-            <section className={"min-h-screen max-w-screen scroll-smooth"}>
+            <main className={"min-h-screen max-w-screen scroll-smooth"}>
                 {properties.children}
-                <BackToTop />
-            </section>
+            </main>
+            <BackToTop />
             <FatFooter />
-        </main>
+        </>
     );
 }
