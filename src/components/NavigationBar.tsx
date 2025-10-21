@@ -48,7 +48,7 @@ const links: {
 
 export default function NavigationBar() {
     return (
-        <header className={"mx-4 sticky top-0 z-50 flex h-18 bg-background justify-between drop-shadow-2xl drop-shadow-neutral-400/15"}>
+        <header className={"px-4 sticky top-0 z-1 flex h-18 bg-background justify-between drop-shadow-2xl drop-shadow-neutral-200/45 dark:drop-shadow-neutral-200/15"}>
             <div className={"flex gap-4 w-[25vw]"}>
                 <Sheet>
                     <SheetTrigger asChild>
@@ -75,10 +75,7 @@ export default function NavigationBar() {
                                 );
                             })}
                         </div>
-                        <SheetFooter className={"flex flex-row"}>
-                            {/* Anh dùng máy bằng tay trái - Đụt */}
-                            <ThemeSwitcher />
-                        </SheetFooter>
+                        <SheetFooter />
                     </SheetContent>
                 </Sheet>
                 <Link className={"flex items-center w-[50px]"} href={"/"}>
