@@ -3,54 +3,46 @@
     {
       "name": "Grandé 'Lọ tập thể'",
       "date": "2025-09-25",
-      "content": "Dolor impedit voluptas ad recusandae neque magni cupiditate. Ut nobis corporis quisquam nihil accusamus earum",
-      "bg": "@/placeholder.png"
+      "content": "Dolor impedit voluptas ad recusandae neque magni cupiditate. Ut nobis corporis quisquam nihil accusamus earum"
     },
     {
       "name": "Umapyoi",
       "date": "2025-09-25",
-      "content": "DO NOT THE HORSE",
-      "bg": "@/placeholder.png"
+      "content": "DO NOT THE HORSE"
     },
     {
       "name": "DAS FINALE",
       "date": "2025-09-25",
-      "content": "CAN YOU REACH THE FINALS???????",
-      "bg": "@/placeholder.png"
+      "content": "CAN YOU REACH THE FINALS???????"
     },
     {
       "name": "maimaiDX CiRCLES",
       "date": "2025-09-25",
-      "content": "Welcome to maimai my ass",
-      "bg": "@/placeholder.png"
+      "content": "Welcome to maimai my ass"
     },
     {
       "name": "Cannot Goodenough",
       "date": "2025-09-25",
-      "content": "Amiya, we lost the ship, again",
-      "bg": "@/placeholder.png"
+      "content": "Amiya, we lost the ship, again"
     }
   ],
   "event": [
     {
       "name": "The show must go on",
       "date": "idk",
-      "content": "The show uhhh, ended?",
-      "bg": "@/placeholder.png"
+      "content": "The show uhhh, ended?"
     },
     {
       "name": "Dreamchasers",
       "date": "idk",
-      "content": "WE. ARE. THE JOHN DREAMCHASERS",
-      "bg": "@/placeholder.png"
+      "content": "WE. ARE. THE JOHN DREAMCHASERS"
     }
   ],
   "cross": [
     {
       "name": "Nutbreakers",
       "date": "idk",
-      "content": "The coconut nut is a big big nut",
-      "bg": "@/placeholder.png"
+      "content": "The coconut nut is a big big nut"
     }
   ]
 }
