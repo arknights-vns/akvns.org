@@ -1,0 +1,110 @@
+{
+  "Leader": [
+    {
+      "name": "Tus",
+      "role": "Da The",
+      "quote": "real",
+      "avatar": "/tus.jpg",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Dấu Hồng 1",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Dấu Hồng 2",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Dấu Hồng 3",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Dấu Hồng 4",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Kurome",
+      "role": "Eyja",
+      "quote": "ˈmɛr.ʊ.koʊ/ 'mɛl.ʊ.koʊ",
+      "avatar": "/meruko.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Dấu Hồng 5",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Dấu Hồng 6",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Dấu Hồng 7",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Dấu Hồng 8",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    }
+  ],
+  "Translator": [
+    {
+      "name": "Con Dấu Hồng",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    }
+  ],
+  "Dreamchasers": [
+    {
+      "name": "Con Dấu Hồng",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    }
+  ],
+  "Ph. Frontiers": [
+    {
+      "name": "Con Dấu Hồng",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    }
+  ],
+  "Partners": [
+    {
+      "name": "Aririn",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    }
+  ]
+}
