@@ -102,7 +102,7 @@ export default function NavigationBar() {
                     })}
                 </NavigationMenuList>
             </NavigationMenu>
-            <div className={"flex justify-end items-center space-x-2 w-[25vw]"}>
+            <div className={"flex justify-end items-center gap-3 w-[25vw]"}>
                 <DiscordInfoPill />
                 <ThemeSwitcher />
             </div>
