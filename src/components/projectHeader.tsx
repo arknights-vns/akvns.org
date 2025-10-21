@@ -8,7 +8,7 @@ export default function ProjectHeader({ onSelect, selected }) {
     return (
         <div className={"max-w-6xl mx-auto mb-8"}>
             <div className={"flex items-center justify-between mb-4"}>
-                <h2 className={"text-4xl font-bold"}>Chúng tôi đã nấu cl gì?</h2>
+                <div className={"text-4xl font-bold"}>Chúng tôi đã nấu cl gì?</div>
                 <div className={"flex gap-2"}>
                     <Button onClick={() => onSelect("fanProjects")} variant={selected === "fanProjects" ? "default" : "ghost"}>
                         Fan project
