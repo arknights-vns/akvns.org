@@ -17,14 +17,16 @@ import {
 } from "@/components/ui/sidebar";
 
 const tools: {
+    experiment: boolean;
     href: Route;
     icon: LucideIcon;
     name: string;
 }[] = [
     {
+        experiment: true,
         href: "/manage/features",
         icon: Settings,
-        name: "Feature Management",
+        name: "Feature Flag",
     },
 ];
 
@@ -65,7 +67,8 @@ export default function AdminLayout(properties: LayoutProps<"/manage">) {
                                                     <SidebarMenuButton asChild>
                                                         <Link href={tool.href}>
                                                             <tool.icon />
-                                                            <span>{tool.name}</span>
+                                                            <span className={"font-bold"}>{tool.name}</span>
+                                                            {tool.experiment && <span className={"font-bold text-red-400"}>(BETA)</span>}
                                                         </Link>
                                                     </SidebarMenuButton>
                                                 </SidebarMenuItem>
@@ -77,10 +80,7 @@ export default function AdminLayout(properties: LayoutProps<"/manage">) {
                         </SidebarGroup>
                     </Collapsible>
                 </SidebarContent>
-                <SidebarFooter className={"flex flex-row gap-2"}>
-                    <ThemeSwitcher />
-                    <DiscordInfoPill />
-                </SidebarFooter>
+                <SidebarFooter />
             </Sidebar>
             <main className={"flex flex-col p-4 gap-2 flex-1 ml-1"}>
                 <div className={"flex justify-between"}>
