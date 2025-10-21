@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+import FavIconDark from "@public/favicon-dark.ico";
+import FavIconLight from "@public/favicon.ico";
+
 import BackToTop from "@/components/BackToTop";
 import FatFooter from "@/components/FatFooter";
 import NavigationBar from "@/components/NavigationBar";
@@ -18,6 +21,20 @@ export const metadata: Metadata = {
         },
     ],
     description: "For the Doctors, by the Doctors.",
+    icons: {
+        icon: [
+            {
+                href: FavIconLight.src,
+                media: "(prefers-color-scheme: light)",
+                url: FavIconLight.src,
+            },
+            {
+                href: FavIconDark.src,
+                media: "(prefers-color-scheme: dark)",
+                url: FavIconDark.src,
+            },
+        ],
+    },
     metadataBase: new URL(production_url),
     openGraph: {
         countryName: "Vietnam",
