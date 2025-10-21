@@ -1,7 +1,7 @@
-import Amiya from "@public/amiya.png";
 import FacebookLogo from "@public/brand/facebook.svg";
 import SteamLogo from "@public/brand/steam.svg";
 import YoutubeLogo from "@public/brand/youtube.svg";
+import VNS_Donate from "@public/VNS_Donate.jpg";
 import VNS_Logo from "@public/VNS_Logo.png";
 import { ArrowUpRight, HeartHandshake } from "lucide-react";
 import { Route } from "next";
@@ -11,7 +11,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
-    DialogContent, DialogDescription, DialogFooter,
+    DialogContent, DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -106,14 +106,14 @@ export default function FatFooter() {
             </div>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button className={"max-w-sm self-center font-bold"}>
+                    <Button className={"max-w-sm self-center font-bold"} variant={"destructive"}>
                         <HeartHandshake className={""} />
                         Donate cho Arknights VNS
                     </Button>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle className={"text-2xl font-bold"}>Donate</DialogTitle>
+                        <DialogTitle className={"text-2xl font-bold"}>❤️ Donate</DialogTitle>
                         <DialogDescription>
                             Cảm ơn bạn đã ủng hộ Arknights VNS!
                         </DialogDescription>
@@ -124,16 +124,8 @@ export default function FatFooter() {
                             {" "}
                             đặt commission, mua merch Arknights, cũng như bảo trì hạ tầng IT.
                         </p>
-                        <p>
-                            Bạn có thể quét mã QR sau để Donate nhé:
-                        </p>
-                        <Image alt={"amiya_placeholder"} className={"self-center"} src={Amiya} width={250} />
+                        <Image alt={"amiya_placeholder"} className={"self-center"} src={VNS_Donate} width={320} />
                     </div>
-                    <DialogFooter className={"text-xs"}>
-                        ❤️ Thay mặt team VNS, xin cảm ơn các bạn!
-                        {" "}
-                        <span className={"italic"}>- shou.</span>
-                    </DialogFooter>
                 </DialogContent>
             </Dialog>
             <div className={"my-4 text-center font-bold italic text-sm"}>
