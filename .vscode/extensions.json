@@ -6,6 +6,10 @@
     "Prisma.prisma",
     "ms-playwright.playwright",
     "ms-azuretools.vscode-docker"
+    "YoavBls.pretty-ts-errors",
+    "naumovs.color-highlight"
   ],
-  "unwantedRecommendations": ["esbenp.prettier-vscode"]
+  "unwantedRecommendations": [
+    "esbenp.prettier-vscode"
+  ]
 }

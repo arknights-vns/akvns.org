@@ -1,8 +1,10 @@
 "use client";
 
 import DiscordLogo from "@public/brand/discord.svg";
+import { CircleUser, CircleX, LogOut } from "lucide-react";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -11,14 +13,17 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Spinner } from "@/components/ui/spinner";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { authClient } from "@/lib/auth-client";
 
 export default function DiscordInfoPill() {
-    const { data: session, isPending } = authClient.useSession();
+    const { data: session, error, isPending } = authClient.useSession();
     const pathname = usePathname();
-    const router = useRouter();
 
     const handleLoginClick = useCallback(() => {
         authClient.signIn.social({
@@ -28,47 +33,65 @@ export default function DiscordInfoPill() {
     }, [pathname]);
 
     const handleLogoutClick = useCallback(() => {
-        // in case you ask for double reload code
-        // https://stackoverflow.com/a/75829540
-        // dunno if it really works.
         authClient.signOut().then(() => globalThis.location.reload());
-        router.refresh();
-    }, [router]);
+    }, []);
 
-    const allowLogin = Number.parseInt(process.env.NEXT_PUBLIC_DISCORD_LOGIN_ENABLED as string);
+    if (isPending) {
+        return <Spinner className={"size-6 text-red-400"} />;
+    }
 
-    if (!allowLogin) {
-        return <></>;
+    if (error) {
+        return (
+            <Tooltip>
+                <TooltipTrigger>
+                    <CircleX className={"size-6 text-red-400"} />
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>Không thể login qua Discord.</p>
+                    <p>Hãy báo lại với team IT nếu vấn đề vẫn còn tiếp diễn.</p>
+                </TooltipContent>
+            </Tooltip>
+        );
     }
 
     // for future me:
     // https://discord.com/branding
-    return session && !isPending
+    return session
         ? (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button className={"flex flex-1 place-items-center-safe gap-2 bg-[#5865F2] text-white"} variant={"ghost"}>
-                            <Avatar className={"w-[28px] h-auto"}>
-                                <AvatarImage alt={"Discord_Avatar"} src={session.user.image ?? "nothing.png"} />
-                                <AvatarFallback>AK</AvatarFallback>
-                            </Avatar>
-                            <span className={"font-bold text-[15px]"}>
-                                @
-                                {session.user.name}
-                            </span>
-                        </Button>
+                        <Avatar className={"w-[36px] h-auto"}>
+                            <AvatarImage alt={"Discord_Avatar"} src={session.user.image || "nothing.png"} />
+                            <AvatarFallback className={"rounded-full size-[36px]"}>VNS</AvatarFallback>
+                        </Avatar>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align={"end"} className={"mt-1"}>
-                        {/* <DropdownMenuLabel className={"font-bold"}>Tài khoản</DropdownMenuLabel> */}
-                        {/* <DropdownMenuSeparator /> */}
-                        {/* <DropdownMenuItem><Link href={"/profile"}>Hồ sơ</Link></DropdownMenuItem> */}
-                        <DropdownMenuItem className={"font-extrabold text-red-400"} onClick={handleLogoutClick}>Đăng xuất</DropdownMenuItem>
+                        <DropdownMenuLabel className={"justify-center flex gap-1"}>
+                            <span className={"font-bold space-x-1"}>
+                                <span>
+                                    @
+                                    {session.user.name}
+                                </span>
+                            </span>
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>
+                            <CircleUser />
+                            <Link href={"#"}>
+                                Hồ sơ
+                            </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className={"font-extrabold text-red-400"} onClick={handleLogoutClick}>
+                            <LogOut className={"stroke-red-400"} />
+                            {" "}
+                            Đăng xuất
+                        </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )
         : (
                 <Button
-                    className={"flex flex-1 justify-center items-center gap-2 bg-[#5865F2] text-white hover:bg-black"}
+                    className={"flex justify-center items-center gap-2 bg-[#5865F2] text-white hover:bg-black"}
                     onClick={handleLoginClick}
                 >
                     <Image alt={"Discord_Logo"} src={DiscordLogo} width={20} />

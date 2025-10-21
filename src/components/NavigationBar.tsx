@@ -49,7 +49,7 @@ const links: {
 
 export default function NavigationBar() {
     return (
-        <header className={"mx-4 sticky top-0 z-50 flex h-18 bg-background justify-between drop-shadow-2xl drop-shadow-neutral-400/15"}>
+        <header className={"px-4 sticky top-0 z-1 flex h-18 bg-background justify-between drop-shadow-2xl drop-shadow-neutral-200/45 dark:drop-shadow-neutral-200/15"}>
             <div className={"flex gap-4 w-[25vw]"}>
                 <Sheet>
                     <SheetTrigger asChild>
@@ -59,6 +59,7 @@ export default function NavigationBar() {
                             size={"icon"}
                             variant={"outline"}
                         >
+                            <div className={"sr-only"}>Mobile menu</div>
                             <Menu />
                         </Button>
                     </SheetTrigger>
@@ -76,15 +77,11 @@ export default function NavigationBar() {
                                 );
                             })}
                         </div>
-                        <SheetFooter className={"flex flex-row"}>
-                            {/* Anh dùng máy bằng tay trái - Đụt */}
-                            <ThemeSwitcher />
-                            <DiscordInfoPill />
-                        </SheetFooter>
+                        <SheetFooter />
                     </SheetContent>
                 </Sheet>
                 <Link className={"flex items-center w-[50px]"} href={"/"}>
-                    <Image alt={"VNS_Logo_Header"} className={"size-[50px] dark:invert"} src={VNS_Icon} />
+                    <Image alt={"VNS_Logo_Header"} className={"size-[50px] dark:invert"} src={VNS_Icon} title={"AKVNS Logo"} />
                 </Link>
             </div>
             <NavigationMenu aria-label={"nav-bar"} className={"hidden lg:flex w-[50vw]"} viewport={false}>
@@ -105,7 +102,7 @@ export default function NavigationBar() {
                     })}
                 </NavigationMenuList>
             </NavigationMenu>
-            <div className={"flex justify-end items-center space-x-2 w-[25vw]"}>
+            <div className={"flex justify-end items-center gap-3 w-[25vw]"}>
                 <DiscordInfoPill />
                 <ThemeSwitcher />
             </div>
