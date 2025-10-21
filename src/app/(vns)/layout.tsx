@@ -49,13 +49,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout(properties: LayoutProps<"/">) {
     return (
-        <main>
+        <>
             <NavigationBar />
-            <section className={"min-h-screen max-w-screen scroll-smooth"}>
+            <main className={"min-h-screen max-w-screen scroll-smooth"}>
                 {properties.children}
-                <BackToTop />
-            </section>
+            </main>
+            <BackToTop />
             <FatFooter />
-        </main>
+        </>
     );
 }

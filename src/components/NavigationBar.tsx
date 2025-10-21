@@ -58,6 +58,7 @@ export default function NavigationBar() {
                             size={"icon"}
                             variant={"outline"}
                         >
+                            <div className={"sr-only"}>Mobile menu</div>
                             <Menu />
                         </Button>
                     </SheetTrigger>
@@ -79,7 +80,7 @@ export default function NavigationBar() {
                     </SheetContent>
                 </Sheet>
                 <Link className={"flex items-center w-[50px]"} href={"/"}>
-                    <Image alt={"VNS_Logo_Header"} className={"size-[50px] dark:invert"} src={VNS_Icon} />
+                    <Image alt={"VNS_Logo_Header"} className={"size-[50px] dark:invert"} src={VNS_Icon} title={"AKVNS Logo"} />
                 </Link>
             </div>
             <NavigationMenu aria-label={"nav-bar"} className={"hidden lg:flex w-[50vw]"} viewport={false}>

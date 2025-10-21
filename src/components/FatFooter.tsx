@@ -66,7 +66,7 @@ export default function FatFooter() {
             <div className={"flex flex-col justify-evenly gap-y-6 md:flex-1/2 md:flex-row md:place-items-center-safe"}>
                 {/* Logo */}
                 <div className={"mt-8 flex w-full flex-row place-items-center justify-evenly gap-4 md:w-fit md:flex-col [&_img]:dark:invert"}>
-                    <Image alt={"VNS_Logo_Footer"} className={"self-center-safe"} src={VNS_Logo} width={200} />
+                    <Image alt={"VNS_Logo_Footer"} className={"self-center-safe"} src={VNS_Logo} title={"AKVNS Banner"} width={200} />
                     <div className={"my-4 flex place-items-center-safe gap-x-2"}>
                         <Link href={"https://www.facebook.com/terrastationvn"}>
                             <Image alt={"FacebookLogo"} src={FacebookLogo} width={32} />
