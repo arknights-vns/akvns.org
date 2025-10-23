@@ -124,64 +124,16 @@ model QuestionSet {
 }
 
 model Question {
-    id                  String               @id
-    questionSet         QuestionSet          @relation(fields: [questionSetId], references: [id])
-    questionSetId       String
-    type                QuestionType         @default(MULTI_CHOICE)
-    questionText        String               @default("Khi nào bán tus?")
-    response            SliderResponse?      @relation() //either figure out multi-type response (which, high chance no), or
-    //"hay là mình store đại response bằng JSON vào một field, rồi validate bên server đi"
-    responseId          String               @unique
-    sliderResponseId    String
-    ImgResponse         ImgResponse[]
-    BoolResponse        BoolResponse?
-    MultiChoiceResponse MultiChoiceResponse?
+    id            String       @id
+    questionSet   QuestionSet  @relation(fields: [questionSetId], references: [id])
+    questionSetId String
+    type          QuestionType @default(MULTI_CHOICE)
+    questionText  String       @default("Khi nào bán tus?")
+    response      Json
 
+    @@index([questionText, type, questionSetId])
     @@map("question")
 }
-
-// Remove if we *do* switch to JSON-in-a-field
-model SliderResponse {
-    id         String   @id
-    question   Question @relation(fields: [questionId], references: [id])
-    questionId String   @unique
-    upper      Float
-    lower      Float
-}
-
-model ImgResponse {
-    id         String   @id
-    question   Question @relation(fields: [questionId], references: [id]) //fill in relation, if any
-    questionId String   @unique //^
-    imgUrl     String
-    //pos1 and pos2, diagonally, in pixel pairs
-    pos1X      Int
-    pos1Y      Int
-    pos2X      Int
-    pos2Y      Int
-}
-
-model BoolResponse {
-    id         String   @id
-    question   Question @relation(fields: [questionId], references: [id]) //fill in relation, if any
-    questionId String   @unique //^
-    ans        Boolean
-}
-
-model MultiChoiceResponse {
-    id         String   @id
-    question   Question @relation(fields: [questionId], references: [id]) //fill in relation, if any
-    questionId String   @unique //^
-    //food for thought: image region answer, do we want a pos1 and pos2 (like WorldEdit)
-    //or just "one point and take a radius/area of n pixels" of that point
-    ansNum     String
-    ans1       String
-    ans2       String
-    ans3       String
-    ans4       String
-}
-
-//End of removal
 
 model ComicSeries {
     id    String  @id
