@@ -129,8 +129,9 @@ model Question {
     questionSetId String
     type          QuestionType @default(MULTI_CHOICE)
     questionText  String       @default("Khi nào bán tus?")
+    response      Json
 
-    //TODO: figure out how to store them answers (soon:tm:)
+    @@index([questionText, type, questionSetId])
     @@map("question")
 }
 
