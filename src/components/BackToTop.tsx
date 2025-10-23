@@ -38,6 +38,7 @@ export default function BackToTop() {
             onClick={goToTop}
             size={"icon-lg"}
         >
+            <div className={"sr-only"}>Back to top</div>
             <ArrowUpToLine />
         </Button>
     );

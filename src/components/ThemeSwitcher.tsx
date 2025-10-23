@@ -18,7 +18,8 @@ export function ThemeSwitcher() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button aria-label={"theme-switcher"} className={"mr-4"} size={"icon"}>
+                <Button aria-label={"theme-switcher"} size={"icon"}>
+                    <div className={"sr-only"}>Theme switcher</div>
                     <Sun className={"size-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"} />
                     <Moon className={"absolute size-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"} />
                 </Button>

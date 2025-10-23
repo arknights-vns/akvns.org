@@ -14,7 +14,15 @@ import {
     NavigationMenuList,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetFooter,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet";
 
 const links: {
     href: Route;
@@ -40,16 +48,17 @@ const links: {
 
 export default function NavigationBar() {
     return (
-        <header className={"sticky top-0 z-50 flex h-18 w-full justify-between bg-background drop-shadow-2xl drop-shadow-neutral-400/15"}>
-            <div className={"flex"}>
+        <header className={"px-4 sticky top-0 z-1 flex h-18 bg-background justify-between drop-shadow-2xl drop-shadow-neutral-200/45 dark:drop-shadow-neutral-200/15"}>
+            <div className={"flex gap-4 w-[25vw]"}>
                 <Sheet>
                     <SheetTrigger asChild>
                         <Button
                             aria-label={"burger-menu"}
-                            className={"ml-4 self-center lg:hidden"}
+                            className={"self-center lg:hidden"}
                             size={"icon"}
                             variant={"outline"}
                         >
+                            <div className={"sr-only"}>Mobile menu</div>
                             <Menu />
                         </Button>
                     </SheetTrigger>
@@ -67,13 +76,14 @@ export default function NavigationBar() {
                                 );
                             })}
                         </div>
+                        <SheetFooter />
                     </SheetContent>
                 </Sheet>
-                <Link className={"ml-4 flex items-center gap-4 md:ml-12"} href={"/"}>
-                    <Image alt={"VNS_Logo_Header"} className={"size-[50px] dark:invert"} src={VNS_Icon} />
+                <Link className={"flex items-center w-[50px]"} href={"/"}>
+                    <Image alt={"VNS_Logo_Header"} className={"size-[50px] dark:invert"} src={VNS_Icon} title={"AKVNS Logo"} />
                 </Link>
             </div>
-            <NavigationMenu aria-label={"nav-bar"} className={"hidden gap-6 lg:flex"} viewport>
+            <NavigationMenu aria-label={"nav-bar"} className={"hidden lg:flex w-[50vw]"} viewport={false}>
                 <NavigationMenuList className={"gap-x-8"}>
                     {links.map((entry) => {
                         return (
@@ -91,7 +101,7 @@ export default function NavigationBar() {
                     })}
                 </NavigationMenuList>
             </NavigationMenu>
-            <div className={"flex items-center space-x-2"}>
+            <div className={"flex justify-end items-center space-x-2 w-[25vw]"}>
                 <ThemeSwitcher />
             </div>
         </header>
