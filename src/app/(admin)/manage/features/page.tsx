@@ -1,12 +1,12 @@
 "use client";
 
-import { useForm } from "@tanstack/react-form";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, ChevronDown, Pencil, Trash } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import FeatureForm from "@/components/admin/FeatureForm";
 import RichTable from "@/components/RichTable";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,15 +19,13 @@ import {
 } from "@/components/ui/dialog";
 import {
     DropdownMenu,
-    DropdownMenuContent, DropdownMenuItem,
+    DropdownMenuContent,
     DropdownMenuRadioGroup,
     DropdownMenuRadioItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { FeatureFlag, FeatureFlagArray, FeatureFlagListAPIResponse } from "@/schema/feature";
 
 type FeatureFlagListT = z.infer<typeof FeatureFlagArray>;
@@ -68,7 +66,7 @@ export default function AdminFeatureFlagPage() {
         });
     }, [flags]);
 
-    const handleFeaturesUpdate = useCallback(() => {
+    const handleAllFeaturesUpdate = useCallback(() => {
         async function submit() {
             const resp = await fetch("/api/feature", { body: JSON.stringify(flags),
                 method: "PATCH" });
@@ -99,34 +97,6 @@ export default function AdminFeatureFlagPage() {
 
         submit().then();
     }, []);
-
-    const featureCreateForm = useForm({
-        defaultValues: {
-            description: "Description",
-            enable: true,
-            group: "TEST",
-            id: "EXAMPLE_FLAG_01",
-        },
-        onSubmit: async ({ value }) => {
-            const resp = await fetch("/api/feature",
-                {
-                    body: JSON.stringify(value),
-                    method: "POST",
-                },
-            );
-
-            if (resp.ok) {
-                toast.success("Done!");
-                globalThis.location.reload();
-            }
-            else {
-                toast.error("We are cooked.");
-            }
-        },
-        validators: {
-            onSubmit: FeatureFlag,
-        },
-    });
 
     const groups = [...Map.groupBy(flags, flag => flag.group).keys()];
 
@@ -176,6 +146,7 @@ export default function AdminFeatureFlagPage() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align={"end"} className={"mt-1"}>
                             <DropdownMenuRadioGroup onValueChange={column.setFilterValue} value={column.getFilterValue() as string ?? "NORMAL"}>
+                                <DropdownMenuRadioItem value={""}>ALL</DropdownMenuRadioItem>
                                 {groups.map(group => (
                                     <DropdownMenuRadioItem key={group} value={group}>{group}</DropdownMenuRadioItem>
                                 ))}
@@ -222,22 +193,73 @@ export default function AdminFeatureFlagPage() {
                 const feature = row.original;
 
                 return (
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button className={"h-8 w-8 p-0"} variant={"ghost"}>
-                                <span className={"sr-only"}>Open menu</span>
-                                <MoreHorizontal className={"h-4 w-4"} />
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align={"end"}>
-                            <DropdownMenuItem
-                                className={"font-extrabold text-red-400"}
-                                onClick={() => handleFeatureDelete(feature.id)}
-                            >
+                    <div className={"flex gap-2"}>
+                        <TooltipProvider>
+                            <Dialog>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <DialogTrigger asChild>
+                                            <Button size={"icon"}>
+                                                <Pencil />
+                                            </Button>
+                                        </DialogTrigger>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>Chỉnh sửa</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>Don't ask why styling broke.</DialogTitle>
+                                        <DialogDescription>Yours truly, Đụt</DialogDescription>
+                                    </DialogHeader>
+                                    <FeatureForm
+                                        defaultValues={{
+                                            description: feature.description,
+                                            enable: feature.enable,
+                                            group: feature.group,
+                                            id: feature.id,
+                                        }}
+                                        formSchema={FeatureFlag}
+                                        isEdit
+                                        submitCallbackAction={(data) => {
+                                            async function performFeatureUpdate() {
+                                                const resp = await fetch(`/api/feature/${data.idOld}`, {
+                                                    body: JSON.stringify({
+                                                        description: data.description,
+                                                        enable: true,
+                                                        group: data.group,
+                                                        id: data.id,
+                                                    }),
+                                                    method: "PATCH",
+                                                });
+
+                                                if (resp.ok) {
+                                                    globalThis.location.reload();
+                                                }
+                                                else {
+                                                    toast.error("We're cooked");
+                                                }
+                                            }
+
+                                            performFeatureUpdate().then();
+                                        }}
+                                    />
+                                    <DialogFooter>
+                                        <div>Nhớ réo tụi IT khi làm xong.</div>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
+                        </TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button onClick={() => handleFeatureDelete(feature.id)} size={"icon"} variant={"destructive"}><Trash /></Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
                                 Xóa
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                            </TooltipContent>
+                        </Tooltip>
+                    </div>
                 );
             },
             id: "actions",
@@ -258,112 +280,47 @@ export default function AdminFeatureFlagPage() {
                         </DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
-                                <DialogTitle>Thêm tính năng</DialogTitle>
-                                <DialogDescription>
-                                    Nhớ
-                                    {" "}
-                                    <span className={"font-bold"}>@IT</span>
-                                    {" "}
-                                    trước/sau khi thêm. Và mặc định là được bật.
-                                </DialogDescription>
+                                <DialogTitle>Don't ask why styling broke.</DialogTitle>
+                                <DialogDescription>Yours truly, Đụt</DialogDescription>
                             </DialogHeader>
-                            <form
-                                id={"feature-create-form"}
-                                onSubmit={(event) => {
-                                    event.preventDefault();
-                                    featureCreateForm.handleSubmit().then();
+                            <FeatureForm
+                                defaultValues={{
+                                    description: "YES",
+                                    enable: true,
+                                    group: "VNS TESTING",
+                                    id: "VNS_SELL_TUS",
                                 }}
-                            >
-                                <FieldGroup>
-                                    <featureCreateForm.Field
-                                        children={(field) => {
-                                            const isInvalid
-                                                = field.state.meta.isTouched && !field.state.meta.isValid;
-                                            return (
-                                                <Field data-invalid={isInvalid}>
-                                                    <FieldLabel htmlFor={field.name}>Tên tính năng</FieldLabel>
-                                                    <Input
-                                                        aria-invalid={isInvalid}
-                                                        autoComplete={"off"}
-                                                        id={field.name}
-                                                        name={field.name}
-                                                        onBlur={field.handleBlur}
-                                                        onChange={event => field.handleChange(event.target.value)}
-                                                        value={field.state.value}
-                                                    />
-                                                    {isInvalid && (
-                                                        <FieldError errors={field.state.meta.errors} />
-                                                    )}
-                                                </Field>
-                                            );
-                                        }}
-                                        name={"id"}
-                                    />
-                                    <featureCreateForm.Field
-                                        children={(field) => {
-                                            const isInvalid
-                                                = field.state.meta.isTouched && !field.state.meta.isValid;
-                                            return (
-                                                <Field data-invalid={isInvalid}>
-                                                    <FieldLabel htmlFor={field.name}>Mô tả</FieldLabel>
-                                                    <Textarea
-                                                        aria-invalid={isInvalid}
-                                                        autoComplete={"off"}
-                                                        id={field.name}
-                                                        name={field.name}
-                                                        onBlur={field.handleBlur}
-                                                        onChange={event => field.handleChange(event.target.value)}
-                                                        placeholder={"Login button not working on mobile"}
-                                                        value={field.state.value}
-                                                    />
-                                                    {isInvalid && (
-                                                        <FieldError errors={field.state.meta.errors} />
-                                                    )}
-                                                </Field>
-                                            );
-                                        }}
-                                        name={"description"}
-                                    />
-                                    <featureCreateForm.Field
-                                        children={(field) => {
-                                            const isInvalid
-                                                = field.state.meta.isTouched && !field.state.meta.isValid;
-                                            return (
-                                                <Field data-invalid={isInvalid}>
-                                                    <FieldLabel htmlFor={field.name}>Nhóm</FieldLabel>
-                                                    <Input
-                                                        aria-invalid={isInvalid}
-                                                        autoComplete={"off"}
-                                                        id={field.name}
-                                                        name={field.name}
-                                                        onBlur={field.handleBlur}
-                                                        onChange={event => field.handleChange(event.target.value)}
-                                                        placeholder={"Login button not working on mobile"}
-                                                        value={field.state.value}
-                                                    />
-                                                    {isInvalid && (
-                                                        <FieldError errors={field.state.meta.errors} />
-                                                    )}
-                                                </Field>
-                                            );
-                                        }}
-                                        name={"group"}
-                                    />
-                                </FieldGroup>
-                            </form>
+                                formSchema={FeatureFlag}
+                                isEdit={false}
+                                submitCallbackAction={(data) => {
+                                    async function sendPost() {
+                                        const resp = await fetch("/api/feature", {
+                                            body: JSON.stringify({
+                                                description: data.description,
+                                                enable: true,
+                                                group: data.group,
+                                                id: data.id,
+                                            }),
+                                            method: "POST",
+                                        });
+
+                                        if (resp.ok) {
+                                            globalThis.location.reload();
+                                        }
+                                        else {
+                                            toast.error("We're cooked");
+                                        }
+                                    }
+
+                                    sendPost().then();
+                                }}
+                            />
                             <DialogFooter>
-                                <Field orientation={"horizontal"}>
-                                    <Button onClick={() => featureCreateForm.reset()} type={"button"} variant={"outline"}>
-                                        Reset
-                                    </Button>
-                                    <Button form={"feature-create-form"} type={"submit"}>
-                                        Submit
-                                    </Button>
-                                </Field>
+                                <div>Nhớ réo tụi IT khi làm xong.</div>
                             </DialogFooter>
                         </DialogContent>
                     </Dialog>
-                    <Button className={"self-end"} onClick={handleFeaturesUpdate} variant={"destructive"}>Lưu thay đổi</Button>
+                    <Button className={"self-end"} onClick={handleAllFeaturesUpdate} variant={"destructive"}>Lưu thay đổi</Button>
                 </div>
             </div>
             <RichTable columns={columns} data={flags} />

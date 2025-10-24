@@ -56,3 +56,43 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/feature
         status: result.enable ? 200 : 418,
     });
 }
+
+/**
+ * Submit "feature flag" changes.
+ *
+ * Requires admin role.
+ */
+export async function PATCH(request: NextRequest, parameters: RouteContext<"/api/feature/[id]">): Promise<NextResponse> {
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    if (!session || session.user.role !== "admin") {
+        return NextResponse.json({ message: "Shoo" }, { status: 403 });
+    }
+
+    const parameterList = await parameters.params;
+    const body = await FeatureFlag.parseAsync(await request.json());
+
+    const changes = await prisma.feature.updateMany({
+        data: {
+            description: body.description,
+            group: body.group,
+            id: body.id,
+        },
+        where: {
+            id: parameterList.id,
+        },
+    });
+
+    if (changes.count === 0)
+        return NextResponse.json({
+            message: "No such record",
+        }, {
+            status: 400,
+        });
+
+    return NextResponse.json({}, {
+        status: 200,
+    });
+}
