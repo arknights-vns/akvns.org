@@ -1,10 +1,8 @@
 "use client";
 
-import useSWR from "swr";
+import { useQuery } from "@tanstack/react-query";
 
 type FeatureStatus = "disabled" | "enabled" | "not_available";
-
-const fetcher = (feature: string) => fetch(`/api/feature/${feature}`).then(response => response);
 
 /**
  * A **client-side** hook to check feature flag.
@@ -12,27 +10,33 @@ const fetcher = (feature: string) => fetch(`/api/feature/${feature}`).then(respo
  * To prevent flashing, you might need to check only for `status === "enabled"`.
  */
 export function useFeatureFlag(feature: string): { status: FeatureStatus } {
-    const { data, isLoading } = useSWR(feature, fetcher);
+    const { data, error, isFetching } = useQuery({
+        queryFn: async (): Promise<FeatureStatus> => {
+            const response = await fetch(`/api/feature/${feature}`);
+            switch (response.status) {
+                case 200: {
+                    return "enabled";
+                }
+                case 400: {
+                    return "disabled";
+                }
+                case 418: {
+                    return "not_available";
+                }
+            }
 
-    let status: FeatureStatus = "not_available";
+            return "not_available";
+        },
+        queryKey: [`feature-flag-${feature}`],
+    });
 
-    if (!isLoading && data && data.status)
-        switch (data.status) {
-            case 200: {
-                status = "enabled";
-                break;
-            }
-            case 400: {
-                status = "disabled";
-                break;
-            }
-            case 418: {
-                status = "not_available";
-                break;
-            }
-        }
+    if (error || isFetching) {
+        return {
+            status: "not_available",
+        };
+    }
 
     return {
-        status,
+        status: data ?? "not_available",
     };
 }

@@ -2,10 +2,9 @@ import type { Viewport } from "next";
 import type React from "react";
 
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
-import { Toaster } from "sonner";
 
 import "./globals.css";
-import { TerraTheme } from "@/components/TerraTheme";
+import Providers from "@/components/Providers";
 
 const font = VNS_Font({
     subsets: ["latin", "vietnamese"],
@@ -27,10 +26,9 @@ export default function RootLayout(properties: LayoutProps<"/">) {
     return (
         <html lang={"en"} suppressHydrationWarning>
             <body className={`${font.variable} ${fontMono.variable} font-sans antialiased`}>
-                <TerraTheme>
+                <Providers>
                     {properties.children}
-                    <Toaster position={"top-right"} richColors />
-                </TerraTheme>
+                </Providers>
             </body>
         </html>
     );
