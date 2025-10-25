@@ -2,6 +2,7 @@ import { ChevronDown, Home, LucideIcon, Settings } from "lucide-react";
 import { Route } from "next";
 import Link from "next/link";
 
+import ComicStorageListing from "@/components/admin/ComicStorageListing";
 import DiscordInfoPill from "@/components/DiscordInfoPill";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -79,6 +80,7 @@ export default function AdminLayout(properties: LayoutProps<"/manage">) {
                             </CollapsibleContent>
                         </SidebarGroup>
                     </Collapsible>
+                    <ComicStorageListing />
                 </SidebarContent>
                 <SidebarFooter />
             </Sidebar>
