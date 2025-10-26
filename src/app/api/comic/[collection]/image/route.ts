@@ -72,7 +72,7 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
         new ListObjectsV2Command({ Bucket: parameterList.collection }),
     );
 
-    const baseUrl = `${process.env.AWS_S3_ENDPOINT}/${parameterList.collection}`;
+    const baseUrl = `/api/comic/${parameterList.collection}/image`;
 
     const images
         = data.Contents?.map(object => ({
