@@ -14,6 +14,19 @@ export const ComicCollection = z.object({
 });
 
 /**
+ * Represent an asset.
+ */
+export const ComicAsset = z.object({
+    name: z.string(),
+    url: z.string(),
+});
+
+/**
+ * Represent a list of assets.
+ */
+export const ComicAssetList = z.array(ComicAsset);
+
+/**
  * An array of collection.
  */
 export const ComicCollectionListing = z.object({

@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Plus } from "lucide-react";
+import { MoreHorizontal, Plus, Trash } from "lucide-react";
 import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -17,6 +17,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import {
     Field,
     FieldError,
@@ -28,7 +29,7 @@ import {
     SidebarGroup, SidebarGroupAction,
     SidebarGroupContent,
     SidebarGroupLabel,
-    SidebarMenu, SidebarMenuButton,
+    SidebarMenu, SidebarMenuAction, SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { ComicCollection, ComicCollectionListing } from "@/schema/comic";
@@ -54,7 +55,19 @@ export default function ComicStorageListing() {
                 throw new Error("Something went wrong.");
             }
         },
-        onSettled: () => queryClient.invalidateQueries({ queryKey: ["comic-collections"] }),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["comic-collections"] }),
+    });
+
+    const deleteBucketMutation = useMutation({
+        mutationFn: async (bucket: string) => {
+            const response = await fetch(`/api/comic/${bucket}`, {
+                method: "DELETE",
+            });
+            if (!response.ok) {
+                throw new Error("Something went wrong.");
+            }
+        },
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["comic-collections"] }),
     });
 
     const form = useForm<z.infer<typeof ComicCollection>>({
@@ -140,9 +153,30 @@ export default function ComicStorageListing() {
                             <SidebarMenuItem key={bucket}>
                                 <SidebarMenuButton asChild>
                                     <Link href={`/manage/comic/${bucket}`}>
-                                        <span className={"font-bold"}>{bucket}</span>
+                                        <div className={"flex font-bold place-items-center-safe gap-1"}>
+                                            <span>{bucket}</span>
+                                        </div>
                                     </Link>
                                 </SidebarMenuButton>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <SidebarMenuAction>
+                                            <MoreHorizontal />
+                                        </SidebarMenuAction>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align={"start"} side={"right"}>
+                                        <DropdownMenuItem>
+                                            <div
+                                                className={"flex place-items-center-safe gap-2"}
+                                                onClick={() => deleteBucketMutation.mutate(bucket)}
+                                                role={"button"}
+                                            >
+                                                <Trash className={"stroke-red-500"} />
+                                                <span className={"text-red-500 font-bold"}>Xóa</span>
+                                            </div>
+                                        </DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
                             </SidebarMenuItem>
                         ))
                     }
