@@ -1,4 +1,5 @@
 import {
+    CreateBucketCommand,
     DeleteBucketCommand,
     DeleteObjectsCommand,
     paginateListObjectsV2,
@@ -66,5 +67,32 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comi
         return NextResponse.json({ message: "We're cooked" }, {
             status: 500,
         });
+    }
+}
+
+/**
+ * Create a collection.
+ * @auth bearer
+ * @pathParams ComicCollectionRegex
+ * @openapi
+ */
+export async function PUT(_: NextRequest, parameters: RouteContext<"/api/comic/[collection]">) {
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    if (!session || session.user.role !== "admin") {
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+    }
+
+    const parameterList = await parameters.params;
+
+    try {
+        await s3Client.send(new CreateBucketCommand({ Bucket: parameterList.collection }));
+
+        return NextResponse.json({ message: `Bucket "${parameterList.collection}" created.` }, { status: 201 });
+    }
+    catch {
+        return NextResponse.json({ error: "We are cooked." }, { status: 500 });
     }
 }

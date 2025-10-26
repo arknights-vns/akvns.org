@@ -47,8 +47,7 @@ export default function ComicStorageListing() {
 
     const addBucketMutation = useMutation({
         mutationFn: async (item: z.infer<typeof ComicCollection>) => {
-            const response = await fetch("/api/comic/collections", {
-                body: JSON.stringify(item),
+            const response = await fetch(`/api/comic/${item.name}`, {
                 method: "PUT",
             });
             if (!response.ok) {
