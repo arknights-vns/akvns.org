@@ -24,7 +24,7 @@ export default function FAQAccordion() {
           >
              <span>{`Q${id + 1}. ${faq.question}`}</span> {/* increase question number without string concatenation */}
             <span className="text-xl sm:text-2xl text-[#FE0606]">
-              {openId === id ? "X" : "+"}
+              {openId === id ? "×" : "+"}
             </span>
           </button>
         {/* Answer container */}
