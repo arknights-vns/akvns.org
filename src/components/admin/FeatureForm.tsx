@@ -9,13 +9,19 @@ import { Button } from "@/components/ui/button";
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
-    CardHeader,
-    CardTitle,
 } from "@/components/ui/card";
-import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
+import {
+    Field, FieldContent,
+    FieldDescription,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+    FieldLegend,
+    FieldSet, FieldTitle,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { FeatureFlag, FeatureIdRegex } from "@/schema/feature";
 
@@ -65,12 +71,6 @@ export default function FeatureForm(properties: FeatureFormProperties) {
 
     return (
         <Card className={"w-full sm:max-w-md"}>
-            <CardHeader>
-                <CardTitle>{properties.isEdit ? "Sửa flag" : "Thêm flag"}</CardTitle>
-                <CardDescription>
-                    Có khi bọn IT VNS nó làm rồi, nên hỏi trước.
-                </CardDescription>
-            </CardHeader>
             <CardContent>
                 <form id={`form-feature-${fieldId}`} onSubmit={form.handleSubmit(onSubmit)}>
                     <FieldGroup>
@@ -136,6 +136,55 @@ export default function FeatureForm(properties: FeatureFormProperties) {
                                         <FieldError errors={[fieldState.error]} />
                                     )}
                                 </Field>
+                            )}
+                        />
+                        <Controller
+                            control={form.control}
+                            name={"enable"}
+                            render={({ field, fieldState }) => (
+                                <FieldSet>
+                                    <FieldLegend>Trạng thái</FieldLegend>
+                                    {/* <FieldDescription> */}
+                                    {/*    You can upgrade or downgrade your plan at any time. */}
+                                    {/* </FieldDescription> */}
+                                    <RadioGroup
+                                        className={"grid-flow-col"}
+                                        name={field.name}
+                                        onValueChange={field.onChange}
+                                        // @ts-expect-error Field value is boolean
+                                        value={field.value}
+                                    >
+                                        <FieldLabel htmlFor={`form-feature-enable`}>
+                                            <Field data-invalid={fieldState.invalid} orientation={"horizontal"}>
+                                                <FieldContent>
+                                                    <FieldTitle>Bật</FieldTitle>
+                                                    <FieldDescription />
+                                                </FieldContent>
+                                                <RadioGroupItem
+                                                    aria-invalid={fieldState.invalid}
+                                                    id={`form-feature-enable`}
+                                                    // @ts-expect-error Field value is boolean
+                                                    value
+                                                />
+                                            </Field>
+                                        </FieldLabel>
+                                        <FieldLabel htmlFor={`form-feature-enable`}>
+                                            <Field data-invalid={fieldState.invalid} orientation={"horizontal"}>
+                                                <FieldContent>
+                                                    <FieldTitle>Tắt</FieldTitle>
+                                                    <FieldDescription />
+                                                </FieldContent>
+                                                <RadioGroupItem
+                                                    aria-invalid={fieldState.invalid}
+                                                    id={`form-feature-enable`}
+                                                    // @ts-expect-error Field value is boolean
+                                                    value={false}
+                                                />
+                                            </Field>
+                                        </FieldLabel>
+                                    </RadioGroup>
+                                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                </FieldSet>
                             )}
                         />
                     </FieldGroup>

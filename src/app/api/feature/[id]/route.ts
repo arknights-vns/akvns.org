@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { FeatureFlag } from "@/schema/feature";
 
 /**
   * DELETE THE FEATURE FLAG.
@@ -77,6 +78,7 @@ export async function PATCH(request: NextRequest, parameters: RouteContext<"/api
     const changes = await prisma.feature.updateMany({
         data: {
             description: body.description,
+            enable: body.enable,
             group: body.group,
             id: body.id,
         },

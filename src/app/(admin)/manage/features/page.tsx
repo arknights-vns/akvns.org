@@ -1,8 +1,9 @@
 "use client";
 
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, Pencil, Trash } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -24,79 +25,89 @@ import {
     DropdownMenuRadioItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Switch } from "@/components/ui/switch";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { FeatureFlag, FeatureFlagArray, FeatureFlagListAPIResponse } from "@/schema/feature";
+import { FeatureFlag, FeatureFlagListAPIResponse } from "@/schema/feature";
 
-type FeatureFlagListT = z.infer<typeof FeatureFlagArray>;
 type FeatureFlagT = z.infer<typeof FeatureFlag>;
 
 export default function AdminFeatureFlagPage() {
-    const [flags, setFlags] = useState<FeatureFlagListT>([]);
-
-    useEffect(() => {
-        async function fetchFlags() {
+    const { data: flags, error } = useQuery({
+        queryFn: async () => {
             const resp = await fetch("/api/feature");
             const body = await resp.json();
 
             const response = await FeatureFlagListAPIResponse.parseAsync(body);
-            const features = response.message;
+            return response.message;
+        },
+        queryKey: ["features"],
+    });
 
-            setFlags(features);
-        }
+    const [createDialogOpen, setCreateDialogOpen] = useState(false);
+    const [updateDialogOpen, setUpdateDialogOpen] = useState(false);
 
-        fetchFlags().then();
-    }, []);
+    const queryClient = useQueryClient();
 
-    const handleFeatureSwitch = useCallback((flag: string) => {
-        const entry = flags.find(x => x.id === flag);
-
-        if (!entry) return;
-
-        const enabled = entry.enable;
-
-        setFlags((previous) => {
-            const otherEntries = previous.filter(x => x.id != flag);
-
-            return [
-                ...otherEntries,
-                { ...entry,
-                    enable: !enabled },
-            ];
-        });
-    }, [flags]);
-
-    const handleAllFeaturesUpdate = useCallback(() => {
-        async function submit() {
-            const resp = await fetch("/api/feature", { body: JSON.stringify(flags),
-                method: "PATCH" });
+    const featureEditMutation = useMutation({
+        mutationFn: async (data: z.infer<typeof FeatureFlag> & { idOld: string }) => {
+            const resp = await fetch(`/api/feature/${data.idOld}`, {
+                body: JSON.stringify({
+                    description: data.description,
+                    enable: data.enable,
+                    group: data.group,
+                    id: data.id,
+                }),
+                method: "PATCH",
+            });
 
             if (resp.ok) {
                 toast.success("Done!");
+                setUpdateDialogOpen(false);
             }
             else {
-                toast.error("We are cooked.");
+                toast.error("We're cooked");
             }
-        }
+        },
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["features"] }),
+    });
 
-        submit().then();
-    }, [flags]);
+    const featureCreateMutation = useMutation({
+        mutationFn: async (data: z.infer<typeof FeatureFlag> & { idOld: string }) => {
+            const resp = await fetch("/api/feature", {
+                body: JSON.stringify({
+                    description: data.description,
+                    enable: data.enable,
+                    group: data.group,
+                    id: data.id,
+                }),
+                method: "POST",
+            });
 
-    const handleFeatureDelete = useCallback((flag: string) => {
-        async function submit() {
+            if (resp.ok) {
+                toast.success("Done!");
+                setCreateDialogOpen(false);
+            }
+            else {
+                toast.error("We're cooked");
+            }
+        },
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["features"] }),
+    });
+
+    const featureDeleteMutation = useMutation({
+        mutationFn: async (flag: string) => {
             const resp = await fetch(`/api/feature/${flag}`, { method: "DELETE" });
 
             if (resp.ok) {
                 toast.success("Done!");
-                globalThis.location.reload();
             }
             else {
                 toast.error("We are cooked.");
             }
-        }
+        },
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["features"] }),
+    });
 
-        submit().then();
-    }, []);
+    if (!flags || error) return <></>;
 
     const groups = [...Map.groupBy(flags, flag => flag.group).keys()];
 
@@ -159,11 +170,9 @@ export default function AdminFeatureFlagPage() {
         {
             accessorKey: "enable",
             cell: ({ row }) => {
+                const isOn = row.original.enable;
                 return (
-                    <Switch
-                        checked={row.getValue("enable")}
-                        onClick={() => handleFeatureSwitch(row.getValue("id"))}
-                    />
+                    isOn ? (<span className={"text-green-500"}>Bật</span>) : (<span className={"text-red-400"}>Tắt</span>)
                 );
             },
             header: ({ column }) => {
@@ -195,7 +204,7 @@ export default function AdminFeatureFlagPage() {
                 return (
                     <div className={"flex gap-2"}>
                         <TooltipProvider>
-                            <Dialog>
+                            <Dialog onOpenChange={setUpdateDialogOpen} open={updateDialogOpen}>
                                 <Tooltip>
                                     <TooltipTrigger asChild>
                                         <DialogTrigger asChild>
@@ -222,28 +231,7 @@ export default function AdminFeatureFlagPage() {
                                         }}
                                         formSchema={FeatureFlag}
                                         isEdit
-                                        submitCallbackAction={(data) => {
-                                            async function performFeatureUpdate() {
-                                                const resp = await fetch(`/api/feature/${data.idOld}`, {
-                                                    body: JSON.stringify({
-                                                        description: data.description,
-                                                        enable: true,
-                                                        group: data.group,
-                                                        id: data.id,
-                                                    }),
-                                                    method: "PATCH",
-                                                });
-
-                                                if (resp.ok) {
-                                                    globalThis.location.reload();
-                                                }
-                                                else {
-                                                    toast.error("We're cooked");
-                                                }
-                                            }
-
-                                            performFeatureUpdate().then();
-                                        }}
+                                        submitCallbackAction={data => featureEditMutation.mutate(data)}
                                     />
                                     <DialogFooter>
                                         <div>Nhớ réo tụi IT khi làm xong.</div>
@@ -253,7 +241,7 @@ export default function AdminFeatureFlagPage() {
                         </TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <Button onClick={() => handleFeatureDelete(feature.id)} size={"icon"} variant={"destructive"}><Trash /></Button>
+                                <Button onClick={() => featureDeleteMutation.mutate(feature.id)} size={"icon"} variant={"destructive"}><Trash /></Button>
                             </TooltipTrigger>
                             <TooltipContent>
                                 Xóa
@@ -273,10 +261,10 @@ export default function AdminFeatureFlagPage() {
                     <div className={"text-4xl font-bold"}>Feature flag</div>
                     <div className={"text-muted-foreground"}>Thay đổi các tính năng của website AKVNS.</div>
                 </div>
-                <div className={"flex gap-4"}>
-                    <Dialog>
+                <div className={"flex gap-4 place-items-end-safe"}>
+                    <Dialog onOpenChange={setCreateDialogOpen} open={createDialogOpen}>
                         <DialogTrigger asChild>
-                            <Button className={"self-end"}>Tạo mới</Button>
+                            <Button>Tạo mới</Button>
                         </DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
@@ -292,35 +280,13 @@ export default function AdminFeatureFlagPage() {
                                 }}
                                 formSchema={FeatureFlag}
                                 isEdit={false}
-                                submitCallbackAction={(data) => {
-                                    async function sendPost() {
-                                        const resp = await fetch("/api/feature", {
-                                            body: JSON.stringify({
-                                                description: data.description,
-                                                enable: true,
-                                                group: data.group,
-                                                id: data.id,
-                                            }),
-                                            method: "POST",
-                                        });
-
-                                        if (resp.ok) {
-                                            globalThis.location.reload();
-                                        }
-                                        else {
-                                            toast.error("We're cooked");
-                                        }
-                                    }
-
-                                    sendPost().then();
-                                }}
+                                submitCallbackAction={data => featureCreateMutation.mutate(data)}
                             />
                             <DialogFooter>
                                 <div>Nhớ réo tụi IT khi làm xong.</div>
                             </DialogFooter>
                         </DialogContent>
                     </Dialog>
-                    <Button className={"self-end"} onClick={handleAllFeaturesUpdate} variant={"destructive"}>Lưu thay đổi</Button>
                 </div>
             </div>
             <RichTable columns={columns} data={flags} />
