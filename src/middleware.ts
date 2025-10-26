@@ -17,6 +17,13 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(targetUrl);
     }
 
+    if (session.user.role !== "admin") {
+        const nullUrl = new URL("/404", request.url);
+        nullUrl.searchParams.set("err", "notAdmin");
+
+        return NextResponse.redirect(nullUrl);
+    }
+
     return NextResponse.next();
 }
 

@@ -13,6 +13,16 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+model Feature {
+    id          String  @id
+    description String
+    group       String  @default("NORMAL")
+    enable      Boolean @default(false)
+
+    @@index([id, description, group, enable])
+    @@map("feature")
+}
+
 model User {
     id            String    @id
     name          String
@@ -97,66 +107,7 @@ model Project {
     mainImg     String
     date        DateTime    @default(now())
     description String
-    createdAt   DateTime    @default(now())
-    updatedAt   DateTime    @updatedAt
 
     @@index([title, type, date])
     @@map("project")
-}
-
-enum QuestionType {
-    SLIDER
-    MULTI_CHOICE
-    BOOL
-    IMG_REGION
-}
-
-model QuestionSet {
-    id        String     @id
-    title     String
-    //pls add more stuff here idk
-    createdAt DateTime   @default(now())
-    updatedAt DateTime   @updatedAt
-    Question  Question[]
-
-    @@index([title])
-    @@map("questionSet")
-}
-
-model Question {
-    id            String       @id
-    questionSet   QuestionSet  @relation(fields: [questionSetId], references: [id])
-    questionSetId String
-    type          QuestionType @default(MULTI_CHOICE)
-    questionText  String       @default("Khi nào bán tus?")
-
-    //TODO: figure out how to store them answers (soon:tm:)
-    @@map("question")
-}
-
-model ComicSeries {
-    id    String  @id
-    name  String
-    Comic Comic[]
-}
-
-enum TransType {
-    VNS_TRANSLATION
-    PARTNER_TRANSLATION
-    COLLAB_TRANSLATION
-}
-
-model Comic {
-    //intention is that each comic will have its own S3 bucket, so might as well use the ID for it idk?
-    id         String       @id
-    title      String
-    author     String
-    series     ComicSeries? @relation(fields: [seriesId], references: [id])
-    seriesId   String
-    transType  TransType    @default(VNS_TRANSLATION)
-    translator String? //Do we want to add a list of translators?
-    createdAt  DateTime     @default(now())
-    updatedAt  DateTime     @updatedAt
-
-    @@index([title, createdAt, updatedAt])
 }

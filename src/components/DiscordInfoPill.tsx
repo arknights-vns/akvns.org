@@ -1,7 +1,7 @@
 "use client";
 
 import DiscordLogo from "@public/brand/discord.svg";
-import { CircleUser, CircleX, LogOut } from "lucide-react";
+import { CircleUser, CircleX, Lock, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -68,10 +68,8 @@ export default function DiscordInfoPill() {
                     <DropdownMenuContent align={"end"} className={"mt-1"}>
                         <DropdownMenuLabel className={"justify-center flex gap-1"}>
                             <span className={"font-bold space-x-1"}>
-                                <span>
-                                    @
-                                    {session.user.name}
-                                </span>
+                                @
+                                {session.user.name}
                             </span>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
@@ -81,11 +79,22 @@ export default function DiscordInfoPill() {
                                 Hồ sơ
                             </Link>
                         </DropdownMenuItem>
-                        <DropdownMenuItem className={"font-extrabold text-red-400"} onClick={handleLogoutClick}>
+                        <DropdownMenuItem className={"font-extrabold text-red-400 hover:cursor-pointer"} onClick={handleLogoutClick}>
                             <LogOut className={"stroke-red-400"} />
                             {" "}
                             Đăng xuất
                         </DropdownMenuItem>
+                        {session.user.role === "admin" && (
+                            <>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem className={"font-extrabold text-green-400"} onClick={handleLogoutClick}>
+                                    <Lock className={"stroke-green-400"} />
+                                    <Link href={"/manage"}>
+                                        CMS-at-home
+                                    </Link>
+                                </DropdownMenuItem>
+                            </>
+                        )}
                     </DropdownMenuContent>
                 </DropdownMenu>
             )
