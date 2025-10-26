@@ -19,7 +19,7 @@ export default function FAQAccordion() {
                         onClick={() => setOpenId(openId === id ? null : id)}>
                         <span className="text-black">{`Q${id + 1}. ${faq.question}`}</span>{" "}
                         {/* increase question number without string concatenation */}
-                        <span className="text-xl sm:text-2xl text-[#FE0606]">{openId === id ? "X" : "+"}</span>
+                        <span className="text-xl sm:text-2xl text-[#FE0606]">{openId === id ? "×" : "+"}</span>
                     </button>
                     {/* Answer container */}
                     {openId === id && (
