@@ -6,7 +6,11 @@ import { auth } from "@/lib/auth";
 import { s3Client } from "@/lib/aws-s3";
 
 /**
- * WIPE OUT ALL IMAGES.
+ * Delete all images of collection.
+ *
+ * @auth bearer
+ * @pathParams ComicCollectionRegex
+ * @openapi
  */
 export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comic/[collection]/image">) {
     const session = await auth.api.getSession({
@@ -14,7 +18,7 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comi
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ message: "Shoo" }, { status: 403 });
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
     const parameterList = await parameters.params;
@@ -55,7 +59,11 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comi
 }
 
 /**
- * Get a list of images within this collection.
+ * Get images list of collection.
+ *
+ * @pathParams ComicCollectionRegex
+ * @response ComicAssetList
+ * @openapi
  */
 export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[collection]/image">) {
     const parameterList = await parameters.params;
@@ -82,6 +90,11 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
 
 /**
  * Add images to the collection.
+ *
+ * @auth bearer
+ * @pathParams ComicCollectionRegex
+ * @body multipart/form-data
+ * @openapi
  */
 export async function PUT(request: NextRequest, parameters: RouteContext<"/api/comic/[collection]/image">) {
     const session = await auth.api.getSession({
@@ -89,7 +102,7 @@ export async function PUT(request: NextRequest, parameters: RouteContext<"/api/c
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ message: "Shoo" }, { status: 403 });
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
     const parameterList = await parameters.params;

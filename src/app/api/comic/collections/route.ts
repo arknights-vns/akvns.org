@@ -10,17 +10,23 @@ import { auth } from "@/lib/auth";
 import { s3Client } from "@/lib/aws-s3";
 import { ComicCollection } from "@/schema/comic";
 
+/**
+ * Get list of collections.
+ * @auth bearer
+ * @response ComicCollectionListing
+ * @openapi
+ */
 export async function GET() {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ message: "Shoo" }, { status: 403 });
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
     const paginator = paginateListBuckets({ client: s3Client }, {});
-    let buckets: string[] = [];
+    const buckets: string[] = [];
 
     for await (const page of paginator) {
         if (!page.Buckets) continue;
@@ -28,22 +34,25 @@ export async function GET() {
         buckets.push(...page.Buckets.map(b => b.Name ?? ""));
     }
 
-    // akvns is internal cumdump
-    buckets = buckets.filter(b => b !== "akvns");
-
     return NextResponse.json({ message: buckets }, { headers: {
         "Cache-Control": "public, max-age=1800, s-maxage=3600",
     },
     status: 200 });
 }
 
+/**
+ * Create a collection.
+ * @auth bearer
+ * @body ComicCollection
+ * @openapi
+ */
 export async function PUT(request: NextRequest) {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ message: "Shoo" }, { status: 403 });
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
     const body = await request.json();

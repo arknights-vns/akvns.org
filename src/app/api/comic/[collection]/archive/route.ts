@@ -11,7 +11,12 @@ import { auth } from "@/lib/auth";
 import { s3Client } from "@/lib/aws-s3";
 
 /**
- * Create a ZIP archive containing images in this collection.
+ * Download ZIP archive for this collection.
+ *
+ * @auth bearer
+ * @pathParams ComicCollectionRegex
+ * @contentType application/zip
+ * @openapi
  */
 export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[collection]/archive">) {
     const session = await auth.api.getSession({
@@ -19,7 +24,7 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ message: "Shoo" }, { status: 403 });
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
     const parameterList = await parameters.params;

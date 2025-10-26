@@ -1,24 +1,23 @@
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
 
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { VNS_APIError } from "@/schema/api";
-import { FeatureFlag, FeatureFlagListAPIResponse } from "@/schema/feature";
+import { FeatureFlag } from "@/schema/feature";
 
 /**
- * Get all available "feature flag".
+ * Get all feature flags.
  *
- * Requires admin role.
+ * @auth bearer
+ * @response FeatureFlagArray
  */
-export async function GET(): Promise<NextResponse<z.infer<typeof FeatureFlagListAPIResponse> | z.infer<typeof VNS_APIError>>> {
+export async function GET() {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ message: "Shoo" }, { status: 403 });
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
     const result = await prisma.feature.findMany();
@@ -27,17 +26,18 @@ export async function GET(): Promise<NextResponse<z.infer<typeof FeatureFlagList
 }
 
 /**
- * Create new "feature flag".
+ * Create new feature flag.
  *
- * Requires admin role.
+ * @auth bearer
+ * @body FeatureFlag
  */
-export async function POST(request: NextRequest): Promise<NextResponse<unknown | z.infer<typeof VNS_APIError>>> {
+export async function POST(request: NextRequest) {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ message: "Shoo" }, { status: 403 });
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
     try {
@@ -52,9 +52,9 @@ export async function POST(request: NextRequest): Promise<NextResponse<unknown |
             },
         });
 
-        return NextResponse.json({}, { status: 200 });
+        return NextResponse.json({ message: "Created." }, { status: 201 });
     }
-    catch (error) {
-        return NextResponse.json({ message: error }, { status: 400 });
+    catch {
+        return NextResponse.json({ error: "Unable to create feature." }, { status: 400 });
     }
 }

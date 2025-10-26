@@ -6,15 +6,18 @@ import { prisma } from "@/lib/prisma";
 import { FeatureFlag } from "@/schema/feature";
 
 /**
-  * DELETE THE FEATURE FLAG.
-  */
+ * Delete feature flag.
+ *
+ * @auth bearer
+ * @pathParams FeatureIdRegex
+ */
 export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/feature/[id]">) {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ message: "Shoo" }, { status: 403 });
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
     const parameterList = await parameters.params;
@@ -31,11 +34,10 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/feat
 }
 
 /**
- * Get availability of a "feature flag".
+ * Get feature flag availability.
  *
- * - 200 if enabled.
- * - 418 if the database has yet to brew the tea for Zone Informatique.
- * - 400 if it does not exist.
+ * @description 200 if available, 418 if not.
+ * @pathParams FeatureIdRegex
  */
 export async function GET(_: NextRequest, parameters: RouteContext<"/api/feature/[id]">) {
     const parameterList = await parameters.params;
@@ -59,17 +61,19 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/feature
 }
 
 /**
- * Submit "feature flag" changes.
+ * Change feature flag properties.
  *
- * Requires admin role.
+ * @auth bearer
+ * @description 200 if available, 418 if not.
+ * @pathParams FeatureIdRegex
  */
-export async function PATCH(request: NextRequest, parameters: RouteContext<"/api/feature/[id]">): Promise<NextResponse> {
+export async function PATCH(request: NextRequest, parameters: RouteContext<"/api/feature/[id]">) {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ message: "Shoo" }, { status: 403 });
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
     const parameterList = await parameters.params;

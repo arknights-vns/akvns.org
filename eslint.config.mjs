@@ -22,6 +22,7 @@ export default defineConfig([
             "node_modules/*",
             "src/generated/prisma/*",
             "src/components/ui/*",
+            "src/api/docs/*",
         ],
     },
     // TS & React & its slow af parser.
