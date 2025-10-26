@@ -5,6 +5,7 @@
     "EditorConfig.EditorConfig",
     "Prisma.prisma",
     "ms-playwright.playwright",
+    "ms-azuretools.vscode-docker"
     "YoavBls.pretty-ts-errors",
     "naumovs.color-highlight"
   ],
