@@ -76,7 +76,7 @@ export default function MainPage() {
                 ))}
             </div>
 
-            <div className={"flex h-[80svh] items-center justify-center"}>
+            <div className={"flex h-[80svh] items-center justify-center mb-20"}>
                 <div className={"w-full px-6 py-12"}>
                     <ProjectsHeader onSelect={t => setSelectedType(t)} selected={selectedType} />
                     <Timeline selectedType={selectedType} />
