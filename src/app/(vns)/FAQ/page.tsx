@@ -1,4 +1,4 @@
-import FAQAccordion from "./FaqList";
+import FAQAccordion from "./layout";
 
 export default function MainPage() {
     return (

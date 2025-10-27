@@ -2,6 +2,7 @@
 
 import clsx from "clsx";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 import type { Member, MemberLink } from "@/components/members";
@@ -11,6 +12,7 @@ import ProjectsHeader from "@/components/projectHeader";
 import Timeline from "@/components/Timeline";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+
 type ProjectType = "cross" | "event" | "fanProjects";
 
 const tabs = Object.keys(members);
@@ -67,9 +69,9 @@ export default function MainPage() {
                         </CardContent>
                         <CardFooter className={"flex gap-4 mt-2"}>
                             {member.links.map((link: MemberLink, _id: number) => (
-                                <a href={link.url} key={`${link.url}-${_id}`} rel={"noopener noreferrer"} target={"_blank"}>
+                                <Link href={link.url} key={`${link.url}-${_id}`} rel={"noopener noreferrer"} target={"_blank"}>
                                     {link.icon}
-                                </a>
+                                </Link>
                             ))}
                         </CardFooter>
                     </Card>

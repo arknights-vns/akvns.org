@@ -1,15 +1,14 @@
 "use client";
 
+import faqsData from "@public/data/faqsData.json";
 import { useState } from "react";
-
-import faqsData from "@/app/(vns)/data/faqsData.json";
 
 export default function FAQAccordion() {
     const [openId, setOpenId] = useState<number | undefined>();
 
     return (
         <div className={"max-w-2xl mx-auto py-6 sm:py-4 px-3 sm:px-4 md:px-6"}>
-            <h2 className={"text-2xl sm:text-3xl font-bold text-center mb-6 text-[#FE0606]"}>Câu hỏi thường gặp</h2>
+            <div className={"text-2xl sm:text-3xl font-bold text-center mb-6 text-[#FE0606]"}>Câu hỏi thường gặp</div>
 
             {faqsData.map((faq, id) => (
                 <div className={`mb-4 rounded-xl shadow-lg/20 overflow-hidden bg-gray-200`} key={faq.id}>

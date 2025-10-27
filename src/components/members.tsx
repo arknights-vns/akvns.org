@@ -1,6 +1,5 @@
+import membersData from "@public/data/members.json";
 import { Github, Globe, Linkedin } from "lucide-react";
-
-import membersData from "../../public/members.json";
 
 export type Member = {
     avatar: string;

@@ -1,11 +1,11 @@
 "use client";
 
+import carouselData from "@public/data/carouselData.json";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useEffect } from "react";
-
-import carouselData from "@/app/(vns)/data/carouselData.json";
 
 type item = {
     image: string;
@@ -94,17 +94,17 @@ export default function Carousel() {
                             </div>
                             {item.url
                                 ? (
-                                        <a
+                                        <Link
                                             className={"font-bold mb-2 text-center hover:text-red-500 transition-colors"}
                                             href={item.url}
                                             rel={"noopener noreferrer"}
                                             target={"_blank"}
                                         >
                                             {item.title}
-                                        </a>
+                                        </Link>
                                     )
                                 : (
-                                        <h1 className={"font-bold mt-2 text-center"}>{item.title}</h1>
+                                        <div className={"font-bold mt-2 text-center"}>{item.title}</div>
                                     )}
                         </div>
                     ))}
