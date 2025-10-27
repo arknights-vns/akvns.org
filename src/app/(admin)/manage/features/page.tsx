@@ -33,7 +33,7 @@ type FeatureFlagT = z.infer<typeof FeatureFlag>;
 export default function AdminFeatureFlagPage() {
     const { data: flags, error } = useQuery({
         queryFn: async () => {
-            const resp = await fetch("/api/feature");
+            const resp = await fetch("/api/features");
             const body = await resp.json();
 
             const response = await FeatureFlagListAPIResponse.parseAsync(body);
@@ -49,7 +49,7 @@ export default function AdminFeatureFlagPage() {
 
     const featureEditMutation = useMutation({
         mutationFn: async (data: z.infer<typeof FeatureFlag> & { idOld: string }) => {
-            const resp = await fetch(`/api/feature/${data.idOld}`, {
+            const resp = await fetch(`/api/features/${data.idOld}`, {
                 body: JSON.stringify({
                     description: data.description,
                     enable: data.enable,
@@ -67,19 +67,21 @@ export default function AdminFeatureFlagPage() {
                 toast.error("We're cooked");
             }
         },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["features"] }),
+        onSuccess: (_data, variables) => {
+            queryClient.invalidateQueries({ queryKey: ["features", `feature-${variables.id}`] }).then();
+        },
     });
 
     const featureCreateMutation = useMutation({
         mutationFn: async (data: z.infer<typeof FeatureFlag> & { idOld: string }) => {
-            const resp = await fetch("/api/feature", {
+            const resp = await fetch(`/api/features/${data.id}`, {
                 body: JSON.stringify({
                     description: data.description,
                     enable: data.enable,
                     group: data.group,
                     id: data.id,
                 }),
-                method: "POST",
+                method: "PUT",
             });
 
             if (resp.ok) {
@@ -95,7 +97,7 @@ export default function AdminFeatureFlagPage() {
 
     const featureDeleteMutation = useMutation({
         mutationFn: async (flag: string) => {
-            const resp = await fetch(`/api/feature/${flag}`, { method: "DELETE" });
+            const resp = await fetch(`/api/features/${flag}`, { method: "DELETE" });
 
             if (resp.ok) {
                 toast.success("Done!");
@@ -104,7 +106,9 @@ export default function AdminFeatureFlagPage() {
                 toast.error("We are cooked.");
             }
         },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["features"] }),
+        onSuccess: (_data, variables) => {
+            queryClient.invalidateQueries({ queryKey: ["features", `feature-${variables}`] }).then();
+        },
     });
 
     if (!flags || error) return <></>;

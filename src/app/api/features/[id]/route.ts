@@ -10,8 +10,9 @@ import { FeatureFlag } from "@/schema/feature";
  *
  * @auth bearer
  * @pathParams FeatureIdRegex
+ * @openapi
  */
-export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/feature/[id]">) {
+export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/features/[id]">) {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
@@ -38,8 +39,9 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/feat
  *
  * @description 200 if available, 418 if not.
  * @pathParams FeatureIdRegex
+ * @openapi
  */
-export async function GET(_: NextRequest, parameters: RouteContext<"/api/feature/[id]">) {
+export async function GET(_: NextRequest, parameters: RouteContext<"/api/features/[id]">) {
     const parameterList = await parameters.params;
 
     const result = await prisma.feature.findFirst({
@@ -48,15 +50,11 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/feature
         },
     });
 
-    if (!result) {
-        return NextResponse.json({}, { status: 400 });
-    }
-
     return NextResponse.json({}, {
         headers: {
             "Cache-Control": "public, max-age=1800, s-maxage=3600",
         },
-        status: result.enable ? 200 : 418,
+        status: result && result.enable ? 200 : 418,
     });
 }
 
@@ -64,10 +62,10 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/feature
  * Change feature flag properties.
  *
  * @auth bearer
- * @description 200 if available, 418 if not.
  * @pathParams FeatureIdRegex
+ * @openapi
  */
-export async function PATCH(request: NextRequest, parameters: RouteContext<"/api/feature/[id]">) {
+export async function PATCH(request: NextRequest, parameters: RouteContext<"/api/features/[id]">) {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
@@ -93,7 +91,7 @@ export async function PATCH(request: NextRequest, parameters: RouteContext<"/api
 
     if (changes.count === 0)
         return NextResponse.json({
-            message: "No such record",
+            error: "No such record",
         }, {
             status: 400,
         });
@@ -101,4 +99,41 @@ export async function PATCH(request: NextRequest, parameters: RouteContext<"/api
     return NextResponse.json({}, {
         status: 200,
     });
+}
+
+/**
+ * Create new feature flag.
+ *
+ * @auth bearer
+ * @body FeatureFlag
+ * @openapi
+ */
+export async function PUT(request: NextRequest, parameters: RouteContext<"/api/features/[id]">) {
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    if (!session || session.user.role !== "admin") {
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+    }
+
+    const parameterList = await parameters.params;
+
+    try {
+        const body = await FeatureFlag.parseAsync(await request.json());
+
+        await prisma.feature.create({
+            data: {
+                description: body.description,
+                enable: body.enable,
+                group: body.group,
+                id: parameterList.id,
+            },
+        });
+
+        return NextResponse.json({ message: "Created." }, { status: 201 });
+    }
+    catch {
+        return NextResponse.json({ error: "Unable to create features." }, { status: 400 });
+    }
 }
