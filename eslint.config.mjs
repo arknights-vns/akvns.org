@@ -2,6 +2,7 @@ import react from "@eslint-react/eslint-plugin";
 import eslint from "@eslint/js";
 import nextjs from "@next/eslint-plugin-next";
 import stylistic from "@stylistic/eslint-plugin";
+import tanstackQuery from "@tanstack/eslint-plugin-query";
 import tailwindcss from "eslint-plugin-better-tailwindcss";
 import importLite from "eslint-plugin-import-lite";
 import perfectionist from "eslint-plugin-perfectionist";
@@ -21,6 +22,7 @@ export default defineConfig([
             "node_modules/*",
             "src/generated/prisma/*",
             "src/components/ui/*",
+            "src/api/docs/*",
         ],
     },
     // TS & React & its slow af parser.
@@ -31,6 +33,7 @@ export default defineConfig([
             importLite.configs.recommended,
             tseslint.configs.strict,
             tseslint.configs.stylistic,
+            tanstackQuery.configs["flat/recommended"],
             react.configs["recommended-typescript"],
             reactHooks.configs["recommended-latest"],
             reactRefresh.configs.recommended,

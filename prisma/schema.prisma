@@ -13,6 +13,16 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+model Feature {
+    id          String  @id
+    description String
+    group       String  @default("NORMAL")
+    enable      Boolean @default(false)
+
+    @@index([id, description, group, enable])
+    @@map("feature")
+}
+
 model User {
     id            String    @id
     name          String
@@ -82,4 +92,22 @@ model Verification {
 
     @@index([identifier])
     @@map("verification")
+}
+
+enum ProjectType {
+    FAN_PROJECT
+    EVENT
+    CROSSOVER
+}
+
+model Project {
+    id          String      @id
+    title       String
+    type        ProjectType @default(EVENT)
+    mainImg     String
+    date        DateTime    @default(now())
+    description String
+
+    @@index([title, type, date])
+    @@map("project")
 }
