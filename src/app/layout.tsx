@@ -3,9 +3,8 @@ import type React from "react";
 
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 
-import { TerraTheme } from "@/components/TerraTheme";
-
 import "./globals.css";
+import Providers from "@/components/Providers";
 
 const font = VNS_Font({
     subsets: ["latin", "vietnamese"],
@@ -27,7 +26,9 @@ export default function RootLayout(properties: LayoutProps<"/">) {
     return (
         <html lang={"en"} suppressHydrationWarning>
             <body className={`${font.variable} ${fontMono.variable} font-sans antialiased`}>
-                <TerraTheme>{properties.children}</TerraTheme>
+                <Providers>
+                    {properties.children}
+                </Providers>
             </body>
         </html>
     );

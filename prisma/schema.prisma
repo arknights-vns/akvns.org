@@ -1,0 +1,113 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Feature {
+    id          String  @id
+    description String
+    group       String  @default("NORMAL")
+    enable      Boolean @default(false)
+
+    @@index([id, description, group, enable])
+    @@map("feature")
+}
+
+model User {
+    id            String    @id
+    name          String
+    email         String
+    emailVerified Boolean   @default(false)
+    image         String?
+    createdAt     DateTime  @default(now())
+    updatedAt     DateTime  @default(now()) @updatedAt
+    sessions      Session[]
+    accounts      Account[]
+
+    role       String?
+    banned     Boolean?  @default(false)
+    banReason  String?
+    banExpires DateTime?
+
+    @@unique([email])
+    @@index([email])
+    @@map("user")
+}
+
+model Session {
+    id        String   @id
+    expiresAt DateTime
+    token     String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    ipAddress String?
+    userAgent String?
+    userId    String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    impersonatedBy String?
+
+    @@unique([token])
+    @@index([userId, token])
+    @@map("session")
+}
+
+model Account {
+    id                    String    @id
+    accountId             String
+    providerId            String
+    userId                String
+    user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+    accessToken           String?
+    refreshToken          String?
+    idToken               String?
+    accessTokenExpiresAt  DateTime?
+    refreshTokenExpiresAt DateTime?
+    scope                 String?
+    password              String?
+    createdAt             DateTime  @default(now())
+    updatedAt             DateTime  @updatedAt
+
+    @@index([userId])
+    @@map("account")
+}
+
+model Verification {
+    id         String   @id
+    identifier String
+    value      String
+    expiresAt  DateTime
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @default(now()) @updatedAt
+
+    @@index([identifier])
+    @@map("verification")
+}
+
+enum ProjectType {
+    FAN_PROJECT
+    EVENT
+    CROSSOVER
+}
+
+model Project {
+    id          String      @id
+    title       String
+    type        ProjectType @default(EVENT)
+    mainImg     String
+    date        DateTime    @default(now())
+    description String
+
+    @@index([title, type, date])
+    @@map("project")
+}
