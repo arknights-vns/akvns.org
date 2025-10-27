@@ -7,13 +7,17 @@ import { useState } from "react";
 import type { Member, MemberLink } from "@/components/members";
 
 import { members } from "@/components/members";
+import ProjectsHeader from "@/components/projectHeader";
+import Timeline from "@/components/Timeline";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+type ProjectType = "cross" | "event" | "fanProjects";
 
 const tabs = Object.keys(members);
 
 export default function MainPage() {
     const [activeTab, setActiveTab] = useState(tabs[0]);
+    const [selectedType, setSelectedType] = useState<ProjectType>("fanProjects");
     return (
         <div className={"flex flex-col items-center py-8"}>
             <div className={"text-5xl font-bold mb-6 text-[#F25C5C]"}>Nhân sự tại Arknights VNS</div>
@@ -70,6 +74,13 @@ export default function MainPage() {
                         </CardFooter>
                     </Card>
                 ))}
+            </div>
+
+            <div className={"flex h-[80svh] items-center justify-center"}>
+                <div className={"w-full px-6 py-12"}>
+                    <ProjectsHeader onSelect={t => setSelectedType(t)} selected={selectedType} />
+                    <Timeline selectedType={selectedType} />
+                </div>
             </div>
         </div>
     );
