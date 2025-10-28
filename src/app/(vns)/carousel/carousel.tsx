@@ -68,10 +68,7 @@ export default function Carousel() {
                 <div className={"embla__container flex"}>
                     {carouselData.map((item: item) => (
                         <div
-                            className="
-                                embla__slide
-                                flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%]
-                                flex flex-col items-center justify-center"
+                            className={"embla__slide flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.33%] flex flex-col items-center justify-center"}
                             key={item.title}
                         >
                             <div className={"relative flex items-center justify-center w-full"}>
