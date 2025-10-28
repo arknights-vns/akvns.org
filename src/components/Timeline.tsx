@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import projectsData from "@public/data/projects.json";
+import React, { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
 type Project = {
-    bg: string;
+    bg?: string;
     content: string;
     date: string;
     name: string;
@@ -20,32 +21,8 @@ type ProjectsData = {
 const VISIBLE = 4;
 
 export default function Timeline({ selectedType }: { selectedType: keyof ProjectsData }) {
-    const [projects, setProjects] = useState<ProjectsData>();
+    const projects: ProjectsData = projectsData;
     const [index, setIndex] = useState(0);
-
-    useEffect(() => {
-        fetch("/projects.json")
-            .then(response => response.json())
-            .then(data => setProjects(data))
-            .catch(() =>
-                setProjects({
-                    cross: [],
-                    event: [],
-                    fanProjects: [],
-                }),
-            );
-    }, []);
-
-    useEffect(() => {
-        if (selectedType) {
-            setIndex(0);
-        }
-    }, [selectedType]);
-
-    if (!projects) {
-        return <p>Loading...</p>;
-    }
-
     const items = projects[selectedType] || [];
     const maxIndex = Math.max(0, Math.ceil(items.length / VISIBLE) - 1);
 
