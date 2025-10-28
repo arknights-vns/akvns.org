@@ -13,9 +13,10 @@ import { ComicSeriesMetadata } from "@/schema/comic";
  */
 export async function GET(
     _request: NextRequest,
-    context: { params: { collection: string } },
+    parameters: RouteContext<"/api/comic/[collection]/metadata">,
 ) {
-    const { collection } = context.params;
+    const parameterList = await parameters.params;
+    const { collection } = parameterList;
 
     // @ts-expect-error Prisma Client types may be stale until `npx prisma generate` runs
     const row = await prisma.comicSeries.findUnique({
@@ -54,29 +55,26 @@ export async function GET(
  */
 export async function PUT(
     request: NextRequest,
-    context: { params: { collection: string } },
+    parameters: RouteContext<"/api/comic/[collection]/metadata">,
 ) {
     const session = await auth.api.getSession({ headers: await headers() });
     if (!session || session.user.role !== "admin") {
         return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
-    const { collection } = context.params;
+    const parameterList = await parameters.params;
+    const { collection } = parameterList;
 
-    let payload: unknown;
+    let data;
     try {
-        payload = await request.json();
+        data = await ComicSeriesMetadata.parseAsync(await request.json());
     }
-    catch {
-        return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+    catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 400 });
+        }
+        return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
     }
-
-    const parsed = ComicSeriesMetadata.safeParse(payload);
-    if (!parsed.success) {
-        return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
-    }
-
-    const data = parsed.data;
 
     try {
         // @ts-expect-error Prisma Client types may be stale until `npx prisma generate` runs

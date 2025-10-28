@@ -55,3 +55,6 @@ node_modules/
 
 # OpenAPI
 public/openapi.json
+
+# Prisma migrations (excluded from VCS as requested)
+prisma/migrations/
