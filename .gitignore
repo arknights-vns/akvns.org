@@ -49,9 +49,5 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 
-# Docker
-/docker/minio/storage
-/docker/postgres/pgdata
-
 # OpenAPI
 public/openapi.json

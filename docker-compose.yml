@@ -1,7 +1,7 @@
 name: arknights-vns
 
 include:
-  - docker/minio/docker-compose.yml
+  - docker/s3/docker-compose.yml
   - docker/postgres/docker-compose.yml
 
 services:
