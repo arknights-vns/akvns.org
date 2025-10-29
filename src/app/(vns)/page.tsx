@@ -7,20 +7,14 @@ import { ArrowRight } from "lucide-react";
 import { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
-import ProjectsHeader from "@/components/projectHeader";
-import Timeline from "@/components/Timeline";
+import ProjectsListing from "@/components/landing/Projects";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
-type ProjectType = "cross" | "event" | "fanProjects";
-
 export default function MainPage() {
-    const [selectedType, setSelectedType] = useState<ProjectType>("fanProjects");
-
     return (
-        <div className={"flex flex-col gap-y-4 place-items-center-safe"}>
+        <div className={"flex flex-col place-items-center-safe"}>
             <div className={"relative pb-8"}>
                 <div className={"absolute w-full text-center z-1 flex pt-20"}>
                     <div className={"center text-start px-10 w-[65%]"}>
@@ -36,7 +30,7 @@ export default function MainPage() {
             </div>
 
             <section
-                className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe"}
+                className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"}
                 id={"leaders"}
             >
                 <div className={"text-4xl text-primary font-bold"}>Meet the Leaders</div>
@@ -84,7 +78,7 @@ export default function MainPage() {
                         ))
                     }
                 </div>
-                <div>Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác nữa.</div>
+                <div className={"text-center"}>Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác nữa.</div>
                 <Button asChild className={"w-fit"}>
                     <Link href={"/staff"}>
                         <span className={"font-bold"}>Xem toàn bộ dàn nhân sự của Arknights VNS</span>
@@ -93,12 +87,12 @@ export default function MainPage() {
                 </Button>
             </section>
 
-            <div className={"flex h-[80svh] items-center justify-center mb-20"}>
-                <div className={"w-full px-6 py-12"}>
-                    <ProjectsHeader onSelect={t => setSelectedType(t)} selected={selectedType} />
-                    <Timeline key={selectedType} selectedType={selectedType} />
-                </div>
-            </div>
+            <section
+                className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"}
+                id={"projects"}
+            >
+                <ProjectsListing />
+            </section>
         </div>
     );
 }

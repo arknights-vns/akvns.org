@@ -47,11 +47,6 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
         type: "link",
     },
     {
-        href: "#projects",
-        label: "Dự án",
-        type: "link",
-    },
-    {
         children: [
             {
                 description: "",
@@ -66,6 +61,11 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
         ],
         label: "Nhân sự",
         type: "dropdown",
+    },
+    {
+        href: "#projects",
+        label: "Dự án",
+        type: "link",
     },
     {
         href: "#translations",
