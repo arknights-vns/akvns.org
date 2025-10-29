@@ -106,7 +106,7 @@ export default function FatFooter() {
             </div>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button className={"max-w-sm self-center font-bold"} variant={"destructive"}>
+                    <Button className={"max-w-sm self-center font-bold"}>
                         <HeartHandshake className={""} />
                         Donate cho Arknights VNS
                     </Button>

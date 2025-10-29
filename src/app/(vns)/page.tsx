@@ -1,29 +1,26 @@
 "use client";
 
 import amiya from "@public/amiya.png";
+import membersList from "@public/data/members.json";
 import headerBg from "@public/nozomi.png";
-import clsx from "clsx";
+import { ArrowRight } from "lucide-react";
+import { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-import type { Member, MemberLink } from "@/components/members";
-
-import { members } from "@/components/members";
 import ProjectsHeader from "@/components/projectHeader";
 import Timeline from "@/components/Timeline";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 type ProjectType = "cross" | "event" | "fanProjects";
 
-const tabs = Object.keys(members);
-
 export default function MainPage() {
-    const [activeTab, setActiveTab] = useState(tabs[0]);
     const [selectedType, setSelectedType] = useState<ProjectType>("fanProjects");
+
     return (
-        <div className={"flex flex-col items-center pb-8"}>
+        <div className={"flex flex-col gap-y-4 place-items-center-safe"}>
             <div className={"relative pb-8"}>
                 <div className={"absolute w-full text-center z-1 flex pt-20"}>
                     <div className={"center text-start px-10 w-[65%]"}>
@@ -38,61 +35,63 @@ export default function MainPage() {
                 <Image alt={"header background"} className={"relative m-0 p-0 brightness-75 z-0"} src={headerBg} />
             </div>
 
-            <div className={"text-5xl font-bold mb-6 text-[#F25C5C]"}>Nhân sự tại Arknights VNS</div>
-            {/* Tabs for contributor */}
-            <div className={"flex flex-wrap gap-4 mb-8"}>
-                {tabs.map(tab => (
-                    <Button
-                        className={clsx("px-5 py-2 rounded-full font-semibold transition-colors", {
-                            "bg-[#F25C5C] text-white": activeTab === tab,
-                            "bg-gray-200 text-black hover:bg-gray-300": activeTab !== tab,
-                        })}
-                        key={tab}
-                        onClick={() => setActiveTab(tab)}
-                    >
-                        {tab}
-                    </Button>
-                ))}
-            </div>
+            <section
+                className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe"}
+                id={"leaders"}
+            >
+                <div className={"text-4xl text-primary font-bold"}>Meet the Leaders</div>
+                <div className={"text-muted-foreground"}>What should I write here?</div>
+                <div className={"grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-4 place-items-center-safe w-[90vw]"}>
+                    {
+                        membersList.Leader.map(member => (
+                            <Card
+                                className={"bg-muted/50 w-64 relative mt-8 flex flex-col justify-center items-center"}
+                                key={member.name}
+                            >
+                                <CardHeader className={"mt-8 flex flex-col justify-center items-center pb-2 w-full"}>
+                                    <Image
+                                        alt={`${member.name} ${member.role}`}
+                                        className={"absolute border-2 -top-12 rounded-full w-24 h-24 aspect-square object-cover"}
+                                        height={96}
+                                        src={member.avatar}
+                                        width={96}
+                                    />
+                                    <CardTitle className={"text-center text-2xl"}>{member.name}</CardTitle>
+                                    <CardDescription className={"text-primary"}>
+                                        {member.role}
+                                    </CardDescription>
+                                </CardHeader>
 
-            <div className={"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-12 py-10"}>
-                {members[activeTab as keyof typeof members].map((member: Member, id: number) => (
-                    // The individual card
-                    <Card
-                        className={"flex flex-col items-center p-4 mt-4 shadow-md/12 bg-gray-100"}
-                        key={`${member.name}-${id}`}
-                    >
-                        {/* Profile picture */}
-                        <div className={"rounded-full border-1 border-black -mt-20 bg-white overflow-hidden w-30 h-30 flex items-center justify-center"}>
-                            <Image
-                                alt={member.name}
-                                className={"rounded-full object-cover"}
-                                height={100}
-                                src={member.avatar}
-                                width={100}
-                            />
-                        </div>
+                                <CardContent className={"text-center"}>
+                                    {member.quote}
+                                </CardContent>
 
-                        {/* Display member information */}
-                        <CardContent className={"flex flex-col items-center"}>
-                            <div className={"font-bold text-lg text-black"}>{member.name}</div>
-                            <div className={"text-[#F25C5C] text-sm"}>{member.role}</div>
-                            <div className={"italic text-xs text-gray-400 mt-1"}>
-                                "
-                                {member.quote}
-                                "
-                            </div>
-                        </CardContent>
-                        <CardFooter className={"flex gap-4 mt-2"}>
-                            {member.links.map((link: MemberLink, _id: number) => (
-                                <Link href={link.url} key={`${link.url}-${_id}`} rel={"noopener noreferrer"} target={"_blank"}>
-                                    {link.icon}
-                                </Link>
-                            ))}
-                        </CardFooter>
-                    </Card>
-                ))}
-            </div>
+                                <CardFooter className={"gap-2"}>
+                                    {member.links.map(link => (
+                                        <div key={`${member.name}-${link.icon}`}>
+                                            <Link
+                                                href={link.url as Route}
+                                            >
+                                                <span>
+                                                    {link.url}
+                                                    icon
+                                                </span>
+                                            </Link>
+                                        </div>
+                                    ))}
+                                </CardFooter>
+                            </Card>
+                        ))
+                    }
+                </div>
+                <div>Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác nữa.</div>
+                <Button asChild className={"w-fit"}>
+                    <Link href={"/staff"}>
+                        <span className={"font-bold"}>Xem toàn bộ dàn nhân sự của Arknights VNS</span>
+                        <ArrowRight />
+                    </Link>
+                </Button>
+            </section>
 
             <div className={"flex h-[80svh] items-center justify-center mb-20"}>
                 <div className={"w-full px-6 py-12"}>
