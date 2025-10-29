@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import React from "react";
 
 import {
@@ -17,25 +17,25 @@ type CardData = {
 
 const reviews: CardData[] = [
     {
-        avatar: "img: Jennie",
+        avatar: "/meruko.png",
         description: "Jennie, chính thất, aka, Vợ cả.",
         info: "@jennienguyn",
         name: "Nguyễn Thị Linh Chi",
     },
     {
-        avatar: "img: Chino",
+        avatar: "/meruko.png",
         description: "1 con mèo khác, nhưng thua vợ cả.",
         info: "@yuki_chino",
         name: "Chino",
     },
     {
-        avatar: "img: Achi",
+        avatar: "/meruko.png",
         description: "Người Việt N1 tiếng Nhật chửi tụi CS bằng tiếng Nga.",
         info: "@hitorimi_achi",
         name: "Hitorimi Achi",
     },
     {
-        avatar: "img: Tee",
+        avatar: "/meruko.png",
         description: "Chị gái hàng xóm hát hay, ghét tôm.",
         info: "@renjiwatarimono",
         name: "Tee",
@@ -44,26 +44,28 @@ const reviews: CardData[] = [
 
 export default function Testimony() {
     return (
-        <main className={"min-h-screen py-12"}>
+        <div>
             <div className={"max-w-4xl mx-auto px-6"}>
-                <header className={"text-center mb-10"}>
-                    <h3 className={"text-2xl front-bold text-red-500 mb-2"}>Oguro có bao nhiêu người yêu?</h3>
+                <div className={"text-center mb-10"}>
+                    <div className={"text-2xl front-bold text-red-500 mb-2"}>Oguro có bao nhiêu người yêu?</div>
                     <p className={"text-slate-500"}>Sau khi bị @Swyrin VAR, Oguro có:</p>
-                </header>
+                </div>
 
                 <section className={"grid grid-cols-1 sm:grid-cols-2 gap-8"}>
-                    {reviews.map((c, index) => (
+                    {reviews.map(c => (
                         <Card
                             className={"border border-black shadow-[0_0_20px_4px_rbga(255,0,0,0.05)] bg-white"}
-                            key={index}
+                            key={c.info}
                         >
                             <CardHeader className={"flex flex-col items-center text-center py-6"}>
                                 <div className={"flex flex-cl items-center gap-3"}>
-                                    <div className={"w-20 h-20 rounded-full overflow-hidden border-2 border-red-100 shadow-sm"}>
-                                        <img
+                                    <div className={"rounded-full overflow-hidden border-2 border-red-100 shadow-sm"}>
+                                        <Image
                                             alt={c.name}
-                                            className={"w-full h-full object-cover"}
+                                            className={"rounded-full object-cover"}
+                                            height={50}
                                             src={c.avatar}
+                                            width={50}
                                         />
                                     </div>
                                     <div>
@@ -83,6 +85,6 @@ export default function Testimony() {
                     ))}
                 </section>
             </div>
-        </main>
+        </div>
     );
 }
