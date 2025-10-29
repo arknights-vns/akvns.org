@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
+import "@/app/globals.css";
 import {
     Card,
     CardContent,
@@ -44,47 +45,45 @@ const reviews: CardData[] = [
 
 export default function Testimony() {
     return (
-        <div>
-            <div className={"max-w-4xl mx-auto px-6"}>
-                <div className={"text-center mb-10"}>
-                    <div className={"text-2xl front-bold text-red-500 mb-2"}>Oguro có bao nhiêu người yêu?</div>
-                    <p className={"text-slate-500"}>Sau khi bị @Swyrin VAR, Oguro có:</p>
-                </div>
-
-                <section className={"grid grid-cols-1 sm:grid-cols-2 gap-8"}>
-                    {reviews.map(c => (
-                        <Card
-                            className={"border border-black shadow-[0_0_20px_4px_rbga(255,0,0,0.05)] bg-white"}
-                            key={c.info}
-                        >
-                            <CardHeader className={"flex flex-col items-center text-center py-6"}>
-                                <div className={"flex flex-cl items-center gap-3"}>
-                                    <div className={"rounded-full overflow-hidden border-2 border-red-100 shadow-sm"}>
-                                        <Image
-                                            alt={c.name}
-                                            className={"rounded-full object-cover"}
-                                            height={50}
-                                            src={c.avatar}
-                                            width={50}
-                                        />
-                                    </div>
-                                    <div>
-                                        <CardTitle className={"text-lg font-semibold text-red-500"}>
-                                            {c.name}
-                                        </CardTitle>
-                                        <p className={"text-sm text-black"}>{c.info}</p>
-                                    </div>
-                                </div>
-                            </CardHeader>
-                            <CardContent>
-                                <p className={"text-sm text-black leading-relaxed text-center"}>
-                                    {c.description}
-                                </p>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </section>
+        <div className={"max-w-4xl mx-auto px-6"}>
+            <div className={"text-center mb-10"}>
+                <div className={"text-2xl font-bold text-primary mb-2"}>Oguro có bao nhiêu người yêu?</div>
+                <p className={"text-accent-foreground"}>Sau khi bị @Swyrin VAR, Oguro có:</p>
             </div>
+
+            <section className={"grid grid-cols-1 sm:grid-cols-2 gap-8"}>
+                {reviews.map(c => (
+                    <Card
+                        className={"border border-black shadow-[0_0_20px_4px_rgba(255,0,0,0.1)] "}
+                        key={c.info}
+                    >
+                        <CardHeader className={"flex flex-col items-center text-center py-6"}>
+                            <div className={"flex flex-cl items-center gap-3"}>
+                                <div className={"rounded-full overflow-hidden border-1 border-black shadow-sm"}>
+                                    <Image
+                                        alt={c.name}
+                                        className={"rounded-full object-cover"}
+                                        height={50}
+                                        src={c.avatar}
+                                        width={50}
+                                    />
+                                </div>
+                                <div>
+                                    <CardTitle className={"text-lg font-semibold text-primary"}>
+                                        {c.name}
+                                    </CardTitle>
+                                    <p className={"text-sm text-accent-foreground"}>{c.info}</p>
+                                </div>
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <p className={"text-sm text-accent-foreground leading-relaxed text-center"}>
+                                {c.description}
+                            </p>
+                        </CardContent>
+                    </Card>
+                ))}
+            </section>
         </div>
     );
 }
