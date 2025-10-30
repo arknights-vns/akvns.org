@@ -1,27 +1,42 @@
 [
   {
-    "image": "/amiya.png",
-    "title": "Amiya",
+    "image": "/sponsors/alfa_acta.png",
+    "title": "Alfa Acta",
     "url": "#"
   },
   {
-    "image": "/brand/youtube.svg",
-    "title": "YOUTUBE",
+    "image": "/sponsors/ivada.png",
+    "title": "IVADA",
     "url": "#"
   },
   {
-    "image": "/VNS_Icon.svg",
-    "title": "VNS LOGO",
+    "image": "/sponsors/trentila.png",
+    "title": "Trentila",
     "url": "#"
   },
   {
-    "image": "/brand/steam.svg",
-    "title": "STEAM",
+    "image": "/sponsors/holtow.png",
+    "title": "HOLTOW",
     "url": "#"
   },
   {
-    "image": "/brand/facebook.svg",
-    "title": "FACEBOOK",
+    "image": "/sponsors/OSPUZE.png",
+    "title": "OZPUZE",
+    "url": "#"
+  },
+  {
+    "image": "/sponsors/cns.png",
+    "title": "FROM. CNS. WITH. LOVE.",
+    "url": "#"
+  },
+  {
+    "image": "/sponsors/ranzio.png",
+    "title": "enlist. resist.",
+    "url": "#"
+  },
+  {
+    "image": "/sponsors/vaiiya.png",
+    "title": "VAIIYA",
     "url": "#"
   }
 ]

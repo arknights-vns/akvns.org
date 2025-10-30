@@ -8,6 +8,7 @@ import Link from "next/link";
 
 import FAQListing from "@/components/landing/FAQ";
 import ProjectsListing from "@/components/landing/Projects";
+import SponsorsCarousel from "@/components/landing/SponsorsCarousel";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -27,6 +28,13 @@ export default function MainPage() {
                 </div>
                 <Image alt={"header background"} className={"relative m-0 p-0 brightness-75 z-0"} src={headerBg} />
             </div>
+
+            <section
+                className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"}
+                id={"sponsors"}
+            >
+                <SponsorsCarousel />
+            </section>
 
             <section
                 className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"}
