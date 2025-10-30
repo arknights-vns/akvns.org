@@ -63,13 +63,24 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
         type: "dropdown",
     },
     {
-        href: "#projects",
+        children: [
+            {
+                description: "",
+                href: "/#projects",
+                label: "Các dự án của Arknights VNS",
+            },
+            {
+                description: "",
+                href: "#",
+                label: "Truyện tại trạm",
+            },
+        ],
         label: "Dự án",
-        type: "link",
+        type: "dropdown",
     },
     {
-        href: "#translations",
-        label: "Truyện tại Trạm",
+        href: "/#faq",
+        label: "Câu hỏi thường gặp",
         type: "link",
     },
 ];

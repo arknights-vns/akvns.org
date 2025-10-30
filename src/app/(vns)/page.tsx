@@ -1,5 +1,3 @@
-"use client";
-
 import amiya from "@public/amiya.png";
 import membersList from "@public/data/members.json";
 import headerBg from "@public/nozomi.png";
@@ -8,6 +6,7 @@ import { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import FAQListing from "@/components/landing/FAQ";
 import ProjectsListing from "@/components/landing/Projects";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -92,6 +91,13 @@ export default function MainPage() {
                 id={"projects"}
             >
                 <ProjectsListing />
+            </section>
+
+            <section
+                className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"}
+                id={"faq"}
+            >
+                <FAQListing />
             </section>
         </div>
     );

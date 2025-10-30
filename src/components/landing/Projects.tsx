@@ -1,3 +1,5 @@
+"use client";
+
 import projectsList from "@public/data/projects.json";
 import { clsx } from "clsx";
 import { Circle } from "lucide-react";
@@ -51,7 +53,7 @@ export default function ProjectsListing() {
                     <div className={"text-muted-foreground"}>Placeholder because I'm tired - Đụt</div>
                 </div>
                 <TabsList
-                    className={"mx-4 h-auto self-center-safe gap-4 bg-transparent [&_button]:bg-neutral-300 [&_button]:dark:bg-neutral-600 [&_button]:rounded-xl [&_button]:px-4 [&_button]:py-2 [&_button]:data-[state=active]:bg-primary [&_button]:data-[state=active]:text-white [&_button]:data-[state=active]:font-bold"}
+                    className={"h-auto self-center-safe gap-4 bg-transparent [&_button]:bg-neutral-300 [&_button]:dark:bg-neutral-600 [&_button]:rounded-xl [&_button]:px-4 [&_button]:py-2 [&_button]:data-[state=active]:bg-primary [&_button]:data-[state=active]:text-white [&_button]:data-[state=active]:font-bold"}
                 >
                     <TabsTrigger value={"fan-project"}>Fan Projects</TabsTrigger>
                     <TabsTrigger value={"event"}>Events</TabsTrigger>
@@ -64,7 +66,7 @@ export default function ProjectsListing() {
 
                     return (
                         <TabsContent
-                            className={""}
+                            className={"mx-4"}
                             key={category}
                             value={category}
                         >
