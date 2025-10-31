@@ -10,7 +10,7 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 
 export default function SponsorsCarousel() {
     return (
-        <div className={"flex flex-col place-items-center-safe gap-4"}>
+        <div className={"flex flex-col place-items-center-safe gap-4 select-none"}>
             <div className={"text-4xl text-primary font-bold"}>Meet the Sponsors</div>
             <div className={"text-muted-foreground"}>Some are weirdly, familiar</div>
             <Carousel
