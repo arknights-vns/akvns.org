@@ -100,9 +100,9 @@
   "schemaDir": "./src/schema",
   "schemaType": "zod",
   "docsUrl": "api/docs",
-  "ui": "scalar",
+  "ui": "none",
   "outputFile": "openapi.json",
-  "outputDir": "./public",
+  "outputDir": "./openapi",
   "includeOpenApiRoutes": false,
   "ignoreRoutes": [
     "/api/auth"
