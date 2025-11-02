@@ -50,4 +50,4 @@ node_modules/
 /playwright/.auth/
 
 # OpenAPI
-public/openapi.json
+openapi/openapi.json
