@@ -54,7 +54,7 @@ export default function Testimony() {
             <section className={"grid grid-cols-1 sm:grid-cols-2 gap-8"}>
                 {reviews.map(c => (
                     <Card
-                        className={"border border-black shadow-[0_0_20px_4px_rgba(255,0,0,0.1)] "}
+                        className={"border  shadow-xl "}
                         key={c.info}
                     >
                         <CardHeader className={"flex flex-col items-center text-center py-6"}>

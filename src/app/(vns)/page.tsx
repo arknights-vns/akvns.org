@@ -9,6 +9,7 @@ import Link from "next/link";
 import FAQListing from "@/components/landing/FAQ";
 import ProjectsListing from "@/components/landing/Projects";
 import SponsorsCarousel from "@/components/landing/SponsorsCarousel";
+import Testimony from "@/components/Testimony";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -105,6 +106,9 @@ export default function MainPage() {
                 <ProjectsListing />
             </section>
 
+            <section>
+                <Testimony />
+            </section>
             <section
                 className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"}
                 id={"faq"}
