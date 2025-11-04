@@ -54,18 +54,18 @@ export default function Testimony() {
             <section className={"grid grid-cols-1 sm:grid-cols-2 gap-8"}>
                 {reviews.map(c => (
                     <Card
-                        className={"border  shadow-xl "}
+                        className={"border z shadow-xl "}
                         key={c.info}
                     >
                         <CardHeader className={"flex flex-col items-center text-center py-6"}>
                             <div className={"flex flex-cl items-center gap-3"}>
-                                <div className={"rounded-full overflow-hidden border-1 border-black shadow-sm"}>
+                                <div className={"rounded-full overflow-hidden border-1 shadow-md"}>
                                     <Image
                                         alt={c.name}
                                         className={"rounded-full object-cover"}
-                                        height={50}
+                                        height={72.7}
                                         src={c.avatar}
-                                        width={50}
+                                        width={72.7}
                                     />
                                 </div>
                                 <div>
