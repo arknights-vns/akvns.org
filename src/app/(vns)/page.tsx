@@ -1,6 +1,6 @@
 import amiya from "@public/amiya.png";
 import membersList from "@public/data/members.json";
-import headerBg from "@public/nozomi.png";
+import headerBg from "@public/hero.png";
 import { ArrowRight } from "lucide-react";
 import { Route } from "next";
 import Image from "next/image";
@@ -18,15 +18,19 @@ export default function MainPage() {
             <div className={"relative pb-8"}>
                 <div className={"absolute w-full text-center z-1 flex pt-20"}>
                     <div className={"center text-start px-10 w-[65%]"}>
-                        <div className={"my-5"}>Xin chào các bạn, tụi mình là</div>
-                        <div className={"my-5 text-6xl"}>Arknights Vietnam Station</div>
-                        <div className={"my-5"}>Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.</div>
+                        <div className={"my-5 text-xl sm:text-2xl lg:text-4xl font-bold italic"}>Xin chào các bạn, tụi mình là</div>
+                        <div className={"my-5 text-2xl sm:text-4xl lg:text-6xl font-extrabold bg-gradient-to-r from-[#FF0044] to-[#5728A3] bg-clip-text text-transparent"}>
+                            Arknights
+                            <br />
+                            Vietnam Station
+                        </div>
+                        <div className={"my-5 lg:text-xl"}>Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.</div>
                     </div>
                     <div className={"w-[20%]"}>
                         <Image alt={"amiyi"} className={"w-100"} objectFit={"cover"} src={amiya} />
                     </div>
                 </div>
-                <Image alt={"header background"} className={"relative m-0 p-0 brightness-75 z-0"} src={headerBg} />
+                <Image alt={"header background"} className={"relative m-0 p-0 brightness-60 z-0 w-full"} objectFit={"cover"} src={headerBg} />
             </div>
 
             <section
