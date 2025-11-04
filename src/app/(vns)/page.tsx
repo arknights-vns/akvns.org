@@ -5,7 +5,6 @@ import membersList from "@public/data/members.json";
 import headerBg from "@public/hero.png";
 import { ArrowRight } from "lucide-react";
 import { Route } from "next";
-import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -17,8 +16,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function MainPage() {
-    const { theme } = useTheme();
-
     return (
         <div className={"flex flex-col place-items-center-safe"}>
             <div className={"relative pb-8"}>
@@ -38,7 +35,7 @@ export default function MainPage() {
                 </div>
                 <Image
                     alt={"header background"}
-                    className={`relative m-0 p-0 ${theme === "light" ? "" : "brightness-60"} z-0 w-full`}
+                    className={`relative m-0 p-0 brightness-75 z-0 w-full`}
                     objectFit={"cover"}
                     src={headerBg}
                 />
