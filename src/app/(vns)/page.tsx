@@ -57,7 +57,7 @@ export default function MainPage() {
             >
                 <div className={"text-4xl text-primary font-bold"}>Meet the Leaders</div>
                 <div className={"text-muted-foreground"}>What should I write here?</div>
-                <div className={"grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-4 place-items-center-safe w-[90vw]"}>
+                <div className={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 pt-4 place-items-center-safe w-[90vw]"}>
                     {
                         membersList.Leader.map(member => (
                             <Card

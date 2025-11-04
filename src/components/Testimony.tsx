@@ -51,7 +51,7 @@ export default function Testimony() {
                 <p className={"text-accent-foreground"}>Sau khi bị @Swyrin VAR, Oguro có:</p>
             </div>
 
-            <section className={"grid grid-cols-1 sm:grid-cols-2 gap-8"}>
+            <section className={"grid grid-cols-1 md:grid-cols-2 gap-8"}>
                 {reviews.map(c => (
                     <Card
                         className={"border z shadow-xl "}
