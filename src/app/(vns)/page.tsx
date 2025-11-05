@@ -2,6 +2,7 @@
 
 import amiya from "@public/amiya.png";
 import membersList from "@public/data/members.json";
+import groupPic from "@public/group.jpg";
 import headerBg from "@public/hero.png";
 import { ArrowRight } from "lucide-react";
 import { Route } from "next";
@@ -12,6 +13,7 @@ import FAQListing from "@/components/landing/FAQ";
 import ProjectsListing from "@/components/landing/Projects";
 import SponsorsCarousel from "@/components/landing/SponsorsCarousel";
 import Testimony from "@/components/Testimony";
+import { Heading, Paragraph } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -97,7 +99,7 @@ export default function MainPage() {
                         ))
                     }
                 </div>
-                <div className={"text-center"}>Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác nữa.</div>
+                <Heading className={"text-center"} kind={"h4"}>Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác nữa.</Heading>
                 <Button asChild className={"w-fit"}>
                     <Link href={"/staff"}>
                         <span className={"font-bold"}>Xem toàn bộ dàn nhân sự của Arknights VNS</span>
@@ -121,6 +123,12 @@ export default function MainPage() {
                 id={"faq"}
             >
                 <FAQListing />
+            </section>
+            <section className={"text-center"}>
+                <Heading className={"text-primary"} kind={"h1"}>Lời kết</Heading>
+                <Paragraph className={""}>Cảm ơn bạn, và cả cộng đồng game Arknights, vì đã đồng hành cùng chúng mình trong suốt 5 năm qua.</Paragraph>
+                <Paragraph className={"font-bold"}>Hẹn gặp lại các bạn vào một ngày không xa! </Paragraph>
+                <Image alt={"Group Picture"} className={"w-3/4 mx-auto mt-10"} objectFit={"cover"} src={groupPic} />
             </section>
         </div>
     );
