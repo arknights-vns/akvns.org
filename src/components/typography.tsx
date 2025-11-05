@@ -1,18 +1,27 @@
-import { ClassValue } from "clsx";
-import { ReactNode } from "react";
+import { ComponentProps } from "react";
 
 import { cn } from "@/lib/utils";
+
+type H1Component = ComponentProps<"h1"> & { kind: "h1" };
+type H2Component = ComponentProps<"h2"> & { kind: "h2" };
+type H3Component = ComponentProps<"h3"> & { kind: "h3" };
+type H4Component = ComponentProps<"h4"> & { kind: "h4" };
+type H5Component = ComponentProps<"h5"> & { kind: "h5" };
+type H6Component = ComponentProps<"h6"> & { kind: "h6" };
+type HeaderComponentProperties = H1Component | H2Component | H3Component | H4Component | H5Component | H6Component;
 
 /**
  * A block quote.
  */
-export function BlockQuote(
-    children: ReactNode,
-    className: ClassValue = "",
-) {
+export function BlockQuote({
+    children,
+    className,
+    ...properties
+}: ComponentProps<"blockquote">) {
     return (
         <blockquote
             className={cn(className, "mt-6 border-l-2 pl-6 italic text-muted-foreground")}
+            {...properties}
         >
             {children}
         </blockquote>
@@ -24,13 +33,15 @@ export function BlockQuote(
  *
  * If needing multiline, use Shiki.js instead.
  */
-export function CodeInline(
-    children: ReactNode,
-    className: ClassValue = "",
-) {
+export function CodeInline({
+    children,
+    className,
+    ...properties
+}: ComponentProps<"code">) {
     return (
         <code
             className={cn(className, "bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold")}
+            {...properties}
         >
             {children}
         </code>
@@ -42,12 +53,16 @@ export function CodeInline(
  *
  * Most of the time, should be right below the `<h1>` tag.
  */
-export function FavorText(
-    children: ReactNode,
-    className: ClassValue = "",
-) {
+export function FavorText({
+    children,
+    className,
+    ...properties
+}: ComponentProps<"p">) {
     return (
-        <p className={cn(className, "text-muted-foreground text-xl")}>
+        <p
+            className={cn(className, "text-muted-foreground text-xl")}
+            {...properties}
+        >
             {children}
         </p>
     );
@@ -58,12 +73,16 @@ export function FavorText(
  *
  * Something along the lines of "Your password must have uppercase, lowercase, special characters, number, min 16."
  */
-export function FootNote(
-    children: ReactNode,
-    className: ClassValue = "",
-) {
+export function FootNote({
+    children,
+    className,
+    ...properties
+}: ComponentProps<"p">) {
     return (
-        <p className={cn(className, "text-muted-foreground text-sm")}>
+        <p
+            className={cn(className, "text-muted-foreground text-sm")}
+            {...properties}
+        >
             {children}
         </p>
     );
@@ -74,16 +93,17 @@ export function FootNote(
  *
  * Equivalent to <h[size]> tag in HTML.
  */
-export function Heading(
-    children: ReactNode,
-    kind: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = "h1",
-    className: ClassValue = "",
-) {
-    switch (kind) {
+export function Heading({
+    children,
+    className,
+    ...properties
+}: HeaderComponentProperties) {
+    switch (properties.kind) {
         case "h1": {
             return (
                 <h1
                     className={cn(className, "scroll-m-20 text-4xl font-extrabold tracking-tight text-balance")}
+                    {...properties}
                 >
                     {children}
                 </h1>
@@ -93,6 +113,7 @@ export function Heading(
             return (
                 <h2
                     className={cn(className, "scroll-m-20 text-3xl font-semibold tracking-tight first:mt-2")}
+                    {...properties}
                 >
                     {children}
                 </h2>
@@ -102,6 +123,7 @@ export function Heading(
             return (
                 <h3
                     className={cn(className, "scroll-m-20 text-2xl font-semibold tracking-tight")}
+                    {...properties}
                 >
                     {children}
                 </h3>
@@ -111,6 +133,7 @@ export function Heading(
             return (
                 <h4
                     className={cn(className, "scroll-m-20 text-xl font-semibold tracking-tight")}
+                    {...properties}
                 >
                     {children}
                 </h4>
@@ -120,6 +143,7 @@ export function Heading(
             return (
                 <h5
                     className={cn(className, "scroll-m-20 font-bold tracking-tight")}
+                    {...properties}
                 >
                     {children}
                 </h5>
@@ -129,6 +153,7 @@ export function Heading(
             return (
                 <h6
                     className={cn(className, "scroll-m-20 text-sm leading-none font-medium")}
+                    {...properties}
                 >
                     {children}
                 </h6>
@@ -142,13 +167,15 @@ export function Heading(
  *
  * Equivalent to <p>
  */
-export function Paragraph(
-    children: ReactNode,
-    className: ClassValue = "",
-) {
+export function Paragraph({
+    children,
+    className,
+    ...properties
+}: ComponentProps<"p">) {
     return (
         <p
             className={cn(className, "leading-7 [&:not(:first-child)]:mt-8")}
+            {...properties}
         >
             {children}
         </p>
