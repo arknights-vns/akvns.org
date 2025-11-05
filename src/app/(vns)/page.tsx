@@ -22,7 +22,7 @@ export default function MainPage() {
         <div className={"flex flex-col place-items-center-safe"}>
             <div className={"relative pb-8"}>
                 <div className={"absolute w-full text-center z-1 flex pt-20"}>
-                    <div className={"center text-start px-10 w-[65%]"}>
+                    <div className={"center text-start px-10 w-13/20"}>
                         <div className={"my-5 text-xl sm:text-2xl lg:text-4xl font-bold italic"}>Xin chào các bạn, tụi mình là</div>
                         <div className={"my-5 text-2xl sm:text-4xl lg:text-6xl font-extrabold bg-gradient-to-r from-[#FF0044] to-[#5728A3] bg-clip-text text-transparent"}>
                             Arknights
@@ -128,7 +128,7 @@ export default function MainPage() {
                 <Heading className={"text-primary"} kind={"h1"}>Lời kết</Heading>
                 <Paragraph className={""}>Cảm ơn bạn, và cả cộng đồng game Arknights, vì đã đồng hành cùng chúng mình trong suốt 5 năm qua.</Paragraph>
                 <Paragraph className={"font-bold"}>Hẹn gặp lại các bạn vào một ngày không xa! </Paragraph>
-                <Image alt={"Group Picture"} className={"w-3/4 mx-auto mt-10"} objectFit={"cover"} src={groupPic} />
+                <Image alt={"Group Picture"} className={"w-3/4 mx-auto my-10 rounded-2xl shadow-2xl"} objectFit={"cover"} src={groupPic} />
             </section>
         </div>
     );
