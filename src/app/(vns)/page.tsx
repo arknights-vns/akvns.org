@@ -37,7 +37,7 @@ export default function MainPage() {
                 </div>
                 <Image
                     alt={"header background"}
-                    className={`relative m-0 p-0 brightness-75 z-0 w-full`}
+                    className={`relative m-0 p-0 dark:brightness-60 z-0 w-full`}
                     objectFit={"cover"}
                     src={headerBg}
                 />
