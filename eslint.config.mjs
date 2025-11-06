@@ -10,21 +10,18 @@ import playwright from "eslint-plugin-playwright";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
-import { defineConfig } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig([
-    // global ignore list
-    {
-        ignores: [
-            ".next/*",
-            "next-env.d.ts",
-            "node_modules/*",
-            "src/generated/prisma/*",
-            "src/components/ui/*",
-            "src/api/docs/*",
-        ],
-    },
+    globalIgnores([
+        ".next/*",
+        "next-env.d.ts",
+        "node_modules/*",
+        "src/generated/prisma/*",
+        "src/hooks/use-mobile.ts",
+        "src/components/ui/*",
+    ]),
     // TS & React & its slow af parser.
     // Yes, I am losing it.
     {
@@ -81,7 +78,7 @@ export default defineConfig([
                     props: "always",
                 },
             ],
-            "@stylistic/object-curly-newline": ["error"],
+            "@stylistic/object-curly-newline": "error",
             "@stylistic/object-property-newline": "error",
         },
     },

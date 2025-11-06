@@ -3,7 +3,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 import { admin } from "better-auth/plugins";
 
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 
 export const auth = betterAuth({
     appName: "Arknights Vietnam Station",
