@@ -15,6 +15,7 @@ ENV NODE_ENV=production
 ENV HOSTNAME="0.0.0.0"
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN npx prisma generate
 RUN npm run build
 
 FROM base AS runner
@@ -30,4 +31,4 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
-CMD ["node", "./server.js"]
+CMD ["node", "server.js"]

@@ -63,6 +63,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@typescript-eslint/parser": "8.46.0",
+    "dotenv": "^17.2.3",
     "eslint": "9.37.0",
     "eslint-plugin-better-tailwindcss": "3.7.9",
     "eslint-plugin-import-lite": "0.3.0",
