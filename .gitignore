@@ -49,6 +49,9 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 
+# Custom server
+dist
+
 # OpenAPI
 openapi/openapi.json
 
