@@ -15,7 +15,7 @@ import SponsorsCarousel from "@/components/landing/SponsorsCarousel";
 import Testimony from "@/components/Testimony";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Heading, Paragraph } from "@/components/ui/typography";
+import { FootNote, Heading, Paragraph } from "@/components/ui/typography";
 
 export default function MainPage() {
     return (
@@ -130,8 +130,16 @@ export default function MainPage() {
                 <Paragraph className={"font-bold"}>Hẹn gặp lại các bạn vào một ngày không xa! </Paragraph>
                 <Image alt={"Group Picture"} className={"w-3/4 mx-auto my-10 rounded-2xl shadow-2xl"} objectFit={"cover"} src={groupPic} />
             </section>
-            <section>
-
+            <section className={"w-3/4 text-start"}>
+                <Paragraph className={"text-3xl text-gray-500"}>“Every artist paints with a fiery soul</Paragraph>
+                <Paragraph className={"text-3xl text-gray-500"}>Every poet weaves words into prayers</Paragraph>
+                <Paragraph className={"text-3xl text-gray-500"}>Every dream has its own chasers.</Paragraph>
+                <Paragraph className={"text-3xl text-gray-500"}>
+                    And we, the
+                    <span className={"text-primary font-bold"}> Dreamchasers</span>
+                    , will be the ones to carve it from hope.”
+                </Paragraph>
+                <FootNote className={"text-center mt-5"}>Shou Huỳnh - Head Admin @ Arknights Vietnam Station</FootNote>
             </section>
         </div>
     );
