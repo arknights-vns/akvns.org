@@ -1,4 +1,6 @@
+"use client";
 import membersList from "@public/data/members.json";
+import { motion } from "framer-motion";
 import { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,44 +33,61 @@ export default function StaffShowcase() {
                                 key={group}
                                 value={group.toLowerCase()}
                             >
-                                {members.map(member => (
-                                    <Card
-                                        className={"bg-muted/50 w-64 relative mt-8 flex flex-col justify-center items-center"}
+                                {members.map((member, id) => (
+                                    <motion.div
+                                        animate={{
+                                            opacity: 1,
+                                            y: 0,
+                                        }}
+                                        initial={{
+                                            opacity: 0,
+                                            y: 50,
+                                        }}
                                         key={member.name}
+                                        transition={{
+                                            delay: id * 0.12,
+                                            duration: 0.5,
+                                            type: "tween",
+                                        }}
                                     >
-                                        <CardHeader className={"mt-8 flex flex-col justify-center items-center pb-2 w-full"}>
-                                            <Image
-                                                alt={`${member.name} ${member.role}`}
-                                                className={"absolute border-2 -top-12 rounded-full w-24 h-24 aspect-square object-cover"}
-                                                height={96}
-                                                src={member.avatar}
-                                                width={96}
-                                            />
-                                            <CardTitle className={"text-center text-2xl"}>{member.name}</CardTitle>
-                                            <CardDescription className={"text-primary"}>
-                                                {member.role}
-                                            </CardDescription>
-                                        </CardHeader>
+                                        <Card
+                                            className={"bg-muted/50 w-64 relative mt-8 flex flex-col justify-center items-center"}
+                                            key={member.name}
+                                        >
+                                            <CardHeader className={"mt-8 flex flex-col justify-center items-center pb-2 w-full"}>
+                                                <Image
+                                                    alt={`${member.name} ${member.role}`}
+                                                    className={"absolute border-2 -top-12 rounded-full w-24 h-24 aspect-square object-cover"}
+                                                    height={96}
+                                                    src={member.avatar}
+                                                    width={96}
+                                                />
+                                                <CardTitle className={"text-center text-2xl"}>{member.name}</CardTitle>
+                                                <CardDescription className={"text-primary"}>
+                                                    {member.role}
+                                                </CardDescription>
+                                            </CardHeader>
 
-                                        <CardContent className={"text-center"}>
-                                            {member.quote}
-                                        </CardContent>
+                                            <CardContent className={"text-center"}>
+                                                {member.quote}
+                                            </CardContent>
 
-                                        <CardFooter className={"gap-2"}>
-                                            {member.links.map(link => (
-                                                <div key={`${member.name}-${link.icon}`}>
-                                                    <Link
-                                                        href={link.url as Route}
-                                                    >
-                                                        <span>
-                                                            {link.url}
-                                                            icon
-                                                        </span>
-                                                    </Link>
-                                                </div>
-                                            ))}
-                                        </CardFooter>
-                                    </Card>
+                                            <CardFooter className={"gap-2"}>
+                                                {member.links.map(link => (
+                                                    <div key={`${member.name}-${link.icon}`}>
+                                                        <Link
+                                                            href={link.url as Route}
+                                                        >
+                                                            <span>
+                                                                {link.url}
+                                                                icon
+                                                            </span>
+                                                        </Link>
+                                                    </div>
+                                                ))}
+                                            </CardFooter>
+                                        </Card>
+                                    </motion.div>
                                 ))}
                             </TabsContent>
                         );
