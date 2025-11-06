@@ -14,7 +14,7 @@ services:
     environment:
       PORT: ${PORT}
     ports:
-      - ${PORT:-3000}:3000
+      - ${PORT:-3000}:${PORT:-3000}
 
   postgres:
     container_name: postgres
