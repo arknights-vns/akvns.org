@@ -4,7 +4,7 @@ import { use, useEffect } from "react";
 
 import { authClient } from "@/lib/auth-client";
 
-export default function AuthPage(property: PageProps<"/auth">) {
+export default function AuthPage(property: PageProps<"/auth/redirect">) {
     const search = use(property.searchParams);
     const destination = search["next"];
     const target = typeof destination === "object" ? destination[0] : destination;

@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
     });
 
     if (!session) {
-        const targetUrl = new URL("/auth", request.url);
+        const targetUrl = new URL("/auth/redirect", request.url);
 
         const destination = request.nextUrl.pathname;
         targetUrl.searchParams.set("next", destination);

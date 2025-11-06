@@ -7,6 +7,7 @@ import prisma from "@/lib/prisma";
 
 export const auth = betterAuth({
     appName: "Arknights Vietnam Station",
+    basePath: "/auth",
     baseURL: process.env.PRODUCTION_URL || "http://localhost:3000",
     database: prismaAdapter(prisma, {
         provider: "postgresql",
@@ -45,4 +46,8 @@ export const auth = betterAuth({
             },
         },
     },
+    trustedOrigins: [
+        process.env.PRODUCTION_URL || "http://localhost:3000",
+        "http://localhost:3000",
+    ],
 });
