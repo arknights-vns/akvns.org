@@ -13,9 +13,9 @@ import FAQListing from "@/components/landing/FAQ";
 import ProjectsListing from "@/components/landing/Projects";
 import SponsorsCarousel from "@/components/landing/SponsorsCarousel";
 import Testimony from "@/components/Testimony";
-import { Heading, Paragraph } from "@/components/typography";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Heading, Paragraph } from "@/components/ui/typography";
 
 export default function MainPage() {
     return (
@@ -29,7 +29,7 @@ export default function MainPage() {
                             <br />
                             Vietnam Station
                         </div>
-                        <div className={"my-5 lg:text-xl"}>Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.</div>
+                        <div className={"my-5 text-sm md:text-md lg:text-xl"}>Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.</div>
                     </div>
                     <div className={"w-[20%]"}>
                         <Image alt={"amiyi"} className={"w-100"} objectFit={"cover"} src={amiya} />
@@ -129,6 +129,9 @@ export default function MainPage() {
                 <Paragraph className={""}>Cảm ơn bạn, và cả cộng đồng game Arknights, vì đã đồng hành cùng chúng mình trong suốt 5 năm qua.</Paragraph>
                 <Paragraph className={"font-bold"}>Hẹn gặp lại các bạn vào một ngày không xa! </Paragraph>
                 <Image alt={"Group Picture"} className={"w-3/4 mx-auto my-10 rounded-2xl shadow-2xl"} objectFit={"cover"} src={groupPic} />
+            </section>
+            <section>
+
             </section>
         </div>
     );

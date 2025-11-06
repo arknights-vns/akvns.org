@@ -18,25 +18,25 @@ type CardData = {
 
 const reviews: CardData[] = [
     {
-        avatar: "/meruko.png",
+        avatar: "/members/meruko.png",
         description: "Jennie, chính thất, aka, Vợ cả.",
         info: "@jennienguyn",
         name: "Nguyễn Thị Linh Chi",
     },
     {
-        avatar: "/meruko.png",
+        avatar: "/members/meruko.png",
         description: "1 con mèo khác, nhưng thua vợ cả.",
         info: "@yuki_chino",
         name: "Chino",
     },
     {
-        avatar: "/meruko.png",
+        avatar: "/members/meruko.png",
         description: "Người Việt N1 tiếng Nhật chửi tụi CS bằng tiếng Nga.",
         info: "@hitorimi_achi",
         name: "Hitorimi Achi",
     },
     {
-        avatar: "/meruko.png",
+        avatar: "/members/meruko.png",
         description: "Chị gái hàng xóm hát hay, ghét tôm.",
         info: "@renjiwatarimono",
         name: "Tee",
