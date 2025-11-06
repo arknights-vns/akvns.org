@@ -1,8 +1,5 @@
 name: arknights-vns
 
-include:
-  - docker/s3/docker-compose.yml
-
 services:
   web:
     container_name: web
@@ -12,6 +9,8 @@ services:
     depends_on:
       pgbouncer:
         condition: service_healthy
+      s3:
+        condition: service_started
     environment:
       PORT: ${PORT}
     ports:
@@ -54,3 +53,33 @@ services:
       ADMIN_USERS: ${POSTGRES_AUTHORIZED_USERS}
     healthcheck:
       test: [ 'CMD', 'pg_isready', '-h', 'localhost' ]
+
+  s3:
+    container_name: s3
+    image: dxflrs/garage:v2.1.0
+    restart: unless-stopped
+    ports:
+      - "3900:3900"
+      - "3901:3901"
+      - "3902:3902"
+      - "3903:3903"
+      - "3904:3904"
+    volumes:
+      - ./s3/garage.toml:/etc/garage.toml
+      - ./s3/meta:/var/lib/garage/meta
+      - ./s3/data:/var/lib/garage/data
+
+  s3-webui:
+    image: khairul169/garage-webui:latest
+    container_name: s3-webui
+    restart: unless-stopped
+    depends_on:
+      s3:
+        condition: service_started
+    volumes:
+      - ./s3/garage.toml:/etc/garage.toml:ro
+    ports:
+      - "3909:3909"
+    environment:
+      API_BASE_URL: "http://garage:3903"
+      S3_ENDPOINT_URL: "http://garage:3900"
