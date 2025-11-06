@@ -32,6 +32,7 @@ import {
     SidebarMenu, SidebarMenuAction, SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Spinner } from "@/components/ui/spinner";
 import { ComicCollection, ComicCollectionListing } from "@/schema/comic";
 
 export default function ComicStorageListing() {
@@ -76,9 +77,6 @@ export default function ComicStorageListing() {
         mode: "onChange",
         resolver: zodResolver(ComicCollection),
     });
-
-    if (error) return <>We're cooked.</>;
-    if (isFetching) return <></>;
 
     const buckets = data?.message || [];
 
@@ -148,7 +146,17 @@ export default function ComicStorageListing() {
             <SidebarGroupContent>
                 <SidebarMenu>
                     {
-                        buckets.map(bucket => (
+                        isFetching && (
+                            <SidebarMenuItem>
+                                <Spinner />
+                            </SidebarMenuItem>
+                        )
+                    }
+                    {
+                        error && <SidebarMenuItem>We're cooked</SidebarMenuItem>
+                    }
+                    {!error
+                        && buckets.map(bucket => (
                             <SidebarMenuItem key={bucket}>
                                 <SidebarMenuButton asChild>
                                     <Link href={`/manage/comic/${bucket}`}>
@@ -177,8 +185,7 @@ export default function ComicStorageListing() {
                                     </DropdownMenuContent>
                                 </DropdownMenu>
                             </SidebarMenuItem>
-                        ))
-                    }
+                        ))}
                 </SidebarMenu>
             </SidebarGroupContent>
         </SidebarGroup>
