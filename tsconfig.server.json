@@ -11,6 +11,7 @@
     "noEmit": false
   },
   "include": [
-    "src/server.ts"
+    "src/server/index.ts",
+    "vns-env.d.ts"
   ]
 }
