@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { MoreHorizontal, Plus, Trash } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -37,6 +38,7 @@ import { ComicCollection, ComicCollectionListing } from "@/schema/comic";
 
 export default function ComicStorageListing() {
     const queryClient = useQueryClient();
+    const [creationFormOpen, setCreationFormOpen] = useState(false);
 
     const { data, error, isFetching } = useQuery({
         queryFn: async () => {
@@ -55,7 +57,10 @@ export default function ComicStorageListing() {
                 throw new Error("Something went wrong.");
             }
         },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["comic-collections"] }),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["comic-collections"] }).then();
+            setCreationFormOpen(false);
+        },
     });
 
     const deleteBucketMutation = useMutation({
@@ -95,7 +100,7 @@ export default function ComicStorageListing() {
                 Comic Collection
             </SidebarGroupLabel>
             <SidebarGroupAction title={"Add Project"}>
-                <Dialog>
+                <Dialog onOpenChange={setCreationFormOpen} open={creationFormOpen}>
                     <DialogTrigger asChild>
                         <Plus />
                     </DialogTrigger>
