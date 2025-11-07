@@ -1,5 +1,6 @@
+"use client";
+
 import { Download } from "lucide-react";
-import { Route } from "next";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -13,7 +14,7 @@ export default function DownloadButton(properties: DownloadCollectionButtonPrope
 
     return (
         <Button asChild variant={"secondary"}>
-            <Link href={`/api/comic/${collection}/archive` as Route}>
+            <Link href={`/api/comic/${collection}/archive`}>
                 <Download />
                 Download
             </Link>

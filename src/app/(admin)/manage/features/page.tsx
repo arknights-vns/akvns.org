@@ -13,8 +13,7 @@ import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
-    DialogFooter,
+    DialogDescription, DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -27,7 +26,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { FeatureFlag, FeatureFlagArray } from "@/schema/feature";
+import { FeatureFlag, FeatureFlagListAPIResponse } from "@/schema/feature";
 
 type FeatureFlagT = z.infer<typeof FeatureFlag>;
 
@@ -37,7 +36,8 @@ export default function AdminFeatureFlagPage() {
             const resp = await fetch("/api/features");
             const body = await resp.json();
 
-            return await FeatureFlagArray.parseAsync(body);
+            const response = await FeatureFlagListAPIResponse.parseAsync(body);
+            return response.message;
         },
         queryKey: ["features"],
     });
@@ -56,9 +56,6 @@ export default function AdminFeatureFlagPage() {
                     group: data.group,
                     id: data.id,
                 }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
                 method: "PATCH",
             });
 
@@ -70,7 +67,9 @@ export default function AdminFeatureFlagPage() {
                 toast.error("We're cooked");
             }
         },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["features"] }),
+        onSuccess: (_data, variables) => {
+            queryClient.invalidateQueries({ queryKey: ["features", `feature-${variables.id}`] }).then();
+        },
     });
 
     const featureCreateMutation = useMutation({
@@ -82,9 +81,6 @@ export default function AdminFeatureFlagPage() {
                     group: data.group,
                     id: data.id,
                 }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
                 method: "PUT",
             });
 
@@ -110,7 +106,9 @@ export default function AdminFeatureFlagPage() {
                 toast.error("We are cooked.");
             }
         },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["features"] }),
+        onSuccess: (_data, variables) => {
+            queryClient.invalidateQueries({ queryKey: ["features", `feature-${variables}`] }).then();
+        },
     });
 
     if (!flags || error) return <></>;

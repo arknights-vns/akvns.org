@@ -19,7 +19,7 @@ export function useFeatureFlag(feature: string): { status: FeatureStatus } {
 
             return "disabled";
         },
-        queryKey: ["features", feature],
+        queryKey: [`feature-${feature}`],
     });
 
     if (!data || error || isFetching) {
