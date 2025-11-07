@@ -10,7 +10,7 @@
     "lint": "eslint",
     "format": "eslint --fix",
     "prepare": "husky && prisma generate",
-    "db:seed": "tsx ./prisma/seed.ts",
+    "db:seed": "prisma db seed",
     "db:push": "prisma db push --force-reset",
     "test": "playwright test",
     "openapi:docgen": "next-openapi-gen generate"
@@ -63,7 +63,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@typescript-eslint/parser": "8.46.0",
-    "dotenv": "^17.2.3",
     "eslint": "9.37.0",
     "eslint-plugin-better-tailwindcss": "3.7.9",
     "eslint-plugin-import-lite": "0.3.0",
