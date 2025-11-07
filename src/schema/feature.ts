@@ -19,10 +19,3 @@ export const FeatureFlag = z.object({
  * An array of features.
  */
 export const FeatureFlagArray = z.array(FeatureFlag);
-
-/**
- * Feature flag listing from the API.
- */
-export const FeatureFlagListAPIResponse = z.object({
-    message: FeatureFlagArray,
-});

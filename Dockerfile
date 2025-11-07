@@ -17,18 +17,6 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npx prisma generate
 RUN npm run build
+RUN npm prune --production
 
-FROM base AS runner
-WORKDIR /app
-ENV NEXT_TELEMETRY_DISABLED=1
-ENV NODE_ENV=production
-ENV HOSTNAME="0.0.0.0"
-
-RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
-
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
-CMD ["node", "server.js"]
+CMD ["npm", "run", "start"]

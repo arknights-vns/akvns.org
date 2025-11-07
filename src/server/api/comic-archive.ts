@@ -4,11 +4,12 @@ import {
     Uint8ArrayReader,
     ZipWriter,
 } from "@zip.js/zip.js";
-import { headers } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import express, { Request, Response } from "express";
 
-import { auth } from "@/lib/auth";
 import { s3Client } from "@/lib/aws-s3";
+import { RequireAdmin } from "@/server/middleware/require-admin";
+
+const comicArchiveRouter = express.Router();
 
 /**
  * Download ZIP archive for this collection.
@@ -18,17 +19,10 @@ import { s3Client } from "@/lib/aws-s3";
  * @contentType application/zip
  * @openapi
  */
-export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[collection]/archive">) {
-    const session = await auth.api.getSession({
-        headers: await headers(),
-    });
-
-    if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
-    }
-
-    const parameterList = await parameters.params;
-
+comicArchiveRouter.get("/comic/:collection/archive", RequireAdmin, async (
+    request: Request,
+    response: Response,
+) => {
     const zipBlobWriter = new BlobWriter("application/zip");
     const zipWriter = new ZipWriter(zipBlobWriter);
 
@@ -37,7 +31,7 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
     do {
         const listResp = await s3Client.send(
             new ListObjectsV2Command({
-                Bucket: parameterList.collection,
+                Bucket: request.params.collection,
                 ContinuationToken: continuationToken,
             }),
         );
@@ -47,7 +41,7 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
             if (!object.Key) continue;
 
             const { Body } = await s3Client.send(
-                new GetObjectCommand({ Bucket: parameterList.collection,
+                new GetObjectCommand({ Bucket: request.params.collection,
                     Key: object.Key }),
             );
 
@@ -64,11 +58,12 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
     await zipWriter.close();
     const zipBlob = await zipBlobWriter.getData();
 
-    return new NextResponse(zipBlob.stream(), {
-        headers: {
-            "Content-Disposition": `attachment; filename="${parameterList.collection}.zip"`,
-            "Content-Type": "application/zip",
-        },
-        status: 200,
-    });
-}
+    return response
+        .status(200)
+        .send(zipBlob.stream())
+        .setHeader("Content-Length", zipBlob.size)
+        .setHeader("Content-Type", "application/zip")
+        .setHeader("Content-Disposition", `attachment; filename="${request.params.collection}.zip"`);
+});
+
+export { comicArchiveRouter };
