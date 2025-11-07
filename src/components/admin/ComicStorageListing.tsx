@@ -48,18 +48,19 @@ export default function ComicStorageListing() {
         queryKey: ["comic-collections"],
     });
 
-    const addBucketMutation = useMutation({
+    const createBucketMutation = useMutation({
         mutationFn: async (item: z.infer<typeof ComicCollection>) => {
             const response = await fetch(`/api/comic/${item.name}`, {
                 method: "PUT",
             });
             if (!response.ok) {
-                throw new Error("Something went wrong.");
+                throw new Error(`Unable to create bucket ${item.name}.`);
             }
         },
-        onSuccess: () => {
+        onSuccess: (_data, variables) => {
             queryClient.invalidateQueries({ queryKey: ["comic-collections"] }).then();
             setCreationFormOpen(false);
+            toast.success(`Tạo collection ${variables.name} thành công.`);
         },
     });
 
@@ -69,7 +70,7 @@ export default function ComicStorageListing() {
                 method: "DELETE",
             });
             if (!response.ok) {
-                throw new Error("Something went wrong.");
+                throw new Error(`Unable to delete bucket ${bucket}.`);
             }
         },
         onSuccess: () => queryClient.invalidateQueries({ queryKey: ["comic-collections"] }),
@@ -91,7 +92,7 @@ export default function ComicStorageListing() {
             return;
         }
 
-        addBucketMutation.mutate(data);
+        createBucketMutation.mutate(data);
     }
 
     return (

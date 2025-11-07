@@ -56,19 +56,20 @@ export default function AdminFeatureFlagPage() {
                     group: data.group,
                     id: data.id,
                 }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 method: "PATCH",
             });
 
-            if (resp.ok) {
-                toast.success("Done!");
-                setUpdateDialogOpen(false);
-            }
-            else {
-                toast.error("We're cooked");
+            if (!resp.ok) {
+                throw new Error(`Unable to edit feature ${data.id}.`);
             }
         },
         onSuccess: (_data, variables) => {
             queryClient.invalidateQueries({ queryKey: ["features", `feature-${variables.id}`] }).then();
+            toast.success("Done!");
+            setUpdateDialogOpen(false);
         },
     });
 
@@ -81,6 +82,9 @@ export default function AdminFeatureFlagPage() {
                     group: data.group,
                     id: data.id,
                 }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 method: "PUT",
             });
 
