@@ -22,7 +22,7 @@ export default function MainPage() {
     return (
         <div className={"flex flex-col place-items-center-safe"}>
             <div className={"relative pb-8"}>
-                <div className={"absolute w-full text-center z-1 flex pt-20"}>
+                <div className={"absolute w-full text-center z-1 flex sm:top-1/10"}>
                     <div className={"center text-start px-10 w-13/20"}>
                         <div className={"my-5 text-xl sm:text-2xl lg:text-4xl font-bold italic"}>Xin chào các bạn, tụi mình là</div>
                         <div className={"my-5 text-2xl sm:text-4xl lg:text-6xl font-extrabold bg-gradient-to-r from-[#FF0044] to-[#5728A3] bg-clip-text text-transparent"}>
@@ -30,9 +30,9 @@ export default function MainPage() {
                             <br />
                             Vietnam Station
                         </div>
-                        <div className={"my-5 text-sm md:text-md lg:text-xl"}>Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.</div>
+                        <div className={"my-5 text-xs sm:text-sm md:text-md lg:text-xl"}>Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.</div>
                     </div>
-                    <div className={"w-[20%]"}>
+                    <div className={"w-1/5"}>
                         <Image alt={"amiyi"} className={"w-100"} objectFit={"cover"} src={amiya} />
                     </div>
                 </div>
