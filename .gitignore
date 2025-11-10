@@ -58,3 +58,6 @@ prisma/seed.ts
 
 # Postgres
 pgdata
+
+# Storage
+s3
