@@ -17,10 +17,16 @@ export async function GET() {
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+        return NextResponse.json(
+            { error: "Not Permitted" },
+            { status: 403 },
+        );
     }
 
     const result = await prisma.feature.findMany();
 
-    return NextResponse.json({ message: result }, { status: 200 });
+    return NextResponse.json(
+        { message: result },
+        { status: 200 },
+    );
 }
