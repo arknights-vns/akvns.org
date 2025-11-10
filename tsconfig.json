@@ -36,7 +36,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "vns-env.d.ts"
   ],
   "exclude": [
     "node_modules"
