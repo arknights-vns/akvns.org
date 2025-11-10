@@ -49,9 +49,6 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 
-# OpenAPI
-openapi/openapi.json
-
 # Prisma
 src/generated/prisma
 prisma/seed.ts
