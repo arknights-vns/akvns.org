@@ -103,3 +103,18 @@ model Project {
     @@index([title, type, date])
     @@map("project")
 }
+
+/// Minimal comic metadata table (no relations): author, date, translators, chapters
+model ComicSeries {
+    id          String   @id @default(cuid())
+    slug        String   @unique
+    author      String
+    date        DateTime
+    translators String[]
+    chapters    String[]
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    @@index([slug, date])
+    @@map("comic_series")
+}

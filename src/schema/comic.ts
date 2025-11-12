@@ -32,3 +32,15 @@ export const ComicAssetList = z.array(ComicAsset);
 export const ComicCollectionListing = z.object({
     message: z.array(z.string().regex(ComicCollectionRegex)),
 });
+
+/**
+ * Minimal series metadata stored in DB.
+ */
+export const ComicSeriesMetadata = z.object({
+    author: z.string().min(1, { message: "Author is required" }),
+    chapters: z.array(z.string()).default([]),
+    date: z.coerce.date(),
+    translators: z.array(z.string()).default([]),
+});
+
+export type ComicSeriesMetadataInput = z.infer<typeof ComicSeriesMetadata>;

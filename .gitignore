@@ -49,12 +49,12 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 
-# Prisma
-src/generated/prisma
-prisma/seed.ts
+# Storage
+s3
 
 # Postgres
 pgdata
 
-# Storage
-s3
+# Prisma
+src/generated/prisma
+prisma/seed.ts

@@ -16,7 +16,7 @@
     "openapi:docgen": "next-openapi-gen generate"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.916.0",
+    "@aws-sdk/client-s3": "^3.917.0",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/adapter-pg": "^6.19.0",
     "@prisma/client": "^6.19.0",
@@ -64,6 +64,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@typescript-eslint/parser": "8.46.0",
+    "dotenv": "^17.2.3",
     "eslint": "9.37.0",
     "eslint-plugin-better-tailwindcss": "3.7.9",
     "eslint-plugin-import-lite": "0.3.0",
