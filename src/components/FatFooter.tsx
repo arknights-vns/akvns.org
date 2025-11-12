@@ -106,7 +106,7 @@ export default function FatFooter() {
             </div>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button className={"max-w-sm self-center font-bold"} variant={"destructive"}>
+                    <Button className={"max-w-sm self-center font-bold"}>
                         <HeartHandshake className={""} />
                         Donate cho Arknights VNS
                     </Button>
@@ -131,7 +131,7 @@ export default function FatFooter() {
             <div className={"my-4 text-center font-bold italic text-sm"}>
                 ©
                 {" "}
-                <Link className={"font-extrabold text-red-600 dark:text-muted-foreground"} href={"/"}>
+                <Link className={"font-extrabold text-primary"} href={"/"}>
                     Arknights Vietnam Station
                 </Link>
                 , 2020-nay.
