@@ -1,12 +1,12 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { RotateCcw } from "lucide-react";
+import { Download, RotateCcw } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { use } from "react";
 import { toast } from "sonner";
 
-import DownloadButton from "@/components/admin/DownloadButton";
 import UploadButton from "@/components/admin/UploadButton";
 import { Button } from "@/components/ui/button";
 import { ComicAssetList } from "@/schema/comic";
@@ -53,9 +53,26 @@ export default function ImageCollectionViewer(properties: PageProps<"/manage/com
                     </div>
                 </div>
                 <div className={"flex gap-4 place-items-end"}>
-                    {assets.length === 0 && <UploadButton collection={collection} />}
-                    <DownloadButton collection={collection} />
-                    <Button onClick={() => wipeCollectionMutation.mutate()} variant={"destructive"}>
+                    <UploadButton
+                        collection={collection}
+                        disabled={assets.length > 0}
+                    />
+                    <Button
+                        asChild={assets.length > 0}
+                        disabled={assets.length === 0}
+                        variant={"ghost"}
+                    >
+                        <Link className={"flex gap-2 items-center"} href={`/api/comic/${collection}/archive`}>
+                            <Download />
+                            {" "}
+                            Download
+                        </Link>
+                    </Button>
+                    <Button
+                        disabled={assets.length === 0}
+                        onClick={() => wipeCollectionMutation.mutate()}
+                        variant={"destructive"}
+                    >
                         <RotateCcw />
                         {" "}
                         Reset

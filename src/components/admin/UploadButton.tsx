@@ -20,6 +20,7 @@ import { Spinner } from "@/components/ui/spinner";
 
 type UploadToCollectionButtonProperties = {
     collection: string;
+    disabled: boolean;
 };
 
 export default function UploadButton(properties: UploadToCollectionButtonProperties) {
@@ -40,7 +41,7 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
             const response = await fetch(`/api/comic/${collection}/image`, {
                 body: formData,
                 headers: {
-                    "Content-Type": "multipart/formdata",
+                    // "Content-Type": "multipart/formdata",
                 },
                 method: "PUT",
             });
@@ -59,7 +60,7 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
     return (
         <Dialog onOpenChange={setDialogOpen} open={dialogOpen}>
             <DialogTrigger asChild>
-                <Button>
+                <Button disabled={properties.disabled}>
                     <Upload />
                     {" "}
                     Upload
@@ -74,8 +75,10 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
                     className={"relative bg-background rounded-lg p-2"}
                     dropzoneOptions={{
                         accept: {
-                            "image/*": [".jpg", ".jpeg", ".png"],
+                            "image/jpeg": ["*"],
+                            "image/png": ["*"],
                         },
+                        autoFocus: true,
                         maxFiles: 1000,
                         maxSize: 1024 * 1024 * 100,
                         multiple: true,
