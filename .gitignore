@@ -53,8 +53,5 @@ node_modules/
 /docker/minio/storage
 /docker/postgres/pgdata
 
-# OpenAPI
-public/openapi.json
-
-# Prisma migrations (excluded from VCS as requested)
-prisma/migrations/
+# Storage
+s3

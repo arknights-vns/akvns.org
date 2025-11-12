@@ -47,7 +47,7 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comi
     }
     catch (error) {
         if (error instanceof Error) {
-            return NextResponse.json({ message: error.message }, {
+            return NextResponse.json({ error: error.message }, {
                 status: 500,
             });
         }
@@ -68,24 +68,34 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comi
 export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[collection]/image">) {
     const parameterList = await parameters.params;
 
-    const data = await s3Client.send(
-        new ListObjectsV2Command({ Bucket: parameterList.collection }),
-    );
+    try {
+        const data = await s3Client.send(
+            new ListObjectsV2Command({ Bucket: parameterList.collection }),
+        );
 
-    const baseUrl = `/api/comic/${parameterList.collection}/image`;
+        const baseUrl = `/api/comic/${parameterList.collection}/image`;
 
-    const images
-        = data.Contents?.map(object => ({
-            name: object.Key,
-            url: `${baseUrl}/${object.Key}`,
-        })) || [];
+        const images
+            = data.Contents?.map(object => ({
+                name: object.Key,
+                url: `${baseUrl}/${object.Key}`,
+            })) || [];
 
-    return NextResponse.json({ message: images }, {
-        headers: {
-            "Cache-Control": "public, max-age=1800, s-maxage=3600",
-        },
-        status: 200,
-    });
+        return NextResponse.json(
+            { message: images },
+            {
+                headers: {
+                    "Cache-Control": "public, max-age=1800, s-maxage=3600",
+                },
+                status: 200,
+            });
+    }
+    catch {
+        return NextResponse.json(
+            { error: "S3 server failure" },
+            { status: 500 },
+        );
+    }
 }
 
 /**
@@ -102,7 +112,10 @@ export async function PUT(request: NextRequest, parameters: RouteContext<"/api/c
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+        return NextResponse.json(
+            { error: "Not Permitted" },
+            { status: 403 },
+        );
     }
 
     const parameterList = await parameters.params;
@@ -111,7 +124,10 @@ export async function PUT(request: NextRequest, parameters: RouteContext<"/api/c
     const files = form.getAll("files") as File[];
 
     if (!files || files.length === 0) {
-        return NextResponse.json({ message: "No files." }, { status: 400 });
+        return NextResponse.json(
+            { error: "No files." },
+            { status: 400 },
+        );
     }
 
     for (const file of files) {
@@ -128,11 +144,15 @@ export async function PUT(request: NextRequest, parameters: RouteContext<"/api/c
             );
         }
         catch {
-            return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+            return NextResponse.json(
+                { error: `Upload ${file.name} failed.` },
+                { status: 500 },
+            );
         }
     }
 
     return NextResponse.json(
-        { message: "OK" }, { status: 200 },
+        { message: "OK" },
+        { status: 200 },
     );
 }

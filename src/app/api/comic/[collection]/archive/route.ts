@@ -24,51 +24,66 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+        return NextResponse.json(
+            { error: "Not Permitted" },
+            { status: 403 },
+        );
     }
 
     const parameterList = await parameters.params;
 
-    const zipBlobWriter = new BlobWriter("application/zip");
-    const zipWriter = new ZipWriter(zipBlobWriter);
+    try {
+        const zipBlobWriter = new BlobWriter("application/zip");
+        const zipWriter = new ZipWriter(zipBlobWriter);
 
-    let continuationToken: string | undefined;
+        let continuationToken: string | undefined;
 
-    do {
-        const listResp = await s3Client.send(
-            new ListObjectsV2Command({
-                Bucket: parameterList.collection,
-                ContinuationToken: continuationToken,
-            }),
-        );
-
-        const objects = listResp.Contents ?? [];
-        for (const object of objects) {
-            if (!object.Key) continue;
-
-            const { Body } = await s3Client.send(
-                new GetObjectCommand({ Bucket: parameterList.collection,
-                    Key: object.Key }),
+        do {
+            const listResp = await s3Client.send(
+                new ListObjectsV2Command({
+                    Bucket: parameterList.collection,
+                    ContinuationToken: continuationToken,
+                }),
             );
 
-            if (!Body) continue;
+            const objects = listResp.Contents ?? [];
+            for (const object of objects) {
+                if (!object.Key) continue;
 
-            const arrayBuffer = await Body.transformToByteArray();
+                const { Body } = await s3Client.send(
+                    new GetObjectCommand({ Bucket: parameterList.collection,
+                        Key: object.Key }),
+                );
 
-            await zipWriter.add(object.Key, new Uint8ArrayReader(arrayBuffer));
-        }
+                if (!Body) continue;
 
-        continuationToken = listResp.NextContinuationToken;
-    } while (continuationToken);
+                const arrayBuffer = await Body.transformToByteArray();
 
-    await zipWriter.close();
-    const zipBlob = await zipBlobWriter.getData();
+                await zipWriter.add(object.Key, new Uint8ArrayReader(arrayBuffer));
+            }
 
-    return new NextResponse(zipBlob.stream(), {
-        headers: {
-            "Content-Disposition": `attachment; filename="${parameterList.collection}.zip"`,
-            "Content-Type": "application/zip",
-        },
-        status: 200,
-    });
+            continuationToken = listResp.NextContinuationToken;
+        } while (continuationToken);
+
+        await zipWriter.close();
+        const zipBlob = await zipBlobWriter.getData();
+
+        return new NextResponse(
+            zipBlob.stream(),
+            {
+                headers: {
+                    "Content-Disposition": `attachment; filename="${parameterList.collection}.zip"`,
+                    "Content-Length": zipBlob.size.toString(),
+                    "Content-Type": "application/zip",
+                },
+                status: 200,
+            },
+        );
+    }
+    catch {
+        return NextResponse.json(
+            { error: `Unable to create zip for ${parameterList.collection}` },
+            { status: 500 },
+        );
+    }
 }

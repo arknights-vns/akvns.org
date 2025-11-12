@@ -2,7 +2,7 @@ import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { FeatureFlag } from "@/schema/feature";
 
 /**
@@ -18,7 +18,10 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/feat
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+        return NextResponse.json(
+            { error: "Not Permitted" },
+            { status: 403 },
+        );
     }
 
     const parameterList = await parameters.params;
@@ -29,9 +32,10 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/feat
         },
     });
 
-    return NextResponse.json({}, {
-        status: 200,
-    });
+    return NextResponse.json(
+        { message: "Feature deleted." },
+        { status: 200 },
+    );
 }
 
 /**
@@ -50,12 +54,22 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/feature
         },
     });
 
-    return NextResponse.json({}, {
-        headers: {
-            "Cache-Control": "public, max-age=1800, s-maxage=3600",
+    if (!result) {
+        return NextResponse.json(
+            { message: "Feature not found, treat it as non-existent." },
+            { status: 418 },
+        );
+    }
+
+    return NextResponse.json(
+        { message: "Check the status code." },
+        {
+            headers: {
+                "Cache-Control": "public, max-age=1800, s-maxage=3600",
+            },
+            status: result.enable ? 200 : 418,
         },
-        status: result && result.enable ? 200 : 418,
-    });
+    );
 }
 
 /**
@@ -71,7 +85,10 @@ export async function PATCH(request: NextRequest, parameters: RouteContext<"/api
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+        return NextResponse.json(
+            { error: "Not Permitted" },
+            { status: 403 },
+        );
     }
 
     const parameterList = await parameters.params;
@@ -90,15 +107,15 @@ export async function PATCH(request: NextRequest, parameters: RouteContext<"/api
     });
 
     if (changes.count === 0)
-        return NextResponse.json({
-            error: "No such record",
-        }, {
-            status: 400,
-        });
+        return NextResponse.json(
+            { error: "No such record." },
+            { status: 400 },
+        );
 
-    return NextResponse.json({}, {
-        status: 200,
-    });
+    return NextResponse.json(
+        { message: "Updated." },
+        { status: 200 },
+    );
 }
 
 /**
@@ -114,14 +131,16 @@ export async function PUT(request: NextRequest, parameters: RouteContext<"/api/f
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+        return NextResponse.json(
+            { error: "Not Permitted" },
+            { status: 403 },
+        );
     }
 
     const parameterList = await parameters.params;
+    const body = await FeatureFlag.parseAsync(await request.json());
 
     try {
-        const body = await FeatureFlag.parseAsync(await request.json());
-
         await prisma.feature.create({
             data: {
                 description: body.description,
@@ -131,9 +150,15 @@ export async function PUT(request: NextRequest, parameters: RouteContext<"/api/f
             },
         });
 
-        return NextResponse.json({ message: "Created." }, { status: 201 });
+        return NextResponse.json(
+            { message: "Created." },
+            { status: 201 },
+        );
     }
     catch {
-        return NextResponse.json({ error: "Unable to create features." }, { status: 400 });
+        return NextResponse.json(
+            { error: "Unable to create feature." },
+            { status: 400 },
+        );
     }
 }

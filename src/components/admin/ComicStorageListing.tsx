@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { MoreHorizontal, Plus, Trash } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -32,10 +33,12 @@ import {
     SidebarMenu, SidebarMenuAction, SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Spinner } from "@/components/ui/spinner";
 import { ComicCollection, ComicCollectionListing } from "@/schema/comic";
 
 export default function ComicStorageListing() {
     const queryClient = useQueryClient();
+    const [creationFormOpen, setCreationFormOpen] = useState(false);
 
     const { data, error, isFetching } = useQuery({
         queryFn: async () => {
@@ -45,16 +48,20 @@ export default function ComicStorageListing() {
         queryKey: ["comic-collections"],
     });
 
-    const addBucketMutation = useMutation({
+    const createBucketMutation = useMutation({
         mutationFn: async (item: z.infer<typeof ComicCollection>) => {
             const response = await fetch(`/api/comic/${item.name}`, {
                 method: "PUT",
             });
             if (!response.ok) {
-                throw new Error("Something went wrong.");
+                throw new Error(`Unable to create bucket ${item.name}.`);
             }
         },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["comic-collections"] }),
+        onSuccess: (_data, variables) => {
+            queryClient.invalidateQueries({ queryKey: ["comic-collections"] }).then();
+            setCreationFormOpen(false);
+            toast.success(`Tạo collection ${variables.name} thành công.`);
+        },
     });
 
     const deleteBucketMutation = useMutation({
@@ -63,7 +70,7 @@ export default function ComicStorageListing() {
                 method: "DELETE",
             });
             if (!response.ok) {
-                throw new Error("Something went wrong.");
+                throw new Error(`Unable to delete bucket ${bucket}.`);
             }
         },
         onSuccess: () => queryClient.invalidateQueries({ queryKey: ["comic-collections"] }),
@@ -77,9 +84,6 @@ export default function ComicStorageListing() {
         resolver: zodResolver(ComicCollection),
     });
 
-    if (error) return <>We're cooked.</>;
-    if (isFetching) return <></>;
-
     const buckets = data?.message || [];
 
     function onSubmit(data: z.infer<typeof ComicCollection>) {
@@ -88,7 +92,7 @@ export default function ComicStorageListing() {
             return;
         }
 
-        addBucketMutation.mutate(data);
+        createBucketMutation.mutate(data);
     }
 
     return (
@@ -97,7 +101,7 @@ export default function ComicStorageListing() {
                 Comic Collection
             </SidebarGroupLabel>
             <SidebarGroupAction title={"Add Project"}>
-                <Dialog>
+                <Dialog onOpenChange={setCreationFormOpen} open={creationFormOpen}>
                     <DialogTrigger asChild>
                         <Plus />
                     </DialogTrigger>
@@ -148,7 +152,17 @@ export default function ComicStorageListing() {
             <SidebarGroupContent>
                 <SidebarMenu>
                     {
-                        buckets.map(bucket => (
+                        isFetching && (
+                            <SidebarMenuItem>
+                                <Spinner />
+                            </SidebarMenuItem>
+                        )
+                    }
+                    {
+                        error && <SidebarMenuItem>We're cooked</SidebarMenuItem>
+                    }
+                    {!error
+                        && buckets.map(bucket => (
                             <SidebarMenuItem key={bucket}>
                                 <SidebarMenuButton asChild>
                                     <Link href={`/manage/comic/${bucket}`}>
@@ -177,8 +191,7 @@ export default function ComicStorageListing() {
                                     </DropdownMenuContent>
                                 </DropdownMenu>
                             </SidebarMenuItem>
-                        ))
-                    }
+                        ))}
                 </SidebarMenu>
             </SidebarGroupContent>
         </SidebarGroup>

@@ -17,17 +17,32 @@ export async function GET() {
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+        return NextResponse.json(
+            { error: "Not Permitted" },
+            { status: 403 },
+        );
     }
 
-    const paginator = paginateListBuckets({ client: s3Client }, {});
     const buckets: string[] = [];
 
-    for await (const page of paginator) {
-        if (!page.Buckets) continue;
+    try {
+        const paginator = paginateListBuckets({ client: s3Client }, {});
 
-        buckets.push(...page.Buckets.map(b => b.Name ?? ""));
+        for await (const page of paginator) {
+            if (!page.Buckets) continue;
+
+            buckets.push(...page.Buckets.map(b => b.Name ?? ""));
+        }
+
+        return NextResponse.json(
+            { message: buckets },
+            { status: 200 },
+        );
     }
-
-    return NextResponse.json({ message: buckets }, { status: 200 });
+    catch {
+        return NextResponse.json(
+            { message: "Unable to enumerate buckets." },
+            { status: 500 },
+        );
+    }
 }

@@ -23,7 +23,10 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comi
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+        return NextResponse.json(
+            { error: "Not Permitted" },
+            { status: 403 },
+        );
     }
 
     const parameterList = await parameters.params;
@@ -52,21 +55,25 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comi
         await s3Client.send(deleteCommand);
     }
     catch {
-        // ignored.
+        return NextResponse.json(
+            { error: `Unable to wipe ${parameterList.collection}` },
+            { status: 500 },
+        );
     }
 
     try {
         // now we delete for real.
         await s3Client.send(new DeleteBucketCommand({ Bucket: parameterList.collection }));
 
-        return NextResponse.json({ message: "OK" }, {
-            status: 200,
-        });
+        return NextResponse.json(
+            { message: "OK" },
+            { status: 200 });
     }
     catch {
-        return NextResponse.json({ message: "We're cooked" }, {
-            status: 500,
-        });
+        return NextResponse.json(
+            { error: "We're cooked" },
+            { status: 500 },
+        );
     }
 }
 
@@ -82,7 +89,10 @@ export async function PUT(_: NextRequest, parameters: RouteContext<"/api/comic/[
     });
 
     if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+        return NextResponse.json(
+            { error: "Not Permitted" },
+            { status: 403 },
+        );
     }
 
     const parameterList = await parameters.params;
@@ -90,9 +100,15 @@ export async function PUT(_: NextRequest, parameters: RouteContext<"/api/comic/[
     try {
         await s3Client.send(new CreateBucketCommand({ Bucket: parameterList.collection }));
 
-        return NextResponse.json({ message: `Bucket "${parameterList.collection}" created.` }, { status: 201 });
+        return NextResponse.json(
+            { message: `Bucket "${parameterList.collection}" created.` },
+            { status: 201 },
+        );
     }
     catch {
-        return NextResponse.json({ error: "We are cooked." }, { status: 500 });
+        return NextResponse.json(
+            { error: `Bucket "${parameterList.collection}" not created.` },
+            { status: 500 },
+        );
     }
 }

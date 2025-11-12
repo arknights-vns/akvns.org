@@ -39,11 +39,14 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
 
             const response = await fetch(`/api/comic/${collection}/image`, {
                 body: formData,
+                headers: {
+                    "Content-Type": "multipart/formdata",
+                },
                 method: "PUT",
             });
 
             if (!response.ok) {
-                throw new Error("Something went wrong.");
+                throw new Error(`Unable to upload files to collection ${collection}.`);
             }
         },
         onSuccess: () => {

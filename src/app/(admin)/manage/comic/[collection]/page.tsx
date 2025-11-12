@@ -30,10 +30,10 @@ export default function ImageCollectionViewer(properties: PageProps<"/manage/com
                 method: "DELETE",
             });
             if (!response.ok) {
-                toast.error("Không thể reset!");
-                throw new Error("Something went wrong.");
+                throw new Error(`Unable to wipe out bucket: ${collection}.`);
             }
         },
+        onError: () => toast.error("Không thể reset!"),
         onSuccess: () => queryClient.invalidateQueries({ queryKey: [`comic-collection-assets-${collection}`] }),
     });
 

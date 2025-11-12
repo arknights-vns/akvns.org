@@ -1,13 +1,6 @@
-*
-!.env
-!/docker/postgres/.env
-!/src
-!/public
-!/prisma
-!next.config.ts
-!package.json
-!package-lock.json
-!.dockerignore
+Dockerfile
+.dockerignore
 node_modules
 npm-debug.log
 .next
+src/generated/prisma
