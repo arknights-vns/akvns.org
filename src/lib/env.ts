@@ -5,6 +5,9 @@ import { z } from "zod";
 export const env = createEnv({
     client: {
         NEXT_PUBLIC_PRODUCTION_URL: z.url(),
+        NEXT_PUBLIC_UNLEASH_APP_NAME: z.string().default("Arknights Vietnam Station"),
+        NEXT_PUBLIC_UNLEASH_FRONTEND_API_TOKEN: z.string(),
+        NEXT_PUBLIC_UNLEASH_FRONTEND_API_URL: z.url().endsWith("/api/frontend"),
     },
     server: {
         AWS_S3_ACCESS_KEY_ID: z.string(),
@@ -17,9 +20,14 @@ export const env = createEnv({
         DISCORD_CLIENT_SECRET: z.string(),
         PORT: z.coerce.number().min(1025).max(65_535).default(3000),
         SECRET_KEY: z.string(),
+        UNLEASH_SERVER_API_TOKEN: z.string(),
+        UNLEASH_SERVER_API_URL: z.url().endsWith("/api"),
     },
     // eslint-disable-next-line perfectionist/sort-objects
     experimental__runtimeEnv: {
         NEXT_PUBLIC_PRODUCTION_URL: process.env.NEXT_PUBLIC_PRODUCTION_URL,
+        NEXT_PUBLIC_UNLEASH_APP_NAME: process.env.NEXT_PUBLIC_UNLEASH_APP_NAME,
+        NEXT_PUBLIC_UNLEASH_FRONTEND_API_TOKEN: process.env.NEXT_PUBLIC_UNLEASH_FRONTEND_API_TOKEN,
+        NEXT_PUBLIC_UNLEASH_FRONTEND_API_URL: process.env.NEXT_PUBLIC_UNLEASH_FRONTEND_API_URL,
     },
 });
