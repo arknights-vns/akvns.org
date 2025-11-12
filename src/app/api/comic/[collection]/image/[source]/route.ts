@@ -14,14 +14,14 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
     const parameterList = await parameters.params;
 
     try {
-        const { Body, ContentDisposition, ContentLength, ContentType } = await s3Client.send(new GetObjectCommand({
+        const { Body, ContentLength, ContentType } = await s3Client.send(new GetObjectCommand({
             Bucket: parameterList.collection,
             Key: parameterList.source,
         }));
 
         const stream = Body as unknown as ReadableStream;
 
-        if (!Body || !ContentType || !ContentDisposition || !ContentLength) {
+        if (!Body || !ContentType || !ContentLength) {
             return NextResponse.json(
                 { error: "File retrieval error." },
                 { status: 400 },
@@ -33,7 +33,6 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
             {
                 headers: {
                     "Cache-Control": "public, max-age=3600, immutable",
-                    "Content-Disposition": ContentDisposition.toString(),
                     "Content-Length": ContentLength.toString(),
                     "Content-Type": ContentType.toString(),
                 },
