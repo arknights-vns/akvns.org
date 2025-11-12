@@ -2,7 +2,7 @@ import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { ComicSeriesMetadata } from "@/schema/comic";
 
 /**
@@ -18,7 +18,6 @@ export async function GET(
     const parameterList = await parameters.params;
     const { collection } = parameterList;
 
-    // @ts-expect-error Prisma Client types may be stale until `npx prisma generate` runs
     const row = await prisma.comicSeries.findUnique({
         where: { slug: collection },
     });
@@ -77,7 +76,6 @@ export async function PUT(
     }
 
     try {
-        // @ts-expect-error Prisma Client types may be stale until `npx prisma generate` runs
         const saved = await prisma.comicSeries.upsert({
             create: {
                 author: data.author,

@@ -1,0 +1,39 @@
+PUT /api/comic/arknights-ep
+Content-Type: application/json
+Authorization: Bearer <admin-token>
+
+{
+  "author": "Hypergryph",
+  "date": "2023-07-01",
+  "translators": ["VNS Team"],
+  "chapters": ["ch-01", "ch-02"]
+}
+
+# Response 201:
+{
+  "message": {
+    "slug": "arknights-ep",
+    "author": "Hypergryph",
+    "date": "2023-07-01T00:00:00.000Z",
+    "translators": ["VNS Team"],
+    "chapters": ["ch-01", "ch-02"]
+  }
+}
+
+PATCH /api/comic/arknights-ep
+Content-Type: application/json
+Authorization: Bearer <admin-token>
+
+{
+  "author": "Hypergryph",
+  "date": "2023-07-01",
+  "translators": ["VNS Team", "Translator 2"],
+  "chapters": ["ch-01", "ch-02", "ch-03"]
+}
+
+# Response 200: updated data
+
+DELETE /api/comic/arknights-ep
+Authorization: Bearer <admin-token>
+
+# Response 200: { "message": "OK" }

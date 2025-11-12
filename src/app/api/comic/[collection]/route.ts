@@ -9,9 +9,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { auth } from "@/lib/auth";
 import { s3Client } from "@/lib/aws-s3";
+import prisma from "@/lib/prisma";
+import { ComicSeriesMetadata } from "@/schema/comic";
 
 /**
- * Delete collection.
+ * Delete collection and its metadata.
  *
  * @auth bearer
  * @pathParams ComicCollectionRegex
@@ -62,14 +64,25 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comi
     }
 
     try {
-        // now we delete for real.
+        // Delete S3 bucket
         await s3Client.send(new DeleteBucketCommand({ Bucket: parameterList.collection }));
+
+        // Delete metadata from DB
+        await prisma.comicSeries.delete({
+            where: { slug: parameterList.collection },
+        });
 
         return NextResponse.json(
             { message: "OK" },
             { status: 200 });
     }
-    catch {
+    catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json(
+                { error: error.message },
+                { status: 500 },
+            );
+        }
         return NextResponse.json(
             { error: "We're cooked" },
             { status: 500 },
@@ -78,12 +91,13 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comi
 }
 
 /**
- * Create a collection.
+ * Update comic metadata.
  * @auth bearer
  * @pathParams ComicCollectionRegex
+ * @body ComicSeriesMetadata
  * @openapi
  */
-export async function PUT(_: NextRequest, parameters: RouteContext<"/api/comic/[collection]">) {
+export async function PATCH(request: NextRequest, parameters: RouteContext<"/api/comic/[collection]">) {
     const session = await auth.api.getSession({
         headers: await headers(),
     });
@@ -97,17 +111,148 @@ export async function PUT(_: NextRequest, parameters: RouteContext<"/api/comic/[
 
     const parameterList = await parameters.params;
 
+    // Validate metadata
+    let metadata;
     try {
-        await s3Client.send(new CreateBucketCommand({ Bucket: parameterList.collection }));
+        metadata = await ComicSeriesMetadata.parseAsync(await request.json());
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 400 });
+        }
+        return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    }
+
+    try {
+        const saved = await prisma.comicSeries.update({
+            data: {
+                author: metadata.author,
+                chapters: metadata.chapters,
+                date: metadata.date,
+                translators: metadata.translators,
+            },
+            where: { slug: parameterList.collection },
+        });
 
         return NextResponse.json(
-            { message: `Bucket "${parameterList.collection}" created.` },
+            {
+                message: {
+                    author: saved.author,
+                    chapters: saved.chapters ?? [],
+                    date: saved.date,
+                    slug: saved.slug,
+                    translators: saved.translators ?? [],
+                },
+            },
+            { status: 200 },
+        );
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json(
+                { error: error.message },
+                { status: 500 },
+            );
+        }
+        return NextResponse.json(
+            { error: "Update failed" },
+            { status: 500 },
+        );
+    }
+}
+
+/**
+ * Create a new comic collection with metadata.
+ * @auth bearer
+ * @pathParams ComicCollectionRegex
+ * @body ComicSeriesMetadata
+ * @openapi
+ */
+export async function PUT(request: NextRequest, parameters: RouteContext<"/api/comic/[collection]">) {
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    if (!session || session.user.role !== "admin") {
+        return NextResponse.json(
+            { error: "Not Permitted" },
+            { status: 403 },
+        );
+    }
+
+    const parameterList = await parameters.params;
+
+    // Validate metadata
+    let metadata;
+    try {
+        metadata = await ComicSeriesMetadata.parseAsync(await request.json());
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json({ error: error.message }, { status: 400 });
+        }
+        return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    }
+
+    // Create S3 bucket
+    try {
+        await s3Client.send(new CreateBucketCommand({ Bucket: parameterList.collection }));
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            return NextResponse.json(
+                { error: `Bucket creation failed: ${error.message}` },
+                { status: 500 },
+            );
+        }
+        return NextResponse.json(
+            { error: `Bucket "${parameterList.collection}" not created.` },
+            { status: 500 },
+        );
+    }
+
+    // Create metadata in DB
+    try {
+        const saved = await prisma.comicSeries.create({
+            data: {
+                author: metadata.author,
+                chapters: metadata.chapters,
+                date: metadata.date,
+                slug: parameterList.collection,
+                translators: metadata.translators,
+            },
+        });
+
+        return NextResponse.json(
+            {
+                message: {
+                    author: saved.author,
+                    chapters: saved.chapters ?? [],
+                    date: saved.date,
+                    slug: saved.slug,
+                    translators: saved.translators ?? [],
+                },
+            },
             { status: 201 },
         );
     }
-    catch {
+    catch (error) {
+        // Rollback: delete bucket if metadata creation fails
+        try {
+            await s3Client.send(new DeleteBucketCommand({ Bucket: parameterList.collection }));
+        }
+        catch {
+            // Ignore rollback errors
+        }
+
+        if (error instanceof Error) {
+            return NextResponse.json(
+                { error: `Metadata creation failed: ${error.message}` },
+                { status: 500 },
+            );
+        }
         return NextResponse.json(
-            { error: `Bucket "${parameterList.collection}" not created.` },
+            { error: "Comic creation failed" },
             { status: 500 },
         );
     }
