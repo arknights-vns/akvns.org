@@ -1,4 +1,6 @@
-import { ChevronDown, Home, LucideIcon, Settings } from "lucide-react";
+import type { Metadata } from "next";
+
+import { ChevronDown, Home, LucideIcon } from "lucide-react";
 import { Route } from "next";
 import Link from "next/link";
 
@@ -22,14 +24,11 @@ const tools: {
     href: Route;
     icon: LucideIcon;
     name: string;
-}[] = [
-    {
-        experiment: true,
-        href: "/manage/features",
-        icon: Settings,
-        name: "Feature Flag",
-    },
-];
+}[] = [];
+
+export const metadata: Metadata = {
+    title: "AKVNS | Admin",
+};
 
 export default function AdminLayout(properties: LayoutProps<"/manage">) {
     return (

@@ -66,8 +66,8 @@ export default function AdminFeatureFlagPage() {
                 throw new Error(`Unable to edit feature ${data.id}.`);
             }
         },
-        onSuccess: (_data, variables) => {
-            queryClient.invalidateQueries({ queryKey: ["features", `feature-${variables.id}`] }).then();
+        onSuccess: (_, variables) => {
+            queryClient.invalidateQueries({ queryKey: ["features", variables.id] }).then();
             toast.success("Done!");
             setUpdateDialogOpen(false);
         },
@@ -96,7 +96,9 @@ export default function AdminFeatureFlagPage() {
                 toast.error("We're cooked");
             }
         },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["features"] }),
+        onSuccess: (_, variables) => {
+            queryClient.invalidateQueries({ queryKey: ["features", variables.id] }).then();
+        },
     });
 
     const featureDeleteMutation = useMutation({
@@ -110,8 +112,8 @@ export default function AdminFeatureFlagPage() {
                 toast.error("We are cooked.");
             }
         },
-        onSuccess: (_data, variables) => {
-            queryClient.invalidateQueries({ queryKey: ["features", `feature-${variables}`] }).then();
+        onSuccess: (_, variables) => {
+            queryClient.invalidateQueries({ queryKey: ["features", variables] }).then();
         },
     });
 
