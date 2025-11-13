@@ -5,12 +5,11 @@ import { s3Client } from "@/lib/aws-s3";
 
 /**
  * Get specific image from a collection.
- *
- * @pathParams ComicCollectionRegex
- * @response ComicAssetList
- * @openapi
  */
-export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[collection]/image/[source]">) {
+export async function GET(
+    _: NextRequest,
+    parameters: RouteContext<"/api/gallery/[collection]/image/[source]">,
+) {
     const parameterList = await parameters.params;
 
     try {
@@ -32,7 +31,7 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
             stream,
             {
                 headers: {
-                    "Cache-Control": "public, max-age=3600, immutable",
+                    "Cache-Control": "public, max-age=3600, s-maxage=86400, immutable",
                     "Content-Length": ContentLength.toString(),
                     "Content-Type": ContentType.toString(),
                 },

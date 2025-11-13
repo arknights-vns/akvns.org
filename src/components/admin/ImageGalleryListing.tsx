@@ -34,23 +34,23 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Spinner } from "@/components/ui/spinner";
-import { ComicCollection, ComicCollectionListing } from "@/schema/comic";
+import { Gallery, GalleryListing } from "@/schema/gallery";
 
-export default function ComicStorageListing() {
+export default function ImageGalleryListing() {
     const queryClient = useQueryClient();
     const [creationFormOpen, setCreationFormOpen] = useState(false);
 
     const { data, error, isFetching } = useQuery({
         queryFn: async () => {
-            const resp = await fetch("/api/comic/collections");
-            return await ComicCollectionListing.parseAsync(await resp.json());
+            const resp = await fetch("/api/gallery");
+            return await GalleryListing.parseAsync(await resp.json());
         },
-        queryKey: ["comic-collections"],
+        queryKey: ["gallery-collections"],
     });
 
     const createBucketMutation = useMutation({
-        mutationFn: async (item: z.infer<typeof ComicCollection>) => {
-            const response = await fetch(`/api/comic/${item.name}`, {
+        mutationFn: async (item: z.infer<typeof Gallery>) => {
+            const response = await fetch(`/api/gallery/${item.name}`, {
                 method: "PUT",
             });
             if (!response.ok) {
@@ -58,7 +58,7 @@ export default function ComicStorageListing() {
             }
         },
         onSuccess: (_data, variables) => {
-            queryClient.invalidateQueries({ queryKey: ["comic-collections"] }).then();
+            queryClient.invalidateQueries({ queryKey: ["gallery-collections"] }).then();
             setCreationFormOpen(false);
             toast.success(`Tạo collection ${variables.name} thành công.`);
         },
@@ -66,27 +66,30 @@ export default function ComicStorageListing() {
 
     const deleteBucketMutation = useMutation({
         mutationFn: async (bucket: string) => {
-            const response = await fetch(`/api/comic/${bucket}`, {
+            const response = await fetch(`/api/gallery/${bucket}`, {
                 method: "DELETE",
             });
             if (!response.ok) {
                 throw new Error(`Unable to delete bucket ${bucket}.`);
             }
         },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["comic-collections"] }),
+        onSuccess: (_data, variables) => {
+            queryClient.invalidateQueries({ queryKey: ["gallery-collections"] }).then();
+            toast.success(`Xóa collection ${variables} thành công.`);
+        },
     });
 
-    const form = useForm<z.infer<typeof ComicCollection>>({
+    const form = useForm<z.infer<typeof Gallery>>({
         defaultValues: {
             name: "vns-collection-haidilao",
         },
         mode: "onChange",
-        resolver: zodResolver(ComicCollection),
+        resolver: zodResolver(Gallery),
     });
 
     const buckets = data?.message || [];
 
-    function onSubmit(data: z.infer<typeof ComicCollection>) {
+    function onSubmit(data: z.infer<typeof Gallery>) {
         if (buckets.includes(data.name)) {
             toast.error("Có collection đó rồi!");
             return;
@@ -98,7 +101,7 @@ export default function ComicStorageListing() {
     return (
         <SidebarGroup>
             <SidebarGroupLabel>
-                Comic Collection
+                Gallery Collection
             </SidebarGroupLabel>
             <SidebarGroupAction title={"Add Project"}>
                 <Dialog onOpenChange={setCreationFormOpen} open={creationFormOpen}>
@@ -165,7 +168,7 @@ export default function ComicStorageListing() {
                         && buckets.map(bucket => (
                             <SidebarMenuItem key={bucket}>
                                 <SidebarMenuButton asChild>
-                                    <Link href={`/manage/comic/${bucket}`}>
+                                    <Link href={`/manage/gallery/${bucket}`}>
                                         <div className={"flex font-bold place-items-center-safe gap-1"}>
                                             <span>{bucket}</span>
                                         </div>

@@ -46,7 +46,7 @@ export default function DiscordInfoPill() {
         return <></>;
     }
 
-    if (error) {
+    if (error && discordFeatureEnabled) {
         return (
             <Tooltip>
                 <TooltipTrigger>
@@ -62,7 +62,7 @@ export default function DiscordInfoPill() {
 
     // for future me:
     // https://discord.com/branding
-    return session
+    return session && discordFeatureEnabled
         ? (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>

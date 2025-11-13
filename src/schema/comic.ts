@@ -1,36 +1,21 @@
 import { z } from "zod";
 
-export const ComicCollectionRegex = /([a-z0-9-]+)/;
+import { GalleryCollectionNameRegex } from "@/schema/gallery";
 
 /**
- * A comic collection.
+ * Represent a comic translator section.
  */
-export const ComicCollection = z.object({
-    name: z.string({
-        error: "Name must not be empty",
-    }).regex(ComicCollectionRegex, {
-        error: "Name must be alphanumeric, lowercase, separated by a -",
-    }),
+export const ComicTranslator = z.object({
+    members: z.array(z.string()),
+    role: z.string(),
 });
 
 /**
- * Represent an asset.
+ * Represent a comic chapter.
  */
-export const ComicAsset = z.object({
-    name: z.string(),
-    url: z.string(),
-});
-
-/**
- * Represent a list of assets.
- */
-export const ComicAssetList = z.array(ComicAsset);
-
-/**
- * An array of collection.
- */
-export const ComicCollectionListing = z.object({
-    message: z.array(z.string().regex(ComicCollectionRegex)),
+export const ComicChapter = z.object({
+    chapterName: z.string(),
+    comicChapterId: z.string().regex(GalleryCollectionNameRegex),
 });
 
 /**
@@ -38,9 +23,11 @@ export const ComicCollectionListing = z.object({
  */
 export const ComicSeriesMetadata = z.object({
     author: z.string().min(1, { message: "Author is required" }),
-    chapters: z.array(z.string()).default([]),
-    date: z.coerce.date(),
-    translators: z.array(z.string()).default([]),
+    category: z.string(),
+    comicChapters: z.array(ComicChapter).default([]),
+    comicSeriesId: z.string(),
+    synopsis: z.string(),
+    thumbnail: z.string(),
+    title: z.string(),
+    translators: z.array(ComicTranslator).default([]),
 });
-
-export type ComicSeriesMetadataInput = z.infer<typeof ComicSeriesMetadata>;

@@ -2,23 +2,21 @@ import { DeleteObjectsCommand, ListObjectsV2Command, paginateListObjectsV2, PutO
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-import { auth } from "@/lib/auth";
+import { requireAuth } from "@/lib/auth-guard";
 import { s3Client } from "@/lib/aws-s3";
 
 /**
  * Delete all images of collection.
- *
- * @auth bearer
- * @pathParams ComicCollectionRegex
- * @openapi
  */
-export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comic/[collection]/image">) {
-    const session = await auth.api.getSession({
-        headers: await headers(),
-    });
-
-    if (!session || session.user.role !== "admin") {
-        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
+export async function DELETE(
+    _: NextRequest,
+    parameters: RouteContext<"/api/gallery/[collection]/image">,
+) {
+    if (!await requireAuth(await headers(), true)) {
+        return NextResponse.json(
+            { error: "Not Permitted" },
+            { status: 403 },
+        );
     }
 
     const parameterList = await parameters.params;
@@ -60,12 +58,11 @@ export async function DELETE(_: NextRequest, parameters: RouteContext<"/api/comi
 
 /**
  * Get images list of collection.
- *
- * @pathParams ComicCollectionRegex
- * @response ComicAssetList
- * @openapi
  */
-export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[collection]/image">) {
+export async function GET(
+    _: NextRequest,
+    parameters: RouteContext<"/api/gallery/[collection]/image">,
+) {
     const parameterList = await parameters.params;
 
     try {
@@ -73,7 +70,7 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
             new ListObjectsV2Command({ Bucket: parameterList.collection }),
         );
 
-        const baseUrl = `/api/comic/${parameterList.collection}/image`;
+        const baseUrl = `/api/gallery/${parameterList.collection}/image`;
 
         const images
             = data.Contents?.map(object => ({
@@ -100,18 +97,12 @@ export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[
 
 /**
  * Add images to the collection.
- *
- * @auth bearer
- * @pathParams ComicCollectionRegex
- * @body multipart/form-data
- * @openapi
  */
-export async function PUT(request: NextRequest, parameters: RouteContext<"/api/comic/[collection]/image">) {
-    const session = await auth.api.getSession({
-        headers: await headers(),
-    });
-
-    if (!session || session.user.role !== "admin") {
+export async function PUT(
+    request: NextRequest,
+    parameters: RouteContext<"/api/gallery/[collection]/image">,
+) {
+    if (!await requireAuth(await headers(), true)) {
         return NextResponse.json(
             { error: "Not Permitted" },
             { status: 403 },

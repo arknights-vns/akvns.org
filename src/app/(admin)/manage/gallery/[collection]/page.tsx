@@ -11,22 +11,22 @@ import UploadButton from "@/components/admin/UploadButton";
 import { Button } from "@/components/ui/button";
 import { ComicAssetList } from "@/schema/comic";
 
-export default function ImageCollectionViewer(properties: PageProps<"/manage/comic/[collection]">) {
+export default function ImageCollectionViewer(properties: PageProps<"/manage/gallery/[collection]">) {
     const { collection } = use(properties.params);
     const queryClient = useQueryClient();
 
     const { data } = useQuery({
         queryFn: async () => {
-            const resp = await fetch(`/api/comic/${collection}/image`);
+            const resp = await fetch(`/api/gallery/${collection}/image`);
             const json = await resp.json();
             return await ComicAssetList.parseAsync(json["message"]);
         },
-        queryKey: [`comic-collection-assets-${collection}`],
+        queryKey: ["gallery-assets", collection],
     });
 
     const wipeCollectionMutation = useMutation({
         mutationFn: async () => {
-            const response = await fetch(`/api/comic/${collection}/image`, {
+            const response = await fetch(`/api/gallery/${collection}/image`, {
                 method: "DELETE",
             });
             if (!response.ok) {
@@ -34,7 +34,7 @@ export default function ImageCollectionViewer(properties: PageProps<"/manage/com
             }
         },
         onError: () => toast.error("Không thể reset!"),
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: [`comic-collection-assets-${collection}`] }),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["gallery-assets", collection] }),
     });
 
     const assets = data || [];
@@ -62,7 +62,7 @@ export default function ImageCollectionViewer(properties: PageProps<"/manage/com
                         disabled={assets.length === 0}
                         variant={"ghost"}
                     >
-                        <Link className={"flex gap-2 items-center"} href={`/api/comic/${collection}/archive`}>
+                        <Link className={"flex gap-2 items-center"} href={`/api/gallery/${collection}/archive`}>
                             <Download />
                             {" "}
                             Download

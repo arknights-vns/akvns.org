@@ -38,11 +38,8 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
 
             for (const file of files) formData.append("files", file);
 
-            const response = await fetch(`/api/comic/${collection}/image`, {
+            const response = await fetch(`/api/gallery/${collection}/image`, {
                 body: formData,
-                headers: {
-                    // "Content-Type": "multipart/formdata",
-                },
                 method: "PUT",
             });
 
@@ -53,7 +50,7 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
         onSuccess: () => {
             setDialogOpen(false);
             setFiles([]);
-            queryClient.invalidateQueries({ queryKey: [`comic-collection-assets-${collection}`] }).then();
+            queryClient.invalidateQueries({ queryKey: ["gallery-assets", collection] }).then();
         },
     });
 

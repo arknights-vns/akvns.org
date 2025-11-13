@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
-import { ChevronDown, Home, LucideIcon } from "lucide-react";
+import { Book, ChevronDown, Home, LucideIcon } from "lucide-react";
 import { Route } from "next";
 import Link from "next/link";
 
-import ComicStorageListing from "@/components/admin/ComicStorageListing";
+import ImageGalleryListing from "@/components/admin/ImageGalleryListing";
 import DiscordInfoPill from "@/components/DiscordInfoPill";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -24,7 +24,14 @@ const tools: {
     href: Route;
     icon: LucideIcon;
     name: string;
-}[] = [];
+}[] = [
+    {
+        experiment: true,
+        href: "/manage/comic",
+        icon: Book,
+        name: "Comic Management",
+    },
+];
 
 export const metadata: Metadata = {
     title: "AKVNS | Admin",
@@ -79,7 +86,7 @@ export default function AdminLayout(properties: LayoutProps<"/manage">) {
                             </CollapsibleContent>
                         </SidebarGroup>
                     </Collapsible>
-                    <ComicStorageListing />
+                    <ImageGalleryListing />
                 </SidebarContent>
                 <SidebarFooter />
             </Sidebar>

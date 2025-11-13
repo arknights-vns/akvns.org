@@ -20,6 +20,7 @@ export const env = createEnv({
         DISCORD_CLIENT_SECRET: z.string(),
         PORT: z.coerce.number().min(1025).max(65_535).default(3000),
         SECRET_KEY: z.string(),
+        SKIP_AUTH: z.stringbool(),
         UNLEASH_SERVER_API_TOKEN: z.string(),
         UNLEASH_SERVER_API_URL: z.url().endsWith("/api"),
     },

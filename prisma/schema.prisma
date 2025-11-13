@@ -5,9 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-    provider      = "prisma-client"
-    output        = "../src/generated/prisma"
-    binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+    provider = "prisma-client"
+    output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -104,17 +103,43 @@ model Project {
     @@map("project")
 }
 
-/// Minimal comic metadata table (no relations): author, date, translators, chapters
-model ComicSeries {
-    id          String   @id @default(cuid())
-    slug        String   @unique
-    author      String
-    date        DateTime
-    translators String[]
-    chapters    String[]
-    createdAt   DateTime @default(now())
-    updatedAt   DateTime @updatedAt
+enum ComicCategory {
+    // Made by Arknights VNS
+    Arknights_VNS
+    // Made by a partner.
+    Partner
+    // A collaboration between Arknights VNS **AND** their partners.
+    Collaboration
+    // 3rd party.
+    Community
+}
 
-    @@index([slug, date])
+model ComicSeries {
+    comicSeriesId String         @id @default(cuid())
+    title         String
+    synopsis      String
+    author        String
+    thumbnail     String
+    category      ComicCategory
+    comicChapters ComicChapter[]
+    translators   Json
+    createdAt     DateTime       @default(now())
+    updatedAt     DateTime       @updatedAt
+    likeCount     Int            @default(0)
+    viewCount     Int            @default(0)
+
+    @@index([title, author])
     @@map("comic_series")
+}
+
+model ComicChapter {
+    comicChapterId String      @id
+    chapterName    String
+    comicSeriesId  String
+    comic          ComicSeries @relation(fields: [comicSeriesId], references: [comicSeriesId], onDelete: Cascade, onUpdate: Cascade)
+    createdAt      DateTime    @default(now())
+    updatedAt      DateTime    @updatedAt
+
+    @@index([comicChapterId, chapterName, comicSeriesId])
+    @@map("comic_chapter")
 }

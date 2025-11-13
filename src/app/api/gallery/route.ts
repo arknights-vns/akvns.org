@@ -2,21 +2,14 @@ import { paginateListBuckets } from "@aws-sdk/client-s3";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-import { auth } from "@/lib/auth";
+import { requireAuth } from "@/lib/auth-guard";
 import { s3Client } from "@/lib/aws-s3";
 
 /**
  * Get list of collections.
- * @auth bearer
- * @response ComicCollectionListing
- * @openapi
  */
 export async function GET() {
-    const session = await auth.api.getSession({
-        headers: await headers(),
-    });
-
-    if (!session || session.user.role !== "admin") {
+    if (!await requireAuth(await headers(), true)) {
         return NextResponse.json(
             { error: "Not Permitted" },
             { status: 403 },

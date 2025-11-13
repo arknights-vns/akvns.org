@@ -7,23 +7,17 @@ import {
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
-import { auth } from "@/lib/auth";
+import { requireAuth } from "@/lib/auth-guard";
 import { s3Client } from "@/lib/aws-s3";
 
 /**
  * Download ZIP archive for this collection.
- *
- * @auth bearer
- * @pathParams ComicCollectionRegex
- * @contentType application/zip
- * @openapi
  */
-export async function GET(_: NextRequest, parameters: RouteContext<"/api/comic/[collection]/archive">) {
-    const session = await auth.api.getSession({
-        headers: await headers(),
-    });
-
-    if (!session || session.user.role !== "admin") {
+export async function GET(
+    _: NextRequest,
+    parameters: RouteContext<"/api/gallery/[collection]/archive">,
+) {
+    if (!await requireAuth(await headers(), true)) {
         return NextResponse.json(
             { error: "Not Permitted" },
             { status: 403 },
