@@ -55,7 +55,6 @@ export default function ImageCollectionViewer(properties: PageProps<"/manage/gal
                 <div className={"flex gap-4 place-items-end"}>
                     <UploadButton
                         collection={collection}
-                        disabled={assets.length > 0}
                     />
                     <Button
                         asChild={assets.length > 0}

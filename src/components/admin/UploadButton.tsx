@@ -20,7 +20,6 @@ import { Spinner } from "@/components/ui/spinner";
 
 type UploadToCollectionButtonProperties = {
     collection: string;
-    disabled: boolean;
 };
 
 export default function UploadButton(properties: UploadToCollectionButtonProperties) {
@@ -57,7 +56,7 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
     return (
         <Dialog onOpenChange={setDialogOpen} open={dialogOpen}>
             <DialogTrigger asChild>
-                <Button disabled={properties.disabled}>
+                <Button>
                     <Upload />
                     {" "}
                     Upload
