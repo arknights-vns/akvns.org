@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 import UploadButton from "@/components/admin/UploadButton";
 import { Button } from "@/components/ui/button";
-import { ComicAssetList } from "@/schema/comic";
+import { GalleryAssets } from "@/schema/gallery";
 
 export default function ImageCollectionViewer(properties: PageProps<"/manage/gallery/[collection]">) {
     const { collection } = use(properties.params);
@@ -19,7 +19,7 @@ export default function ImageCollectionViewer(properties: PageProps<"/manage/gal
         queryFn: async () => {
             const resp = await fetch(`/api/gallery/${collection}/image`);
             const json = await resp.json();
-            return await ComicAssetList.parseAsync(json["message"]);
+            return await GalleryAssets.parseAsync(json["message"]);
         },
         queryKey: ["gallery-assets", collection],
     });
