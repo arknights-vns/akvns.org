@@ -57,7 +57,7 @@ export default function Testimony() {
 
         <div className={"max-w-4xl mx-auto px-6"}>
             <div className={"text-center mb-10"}>
-                <h2 className={"text-3xl font-bold text-[#F25C5C] mb-2"}>
+                <h2 className={"text-3xl font-bold text-primary mb-2"}>
                     Mọi người nghĩ gì về mình?
                 </h2>
                 <p className={"text-accent-foreground text-xl"}>
@@ -95,11 +95,11 @@ export default function Testimony() {
                         </CardHeader>
                         <CardContent>
                             <p className={"text-base text-accent-foreground leading-relaxed text-left"}>
-                                <span aria-hidden={"true"} className={"font-bold text-[#F25C5C]"}>
+                                <span aria-hidden={"true"} className={"font-bold text-primary"}>
                                     "
                                 </span>
                                 <span>{c.description}</span>
-                                <span aria-hidden={"true"} className={"font-bold text-[#F25C5C]"}>
+                                <span aria-hidden={"true"} className={"font-bold text-primary"}>
                                     "
                                 </span>
                             </p>
