@@ -1,0 +1,117 @@
+{
+  "Leader": [
+    {
+      "name": "Tus",
+      "role": "Da The",
+      "quote": "real",
+      "avatar": "/members/tus.jpg",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Kurome",
+      "role": "Eyja",
+      "quote": "ˈmɛr.ʊ.koʊ/ 'mɛl.ʊ.koʊ",
+      "avatar": "/members/meruko.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Swyrin",
+      "role": "Đế vương #IT-Zone",
+      "quote": "In love with Shoujo U.",
+      "avatar": "/members/swyrin.jpg",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Kazaha Kamito",
+      "role": "Bá tước giàu nhất VNS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/members/kmt.jpg",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Shihotori",
+      "role": "Finance",
+      "quote": "Subscribe to OverHeaven",
+      "avatar": "/members/shihotori.jpg",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Đầu Hồng 5",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Đầu Hồng 4",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Đầu Hồng 6",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Đầu Hồng 7",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Con Đầu Hồng 8",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    }
+  ],
+  "Translator": [
+    {
+      "name": "Con Đầu Hồng",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Con Đầu Hồng 8",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    }
+  ],
+  "Dreamchasers": [
+    {
+      "name": "Con Đầu Hồng",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    }
+  ],
+  "Ph. Frontiers": [
+    {
+      "name": "Con Đầu Hồng",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    }
+  ],
+  "Partners": [
+    {
+      "name": "Aririn",
+      "role": "Tiểu tam giật chồng với PRTS",
+      "quote": "Nghỉ mệt sau story Babel",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    }
+  ]
+}
