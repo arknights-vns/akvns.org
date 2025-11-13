@@ -2,6 +2,7 @@ import react from "@eslint-react/eslint-plugin";
 import eslint from "@eslint/js";
 import nextjs from "@next/eslint-plugin-next";
 import stylistic from "@stylistic/eslint-plugin";
+import tanstackQuery from "@tanstack/eslint-plugin-query";
 import tailwindcss from "eslint-plugin-better-tailwindcss";
 import importLite from "eslint-plugin-import-lite";
 import perfectionist from "eslint-plugin-perfectionist";
@@ -9,20 +10,18 @@ import playwright from "eslint-plugin-playwright";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
-import { defineConfig } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
 export default defineConfig([
-    // global ignore list
-    {
-        ignores: [
-            ".next/*",
-            "next-env.d.ts",
-            "node_modules/*",
-            "src/generated/prisma/*",
-            "src/components/ui/*",
-        ],
-    },
+    globalIgnores([
+        ".next/*",
+        "next-env.d.ts",
+        "node_modules/*",
+        "src/generated/prisma/*",
+        "src/hooks/use-mobile.ts",
+        "src/components/ui/*",
+    ]),
     // TS & React & its slow af parser.
     // Yes, I am losing it.
     {
@@ -31,6 +30,7 @@ export default defineConfig([
             importLite.configs.recommended,
             tseslint.configs.strict,
             tseslint.configs.stylistic,
+            tanstackQuery.configs["flat/recommended"],
             react.configs["recommended-typescript"],
             reactHooks.configs["recommended-latest"],
             reactRefresh.configs.recommended,
@@ -78,7 +78,7 @@ export default defineConfig([
                     props: "always",
                 },
             ],
-            "@stylistic/object-curly-newline": ["error"],
+            "@stylistic/object-curly-newline": "error",
             "@stylistic/object-property-newline": "error",
         },
     },

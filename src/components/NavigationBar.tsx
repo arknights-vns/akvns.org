@@ -5,6 +5,7 @@ import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import DiscordInfoPill from "@/components/DiscordInfoPill";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
 import {
@@ -191,7 +192,8 @@ export default function NavigationBar() {
                     })}
                 </NavigationMenuList>
             </NavigationMenu>
-            <div className={"flex justify-end items-center space-x-2 w-[25vw]"}>
+            <div className={"flex justify-end items-center gap-3 w-[25vw]"}>
+                <DiscordInfoPill />
                 <ThemeSwitcher />
             </div>
         </header>

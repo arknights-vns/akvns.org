@@ -145,14 +145,14 @@ export default function MainPage() {
             <section>
                 <Button asChild className={"bg-[#5865F2] hover:bg-[#3D4CF0] m-5"}>
                     <Link href={"https://discord.gg/arknights-vns"}>
-                        <Image alt={"discord"} className={"invert"} src={Discord} />
+                        <Image alt={"discord"} src={Discord} width={24} />
                         Arknights VNS
                     </Link>
                 </Button>
 
                 <Button asChild className={"bg-[#5865F2] hover:bg-[#3D4CF0] m-5"}>
                     <Link href={"https://discord.gg/wgETr8d4FR"}>
-                        <Image alt={"discord"} className={"invert"} src={Discord} />
+                        <Image alt={"discord"} src={Discord} width={24} />
                         Arknights VNS
                     </Link>
                 </Button>

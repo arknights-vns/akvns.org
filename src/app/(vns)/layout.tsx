@@ -6,8 +6,9 @@ import FavIconLight from "@public/favicon.ico";
 import BackToTop from "@/components/BackToTop";
 import FatFooter from "@/components/FatFooter";
 import NavigationBar from "@/components/NavigationBar";
+import { env } from "@/lib/env";
 
-const production_url = process.env.PRODUCTION_URL || "http://localhost:3000";
+const production_url = env.NEXT_PUBLIC_PRODUCTION_URL;
 
 export const metadata: Metadata = {
     authors: [
