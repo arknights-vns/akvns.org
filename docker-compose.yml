@@ -57,7 +57,7 @@ services:
       test: [ 'CMD', 'pg_isready', '-h', 'localhost' ]
 
   s3:
-    hostname: s3
+    container_name: s3
     image: minio/minio:RELEASE.2025-04-22T22-12-26Z
     ports:
       - '9000:9000'
@@ -75,16 +75,30 @@ services:
     volumes:
       - ./s3:/data:z
 
+  postgres-unleash:
+    container_name: postgres-unleash
+    image: ghcr.io/arknights-vns/postgres-17:latest
+    command: [ "postgres" ]
+    restart: on-failure
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: unleash
+    volumes:
+      - unleash-postgres-data:/var/lib/postgresql/data:z
+    healthcheck:
+      test: [ 'CMD', 'pg_isready', '-U', 'postgres' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   unleash:
     container_name: unleash
     image: unleashorg/unleash-server:7
     ports:
       - "4242:4242"
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_URL: "postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres-unleash/unleash"
       DATABASE_SSL: "false"
       LOG_LEVEL: "warn"
       INIT_FRONTEND_API_TOKENS: ${INIT_FRONTEND_API_TOKENS}
@@ -92,7 +106,7 @@ services:
       UNLEASH_DEFAULT_ADMIN_USERNAME: ${UNLEASH_DEFAULT_ADMIN_USERNAME}
       UNLEASH_DEFAULT_ADMIN_PASSWORD: ${UNLEASH_DEFAULT_ADMIN_PASSWORD}
     depends_on:
-      pgbouncer:
+      postgres-unleash:
         condition: service_healthy
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:4242/health || exit 1
@@ -100,3 +114,6 @@ services:
       timeout: 1m
       retries: 5
       start_period: 15s
+
+volumes:
+  unleash-postgres-data:
