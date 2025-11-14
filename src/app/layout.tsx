@@ -1,6 +1,4 @@
 import type { Viewport } from "next";
-import type React from "react";
-
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 
 import "./globals.css";
@@ -24,11 +22,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout(properties: LayoutProps<"/">) {
     return (
-        <html lang={"en"} suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning={true}>
             <body className={`${font.variable} ${fontMono.variable} font-sans antialiased`}>
-                <Providers>
-                    {properties.children}
-                </Providers>
+                <Providers>{properties.children}</Providers>
             </body>
         </html>
     );

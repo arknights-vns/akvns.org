@@ -9,11 +9,8 @@ import { s3Client } from "@/lib/aws-s3";
  * Get list of collections.
  */
 export async function GET() {
-    if (!await requireAuth(await headers(), true)) {
-        return NextResponse.json(
-            { error: "Not Permitted" },
-            { status: 403 },
-        );
+    if (!(await requireAuth(await headers(), true))) {
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
     const buckets: string[] = [];
@@ -24,18 +21,11 @@ export async function GET() {
         for await (const page of paginator) {
             if (!page.Buckets) continue;
 
-            buckets.push(...page.Buckets.map(b => b.Name ?? ""));
+            buckets.push(...page.Buckets.map((b) => b.Name ?? ""));
         }
 
-        return NextResponse.json(
-            { message: buckets },
-            { status: 200 },
-        );
-    }
-    catch {
-        return NextResponse.json(
-            { message: "Unable to enumerate buckets." },
-            { status: 500 },
-        );
+        return NextResponse.json({ message: buckets }, { status: 200 });
+    } catch {
+        return NextResponse.json({ message: "Unable to enumerate buckets." }, { status: 500 });
     }
 }

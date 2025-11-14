@@ -7,30 +7,34 @@ import Link from "next/link";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
+import type { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
-    DialogDescription, DialogFooter,
+    DialogDescription,
+    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import {
-    Field,
-    FieldError,
-    FieldGroup,
-    FieldLabel,
-} from "@/components/ui/field";
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import {
-    SidebarGroup, SidebarGroupAction,
+    SidebarGroup,
+    SidebarGroupAction,
     SidebarGroupContent,
     SidebarGroupLabel,
-    SidebarMenu, SidebarMenuAction, SidebarMenuButton,
+    SidebarMenu,
+    SidebarMenuAction,
+    SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Spinner } from "@/components/ui/spinner";
@@ -100,35 +104,35 @@ export default function ImageGalleryListing() {
 
     return (
         <SidebarGroup>
-            <SidebarGroupLabel>
-                Gallery Collection
-            </SidebarGroupLabel>
-            <SidebarGroupAction title={"Add Project"}>
+            <SidebarGroupLabel>Gallery Collection</SidebarGroupLabel>
+            <SidebarGroupAction title="Add Project">
                 <Dialog onOpenChange={setCreationFormOpen} open={creationFormOpen}>
-                    <DialogTrigger asChild>
+                    <DialogTrigger asChild={true}>
                         <Plus />
                     </DialogTrigger>
-                    <DialogContent className={"sm:max-w-md"}>
+                    <DialogContent className="sm:max-w-md">
                         <DialogHeader>
                             <DialogTitle>Tạo collection cho truyện</DialogTitle>
-                            <DialogDescription>Đây là game 1 mạng btw, lỡ mistype phát là bú luôn.</DialogDescription>
+                            <DialogDescription>
+                                Đây là game 1 mạng btw, lỡ mistype phát là bú luôn.
+                            </DialogDescription>
                         </DialogHeader>
-                        <form id={"form-create-comic-bucket"} onSubmit={form.handleSubmit(onSubmit)}>
+                        <form id="form-create-comic-bucket" onSubmit={form.handleSubmit(onSubmit)}>
                             <FieldGroup>
                                 <Controller
                                     control={form.control}
-                                    name={"name"}
+                                    name="name"
                                     render={({ field, fieldState }) => (
                                         <Field data-invalid={fieldState.invalid}>
-                                            <FieldLabel htmlFor={"form-create-comic-bucket-title"}>
+                                            <FieldLabel htmlFor="form-create-comic-bucket-title">
                                                 Tên collection
                                             </FieldLabel>
                                             <Input
                                                 {...field}
                                                 aria-invalid={fieldState.invalid}
-                                                autoComplete={"off"}
-                                                id={"form-rhf-demo-title"}
-                                                placeholder={"vns-sigma-haidilao"}
+                                                autoComplete="off"
+                                                id="form-rhf-demo-title"
+                                                placeholder="vns-sigma-haidilao"
                                             />
                                             {fieldState.invalid && (
                                                 <FieldError errors={[fieldState.error]} />
@@ -139,57 +143,56 @@ export default function ImageGalleryListing() {
                             </FieldGroup>
                         </form>
                         <DialogFooter>
-                            <Field orientation={"horizontal"}>
-                                <Button onClick={() => form.reset()} type={"button"} variant={"outline"}>
+                            <Field orientation="horizontal">
+                                <Button
+                                    onClick={() => form.reset()}
+                                    type="button"
+                                    variant="outline"
+                                >
                                     Reset
                                 </Button>
-                                <Button form={"form-create-comic-bucket"} type={"submit"}>
+                                <Button form="form-create-comic-bucket" type="submit">
                                     Submit
                                 </Button>
                             </Field>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
-                <span className={"sr-only"}>Add Comic Collection</span>
+                <span className="sr-only">Add Comic Collection</span>
             </SidebarGroupAction>
             <SidebarGroupContent>
                 <SidebarMenu>
-                    {
-                        isFetching && (
-                            <SidebarMenuItem>
-                                <Spinner />
-                            </SidebarMenuItem>
-                        )
-                    }
-                    {
-                        error && <SidebarMenuItem>We're cooked</SidebarMenuItem>
-                    }
-                    {!error
-                        && buckets.map(bucket => (
+                    {isFetching && (
+                        <SidebarMenuItem>
+                            <Spinner />
+                        </SidebarMenuItem>
+                    )}
+                    {error && <SidebarMenuItem>We're cooked</SidebarMenuItem>}
+                    {!error &&
+                        buckets.map((bucket) => (
                             <SidebarMenuItem key={bucket}>
-                                <SidebarMenuButton asChild>
+                                <SidebarMenuButton asChild={true}>
                                     <Link href={`/manage/gallery/${bucket}`}>
-                                        <div className={"flex font-bold place-items-center-safe gap-1"}>
+                                        <div className="flex font-bold place-items-center-safe gap-1">
                                             <span>{bucket}</span>
                                         </div>
                                     </Link>
                                 </SidebarMenuButton>
                                 <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
+                                    <DropdownMenuTrigger asChild={true}>
                                         <SidebarMenuAction>
                                             <MoreHorizontal />
                                         </SidebarMenuAction>
                                     </DropdownMenuTrigger>
-                                    <DropdownMenuContent align={"start"} side={"right"}>
+                                    <DropdownMenuContent align="start" side="right">
                                         <DropdownMenuItem>
-                                            <div
-                                                className={"flex place-items-center-safe gap-2"}
+                                            <Button
+                                                className="flex place-items-center-safe gap-2"
                                                 onClick={() => deleteBucketMutation.mutate(bucket)}
-                                                role={"button"}
                                             >
-                                                <Trash className={"stroke-red-500"} />
-                                                <span className={"text-red-500 font-bold"}>Xóa</span>
-                                            </div>
+                                                <Trash className="stroke-red-500" />
+                                                <span className="text-red-500 font-bold">Xóa</span>
+                                            </Button>
                                         </DropdownMenuItem>
                                     </DropdownMenuContent>
                                 </DropdownMenu>

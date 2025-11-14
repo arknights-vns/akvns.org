@@ -6,7 +6,7 @@ import { authClient } from "@/lib/auth-client";
 
 export default function AuthPage(property: PageProps<"/auth/redirect">) {
     const search = use(property.searchParams);
-    const destination = search["next"];
+    const destination = search.next;
     const target = typeof destination === "object" ? destination[0] : destination;
 
     useEffect(() => {
@@ -17,4 +17,4 @@ export default function AuthPage(property: PageProps<"/auth/redirect">) {
     });
 
     return <p>Đang điều hướng bạn tới trang đích, chắc thế...</p>;
-};
+}

@@ -6,7 +6,7 @@ import membersList from "@public/data/members.json";
 import groupPic from "@public/group.jpg";
 import headerBg from "@public/hero.png";
 import { ArrowRight } from "lucide-react";
-import { Route } from "next";
+import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,103 +15,114 @@ import ProjectsListing from "@/components/landing/Projects";
 import SponsorsCarousel from "@/components/landing/SponsorsCarousel";
 import Testimony from "@/components/Testimony";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
 import { FootNote, Heading, Paragraph } from "@/components/ui/typography";
 
 export default function MainPage() {
     return (
-        <div className={"flex flex-col place-items-center-safe"}>
-            <div className={"relative pb-8"}>
-                <div className={"absolute w-full text-center z-1 flex sm:top-1/10"}>
-                    <div className={"center text-start px-10 w-13/20"}>
-                        <div className={"my-5 text-xl sm:text-2xl lg:text-4xl font-bold italic"}>Xin chào các bạn, tụi mình là</div>
-                        <div className={"my-5 text-2xl sm:text-4xl lg:text-6xl font-extrabold bg-gradient-to-r from-[#FF0044] to-[#5728A3] bg-clip-text text-transparent"}>
+        <div className="flex flex-col place-items-center-safe">
+            <div className="relative pb-8">
+                <div className="absolute w-full text-center z-1 flex sm:top-1/10">
+                    <div className="center text-start px-10 w-13/20">
+                        <div className="my-5 text-xl sm:text-2xl lg:text-4xl font-bold italic">
+                            Xin chào các bạn, tụi mình là
+                        </div>
+                        <div className="my-5 text-2xl sm:text-4xl lg:text-6xl font-extrabold bg-gradient-to-r from-[#FF0044] to-[#5728A3] bg-clip-text text-transparent">
                             Arknights
                             <br />
                             Vietnam Station
                         </div>
-                        <div className={"my-5 text-xs sm:text-sm md:text-md lg:text-xl"}>Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.</div>
+                        <div className="my-5 text-xs sm:text-sm md:text-md lg:text-xl">
+                            Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là
+                            Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với sứ
+                            mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.
+                        </div>
                     </div>
-                    <div className={"w-1/5"}>
-                        <Image alt={"amiyi"} className={"w-100"} objectFit={"cover"} src={amiya} />
+                    <div className="w-1/5">
+                        <Image alt="amiyi" className="w-100" objectFit="cover" src={amiya} />
                     </div>
                 </div>
                 <Image
-                    alt={"header background"}
+                    alt="header background"
                     className={`relative m-0 p-0 dark:brightness-60 z-0 w-full`}
-                    objectFit={"cover"}
+                    objectFit="cover"
                     src={headerBg}
                 />
             </div>
 
             <section
-                className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"}
-                id={"sponsors"}
+                className="flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"
+                id="sponsors"
             >
                 <SponsorsCarousel />
             </section>
 
             <section
-                className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"}
-                id={"leaders"}
+                className="flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"
+                id="leaders"
             >
-                <div className={"text-4xl text-primary font-bold"}>Meet the Leaders</div>
-                <div className={"text-muted-foreground"}>What should I write here?</div>
-                <div className={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 pt-4 place-items-center-safe w-[90vw]"}>
-                    {
-                        membersList.Leader.map(member => (
-                            <Card
-                                className={"bg-muted/50 w-64 relative mt-8 flex flex-col justify-center items-center"}
-                                key={member.name}
-                            >
-                                <CardHeader className={"mt-8 flex flex-col justify-center items-center pb-2 w-full"}>
-                                    <Image
-                                        alt={`${member.name} ${member.role}`}
-                                        className={"absolute border-2 -top-12 rounded-full w-24 h-24 aspect-square object-cover"}
-                                        height={96}
-                                        src={member.avatar}
-                                        width={96}
-                                    />
-                                    <CardTitle className={"text-center text-2xl"}>{member.name}</CardTitle>
-                                    <CardDescription className={"text-primary"}>
-                                        {member.role}
-                                    </CardDescription>
-                                </CardHeader>
+                <div className="text-4xl text-primary font-bold">Meet the Leaders</div>
+                <div className="text-muted-foreground">What should I write here?</div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 pt-4 place-items-center-safe w-[90vw]">
+                    {membersList.Leader.map((member) => (
+                        <Card
+                            className="bg-muted/50 w-64 relative mt-8 flex flex-col justify-center items-center"
+                            key={member.name}
+                        >
+                            <CardHeader className="mt-8 flex flex-col justify-center items-center pb-2 w-full">
+                                <Image
+                                    alt={`${member.name} ${member.role}`}
+                                    className="absolute border-2 -top-12 rounded-full w-24 h-24 aspect-square object-cover"
+                                    height={96}
+                                    src={member.avatar}
+                                    width={96}
+                                />
+                                <CardTitle className="text-center text-2xl">
+                                    {member.name}
+                                </CardTitle>
+                                <CardDescription className="text-primary">
+                                    {member.role}
+                                </CardDescription>
+                            </CardHeader>
 
-                                <CardContent className={"text-center"}>
-                                    {member.quote}
-                                </CardContent>
+                            <CardContent className="text-center">{member.quote}</CardContent>
 
-                                <CardFooter className={"gap-2"}>
-                                    {member.links.map(link => (
-                                        <div key={`${member.name}-${link.icon}`}>
-                                            <Link
-                                                href={link.url as Route}
-                                            >
-                                                <span>
-                                                    {link.url}
-                                                    icon
-                                                </span>
-                                            </Link>
-                                        </div>
-                                    ))}
-                                </CardFooter>
-                            </Card>
-                        ))
-                    }
+                            <CardFooter className="gap-2">
+                                {member.links.map((link) => (
+                                    <div key={`${member.name}-${link.icon}`}>
+                                        <Link href={link.url as Route}>
+                                            <span>
+                                                {link.url}
+                                                icon
+                                            </span>
+                                        </Link>
+                                    </div>
+                                ))}
+                            </CardFooter>
+                        </Card>
+                    ))}
                 </div>
-                <Heading className={"text-center"} kind={"h4"}>Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác nữa.</Heading>
-                <Button asChild className={"w-fit"}>
-                    <Link href={"/staff"}>
-                        <span className={"font-bold"}>Xem toàn bộ dàn nhân sự của Arknights VNS</span>
+                <Heading className="text-center" kind="h4">
+                    Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác nữa.
+                </Heading>
+                <Button asChild={true} className="w-fit">
+                    <Link href="/staff">
+                        <span className="font-bold">Xem toàn bộ dàn nhân sự của Arknights VNS</span>
                         <ArrowRight />
                     </Link>
                 </Button>
             </section>
 
             <section
-                className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"}
-                id={"projects"}
+                className="flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"
+                id="projects"
             >
                 <ProjectsListing />
             </section>
@@ -120,39 +131,59 @@ export default function MainPage() {
                 <Testimony />
             </section>
             <section
-                className={"flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"}
-                id={"faq"}
+                className="flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"
+                id="faq"
             >
                 <FAQListing />
             </section>
-            <section className={"text-center"}>
-                <Heading className={"text-primary"} kind={"h1"}>Lời kết</Heading>
-                <Paragraph className={""}>Cảm ơn bạn, và cả cộng đồng game Arknights, vì đã đồng hành cùng chúng mình trong suốt 5 năm qua.</Paragraph>
-                <Paragraph className={"font-bold"}>Hẹn gặp lại các bạn vào một ngày không xa! </Paragraph>
-                <Image alt={"Group Picture"} className={"w-3/4 mx-auto my-10 rounded-2xl shadow-2xl"} objectFit={"cover"} src={groupPic} />
-            </section>
-            <section className={"w-1/2 text-start"}>
-                <Paragraph className={"text-2xl text-gray-500"}>“Every artist paints with a fiery soul</Paragraph>
-                <Paragraph className={"text-2xl text-gray-500"}>Every poet weaves words into prayers</Paragraph>
-                <Paragraph className={"text-2xl text-gray-500"}>Every dream has its own chasers.</Paragraph>
-                <Paragraph className={"text-2xl text-gray-500"}>
-                    And we, the
-                    <span className={"text-primary font-bold"}> Dreamchasers</span>
-                    , will be the ones to carve it from hope.”
+            <section className="text-center">
+                <Heading className="text-primary" kind="h1">
+                    Lời kết
+                </Heading>
+                <Paragraph className="">
+                    Cảm ơn bạn, và cả cộng đồng game Arknights, vì đã đồng hành cùng chúng mình
+                    trong suốt 5 năm qua.
                 </Paragraph>
-                <FootNote className={"text-center mt-5"}>Shou Huỳnh - Head Admin @ Arknights Vietnam Station</FootNote>
+                <Paragraph className="font-bold">
+                    Hẹn gặp lại các bạn vào một ngày không xa!{" "}
+                </Paragraph>
+                <Image
+                    alt="Group Picture"
+                    className="w-3/4 mx-auto my-10 rounded-2xl shadow-2xl"
+                    objectFit="cover"
+                    src={groupPic}
+                />
+            </section>
+            <section className="w-1/2 text-start">
+                <Paragraph className="text-2xl text-gray-500">
+                    “Every artist paints with a fiery soul
+                </Paragraph>
+                <Paragraph className="text-2xl text-gray-500">
+                    Every poet weaves words into prayers
+                </Paragraph>
+                <Paragraph className="text-2xl text-gray-500">
+                    Every dream has its own chasers.
+                </Paragraph>
+                <Paragraph className="text-2xl text-gray-500">
+                    And we, the
+                    <span className="text-primary font-bold"> Dreamchasers</span>, will be the ones
+                    to carve it from hope.”
+                </Paragraph>
+                <FootNote className="text-center mt-5">
+                    Shou Huỳnh - Head Admin @ Arknights Vietnam Station
+                </FootNote>
             </section>
             <section>
-                <Button asChild className={"bg-[#5865F2] hover:bg-[#3D4CF0] m-5"}>
-                    <Link href={"https://discord.gg/arknights-vns"}>
-                        <Image alt={"discord"} src={Discord} width={24} />
+                <Button asChild={true} className="bg-[#5865F2] hover:bg-[#3D4CF0] m-5">
+                    <Link href="https://discord.gg/arknights-vns">
+                        <Image alt="discord" src={Discord} width={24} />
                         Arknights VNS
                     </Link>
                 </Button>
 
-                <Button asChild className={"bg-[#5865F2] hover:bg-[#3D4CF0] m-5"}>
-                    <Link href={"https://discord.gg/wgETr8d4FR"}>
-                        <Image alt={"discord"} src={Discord} width={24} />
+                <Button asChild={true} className="bg-[#5865F2] hover:bg-[#3D4CF0] m-5">
+                    <Link href="https://discord.gg/wgETr8d4FR">
+                        <Image alt="discord" src={Discord} width={24} />
                         Arknights VNS
                     </Link>
                 </Button>

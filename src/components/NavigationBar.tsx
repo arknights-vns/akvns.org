@@ -1,9 +1,8 @@
 "use client";
 
-import type { Route } from "next";
-
 import VNS_Icon from "@public/VNS_Icon.svg";
 import { Menu } from "lucide-react";
+import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,10 +10,12 @@ import DiscordInfoPill from "@/components/DiscordInfoPill";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
 import {
-    NavigationMenu, NavigationMenuContent,
+    NavigationMenu,
+    NavigationMenuContent,
     NavigationMenuItem,
     NavigationMenuLink,
-    NavigationMenuList, NavigationMenuTrigger,
+    NavigationMenuList,
+    NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import {
@@ -90,34 +91,35 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
 
 export default function NavigationBar() {
     return (
-        <header className={"px-4 sticky top-0 z-5 flex h-18 bg-background justify-between drop-shadow-2xl drop-shadow-neutral-200/45 dark:drop-shadow-neutral-200/15"}>
-            <div className={"flex gap-4 w-[25vw]"}>
+        <header className="px-4 sticky top-0 z-5 flex h-18 bg-background justify-between drop-shadow-2xl drop-shadow-neutral-200/45 dark:drop-shadow-neutral-200/15">
+            <div className="flex gap-4 w-[25vw]">
                 <Sheet>
-                    <SheetTrigger asChild>
+                    <SheetTrigger asChild={true}>
                         <Button
-                            aria-label={"burger-menu"}
-                            className={"self-center lg:hidden"}
-                            size={"icon"}
-                            variant={"outline"}
+                            aria-label="burger-menu"
+                            className="self-center lg:hidden"
+                            size="icon"
+                            variant="outline"
                         >
-                            <div className={"sr-only"}>Mobile menu</div>
+                            <div className="sr-only">Mobile menu</div>
                             <Menu />
                         </Button>
                     </SheetTrigger>
-                    <SheetContent className={"max-w-xs"} side={"left"}>
+                    <SheetContent className="max-w-xs" side="left">
                         <SheetHeader>
                             <SheetTitle>Arknights Vietnam Station</SheetTitle>
                             <SheetDescription>Các đường link trong website.</SheetDescription>
                         </SheetHeader>
-                        <div className={"flex flex-col ml-4 gap-4 w-fit"}>
+                        <div className="flex flex-col ml-4 gap-4 w-fit">
+                            {/** biome-ignore lint/suspicious/useIterableCallbackReturn: type-checked */}
                             {links.map((entry) => {
                                 switch (entry.type) {
                                     case "dropdown": {
                                         return (
                                             <details key={`mobile-dropdown-${entry.label}`}>
-                                                <summary className={"mb-2"}>{entry.label}</summary>
-                                                <div className={"flex flex-col gap-y-4 ml-8"}>
-                                                    {entry.children.map(subentry => (
+                                                <summary className="mb-2">{entry.label}</summary>
+                                                <div className="flex flex-col gap-y-4 ml-8">
+                                                    {entry.children.map((subentry) => (
                                                         <Link
                                                             href={subentry.href}
                                                             key={`${entry.label}-${subentry.label}`}
@@ -145,12 +147,22 @@ export default function NavigationBar() {
                         <SheetFooter />
                     </SheetContent>
                 </Sheet>
-                <Link className={"flex items-center w-[50px]"} href={"/"}>
-                    <Image alt={"VNS_Logo_Header"} className={"size-[50px] dark:invert"} src={VNS_Icon} title={"AKVNS Logo"} />
+                <Link className="flex items-center w-[50px]" href="/">
+                    <Image
+                        alt="VNS_Logo_Header"
+                        className="size-[50px] dark:invert"
+                        src={VNS_Icon}
+                        title="AKVNS Logo"
+                    />
                 </Link>
             </div>
-            <NavigationMenu aria-label={"nav-bar"} className={"hidden lg:flex w-[50vw]"} viewport={false}>
-                <NavigationMenuList className={"gap-x-8"}>
+            <NavigationMenu
+                aria-label="nav-bar"
+                className="hidden lg:flex w-[50vw]"
+                viewport={false}
+            >
+                <NavigationMenuList className="gap-x-8">
+                    {/** biome-ignore lint/suspicious/useIterableCallbackReturn: type-checked */}
                     {links.map((entry) => {
                         switch (entry.type) {
                             case "dropdown": {
@@ -158,13 +170,18 @@ export default function NavigationBar() {
                                     <NavigationMenuItem key={`desktop-downdown-${entry.label}`}>
                                         <NavigationMenuTrigger>{entry.label}</NavigationMenuTrigger>
                                         <NavigationMenuContent>
-                                            <ul className={"grid w-[300px] gap-4"}>
+                                            <ul className="grid w-[300px] gap-4">
                                                 <li>
-                                                    {entry.children.map(subentry => (
-                                                        <NavigationMenuLink asChild key={`${entry.label}-${subentry.label}`}>
+                                                    {entry.children.map((subentry) => (
+                                                        <NavigationMenuLink
+                                                            asChild={true}
+                                                            key={`${entry.label}-${subentry.label}`}
+                                                        >
                                                             <Link href={subentry.href}>
-                                                                <div className={"font-medium"}>{subentry.label}</div>
-                                                                <div className={"text-muted-foreground"}>
+                                                                <div className="font-medium">
+                                                                    {subentry.label}
+                                                                </div>
+                                                                <div className="text-muted-foreground">
                                                                     {subentry.description}
                                                                 </div>
                                                             </Link>
@@ -179,9 +196,12 @@ export default function NavigationBar() {
                             case "link": {
                                 return (
                                     <NavigationMenuItem key={`desktop-link-${entry.label}`}>
-                                        <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                                        <NavigationMenuLink
+                                            asChild={true}
+                                            className={navigationMenuTriggerStyle()}
+                                        >
                                             <Link
-                                                className={"relative rounded-none inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:-translate-x-1/2 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"}
+                                                className="relative rounded-none inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:-translate-x-1/2 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"
                                                 href={entry.href}
                                             >
                                                 {entry.label}
@@ -194,7 +214,7 @@ export default function NavigationBar() {
                     })}
                 </NavigationMenuList>
             </NavigationMenu>
-            <div className={"flex justify-end items-center gap-3 w-[25vw]"}>
+            <div className="flex justify-end items-center gap-3 w-[25vw]">
                 <DiscordInfoPill />
                 <ThemeSwitcher />
             </div>

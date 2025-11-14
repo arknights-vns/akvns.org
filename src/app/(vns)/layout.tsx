@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
+import FavIconLight from "@public/favicon.ico";
 
 import FavIconDark from "@public/favicon-dark.ico";
-import FavIconLight from "@public/favicon.ico";
+import type { Metadata } from "next";
 
 import BackToTop from "@/components/BackToTop";
 import FatFooter from "@/components/FatFooter";
@@ -52,9 +52,7 @@ export default function RootLayout(properties: LayoutProps<"/">) {
     return (
         <>
             <NavigationBar />
-            <main className={"min-h-screen max-w-screen scroll-smooth"}>
-                {properties.children}
-            </main>
+            <main className="min-h-screen max-w-screen scroll-smooth">{properties.children}</main>
             <BackToTop />
             <FatFooter />
         </>

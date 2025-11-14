@@ -1,11 +1,7 @@
 import { GetObjectCommand, ListObjectsV2Command } from "@aws-sdk/client-s3";
-import {
-    BlobWriter,
-    Uint8ArrayReader,
-    ZipWriter,
-} from "@zip.js/zip.js";
+import { BlobWriter, Uint8ArrayReader, ZipWriter } from "@zip.js/zip.js";
 import { headers } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 import { requireAuth } from "@/lib/auth-guard";
 import { s3Client } from "@/lib/aws-s3";
@@ -17,11 +13,8 @@ export async function GET(
     _: NextRequest,
     parameters: RouteContext<"/api/gallery/[collection]/archive">,
 ) {
-    if (!await requireAuth(await headers(), true)) {
-        return NextResponse.json(
-            { error: "Not Permitted" },
-            { status: 403 },
-        );
+    if (!(await requireAuth(await headers(), true))) {
+        return NextResponse.json({ error: "Not Permitted" }, { status: 403 });
     }
 
     const parameterList = await parameters.params;
@@ -45,8 +38,7 @@ export async function GET(
                 if (!object.Key) continue;
 
                 const { Body } = await s3Client.send(
-                    new GetObjectCommand({ Bucket: parameterList.collection,
-                        Key: object.Key }),
+                    new GetObjectCommand({ Bucket: parameterList.collection, Key: object.Key }),
                 );
 
                 if (!Body) continue;
@@ -62,19 +54,15 @@ export async function GET(
         await zipWriter.close();
         const zipBlob = await zipBlobWriter.getData();
 
-        return new NextResponse(
-            zipBlob.stream(),
-            {
-                headers: {
-                    "Content-Disposition": `attachment; filename="${parameterList.collection}.zip"`,
-                    "Content-Length": zipBlob.size.toString(),
-                    "Content-Type": "application/zip",
-                },
-                status: 200,
+        return new NextResponse(zipBlob.stream(), {
+            headers: {
+                "Content-Disposition": `attachment; filename="${parameterList.collection}.zip"`,
+                "Content-Length": zipBlob.size.toString(),
+                "Content-Type": "application/zip",
             },
-        );
-    }
-    catch {
+            status: 200,
+        });
+    } catch {
         return NextResponse.json(
             { error: `Unable to create zip for ${parameterList.collection}` },
             { status: 500 },

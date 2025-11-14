@@ -2,19 +2,23 @@ import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
     await page.goto("/");
-    await page.evaluate(() => window.scrollTo({
-        left: 0,
-        top: 0,
-    }));
+    await page.evaluate(() =>
+        window.scrollTo({
+            left: 0,
+            top: 0,
+        }),
+    );
 });
 
 test("back-to-top conditional render", async ({ page }) => {
     await expect(page.getByLabel("back-to-top")).toBeHidden();
 
-    await page.evaluate(() => window.scrollTo({
-        left: 0,
-        top: 25,
-    }));
+    await page.evaluate(() =>
+        window.scrollTo({
+            left: 0,
+            top: 25,
+        }),
+    );
 
     await expect(page.getByLabel("back-to-top")).toBeVisible();
 });

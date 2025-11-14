@@ -21,8 +21,7 @@ export default function BackToTop() {
         const scrollHandle = () => {
             if (window.scrollY >= 25) {
                 setShowTopButton(true);
-            }
-            else {
+            } else {
                 setShowTopButton(false);
             }
         };
@@ -34,12 +33,16 @@ export default function BackToTop() {
 
     return (
         <Button
-            aria-label={"back-to-top"}
-            className={clsx("right-4 bottom-4 bg-primary", showTopButton && "fixed", !showTopButton && "hidden")}
+            aria-label="back-to-top"
+            className={clsx(
+                "right-4 bottom-4 bg-primary",
+                showTopButton && "fixed",
+                !showTopButton && "hidden",
+            )}
             onClick={goToTop}
-            size={"icon-lg"}
+            size="icon-lg"
         >
-            <div className={"sr-only"}>Back to top</div>
+            <div className="sr-only">Back to top</div>
             <ArrowUpToLine />
         </Button>
     );

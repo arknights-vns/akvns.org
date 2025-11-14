@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
-import { ComicCategory } from "@/generated/prisma/enums";
+import type { ComicCategory } from "@/generated/prisma/enums";
 import { requireAuth } from "@/lib/auth-guard";
 import prisma from "@/lib/prisma";
 import { ComicSeriesMetadata } from "@/schema/comic";
@@ -36,23 +36,15 @@ export async function GET() {
 /**
  * Create metadata for a comic series.
  */
-export async function POST(
-    request: NextRequest,
-) {
-    if (!await requireAuth(await headers(), true)) {
-        return NextResponse.json(
-            { error: "Not Permitted." },
-            { status: 403 },
-        );
+export async function POST(request: NextRequest) {
+    if (!(await requireAuth(await headers(), true))) {
+        return NextResponse.json({ error: "Not Permitted." }, { status: 403 });
     }
 
     const parseResult = await ComicSeriesMetadata.safeParseAsync(await request.json());
 
     if (parseResult.error) {
-        return NextResponse.json(
-            { error: parseResult.error.message },
-            { status: 400 },
-        );
+        return NextResponse.json({ error: parseResult.error.message }, { status: 400 });
     }
 
     const data = parseResult.data;
@@ -69,8 +61,5 @@ export async function POST(
         },
     });
 
-    return NextResponse.json(
-        { message: "Create success." },
-        { status: 200 },
-    );
+    return NextResponse.json({ message: "Create success." }, { status: 200 });
 }

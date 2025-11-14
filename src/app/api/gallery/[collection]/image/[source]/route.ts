@@ -1,5 +1,5 @@
 import { GetObjectCommand } from "@aws-sdk/client-s3";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 import { s3Client } from "@/lib/aws-s3";
 
@@ -13,35 +13,27 @@ export async function GET(
     const parameterList = await parameters.params;
 
     try {
-        const { Body, ContentLength, ContentType } = await s3Client.send(new GetObjectCommand({
-            Bucket: parameterList.collection,
-            Key: parameterList.source,
-        }));
+        const { Body, ContentLength, ContentType } = await s3Client.send(
+            new GetObjectCommand({
+                Bucket: parameterList.collection,
+                Key: parameterList.source,
+            }),
+        );
 
         const stream = Body as unknown as ReadableStream;
 
         if (!Body || !ContentType || !ContentLength) {
-            return NextResponse.json(
-                { error: "File retrieval error." },
-                { status: 400 },
-            );
+            return NextResponse.json({ error: "File retrieval error." }, { status: 400 });
         }
 
-        return new NextResponse(
-            stream,
-            {
-                headers: {
-                    "Cache-Control": "public, max-age=3600, s-maxage=86400, immutable",
-                    "Content-Length": ContentLength.toString(),
-                    "Content-Type": ContentType.toString(),
-                },
+        return new NextResponse(stream, {
+            headers: {
+                "Cache-Control": "public, max-age=3600, s-maxage=86400, immutable",
+                "Content-Length": ContentLength.toString(),
+                "Content-Type": ContentType.toString(),
             },
-        );
-    }
-    catch {
-        return NextResponse.json(
-            { error: "S3 server failure." },
-            { status: 500 },
-        );
+        });
+    } catch {
+        return NextResponse.json({ error: "S3 server failure." }, { status: 500 });
     }
 }
