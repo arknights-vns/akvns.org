@@ -1,3 +1,5 @@
+"use client";
+
 import type { Route } from "next";
 
 import VNS_Icon from "@public/VNS_Icon.svg";
@@ -112,7 +114,7 @@ export default function NavigationBar() {
                                 switch (entry.type) {
                                     case "dropdown": {
                                         return (
-                                            <details key={entry.label}>
+                                            <details key={`mobile-dropdown-${entry.label}`}>
                                                 <summary className={"mb-2"}>{entry.label}</summary>
                                                 <div className={"flex flex-col gap-y-4 ml-8"}>
                                                     {entry.children.map(subentry => (
@@ -131,7 +133,7 @@ export default function NavigationBar() {
                                         return (
                                             <Link
                                                 href={entry.href}
-                                                key={entry.label}
+                                                key={`mobile-link-${entry.label}`}
                                             >
                                                 {entry.label}
                                             </Link>
@@ -153,7 +155,7 @@ export default function NavigationBar() {
                         switch (entry.type) {
                             case "dropdown": {
                                 return (
-                                    <NavigationMenuItem key={entry.label}>
+                                    <NavigationMenuItem key={`desktop-downdown-${entry.label}`}>
                                         <NavigationMenuTrigger>{entry.label}</NavigationMenuTrigger>
                                         <NavigationMenuContent>
                                             <ul className={"grid w-[300px] gap-4"}>
@@ -176,7 +178,7 @@ export default function NavigationBar() {
                             }
                             case "link": {
                                 return (
-                                    <NavigationMenuItem key={entry.label}>
+                                    <NavigationMenuItem key={`desktop-link-${entry.label}`}>
                                         <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                                             <Link
                                                 className={"relative rounded-none inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:-translate-x-1/2 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"}
