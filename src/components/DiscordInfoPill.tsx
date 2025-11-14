@@ -6,7 +6,6 @@ import { CircleUser, CircleX, Lock, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCallback } from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -27,16 +26,17 @@ export default function DiscordInfoPill() {
     const pathname = usePathname();
     const discordFeatureEnabled = useFlag("VNS_DISCORD_LOGIN");
 
-    const handleLoginClick = useCallback(() => {
-        authClient.signIn.social({
+    const handleLoginClick = async () => {
+        await authClient.signIn.social({
             callbackURL: pathname,
             provider: "discord",
         });
-    }, [pathname]);
+    };
 
-    const handleLogoutClick = useCallback(() => {
-        authClient.signOut().then(() => globalThis.location.reload());
-    }, []);
+    const handleLogoutClick = async () => {
+        await authClient.signOut();
+        globalThis.location.reload();
+    };
 
     if (isPending) {
         return <Spinner className={"size-6 text-red-400"} />;

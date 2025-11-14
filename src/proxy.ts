@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { env } from "@/lib/env";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
     if (env.SKIP_AUTH) {
         // eslint-disable-next-line no-console
         console.warn("WARNING: SKIP_AUTH is ON!!!");
@@ -37,5 +37,4 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
     matcher: ["/manage/:path*"],
-    runtime: "nodejs",
 };
