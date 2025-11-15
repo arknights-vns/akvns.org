@@ -1,8 +1,8 @@
 "use client";
 
+import type { Route } from "next";
 import carouselData from "@public/data/carouselData.json";
 import AutoScroll from "embla-carousel-auto-scroll";
-import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 

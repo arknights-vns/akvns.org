@@ -1,7 +1,7 @@
+import type { ComicCategory } from "@/generated/prisma/enums";
 import { headers } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
 
-import type { ComicCategory } from "@/generated/prisma/enums";
 import { requireAuth } from "@/lib/auth-guard";
 import prisma from "@/lib/prisma";
 import { ComicSeriesMetadata } from "@/schema/comic";

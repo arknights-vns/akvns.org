@@ -1,5 +1,5 @@
-import { Book, ChevronDown, Home, type LucideIcon } from "lucide-react";
 import type { Metadata, Route } from "next";
+import { Book, ChevronDown, Home, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 
 import ImageGalleryListing from "@/components/admin/ImageGalleryListing";

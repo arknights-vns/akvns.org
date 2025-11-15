@@ -1,10 +1,10 @@
+import type { Route } from "next";
 import FacebookLogo from "@public/brand/facebook.svg";
 import SteamLogo from "@public/brand/steam.svg";
 import YoutubeLogo from "@public/brand/youtube.svg";
 import VNS_Donate from "@public/VNS_Donate.jpg";
 import VNS_Logo from "@public/VNS_Logo.png";
 import { ArrowUpRight, HeartHandshake } from "lucide-react";
-import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 

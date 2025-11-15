@@ -1,8 +1,8 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FlagProvider } from "@unleash/nextjs/client";
-import type { ReactNode } from "react";
 import { Toaster } from "sonner";
 
 import { TerraTheme } from "@/components/TerraTheme";

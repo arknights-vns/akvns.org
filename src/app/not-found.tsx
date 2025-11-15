@@ -1,5 +1,5 @@
-import Amiya from "@public/amiya.png";
 import type { Metadata } from "next";
+import Amiya from "@public/amiya.png";
 import Image from "next/image";
 import Link from "next/link";
 

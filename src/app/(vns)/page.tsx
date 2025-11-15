@@ -1,12 +1,12 @@
 2"use client";
 
+import type { Route } from "next";
 import amiya from "@public/amiya.png";
 import Discord from "@public/brand/discord.svg";
 import membersList from "@public/data/members.json";
 import groupPic from "@public/group.jpg";
 import headerBg from "@public/hero.png";
 import { ArrowRight } from "lucide-react";
-import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 

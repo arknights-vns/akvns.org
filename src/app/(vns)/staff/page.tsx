@@ -1,7 +1,7 @@
 "use client";
+import type { Route } from "next";
 import membersList from "@public/data/members.json";
 import { motion } from "framer-motion";
-import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 

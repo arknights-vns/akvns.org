@@ -2,6 +2,7 @@ import type { Viewport } from "next";
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 
 import "./globals.css";
+
 import Providers from "@/components/Providers";
 
 const font = VNS_Font({

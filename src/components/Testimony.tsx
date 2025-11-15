@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import "@/app/globals.css";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 type CardData = {
