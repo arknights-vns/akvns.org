@@ -68,10 +68,12 @@
               {
                 "type": true
               },
-              [":NODE:"],
-              [":PACKAGE:", ":PACKAGE_WITH_PROTOCOL:"],
+              ":NODE:",
+              ":PACKAGE:",
               ":BLANK_LINE:",
-              ":ALIAS:",
+              ["@public/**"],
+              ":BLANK_LINE:",
+              "@/**",
               ":BLANK_LINE:",
               ":PATH:"
             ]

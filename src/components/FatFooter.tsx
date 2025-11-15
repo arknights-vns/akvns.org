@@ -17,6 +17,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { Heading, Paragraph } from "@/components/ui/extension/typography";
 
 const navigations: {
     group: string;
@@ -89,18 +90,19 @@ export default function FatFooter() {
                         </Link>
                     </div>
                 </div>
-                {/* Community. */}
                 {navigations.map((nav) => (
                     <section
                         className="ml-8 grid h-full grid-cols-1 grid-rows-2 gap-y-2"
                         key={nav.group}
                     >
-                        <div className="self-end text-3xl font-extrabold">{nav.group}</div>
+                        <Heading kind="h3" className="self-end text-3xl font-extrabold">
+                            {nav.group}
+                        </Heading>
                         <div className="flex flex-col gap-y-1 [&_a_span]:underline [&_a_span]:decoration-dotted [&_a_span]:underline-offset-4">
                             {nav.items.map((item) => (
                                 <div className="flex gap-x-2" key={item.displayText}>
                                     <Link href={item.href as Route}>
-                                        {item.heading && <>{item.heading}:</>}
+                                        {item.heading && <>{item.heading}: </>}
                                         <span className="font-bold">
                                             {item.cloak ? item.displayText : item.href}
                                         </span>
@@ -115,7 +117,7 @@ export default function FatFooter() {
             <Dialog>
                 <DialogTrigger asChild={true}>
                     <Button className="max-w-sm self-center font-bold">
-                        <HeartHandshake className="" />
+                        <HeartHandshake />
                         Donate cho Arknights VNS
                     </Button>
                 </DialogTrigger>
@@ -125,13 +127,13 @@ export default function FatFooter() {
                         <DialogDescription>Cảm ơn bạn đã ủng hộ Arknights VNS!</DialogDescription>
                     </DialogHeader>
                     <div className="flex flex-col space-y-2">
-                        <p>
+                        <Paragraph>
                             Bằng việc Donate, các bạn đã góp phần giúp tụi mình trang trải chi phí
                             thuê địa điểm Offline, đặt commission, mua merch Arknights, cũng như bảo
                             trì hạ tầng IT.
-                        </p>
+                        </Paragraph>
                         <Image
-                            alt="amiya_placeholder"
+                            alt="donation_qr_code"
                             className="self-center"
                             src={VNS_Donate}
                             width={320}

@@ -1,8 +1,20 @@
 "use client";
 
 import type { Route } from "next";
+import type { StaticImport } from "next/dist/shared/lib/get-img-props";
+import GitHub_Icon from "@public/brand/github.svg";
 import VNS_Icon from "@public/VNS_Icon.svg";
-import { ChevronDown, Menu } from "lucide-react";
+import {
+    Check,
+    ChevronDown,
+    Contact,
+    Crown,
+    Handshake,
+    Info,
+    type LucideIcon,
+    Menu,
+    Users,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -34,6 +46,16 @@ type DropDownNavigation = {
         description: string;
         href: Route;
         label: string;
+        icon:
+            | {
+                  type: "local";
+                  src: StaticImport | string;
+              }
+            | {
+                  type: "lucide";
+                  src: LucideIcon;
+              }
+            | null;
     }[];
     label: string;
     type: "dropdown";
@@ -47,21 +69,57 @@ type NormalNavigation = {
 
 const links: (DropDownNavigation | NormalNavigation)[] = [
     {
-        href: "#",
-        label: "Về chúng mình",
-        type: "link",
+        children: [
+            {
+                href: "/#main",
+                description: "Các thông tin tổng quan về Arknights VNS.",
+                label: "Giới thiệu",
+                icon: {
+                    type: "lucide",
+                    src: Info,
+                },
+            },
+            {
+                href: "/#sponsors",
+                description: "Các bên đã và đang hợp tác với Arknights VNS.",
+                label: "Đối tác",
+                icon: {
+                    type: "lucide",
+                    src: Handshake,
+                },
+            },
+            {
+                href: "/#chat-with-us",
+                description: "",
+                label: "Liên hệ",
+                icon: {
+                    type: "lucide",
+                    src: Contact,
+                },
+            },
+        ],
+        type: "dropdown",
+        label: "Về Arknights VNS",
     },
     {
         children: [
             {
-                description: "",
+                description: "Những người đang điều hành Arknights VNS đến hiện tại.",
                 href: "/#leaders",
-                label: "Meet the Leaders",
+                label: "The Leaders",
+                icon: {
+                    type: "lucide",
+                    src: Crown,
+                },
             },
             {
                 description: "",
                 href: "/staff",
-                label: "Full staff",
+                label: "Toàn bộ dàn staff",
+                icon: {
+                    type: "lucide",
+                    src: Users,
+                },
             },
         ],
         label: "Nhân sự",
@@ -73,11 +131,19 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
                 description: "",
                 href: "/#projects",
                 label: "Các dự án của Arknights VNS",
+                icon: {
+                    type: "lucide",
+                    src: Check,
+                },
             },
             {
-                description: "",
-                href: "#",
-                label: "Truyện tại trạm",
+                description: "Team IT của Arknights VNS, cũng là team làm nên website này.",
+                href: "https://github.com/arknights-vns",
+                label: "Arknights VNS @ GitHub",
+                icon: {
+                    type: "local",
+                    src: GitHub_Icon,
+                },
             },
         ],
         label: "Dự án",
@@ -86,6 +152,11 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
     {
         href: "/#faq",
         label: "Câu hỏi thường gặp",
+        type: "link",
+    },
+    {
+        href: "#",
+        label: "Truyện tại Trạm",
         type: "link",
     },
 ];
@@ -186,8 +257,28 @@ export default function NavigationBar() {
                                                             key={`${entry.label}-${subentry.label}`}
                                                         >
                                                             <Link href={subentry.href}>
-                                                                <div className="font-medium">
-                                                                    {subentry.label}
+                                                                <div className="flex place-items-center-safe gap-2">
+                                                                    {subentry.icon &&
+                                                                        subentry.icon.type ===
+                                                                            "local" && (
+                                                                            <Image
+                                                                                src={
+                                                                                    subentry.icon
+                                                                                        .src
+                                                                                }
+                                                                                alt={`${entry.label}-icon`}
+                                                                                width={16}
+                                                                                className="dark:invert"
+                                                                            />
+                                                                        )}
+                                                                    {subentry.icon &&
+                                                                        subentry.icon.type ===
+                                                                            "lucide" && (
+                                                                            <subentry.icon.src />
+                                                                        )}
+                                                                    <div className="font-medium">
+                                                                        {subentry.label}
+                                                                    </div>
                                                                 </div>
                                                                 <div className="text-muted-foreground">
                                                                     {subentry.description}
