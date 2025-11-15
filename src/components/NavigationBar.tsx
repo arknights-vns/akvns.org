@@ -1,14 +1,15 @@
 "use client";
 
-import VNS_Icon from "@public/VNS_Icon.svg";
-import { Menu } from "lucide-react";
 import type { Route } from "next";
+import VNS_Icon from "@public/VNS_Icon.svg";
+import { ChevronDown, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import DiscordInfoPill from "@/components/DiscordInfoPill";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -110,15 +111,22 @@ export default function NavigationBar() {
                             <SheetTitle>Arknights Vietnam Station</SheetTitle>
                             <SheetDescription>Các đường link trong website.</SheetDescription>
                         </SheetHeader>
-                        <div className="flex flex-col ml-4 gap-4 w-fit">
+                        <div className="flex flex-col mx-4 gap-4">
                             {/** biome-ignore lint/suspicious/useIterableCallbackReturn: type-checked */}
                             {links.map((entry) => {
                                 switch (entry.type) {
                                     case "dropdown": {
                                         return (
-                                            <details key={`mobile-dropdown-${entry.label}`}>
-                                                <summary className="mb-2">{entry.label}</summary>
-                                                <div className="flex flex-col gap-y-4 ml-8">
+                                            <Collapsible
+                                                key={`mobile-dropdown-${entry.label}`}
+                                                defaultOpen={true}
+                                                className="flex flex-col group/collapsible gap-4"
+                                            >
+                                                <CollapsibleTrigger className="flex">
+                                                    {entry.label}
+                                                    <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                                                </CollapsibleTrigger>
+                                                <CollapsibleContent className="flex flex-col gap-4 ml-4">
                                                     {entry.children.map((subentry) => (
                                                         <Link
                                                             href={subentry.href}
@@ -127,8 +135,8 @@ export default function NavigationBar() {
                                                             {subentry.label}
                                                         </Link>
                                                     ))}
-                                                </div>
-                                            </details>
+                                                </CollapsibleContent>
+                                            </Collapsible>
                                         );
                                     }
                                     case "link": {
@@ -201,7 +209,7 @@ export default function NavigationBar() {
                                             className={navigationMenuTriggerStyle()}
                                         >
                                             <Link
-                                                className="relative rounded-none inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:-translate-x-1/2 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"
+                                                className="relative inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:-translate-x-1/2 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"
                                                 href={entry.href}
                                             >
                                                 {entry.label}
