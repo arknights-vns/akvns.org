@@ -15,7 +15,7 @@ export default function Providers({ children }: { children: ReactNode }) {
             <QueryClientProvider client={queryClient}>
                 <FlagProvider
                     config={{
-                        refreshInterval: 15,
+                        usePOSTrequests: true,
                     }}
                 >
                     {children}

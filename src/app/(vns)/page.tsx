@@ -1,8 +1,7 @@
-2"use client";
-
 import type { Route } from "next";
 import amiya from "@public/amiya.png";
 import Discord from "@public/brand/discord.svg";
+import faqsData from "@public/data/faqsData.json";
 import membersList from "@public/data/members.json";
 import groupPic from "@public/group.jpg";
 import headerBg from "@public/hero.png";
@@ -14,6 +13,12 @@ import FAQListing from "@/components/landing/FAQ";
 import ProjectsListing from "@/components/landing/Projects";
 import SponsorsCarousel from "@/components/landing/SponsorsCarousel";
 import Testimony from "@/components/Testimony";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -130,12 +135,30 @@ export default function MainPage() {
             <section>
                 <Testimony />
             </section>
+
             <section
-                className="flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4"
+                className="flex flex-col gap-4 py-24 place-items-center-safe self-center-safe mx-4 min-w-[94vw] md:min-w-[70vw]"
                 id="faq"
             >
-                <FAQListing />
+                <Heading kind="h1" className="text-primary">
+                    Câu hỏi thường gặp
+                </Heading>
+                <Accordion type="multiple" defaultValue={[]} className="w-full">
+                    {faqsData.map((faq, id) => (
+                        <AccordionItem value={`item-${id}`} key={faq.question}>
+                            <AccordionTrigger>
+                                <Heading kind="h4">{faq.question}</Heading>
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                {faq.answer.map((ans) => (
+                                    <Paragraph key={ans}>{ans}</Paragraph>
+                                ))}
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
             </section>
+
             <section className="text-center">
                 <Heading className="text-primary" kind="h1">
                     Lời kết
@@ -154,6 +177,7 @@ export default function MainPage() {
                     src={groupPic}
                 />
             </section>
+
             <section className="w-1/2 text-start">
                 <Paragraph className="text-2xl text-gray-500">
                     “Every artist paints with a fiery soul
@@ -173,6 +197,7 @@ export default function MainPage() {
                     Shou Huỳnh - Head Admin @ Arknights Vietnam Station
                 </FootNote>
             </section>
+
             <section>
                 <Button asChild={true} className="bg-[#5865F2] hover:bg-[#3D4CF0] m-5">
                     <Link href="https://discord.gg/arknights-vns">
