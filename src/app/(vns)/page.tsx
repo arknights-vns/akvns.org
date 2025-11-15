@@ -1,4 +1,4 @@
-"use client";
+2"use client";
 
 import amiya from "@public/amiya.png";
 import Discord from "@public/brand/discord.svg";
@@ -184,7 +184,7 @@ export default function MainPage() {
                 <Button asChild={true} className="bg-[#5865F2] hover:bg-[#3D4CF0] m-5">
                     <Link href="https://discord.gg/wgETr8d4FR">
                         <Image alt="discord" src={Discord} width={24} />
-                        Arknights VNS
+                        Phoenix Frontiers
                     </Link>
                 </Button>
             </section>
