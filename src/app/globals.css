@@ -116,7 +116,7 @@
 @layer base {
     * {
         @apply border-border outline-ring/50;
-        @apply scrollbar-thin scrollbar-thumb-neutral-400 scrollbar-track-accent;
+        @apply scrollbar-thin scrollbar-thumb-neutral-400 scrollbar-track-accent scroll-smooth;
     }
     body {
         @apply bg-background text-foreground;
