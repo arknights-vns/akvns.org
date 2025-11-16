@@ -1,5 +1,6 @@
 import type { Route } from "next";
 import FacebookLogo from "@public/brand/facebook.svg";
+import GithubLogo from "@public/brand/github.svg";
 import SteamLogo from "@public/brand/steam.svg";
 import YoutubeLogo from "@public/brand/youtube.svg";
 import VNS_Donate from "@public/VNS_Donate.jpg";
@@ -66,9 +67,9 @@ const navigations: {
 export default function FatFooter() {
     return (
         <footer className="flex min-h-72 gap-2 flex-col justify-between bg-neutral-200 shadow-sm shadow-primary dark:bg-background">
-            <div className="flex flex-col justify-evenly gap-y-6 md:flex-1/2 md:flex-row md:place-items-center-safe">
+            <div className="flex justify-evenly gap-x-6 md:flex-row md:place-items-center-safe flex-col-reverse">
                 {/* Logo */}
-                <div className="mt-8 flex w-full flex-row place-items-center justify-evenly gap-4 md:w-fit md:flex-col [&_img]:dark:invert">
+                <div className="mt-8 flex w-full place-items-center justify-evenly gap-4 md:w-fit flex-col [&_img]:dark:invert">
                     <Image
                         alt="VNS_Logo_Footer"
                         className="self-center-safe"
@@ -88,31 +89,37 @@ export default function FatFooter() {
                         <Link href="https://steamcommunity.com/groups/arknights_vietnam_station">
                             <Image alt="SteamLogo" src={SteamLogo} width={28} />
                         </Link>
+                        <div>/</div>
+                        <Link href="https://github.com/arknights-vietnam-station">
+                            <Image alt="GitHub" src={GithubLogo} width={20} />
+                        </Link>
                     </div>
                 </div>
-                {navigations.map((nav) => (
-                    <section
-                        className="ml-8 grid h-full grid-cols-1 grid-rows-2 gap-y-2"
-                        key={nav.group}
-                    >
-                        <Heading kind="h3" className="self-end text-3xl font-extrabold">
-                            {nav.group}
-                        </Heading>
-                        <div className="flex flex-col gap-y-1 [&_a_span]:underline [&_a_span]:decoration-dotted [&_a_span]:underline-offset-4">
-                            {nav.items.map((item) => (
-                                <div className="flex gap-x-2" key={item.displayText}>
-                                    <Link href={item.href as Route}>
-                                        {item.heading && <>{item.heading}: </>}
-                                        <span className="font-bold">
-                                            {item.cloak ? item.displayText : item.href}
-                                        </span>
-                                    </Link>
-                                    <ArrowUpRight className="self-center" size={18} />
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                ))}
+                <div className="flex flex-col gap-8 md:flex-row md:place-items-center-safe">
+                    {navigations.map((nav) => (
+                        <section
+                            className="ml-8 grid h-full grid-cols-1 grid-rows-2 gap-y-2"
+                            key={nav.group}
+                        >
+                            <Heading kind="h3" className="self-end text-3xl font-extrabold">
+                                {nav.group}
+                            </Heading>
+                            <div className="flex flex-col gap-y-1 [&_a_span]:underline [&_a_span]:decoration-dotted [&_a_span]:underline-offset-4">
+                                {nav.items.map((item) => (
+                                    <div className="flex gap-x-2" key={item.displayText}>
+                                        <Link href={item.href as Route}>
+                                            {item.heading && <>{item.heading}: </>}
+                                            <span className="font-bold">
+                                                {item.cloak ? item.displayText : item.href}
+                                            </span>
+                                        </Link>
+                                        <ArrowUpRight className="self-center" size={18} />
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    ))}
+                </div>
             </div>
             <Dialog>
                 <DialogTrigger asChild={true}>

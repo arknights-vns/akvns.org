@@ -202,7 +202,21 @@ export default function NavigationBar() {
                                                         <Link
                                                             href={subentry.href}
                                                             key={`${entry.label}-${subentry.label}`}
+                                                            className="flex gap-2 place-items-center-safe"
                                                         >
+                                                            {subentry.icon &&
+                                                                subentry.icon.type === "local" && (
+                                                                    <Image
+                                                                        src={subentry.icon.src}
+                                                                        alt={`${entry.label}-icon`}
+                                                                        width={16}
+                                                                        className="dark:invert"
+                                                                    />
+                                                                )}
+                                                            {subentry.icon &&
+                                                                subentry.icon.type === "lucide" && (
+                                                                    <subentry.icon.src className="size-4" />
+                                                                )}
                                                             {subentry.label}
                                                         </Link>
                                                     ))}

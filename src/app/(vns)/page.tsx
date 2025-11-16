@@ -8,7 +8,6 @@ import faqsData from "@public/data/faqsData.json";
 import membersList from "@public/data/members.json";
 import projectsList from "@public/data/projects.json";
 import groupPic from "@public/group.jpg";
-import headerBg from "@public/hero.png";
 import { clsx } from "clsx";
 import AutoScroll from "embla-carousel-auto-scroll";
 import { ArrowRight, Circle } from "lucide-react";
@@ -35,7 +34,13 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import { FavorText, FootNote, Heading, Paragraph } from "@/components/ui/extension/typography";
+import {
+    BlockQuote,
+    FavorText,
+    FootNote,
+    Heading,
+    Paragraph,
+} from "@/components/ui/extension/typography";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function MainPage() {
@@ -61,36 +66,59 @@ export default function MainPage() {
 
     return (
         <div className="flex flex-col place-items-center-safe w-full">
-            <div className="relative pb-8">
-                <div className="absolute w-full text-center z-1 flex sm:top-1/10">
-                    <div className="center text-start px-10 w-13/20">
-                        <div className="my-5 text-xl sm:text-2xl lg:text-4xl font-bold italic">
-                            Xin chào các bạn, tụi mình là
+            <ContentArea
+                id="main"
+                className="mx-0 bg-none md:bg-[url(/BG_Hero_White.jpg)] md:dark:bg-[url(/BG_Hero_Black.jpg)] bg-cover bg-center bg-no-repeat bg-fixed"
+            >
+                <div className="flex place-items-center-safe pt-0 justify-evenly">
+                    <div className="flex flex-col text-center lg:w-2/3 gap-8">
+                        <div>
+                            <Heading kind="h4" className="font-bold italic">
+                                Xin chào các bạn, tụi mình là
+                            </Heading>
+                            <Heading
+                                kind="h1"
+                                className="text-2xl sm:text-5xl font-extrabold bg-gradient-to-r from-[#FF0044] to-[#5728A3] bg-clip-text text-transparent"
+                            >
+                                Arknights Vietnam Station
+                            </Heading>
+                            <Paragraph className="text-md font-light md:text-2xl lg:text-justify">
+                                Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là
+                                Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với
+                                sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.
+                            </Paragraph>
                         </div>
-                        <div className="my-5 text-2xl sm:text-4xl lg:text-6xl font-extrabold bg-gradient-to-r from-[#FF0044] to-[#5728A3] bg-clip-text text-transparent">
-                            Arknights
-                            <br />
-                            Vietnam Station
+                        <div className="flex justify-evenly flex-col md:flex-row gap-8">
+                            <div>
+                                <div className="text-4xl font-bold">8,8K</div>
+                                <div className="text-xl">lượt theo dõi Fanpage</div>
+                            </div>
+                            <div>
+                                <div className="text-4xl font-bold">36.243</div>
+                                <div className="text-xl">thành viên nhóm</div>
+                            </div>
                         </div>
-                        <div className="my-5 text-xs sm:text-sm md:text-md lg:text-xl">
-                            Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là
-                            Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với sứ
-                            mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.
-                        </div>
+                        <Paragraph className="italic text-muted-foreground">
+                            (*) cập nhật lần cuối vào 11/2025.
+                        </Paragraph>
                     </div>
-                    <div className="w-1/5">
-                        <Image alt="amiyi" className="w-100" objectFit="cover" src={amiya} />
+                    <div className="w-1/5 hidden lg:block">
+                        <Image alt="amiyi" src={amiya} />
+                        <Paragraph className="text-center">
+                            Mascot Amiya của Arknights VNS Offline 2025 "Dreamchasers", được shou.
+                            commission thông qua{" "}
+                            <Link
+                                className="underline underline-offset-4 font-bold"
+                                href="https://lensark.com/"
+                            >
+                                Lens
+                            </Link>
+                        </Paragraph>
                     </div>
                 </div>
-                <Image
-                    alt="header background"
-                    className={`relative m-0 p-0 dark:brightness-60 z-0 w-full`}
-                    objectFit="cover"
-                    src={headerBg}
-                />
-            </div>
+            </ContentArea>
 
-            <ContentArea id="sponsors">
+            <ContentArea className="text-center" id="sponsors">
                 <Heading kind="h1" className="text-primary">
                     Meet the Sponsors
                 </Heading>
@@ -128,22 +156,22 @@ export default function MainPage() {
                 </Carousel>
             </ContentArea>
 
-            <ContentArea id="leaders">
+            <ContentArea className="text-center" id="leaders">
                 <Heading kind="h1" className="text-primary">
                     Meet the Leaders
                 </Heading>
                 <FavorText>What should I write here?</FavorText>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 pt-4 place-items-center-safe w-[90vw]">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 pt-4 place-items-center-safe">
                     {membersList.Leader.map((member) => (
                         <MemberCard {...member} key={member.name} />
                     ))}
                 </div>
-                <FavorText className="text-center">
+                <FavorText className="text-center text-md!">
                     Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác nữa.
                 </FavorText>
-                <Button asChild={true}>
+                <Button asChild={true} className="w-fit px-2 self-center">
                     <Link href="/staff">
-                        <span className="font-bold">Xem toàn bộ dàn nhân sự của Arknights VNS</span>
+                        <span className="font-bold"> Toàn bộ dàn staff Arknights VNS</span>
                         <ArrowRight />
                     </Link>
                 </Button>
@@ -153,12 +181,12 @@ export default function MainPage() {
                 <Tabs className="gap-y-8 w-[80vw]" defaultValue="fan-project">
                     <div className="flex flex-col md:flex-row justify-between gap-3">
                         <div className="flex flex-col gap-2">
-                            <Heading kind="h1">Chúng tôi đã nấu cl gì?</Heading>
-                            <FavorText className="text-muted-foreground">
-                                Placeholder because I'm tired - Đụt
-                            </FavorText>
+                            <Heading kind="h1" className="text-primary">
+                                Chúng tôi đã nấu cl gì?
+                            </Heading>
+                            <FavorText>Placeholder because I'm tired - Đụt</FavorText>
                         </div>
-                        <TabsList className="h-auto self-center-safe gap-4 bg-transparent [&_button]:bg-neutral-300 [&_button]:dark:bg-neutral-600 [&_button]:rounded-xl [&_button]:px-4 [&_button]:py-2 [&_button]:data-[state=active]:bg-primary [&_button]:data-[state=active]:text-white [&_button]:data-[state=active]:font-bold">
+                        <TabsList className="h-auto flex-wrap self-center-safe gap-4 bg-transparent [&>button]:bg-neutral-300 [&>button]:dark:bg-neutral-600 [&>button]:rounded-xl [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-white [&>button]:data-[state=active]:font-bold">
                             <TabsTrigger value="fan-project">Fan Projects</TabsTrigger>
                             <TabsTrigger value="event">Events</TabsTrigger>
                             <TabsTrigger value="cross">Cross-Overs</TabsTrigger>
@@ -224,7 +252,7 @@ export default function MainPage() {
                 </Tabs>
             </ContentArea>
 
-            <ContentArea id="testimony">
+            <ContentArea className="text-center" id="testimony">
                 <Testimony />
             </ContentArea>
 
@@ -236,7 +264,7 @@ export default function MainPage() {
                     {faqsData.map((faq, id) => (
                         <AccordionItem value={`item-${id}`} key={faq.question}>
                             <AccordionTrigger>
-                                <Heading kind="h3">{faq.question}</Heading>
+                                <Heading kind="h4">{faq.question}</Heading>
                             </AccordionTrigger>
                             <AccordionContent>
                                 {faq.answer.map((ans) => (
@@ -250,11 +278,11 @@ export default function MainPage() {
                 </Accordion>
             </ContentArea>
 
-            <ContentArea id="footnote">
+            <ContentArea className="text-center" id="footnote">
                 <Heading className="text-primary" kind="h1">
                     Lời kết
                 </Heading>
-                <FavorText>
+                <FavorText className="text-center">
                     Cảm ơn bạn, và cả cộng đồng game Arknights, vì đã đồng hành cùng chúng mình
                     trong suốt 5 năm qua.
                 </FavorText>
@@ -263,35 +291,33 @@ export default function MainPage() {
                 </Paragraph>
                 <Image
                     alt="Group Picture"
-                    className="rounded-2xl shadow-2xl"
-                    objectFit="cover"
+                    className="rounded-2xl shadow-2xl p-4"
                     src={groupPic}
                     width={960}
                 />
+                <BlockQuote className="text-left">
+                    <Paragraph>"Every artist paints with a fiery soul</Paragraph>
+                    <Paragraph>Every poet weaves words into prayers</Paragraph>
+                    <Paragraph>Every dream has its own chasers.</Paragraph>
+                    <Paragraph>
+                        And we, the <span className="text-primary font-bold">Dreamchasers</span>,
+                        will be the ones to carve it from hope.”
+                    </Paragraph>
+                    <FootNote className="text-right text-foreground! font-bold mt-5">
+                        Shou Huỳnh - Head Admin @ Arknights Vietnam Station
+                    </FootNote>
+                </BlockQuote>
             </ContentArea>
 
-            <ContentArea id="poem" className="text-left italic [&>p]:text-xl">
-                <Paragraph>"Every artist paints with a fiery soul</Paragraph>
-                <Paragraph>Every poet weaves words into prayers</Paragraph>
-                <Paragraph>Every dream has its own chasers.</Paragraph>
-                <Paragraph>
-                    And we, the <span className="text-primary font-bold">Dreamchasers</span>, will
-                    be the ones to carve it from hope.”
-                </Paragraph>
-                <FootNote className="text-right mt-5 text-sm!">
-                    Shou Huỳnh - Head Admin @ Arknights Vietnam Station
-                </FootNote>
-            </ContentArea>
-
-            <ContentArea id="chat-with-us">
+            <ContentArea className="text-center place-items-center-safe" id="chat-with-us">
                 <Heading kind="h1" className="text-primary">
                     Wanna chat?
                 </Heading>
-                <FavorText>
+                <FavorText className="text-center">
                     Team VNS có cả Discord để các bạn giao lưu với nhau, cũng như xem
                     Behind-the-scenes các kiểu :D
                 </FavorText>
-                <div className="flex gap-5">
+                <div className="flex gap-5 flex-col md:flex-row">
                     <Button asChild={true} className="bg-[#5865F2] hover:bg-[#3D4CF0]">
                         <Link href="https://discord.gg/arknights-vns">
                             <Image alt="discord" src={Discord} width={24} />

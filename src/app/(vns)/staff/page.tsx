@@ -11,10 +11,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default function StaffShowcase() {
     return (
         <ContentArea id="#all-staffs">
-            <Heading kind="h1" className="text-primary">
+            <Heading kind="h1" className="text-primary text-center">
                 Nhân sự tại Arknights VNS
             </Heading>
-            <FavorText className="text-muted-foreground">
+            <FavorText className="text-muted-foreground text-center">
                 Toàn bộ nhân sự đang hoạt động tại Arknights VNS
             </FavorText>
             <Tabs className="gap-y-8" defaultValue="leader">
