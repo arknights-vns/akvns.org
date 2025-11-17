@@ -14,11 +14,13 @@ export const GalleryAsset = z.object({
  * A gallery collection.
  */
 export const Gallery = z.object({
-    name: z.string({
-        error: "Name must not be empty",
-    }).regex(GalleryCollectionNameRegex, {
-        error: "Name must be alphanumeric, lowercase, separated by a -",
-    }),
+    name: z
+        .string({
+            error: "Name must not be empty",
+        })
+        .regex(GalleryCollectionNameRegex, {
+            error: "Name must be alphanumeric, lowercase, separated by a -",
+        }),
 });
 
 /**

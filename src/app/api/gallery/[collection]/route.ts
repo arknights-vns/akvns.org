@@ -5,7 +5,7 @@ import {
     paginateListObjectsV2,
 } from "@aws-sdk/client-s3";
 import { headers } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 import { requireAuth } from "@/lib/auth-guard";
 import { s3Client } from "@/lib/aws-s3";
@@ -17,11 +17,8 @@ export async function DELETE(
     _: NextRequest,
     parameters: RouteContext<"/api/gallery/[collection]">,
 ) {
-    if (!await requireAuth(await headers(), true)) {
-        return NextResponse.json(
-            { error: "Not Permitted." },
-            { status: 403 },
-        );
+    if (!(await requireAuth(await headers(), true))) {
+        return NextResponse.json({ error: "Not Permitted." }, { status: 403 });
     }
 
     const parameterList = await parameters.params;
@@ -39,7 +36,7 @@ export async function DELETE(
 
         for await (const { Contents } of paginator) {
             if (!Contents) continue;
-            objectKeys.push(...Contents.map(object => ({ Key: object.Key })));
+            objectKeys.push(...Contents.map((object) => ({ Key: object.Key })));
         }
 
         const deleteCommand = new DeleteObjectsCommand({
@@ -48,38 +45,27 @@ export async function DELETE(
         });
 
         await s3Client.send(deleteCommand);
-    }
-    catch {
+    } catch {
         // bucket probably empty, don't care
         await s3Client.send(new DeleteBucketCommand({ Bucket: parameterList.collection }));
     }
 
-    return NextResponse.json(
-        { message: "OK" },
-        { status: 200 },
-    );
+    return NextResponse.json({ message: "OK" }, { status: 200 });
 }
 
 /**
  * Create a new gallery collection.
  */
-export async function PUT(
-    _: NextRequest,
-    parameters: RouteContext<"/api/gallery/[collection]">,
-) {
-    if (!await requireAuth(await headers(), true)) {
-        return NextResponse.json(
-            { error: "Not Permitted." },
-            { status: 403 },
-        );
+export async function PUT(_: NextRequest, parameters: RouteContext<"/api/gallery/[collection]">) {
+    if (!(await requireAuth(await headers(), true))) {
+        return NextResponse.json({ error: "Not Permitted." }, { status: 403 });
     }
 
     const parameterList = await parameters.params;
 
     try {
         await s3Client.send(new CreateBucketCommand({ Bucket: parameterList.collection }));
-    }
-    catch (error) {
+    } catch (error) {
         if (error instanceof Error) {
             return NextResponse.json(
                 { error: `Bucket creation failed: ${error.message}` },

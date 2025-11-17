@@ -15,7 +15,12 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { FileInput, FileUploader, FileUploaderContent, FileUploaderItem } from "@/components/ui/extension/file-input";
+import {
+    FileInput,
+    FileUploader,
+    FileUploaderContent,
+    FileUploaderItem,
+} from "@/components/ui/extension/file-input";
 import { Spinner } from "@/components/ui/spinner";
 
 type UploadToCollectionButtonProperties = {
@@ -55,11 +60,9 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
 
     return (
         <Dialog onOpenChange={setDialogOpen} open={dialogOpen}>
-            <DialogTrigger asChild>
+            <DialogTrigger asChild={true}>
                 <Button>
-                    <Upload />
-                    {" "}
-                    Upload
+                    <Upload /> Upload
                 </Button>
             </DialogTrigger>
             <DialogContent>
@@ -68,7 +71,7 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
                     <DialogDescription>Không phải lúc nào cũng hoạt động.</DialogDescription>
                 </DialogHeader>
                 <FileUploader
-                    className={"relative bg-background rounded-lg p-2"}
+                    className="relative bg-background rounded-lg p-2"
                     dropzoneOptions={{
                         accept: {
                             "image/jpeg": ["*"],
@@ -80,31 +83,33 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
                         multiple: true,
                     }}
                     onValueChange={setFiles}
-                    reSelect
+                    reSelect={true}
                     value={files}
                 >
-                    <FileInput className={"outline-dashed outline-1 outline-white"}>
-                        <div className={"flex items-center justify-center flex-col pt-3 pb-4"}>
+                    <FileInput className="outline-dashed outline-1 outline-white">
+                        <div className="flex items-center justify-center flex-col pt-3 pb-4">
                             <Paperclip />
                             <span>(1000 files, max 100mb, btw)</span>
                         </div>
                     </FileInput>
-                    <FileUploaderContent className={"flex items-center place-content-center-safe gap-8 flex-row flex-wrap overflow-y-scroll max-h-[50svh]"}>
+                    <FileUploaderContent className="flex items-center place-content-center-safe gap-8 flex-row flex-wrap overflow-y-scroll max-h-[50svh]">
                         {files?.map((file, index) => (
                             <FileUploaderItem
-                                className={"flex flex-col h-auto w-1/4 p-0 rounded-md"}
+                                className="flex flex-col h-auto w-1/4 p-0 rounded-md"
                                 index={index}
                                 key={`${collection}-${file.name}`}
                             >
-                                <div className={"flex flex-col gap-4"}>
+                                <div className="flex flex-col gap-4">
                                     <Image
                                         alt={file.name}
-                                        className={"size-30 p-0 object-cover"}
+                                        className="size-30 p-0 object-cover"
                                         height={80}
                                         src={URL.createObjectURL(file)}
                                         width={80}
                                     />
-                                    <span className={"text-center text-xs font-mono"}>{file.name}</span>
+                                    <span className="text-center text-xs font-mono">
+                                        {file.name}
+                                    </span>
                                 </div>
                             </FileUploaderItem>
                         ))}
@@ -114,18 +119,20 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
                     <Button
                         disabled={uploadToCollectionMutation.isPending || !files?.length}
                         onClick={() => uploadToCollectionMutation.mutate(files)}
-                        type={"submit"}
+                        type="submit"
                     >
-                        {uploadToCollectionMutation.isPending
-                            ? (
-                                    <>
-                                        <Spinner />
-                                        Uploading...
-                                    </>
-                                )
-                            : <>Upload</>}
+                        {uploadToCollectionMutation.isPending ? (
+                            <>
+                                <Spinner />
+                                Uploading...
+                            </>
+                        ) : (
+                            <>Upload</>
+                        )}
                     </Button>
-                    <Button onClick={() => setFiles([])} variant={"secondary"}>Clear</Button>
+                    <Button onClick={() => setFiles([])} variant="secondary">
+                        Clear
+                    </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

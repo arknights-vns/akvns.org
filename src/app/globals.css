@@ -4,6 +4,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@utility bg-radial-mobile {
+    @apply bg-radial-[at_bottom] from-primary/25 dark:from-muted-foreground/45 to-transparent;
+    @apply rounded-b-3xl md:rounded-none;
+}
+
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -116,7 +121,7 @@
 @layer base {
     * {
         @apply border-border outline-ring/50;
-        @apply scrollbar-thin scrollbar-thumb-neutral-400 scrollbar-track-accent;
+        @apply scrollbar-thin scrollbar-thumb-neutral-400 scrollbar-track-accent scroll-smooth;
     }
     body {
         @apply bg-background text-foreground;

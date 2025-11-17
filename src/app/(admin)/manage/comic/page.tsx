@@ -1,30 +1,44 @@
 "use client";
 
+import type { ColumnDef } from "@tanstack/react-table";
+import type { Route } from "next";
+import type { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { ColumnDef } from "@tanstack/react-table";
 import { Plus, Trash } from "lucide-react";
-import { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
 
 import RichTable from "@/components/RichTable";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
-    DialogDescription, DialogFooter,
+    DialogDescription,
+    DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
+import {
+    Field,
+    FieldContent,
+    FieldDescription,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { ComicSeriesMetadata } from "@/schema/comic";
 
@@ -45,7 +59,7 @@ export default function ComicManagementPage() {
             const resp = await fetch("/api/comic");
             const json = await resp.json();
 
-            return json["message"] as Comic[];
+            return json.message as Comic[];
         },
         queryKey: ["comic"],
     });
@@ -58,7 +72,7 @@ export default function ComicManagementPage() {
                 throw new Error(`Unable to delete comic series ${series}.`);
             }
         },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["comic"] }),
+        onSettled: () => queryClient.invalidateQueries({ queryKey: ["comic"] }),
     });
 
     const columns: ColumnDef<Comic>[] = [
@@ -69,10 +83,10 @@ export default function ComicManagementPage() {
                 return (
                     <Image
                         alt={`${comic.title}-thumbnail`}
-                        className={"items-center"}
+                        className="items-center"
                         height={181}
                         src={`/api/gallery/comic-thumbnail/image/${comic.thumbnail}`}
-                        unoptimized
+                        unoptimized={true}
                         width={128}
                     />
                 );
@@ -90,7 +104,7 @@ export default function ComicManagementPage() {
 
                 return (
                     <Link
-                        className={"font-bold underline underline-offset-2 decoration-dashed"}
+                        className="font-bold underline underline-offset-2 decoration-dashed"
                         href={`/manage/comic/${value.comicSeriesId}` as Route}
                     >
                         {value.title}
@@ -119,11 +133,9 @@ export default function ComicManagementPage() {
                 return (
                     <Button
                         onClick={() => comicEntryDeleteMutation.mutate(comic.comicSeriesId)}
-                        variant={"destructive"}
+                        variant="destructive"
                     >
-                        <Trash />
-                        {" "}
-                        Xóa
+                        <Trash /> Xóa
                     </Button>
                 );
             },
@@ -132,17 +144,15 @@ export default function ComicManagementPage() {
     ];
 
     return (
-        <section className={"space-y-4"}>
-            <div className={"flex justify-between"}>
-                <div className={"space-y-4"}>
-                    <div className={"text-4xl font-extrabold"}>
-                        Comic Management
-                    </div>
-                    <div className={"text-muted-foreground"}>
+        <section className="space-y-4">
+            <div className="flex justify-between">
+                <div className="space-y-4">
+                    <div className="text-4xl font-extrabold">Comic Management</div>
+                    <div className="text-muted-foreground">
                         Quản lý các đầu truyện của @terrastationvn.
                     </div>
                 </div>
-                <div className={"flex gap-4 place-items-end"}>
+                <div className="flex gap-4 place-items-end">
                     <ComicCreateForm />
                 </div>
             </div>
@@ -195,7 +205,7 @@ function ComicCreateForm() {
 
     return (
         <Dialog onOpenChange={setFormOpen} open={formOpen}>
-            <DialogTrigger asChild>
+            <DialogTrigger asChild={true}>
                 <Button>
                     <Plus />
                     Tạo mới
@@ -206,25 +216,20 @@ function ComicCreateForm() {
                     <DialogTitle>Thêm Comic Series</DialogTitle>
                     <DialogDescription>Your old friend "Game 1 mạng".</DialogDescription>
                 </DialogHeader>
-                <form
-                    id={"comic-create-form"}
-                    onSubmit={handleSubmit(onSubmit)}
-                >
+                <form id="comic-create-form" onSubmit={handleSubmit(onSubmit)}>
                     <FieldGroup>
                         <Controller
                             control={control}
-                            name={"comicSeriesId"}
+                            name="comicSeriesId"
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor={"form-id"}>
-                                        ID
-                                    </FieldLabel>
+                                    <FieldLabel htmlFor="form-id">ID</FieldLabel>
                                     <Input
                                         {...field}
                                         aria-invalid={fieldState.invalid}
-                                        autoComplete={"off"}
-                                        className={"font-mono"}
-                                        id={"form-id"}
+                                        autoComplete="off"
+                                        className="font-mono"
+                                        id="form-id"
                                     />
                                     {fieldState.invalid && (
                                         <FieldError errors={[fieldState.error]} />
@@ -234,17 +239,15 @@ function ComicCreateForm() {
                         />
                         <Controller
                             control={control}
-                            name={"title"}
+                            name="title"
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor={"form-title"}>
-                                        Title
-                                    </FieldLabel>
+                                    <FieldLabel htmlFor="form-title">Title</FieldLabel>
                                     <Input
                                         {...field}
                                         aria-invalid={fieldState.invalid}
-                                        autoComplete={"off"}
-                                        id={"form-title"}
+                                        autoComplete="off"
+                                        id="form-title"
                                     />
                                     {fieldState.invalid && (
                                         <FieldError errors={[fieldState.error]} />
@@ -252,20 +255,18 @@ function ComicCreateForm() {
                                 </Field>
                             )}
                         />
-                        <div className={"flex gap-2"}>
+                        <div className="flex gap-2">
                             <Controller
                                 control={control}
-                                name={"author"}
+                                name="author"
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
-                                        <FieldLabel htmlFor={"form-author"}>
-                                            Author
-                                        </FieldLabel>
+                                        <FieldLabel htmlFor="form-author">Author</FieldLabel>
                                         <Input
                                             {...field}
                                             aria-invalid={fieldState.invalid}
-                                            autoComplete={"off"}
-                                            id={"form-author"}
+                                            autoComplete="off"
+                                            id="form-author"
                                         />
                                         {fieldState.invalid && (
                                             <FieldError errors={[fieldState.error]} />
@@ -275,13 +276,13 @@ function ComicCreateForm() {
                             />
                             <Controller
                                 control={control}
-                                name={"category"}
+                                name="category"
                                 render={({ field, fieldState }) => (
-                                    <Field data-invalid={fieldState.invalid} orientation={"vertical"}>
-                                        <FieldLabel htmlFor={"form-source"}>
-                                            Source
-                                        </FieldLabel>
-                                        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                                    <Field data-invalid={fieldState.invalid} orientation="vertical">
+                                        <FieldLabel htmlFor="form-source">Source</FieldLabel>
+                                        {fieldState.invalid && (
+                                            <FieldError errors={[fieldState.error]} />
+                                        )}
                                         <Select
                                             name={field.name}
                                             onValueChange={field.onChange}
@@ -289,16 +290,20 @@ function ComicCreateForm() {
                                         >
                                             <SelectTrigger
                                                 aria-invalid={fieldState.invalid}
-                                                className={"min-w-[120px]"}
-                                                id={"form-source"}
+                                                className="min-w-[120px]"
+                                                id="form-source"
                                             >
-                                                <SelectValue placeholder={"Select"} />
+                                                <SelectValue placeholder="Select" />
                                             </SelectTrigger>
-                                            <SelectContent position={"item-aligned"}>
-                                                <SelectItem value={"Arknights_VNS"}>Arknights VNS</SelectItem>
-                                                <SelectItem value={"Partner"}>Partner</SelectItem>
-                                                <SelectItem value={"Collaboration"}>Collaboration</SelectItem>
-                                                <SelectItem value={"Community"}>Community</SelectItem>
+                                            <SelectContent position="item-aligned">
+                                                <SelectItem value="Arknights_VNS">
+                                                    Arknights VNS
+                                                </SelectItem>
+                                                <SelectItem value="Partner">Partner</SelectItem>
+                                                <SelectItem value="Collaboration">
+                                                    Collaboration
+                                                </SelectItem>
+                                                <SelectItem value="Community">Community</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </Field>
@@ -307,17 +312,15 @@ function ComicCreateForm() {
                         </div>
                         <Controller
                             control={control}
-                            name={"synopsis"}
+                            name="synopsis"
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
-                                    <FieldLabel htmlFor={"form-synopsis"}>
-                                        Synopsis
-                                    </FieldLabel>
+                                    <FieldLabel htmlFor="form-synopsis">Synopsis</FieldLabel>
                                     <Textarea
                                         {...field}
                                         aria-invalid={fieldState.invalid}
-                                        autoComplete={"off"}
-                                        id={"form-synopsis"}
+                                        autoComplete="off"
+                                        id="form-synopsis"
                                     />
                                     {fieldState.invalid && (
                                         <FieldError errors={[fieldState.error]} />
@@ -327,11 +330,11 @@ function ComicCreateForm() {
                         />
                         <Controller
                             control={control}
-                            name={"thumbnail"}
+                            name="thumbnail"
                             render={({ field, fieldState }) => (
                                 <Field data-invalid={fieldState.invalid}>
                                     <FieldContent>
-                                        <FieldLabel htmlFor={"form-synopsis"}>
+                                        <FieldLabel htmlFor="form-synopsis">
                                             Thumbnail file
                                         </FieldLabel>
                                         <FieldDescription>
@@ -341,8 +344,8 @@ function ComicCreateForm() {
                                     <Input
                                         {...field}
                                         aria-invalid={fieldState.invalid}
-                                        autoComplete={"off"}
-                                        id={"form-synopsis"}
+                                        autoComplete="off"
+                                        id="form-synopsis"
                                     />
 
                                     {fieldState.invalid && (
@@ -354,11 +357,11 @@ function ComicCreateForm() {
                     </FieldGroup>
                 </form>
                 <DialogFooter>
-                    <Field orientation={"horizontal"}>
-                        <Button onClick={() => reset()} type={"button"} variant={"outline"}>
+                    <Field orientation="horizontal">
+                        <Button onClick={() => reset()} type="button" variant="outline">
                             Reset
                         </Button>
-                        <Button form={"comic-create-form"} type={"submit"}>
+                        <Button form="comic-create-form" type="submit">
                             Submit
                         </Button>
                     </Field>

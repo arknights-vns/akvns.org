@@ -1,7 +1,7 @@
+import type { ComicCategory } from "@/generated/prisma/enums";
 import { headers } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
-import { ComicCategory } from "@/generated/prisma/enums";
 import { requireAuth } from "@/lib/auth-guard";
 import prisma from "@/lib/prisma";
 import { ComicSeriesMetadata } from "@/schema/comic";
@@ -13,11 +13,8 @@ export async function DELETE(
     _request: NextRequest,
     parameters: RouteContext<"/api/comic/[series]">,
 ) {
-    if (!await requireAuth(await headers(), true)) {
-        return NextResponse.json(
-            { error: "Not Permitted." },
-            { status: 403 },
-        );
+    if (!(await requireAuth(await headers(), true))) {
+        return NextResponse.json({ error: "Not Permitted." }, { status: 403 });
     }
 
     const parameterList = await parameters.params;
@@ -29,26 +26,17 @@ export async function DELETE(
         },
     });
 
-    if (count == 0) {
-        return NextResponse.json(
-            { error: "Nothing gets deleted?" },
-            { status: 500 },
-        );
+    if (count === 0) {
+        return NextResponse.json({ error: "Nothing gets deleted?" }, { status: 500 });
     }
 
-    return NextResponse.json(
-        { message: "Deletion success." },
-        { status: 200 },
-    );
+    return NextResponse.json({ message: "Deletion success." }, { status: 200 });
 }
 
 /**
  * Get metadata for a comic series.
  */
-export async function GET(
-    _request: NextRequest,
-    parameters: RouteContext<"/api/comic/[series]">,
-) {
+export async function GET(_request: NextRequest, parameters: RouteContext<"/api/comic/[series]">) {
     const parameterList = await parameters.params;
     const { series } = parameterList;
 
@@ -62,10 +50,7 @@ export async function GET(
     });
 
     if (!row) {
-        return NextResponse.json(
-            { error: "Not Found." },
-            { status: 404 },
-        );
+        return NextResponse.json({ error: "Not Found." }, { status: 404 });
     }
 
     return NextResponse.json(
@@ -82,15 +67,9 @@ export async function GET(
 /**
  * Update metadata for a comic series.
  */
-export async function PUT(
-    request: NextRequest,
-    parameters: RouteContext<"/api/comic/[series]">,
-) {
-    if (!await requireAuth(await headers(), true)) {
-        return NextResponse.json(
-            { error: "Not Permitted." },
-            { status: 403 },
-        );
+export async function PUT(request: NextRequest, parameters: RouteContext<"/api/comic/[series]">) {
+    if (!(await requireAuth(await headers(), true))) {
+        return NextResponse.json({ error: "Not Permitted." }, { status: 403 });
     }
 
     const parameterList = await parameters.params;
@@ -99,10 +78,7 @@ export async function PUT(
     const parseResult = await ComicSeriesMetadata.safeParseAsync(await request.json());
 
     if (parseResult.error) {
-        return NextResponse.json(
-            { error: parseResult.error.message },
-            { status: 400 },
-        );
+        return NextResponse.json({ error: parseResult.error.message }, { status: 400 });
     }
 
     const data = parseResult.data;
@@ -137,8 +113,5 @@ export async function PUT(
         },
     });
 
-    return NextResponse.json(
-        { message: "Update success." },
-        { status: 200 },
-    );
+    return NextResponse.json({ message: "Update success." }, { status: 200 });
 }

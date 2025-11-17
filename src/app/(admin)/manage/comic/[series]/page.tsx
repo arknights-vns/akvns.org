@@ -1,34 +1,34 @@
 "use client";
 
-import {
-    closestCenter,
-    DndContext,
-    DragEndEvent,
-} from "@dnd-kit/core";
-import {
-    SortableContext,
-    useSortable,
-    verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
+import { closestCenter, DndContext, type DragEndEvent } from "@dnd-kit/core";
+import { SortableContext, useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { ListRestart, MenuIcon, Plus, SaveAll, X } from "lucide-react";
 import Image from "next/image";
 import { use } from "react";
-import {
-    Controller,
-    useFieldArray,
-    useForm,
-    UseFormRegister,
-} from "react-hook-form";
+import { Controller, type UseFormRegister, useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import { Field, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSet } from "@/components/ui/field";
+import {
+    Field,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+    FieldLegend,
+    FieldSet,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { ComicCategory as ComicCategoryEnum } from "@/generated/prisma/enums";
 import { ComicChapter } from "@/schema/comic";
@@ -65,19 +65,14 @@ export default function ComicSeriesEditor(properties: PageProps<"/manage/comic/[
         queryFn: async () => {
             const resp = await fetch(`/api/comic/${parameters.series}`);
             const json = await resp.json();
-            const data = json["message"];
+            const data = json.message;
 
             reset(data);
 
             // blame RHF for not having a way to handling array data.
             setValue(
                 "translators",
-                data["translators"].map((
-                    entry: {
-                        members: string[];
-                        role: string;
-                    },
-                ) => {
+                data.translators.map((entry: { members: string[]; role: string }) => {
                     return {
                         members: entry.members.join("; "),
                         role: entry.role,
@@ -110,23 +105,30 @@ export default function ComicSeriesEditor(properties: PageProps<"/manage/comic/[
         resolver: zodResolver(ComicSeriesEditForm),
     });
 
-    const { append: appendTranslator, fields: translatorFields, remove: removeTranslator }
-        = useFieldArray({
-            control,
-            name: "translators",
-        });
+    const {
+        append: appendTranslator,
+        fields: translatorFields,
+        remove: removeTranslator,
+    } = useFieldArray({
+        control,
+        name: "translators",
+    });
 
-    const { append: appendChapter, fields: chapterFields, move: moveChapter, remove: removeChapter }
-        = useFieldArray({
-            control,
-            name: "comicChapters",
-        });
+    const {
+        append: appendChapter,
+        fields: chapterFields,
+        move: moveChapter,
+        remove: removeChapter,
+    } = useFieldArray({
+        control,
+        name: "comicChapters",
+    });
 
     const handleDragEnd = (event: DragEndEvent): void => {
         const { active, over } = event;
         if (!over || active.id === over.id) return;
-        const oldIndex = chapterFields.findIndex(chapter => chapter.comicChapterId === active.id);
-        const newIndex = chapterFields.findIndex(chapter => chapter.comicChapterId === over.id);
+        const oldIndex = chapterFields.findIndex((chapter) => chapter.comicChapterId === active.id);
+        const newIndex = chapterFields.findIndex((chapter) => chapter.comicChapterId === over.id);
         moveChapter(oldIndex, newIndex);
     };
 
@@ -141,7 +143,7 @@ export default function ComicSeriesEditor(properties: PageProps<"/manage/comic/[
                     })
                     .map((t) => {
                         return {
-                            members: t.members.split(";").map(v => v.trim()),
+                            members: t.members.split(";").map((v) => v.trim()),
                             role: t.role,
                         };
                     }),
@@ -179,104 +181,122 @@ export default function ComicSeriesEditor(properties: PageProps<"/manage/comic/[
     }
 
     return (
-        <section className={"space-y-4"}>
-            <div className={"flex justify-between"}>
-                <div className={"space-y-4"}>
-                    <div className={"text-4xl font-extrabold"}>
-                        Comic Management
-                    </div>
-                    <div className={"text-muted-foreground"}>
+        <section className="space-y-4">
+            <div className="flex justify-between">
+                <div className="space-y-4">
+                    <div className="text-4xl font-extrabold">Comic Management</div>
+                    <div className="text-muted-foreground">
                         Quản lý các đầu truyện của @terrastationvn.
                     </div>
                 </div>
-                <div className={"flex gap-4 place-items-end"}>
-                    <Button form={"comic-edit-form"} type={"submit"}>
-                        <SaveAll />
-                        {" "}
-                        Save
+                <div className="flex gap-4 place-items-end">
+                    <Button form="comic-edit-form" type="submit">
+                        <SaveAll /> Save
                     </Button>
                 </div>
             </div>
 
-            <form className={"space-y-6"} id={"comic-edit-form"} onSubmit={handleSubmit(handleFormSubmit)}>
-                <div className={"flex flex-col md:flex-row gap-4"}>
+            <form
+                className="space-y-6"
+                id="comic-edit-form"
+                onSubmit={handleSubmit(handleFormSubmit)}
+            >
+                <div className="flex flex-col md:flex-row gap-4">
                     <div>
                         <Image
                             alt={`${parameters.series}-thumbnail`}
-                            className={"items-center h-auto"}
+                            className="items-center h-auto"
                             height={280}
                             src={`/api/gallery/comic-thumbnail/image/${data.thumbnail}`}
-                            unoptimized
+                            unoptimized={true}
                             width={380}
                         />
                     </div>
                     <FieldGroup>
-                        <div className={"flex flex-col gap-8 w-full"}>
+                        <div className="flex flex-col gap-8 w-full">
                             <Controller
                                 control={control}
-                                name={"title"}
+                                name="title"
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
                                         <FieldLabel>Title</FieldLabel>
                                         <Input {...field} aria-invalid={fieldState.invalid} />
-                                        {fieldState.error && <FieldError errors={[fieldState.error]} />}
+                                        {fieldState.error && (
+                                            <FieldError errors={[fieldState.error]} />
+                                        )}
                                     </Field>
                                 )}
                             />
-                            <div className={"flex gap-2"}>
+                            <div className="flex gap-2">
                                 <Controller
                                     control={control}
-                                    name={"author"}
+                                    name="author"
                                     render={({ field, fieldState }) => (
                                         <Field data-invalid={fieldState.invalid}>
                                             <FieldLabel>Author</FieldLabel>
                                             <Input {...field} aria-invalid={fieldState.invalid} />
-                                            {fieldState.error && <FieldError errors={[fieldState.error]} />}
+                                            {fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
                                         </Field>
                                     )}
                                 />
                                 <Controller
                                     control={control}
-                                    name={"category"}
+                                    name="category"
                                     render={({ field, fieldState }) => (
                                         <Field data-invalid={fieldState.invalid}>
                                             <FieldLabel>Category</FieldLabel>
-                                            <Select onValueChange={field.onChange} value={field.value}>
+                                            <Select
+                                                onValueChange={field.onChange}
+                                                value={field.value}
+                                            >
                                                 <SelectTrigger aria-invalid={fieldState.invalid}>
-                                                    <SelectValue placeholder={"Select category"} />
+                                                    <SelectValue placeholder="Select category" />
                                                 </SelectTrigger>
                                                 <SelectContent>
-                                                    {Object.values(ComicCategoryEnum).map(categoryValue => (
-                                                        <SelectItem key={categoryValue} value={categoryValue}>
-                                                            {categoryValue.replaceAll("_", " ")}
-                                                        </SelectItem>
-                                                    ))}
+                                                    {Object.values(ComicCategoryEnum).map(
+                                                        (categoryValue) => (
+                                                            <SelectItem
+                                                                key={categoryValue}
+                                                                value={categoryValue}
+                                                            >
+                                                                {categoryValue.replaceAll("_", " ")}
+                                                            </SelectItem>
+                                                        ),
+                                                    )}
                                                 </SelectContent>
                                             </Select>
-                                            {fieldState.error && <FieldError errors={[fieldState.error]} />}
+                                            {fieldState.error && (
+                                                <FieldError errors={[fieldState.error]} />
+                                            )}
                                         </Field>
                                     )}
                                 />
                             </div>
                             <Controller
                                 control={control}
-                                name={"synopsis"}
+                                name="synopsis"
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
                                         <FieldLabel>Synopsis</FieldLabel>
                                         <Textarea {...field} aria-invalid={fieldState.invalid} />
-                                        {fieldState.error && <FieldError errors={[fieldState.error]} />}
+                                        {fieldState.error && (
+                                            <FieldError errors={[fieldState.error]} />
+                                        )}
                                     </Field>
                                 )}
                             />
                             <Controller
                                 control={control}
-                                name={"thumbnail"}
+                                name="thumbnail"
                                 render={({ field, fieldState }) => (
                                     <Field data-invalid={fieldState.invalid}>
                                         <FieldLabel>Thumbnail</FieldLabel>
                                         <Input {...field} aria-invalid={fieldState.invalid} />
-                                        {fieldState.error && <FieldError errors={[fieldState.error]} />}
+                                        {fieldState.error && (
+                                            <FieldError errors={[fieldState.error]} />
+                                        )}
                                     </Field>
                                 )}
                             />
@@ -284,81 +304,70 @@ export default function ComicSeriesEditor(properties: PageProps<"/manage/comic/[
                     </FieldGroup>
                 </div>
 
-                <FieldSet className={"border rounded-md p-4"}>
+                <FieldSet className="border rounded-md p-4">
                     <FieldLegend>Translators</FieldLegend>
                     <Button
-                        className={"w-full"}
-                        onClick={
-                            () => appendTranslator({
+                        className="w-full"
+                        onClick={() =>
+                            appendTranslator({
                                 members: "",
                                 role: "",
                             })
                         }
-                        type={"button"}
-                        variant={"secondary"}
+                        type="button"
+                        variant="secondary"
                     >
-                        <Plus />
-                        {" "}
-                        Add Translator
+                        <Plus /> Add Translator
                     </Button>
 
-                    <div className={"space-y-1"}>
+                    <div className="space-y-1">
                         {translatorFields.map((translator, index) => (
-                            <div
-                                className={"flex gap-2"}
-                                key={translator.id}
-                            >
+                            <div className="flex gap-2" key={translator.id}>
                                 <Input
                                     {...register(`translators.${index}.role`)}
-                                    className={"w-full"}
-                                    placeholder={"Role (e.g. Typeset)"}
+                                    className="w-full"
+                                    placeholder="Role (e.g. Typeset)"
                                 />
                                 <Input
                                     {...register(`translators.${index}.members`)}
-                                    className={"w-full"}
-                                    placeholder={"Member(s); separated; by; a semicolon"}
+                                    className="w-full"
+                                    placeholder="Member(s); separated; by; a semicolon"
                                 />
                                 <Button
-                                    className={"text-red-500"}
+                                    className="text-red-500"
                                     onClick={() => removeTranslator(index)}
-                                    size={"sm"}
-                                    type={"button"}
-                                    variant={"ghost"}
+                                    size="sm"
+                                    type="button"
+                                    variant="ghost"
                                 >
-                                    <X />
-                                    {" "}
-                                    Remove entry
+                                    <X /> Remove entry
                                 </Button>
                             </div>
                         ))}
                     </div>
                 </FieldSet>
 
-                <FieldSet className={"border rounded-md p-4"}>
+                <FieldSet className="border rounded-md p-4">
                     <FieldLegend>Comic Chapters</FieldLegend>
                     <Button
-                        onClick={
-                            () => appendChapter(
-                                {
-                                    chapterName: "",
-                                    comicChapterId: "",
-                                },
-                            )
+                        onClick={() =>
+                            appendChapter({
+                                chapterName: "",
+                                comicChapterId: "",
+                            })
                         }
-                        type={"button"}
-                        variant={"secondary"}
+                        type="button"
+                        variant="secondary"
                     >
-                        <Plus />
-                        {" "}
-                        Add Chapter
+                        <Plus /> Add Chapter
                     </Button>
 
                     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                         <SortableContext
-                            items={chapterFields.map(chapter => chapter.id)}
+                            items={chapterFields.map((chapter) => chapter.id)}
                             strategy={verticalListSortingStrategy}
                         >
-                            <div className={"mt-4 space-y-2"}>
+                            <div className="mt-4 space-y-2">
                                 {chapterFields.map((chapter, chapterIndex) => (
                                     <DraggableChapterRow
                                         id={chapter.id}
@@ -373,16 +382,12 @@ export default function ComicSeriesEditor(properties: PageProps<"/manage/comic/[
                     </DndContext>
                 </FieldSet>
 
-                <Field className={"justify-end"} orientation={"horizontal"}>
-                    <Button onClick={() => reset()} type={"reset"} variant={"outline"}>
-                        <ListRestart />
-                        {" "}
-                        Reset
+                <Field className="justify-end" orientation="horizontal">
+                    <Button onClick={() => reset()} type="reset" variant="outline">
+                        <ListRestart /> Reset
                     </Button>
-                    <Button form={"comic-edit-form"} type={"submit"}>
-                        <SaveAll />
-                        {" "}
-                        Save
+                    <Button form="comic-edit-form" type="submit">
+                        <SaveAll /> Save
                     </Button>
                 </Field>
             </form>
@@ -408,33 +413,31 @@ function DraggableChapterRow({
             ref={setNodeRef}
             style={style}
             {...attributes}
-            className={"flex items-center gap-2 border rounded-md p-3 bg-background shadow-sm"}
+            className="flex items-center gap-2 border rounded-md p-3 bg-background shadow-sm"
         >
-            <Button {...listeners} className={"cursor-grab"}>
+            <Button {...listeners} className="cursor-grab">
                 <MenuIcon />
             </Button>
 
-            <div className={"flex-1 grid grid-cols-2 gap-2"}>
+            <div className="flex-1 grid grid-cols-2 gap-2">
                 <Input
                     {...register(`comicChapters.${index}.chapterName`)}
-                    placeholder={"Chapter Name"}
+                    placeholder="Chapter Name"
                 />
                 <Input
                     {...register(`comicChapters.${index}.comicChapterId`)}
-                    placeholder={"Gallery Name"}
+                    placeholder="Gallery Name"
                 />
             </div>
 
             <Button
-                className={"text-red-500"}
+                className="text-red-500"
                 onClick={() => removeChapter(index)}
-                size={"sm"}
-                type={"button"}
-                variant={"ghost"}
+                size="sm"
+                type="button"
+                variant="ghost"
             >
-                <X />
-                {" "}
-                Remove Entry
+                <X /> Remove Entry
             </Button>
         </div>
     );
