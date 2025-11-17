@@ -7,6 +7,7 @@ import carouselData from "@public/data/carouselData.json";
 import faqsData from "@public/data/faqsData.json";
 import membersList from "@public/data/members.json";
 import projectsList from "@public/data/projects.json";
+import testimonyData from "@public/data/testimonyData.json";
 import groupPic from "@public/group.jpg";
 import { clsx } from "clsx";
 import AutoScroll from "embla-carousel-auto-scroll";
