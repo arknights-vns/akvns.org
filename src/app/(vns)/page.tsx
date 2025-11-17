@@ -7,6 +7,7 @@ import carouselData from "@public/data/carouselData.json";
 import faqsData from "@public/data/faqsData.json";
 import membersList from "@public/data/members.json";
 import projectsList from "@public/data/projects.json";
+import testimonyData from "@public/data/testimonyData.json";
 import groupPic from "@public/group.jpg";
 import { clsx } from "clsx";
 import AutoScroll from "embla-carousel-auto-scroll";
@@ -17,13 +18,13 @@ import { useEffect, useState } from "react";
 
 import ContentArea from "@/components/ContentArea";
 import MemberCard from "@/components/MemberCard";
-import Testimony from "@/components/Testimony";
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -252,8 +253,37 @@ export default function MainPage() {
                 </Tabs>
             </ContentArea>
 
-            <ContentArea className="text-center" id="testimony">
-                <Testimony />
+            <ContentArea id="testimony">
+                <Heading className="text-primary text-center" kind="h1">
+                    Mọi người nghĩ gì về mình?
+                </Heading>
+                <FavorText className="text-center">Overwhelming Negative Reviews:</FavorText>
+                <article className="grid grid-cols-1 md:grid-cols-2 place-items-center-safe gap-12 m-8">
+                    {testimonyData.map((c) => (
+                        <Card className="shadow-2xl/20 shadow-primary w-full" key={c.id}>
+                            <CardHeader className="flex flex-col">
+                                <div className="flex gap-4">
+                                    <Avatar className="size-12 border shadow-sm">
+                                        {/* FIXME: actual avatars soon. */}
+                                        {/*<AvatarImage src="/VNS_Icon.svg" alt={`${c.name}-avatar`} />*/}
+                                        <AvatarFallback>VNS</AvatarFallback>
+                                    </Avatar>
+                                    <div className="flex flex-col self-center">
+                                        <CardTitle className="font-bold text-xl text-primary">
+                                            {c.name}
+                                        </CardTitle>
+                                        <CardDescription>{c.info}</CardDescription>
+                                    </div>
+                                </div>
+                            </CardHeader>
+                            <CardContent className="leading-relaxed text-justify">
+                                <span className="font-bold text-primary">"</span>
+                                {c.description}
+                                <span className="font-bold text-primary">"</span>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </article>
             </ContentArea>
 
             <ContentArea id="faq">
