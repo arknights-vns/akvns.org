@@ -68,7 +68,7 @@ export default function MainPage() {
         <div className="flex flex-col place-items-center-safe w-full">
             <ContentArea
                 id="main"
-                className="mx-0 bg-none md:bg-[url(/BG_Hero_White.jpg)] md:dark:bg-[url(/BG_Hero_Black.jpg)] bg-cover bg-center bg-no-repeat bg-fixed"
+                className="mx-0 bg-radial-mobile md:bg-[url(/BG_Hero_White.jpg)] md:dark:bg-[url(/BG_Hero_Black.jpg)] bg-cover bg-center bg-no-repeat"
             >
                 <div className="flex place-items-center-safe pt-0 justify-evenly">
                     <div className="flex flex-col text-center lg:w-2/3 gap-8">
@@ -82,7 +82,7 @@ export default function MainPage() {
                             >
                                 Arknights Vietnam Station
                             </Heading>
-                            <Paragraph className="text-md font-light md:text-2xl lg:text-justify">
+                            <Paragraph className="text-md font-light md:text-2xl lg:text-justify mx-8">
                                 Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là
                                 Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với
                                 sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.
@@ -186,7 +186,7 @@ export default function MainPage() {
                             </Heading>
                             <FavorText>Placeholder because I'm tired - Đụt</FavorText>
                         </div>
-                        <TabsList className="h-auto flex-wrap self-center-safe gap-4 bg-transparent [&>button]:bg-neutral-300 [&>button]:dark:bg-neutral-600 [&>button]:rounded-xl [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-white [&>button]:data-[state=active]:font-bold">
+                        <TabsList className="h-auto self-center-safe gap-4 bg-transparent [&>button]:bg-neutral-300 [&>button]:dark:bg-neutral-600 [&>button]:rounded-xl [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-white [&>button]:data-[state=active]:font-bold">
                             <TabsTrigger value="fan-project">Fan Projects</TabsTrigger>
                             <TabsTrigger value="event">Events</TabsTrigger>
                             <TabsTrigger value="cross">Cross-Overs</TabsTrigger>
@@ -317,7 +317,7 @@ export default function MainPage() {
                     Team VNS có cả Discord để các bạn giao lưu với nhau, cũng như xem
                     Behind-the-scenes các kiểu :D
                 </FavorText>
-                <div className="flex gap-5 flex-col md:flex-row">
+                <div className="flex gap-5 flex-wrap">
                     <Button asChild={true} className="bg-[#5865F2] hover:bg-[#3D4CF0]">
                         <Link href="https://discord.gg/arknights-vns">
                             <Image alt="discord" src={Discord} width={24} />
