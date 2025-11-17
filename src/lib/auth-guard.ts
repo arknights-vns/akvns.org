@@ -1,7 +1,7 @@
 import { auth } from "@/lib/auth";
 import { env } from "@/lib/env";
 
-export async function requireAuth(headers: Headers, needAdmin = true) {
+export async function requireAuth(headers: Headers, needAdmin: boolean) {
     if (env.SKIP_AUTH) return true;
 
     const session = await auth.api.getSession({
