@@ -1,5 +1,5 @@
 import type { Metadata, Route } from "next";
-import { Book, ChevronDown, Home, type LucideIcon } from "lucide-react";
+import { AlertCircle, Book, ChevronDown, Home, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 
 import ImageGalleryListing from "@/components/admin/ImageGalleryListing";
@@ -33,6 +33,12 @@ const tools: {
         href: "/manage/comic",
         icon: Book,
         name: "Comic Management",
+    },
+    {
+        experiment: false,
+        href: "/manage/alert",
+        icon: AlertCircle,
+        name: "Website Alert",
     },
 ];
 
