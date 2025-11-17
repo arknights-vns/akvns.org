@@ -72,7 +72,7 @@ export default function ComicManagementPage() {
                 throw new Error(`Unable to delete comic series ${series}.`);
             }
         },
-        onSuccess: () => queryClient.invalidateQueries({ queryKey: ["comic"] }),
+        onSettled: () => queryClient.invalidateQueries({ queryKey: ["comic"] }),
     });
 
     const columns: ColumnDef<Comic>[] = [
