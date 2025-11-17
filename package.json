@@ -12,7 +12,8 @@
     "format:unsafe": "biome check --write --unsafe .",
     "prepare": "husky && prisma generate",
     "db:seed": "prisma db seed",
-    "db:push": "prisma db push --force-reset",
+    "db:push": "prisma db push",
+    "db:push:wipe": "prisma db push --force-reset",
     "test": "playwright test"
   },
   "dependencies": {
