@@ -10,15 +10,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function StaffShowcase() {
     return (
-        <ContentArea id="#all-staffs">
+        <ContentArea id="#all-staffs" className="justify-self-center-safe place-items-center-safe">
             <Heading kind="h1" className="text-primary text-center">
                 Nhân sự tại Arknights VNS
             </Heading>
             <FavorText className="text-muted-foreground text-center">
                 Toàn bộ nhân sự đang hoạt động tại Arknights VNS
             </FavorText>
-            <Tabs className="gap-y-8" defaultValue="leader">
-                <TabsList className="mx-4 flex-wrap h-auto self-center-safe gap-4 bg-transparent [&_button]:bg-neutral-300 [&_button]:dark:bg-neutral-600 [&_button]:rounded-xl [&_button]:px-4 [&_button]:py-2 [&_button]:data-[state=active]:bg-primary [&_button]:data-[state=active]:text-white [&_button]:data-[state=active]:font-bold">
+            <Tabs className="gap-y-8 w-full" defaultValue="leader">
+                <TabsList className="flex flex-wrap h-auto self-center gap-3 bg-transparent [&>button]:bg-neutral-200 [&>button]:dark:bg-neutral-600 [&>button]:rounded-md [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-white [&>button]:data-[state=active]:font-bold">
                     <TabsTrigger value="leader">Leader</TabsTrigger>
                     <TabsTrigger value="translator">Translator</TabsTrigger>
                     <TabsTrigger value="dreamchasers">Dreamchasers</TabsTrigger>
@@ -32,7 +32,7 @@ export default function StaffShowcase() {
 
                     return (
                         <TabsContent
-                            className="self-center-safe grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-4 place-items-center-safe w-[90vw]"
+                            className="self-center-safe grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-4 place-items-center-safe"
                             key={group}
                             value={group.toLowerCase()}
                         >

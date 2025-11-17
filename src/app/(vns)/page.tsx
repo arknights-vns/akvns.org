@@ -67,11 +67,11 @@ export default function MainPage() {
 
     return (
         <div className="flex flex-col place-items-center-safe w-full">
-            <ContentArea
+            <div
                 id="main"
-                className="mx-0 bg-radial-mobile md:bg-[url(/BG_Hero_White.jpg)] md:dark:bg-[url(/BG_Hero_Black.jpg)] bg-cover bg-center bg-no-repeat"
+                className="bg-radial-mobile md:bg-[url(/BG_Hero_White.jpg)] md:dark:bg-[url(/BG_Hero_Black.jpg)] bg-cover bg-center bg-no-repeat"
             >
-                <div className="flex place-items-center-safe pt-0 justify-evenly">
+                <div className="flex place-items-center-safe py-18 justify-evenly">
                     <div className="flex flex-col text-center lg:w-2/3 gap-8">
                         <div>
                             <Heading kind="h4" className="font-bold italic">
@@ -106,18 +106,21 @@ export default function MainPage() {
                     <div className="w-1/5 hidden lg:block">
                         <Image alt="amiyi" src={amiya} />
                         <Paragraph className="text-center">
-                            Mascot Amiya của Arknights VNS Offline 2025 "Dreamchasers", được shou.
-                            commission thông qua{" "}
-                            <Link
-                                className="underline underline-offset-4 font-bold"
-                                href="https://lensark.com/"
-                            >
-                                Lens
-                            </Link>
+                            Mascot Amiya của Arknights VNS Offline 2025 "Dreamchasers".
                         </Paragraph>
                     </div>
                 </div>
-            </ContentArea>
+                <div className="text-right mr-3 mb-4 italic text-muted-foreground text-sm hidden md:block">
+                    Background credit:{" "}
+                    <Link
+                        className="underline underline-offset-4 font-bold"
+                        href="https://lensark.com/"
+                    >
+                        Lens
+                    </Link>{" "}
+                    (commissioned)
+                </div>
+            </div>
 
             <ContentArea className="text-center" id="sponsors">
                 <Heading kind="h1" className="text-primary">
@@ -179,15 +182,15 @@ export default function MainPage() {
             </ContentArea>
 
             <ContentArea id="projects">
-                <Tabs className="gap-y-8 w-[80vw]" defaultValue="fan-project">
-                    <div className="flex flex-col md:flex-row justify-between gap-3">
-                        <div className="flex flex-col gap-2">
+                <Tabs className="gap-y-8" defaultValue="fan-project">
+                    <div className="flex flex-col md:flex-row justify-between gap-y-3">
+                        <div className="flex flex-col gap-2 text-center md:text-left">
                             <Heading kind="h1" className="text-primary">
                                 Chúng tôi đã nấu cl gì?
                             </Heading>
                             <FavorText>Placeholder because I'm tired - Đụt</FavorText>
                         </div>
-                        <TabsList className="h-auto self-center-safe gap-4 bg-transparent [&>button]:bg-neutral-300 [&>button]:dark:bg-neutral-600 [&>button]:rounded-xl [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-white [&>button]:data-[state=active]:font-bold">
+                        <TabsList className="flex h-auto self-center md:self-end gap-3 bg-transparent [&>button]:bg-neutral-200 [&>button]:dark:bg-neutral-600 [&>button]:rounded-md [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-white [&>button]:data-[state=active]:font-bold">
                             <TabsTrigger value="fan-project">Fan Projects</TabsTrigger>
                             <TabsTrigger value="event">Events</TabsTrigger>
                             <TabsTrigger value="cross">Cross-Overs</TabsTrigger>
@@ -225,8 +228,8 @@ export default function MainPage() {
                                             </CarouselItem>
                                         ))}
                                     </CarouselContent>
-                                    <CarouselPrevious />
-                                    <CarouselNext />
+                                    <CarouselPrevious className="hidden md:flex" />
+                                    <CarouselNext className="hidden md:flex" />
                                 </Carousel>
                                 <div className="place-content-center-safe flex py-4 gap-x-3">
                                     {Array.from({ length: count }).map((_, index) => {
@@ -260,7 +263,7 @@ export default function MainPage() {
                 <FavorText className="text-center">Overwhelming Negative Reviews:</FavorText>
                 <article className="grid grid-cols-1 md:grid-cols-2 place-items-center-safe gap-12 m-8">
                     {testimonyData.map((c) => (
-                        <Card className="shadow-2xl/20 shadow-primary w-full" key={c.id}>
+                        <Card className="shadow-md w-full" key={c.id}>
                             <CardHeader className="flex flex-col">
                                 <div className="flex gap-4">
                                     <Avatar className="size-12 border shadow-sm">
@@ -290,7 +293,7 @@ export default function MainPage() {
                 <Heading kind="h1" className="text-primary">
                     Câu hỏi thường gặp
                 </Heading>
-                <Accordion type="multiple" defaultValue={[]} className="w-[94vw] md:w-[72vw]">
+                <Accordion type="multiple" defaultValue={[]}>
                     {faqsData.map((faq, id) => (
                         <AccordionItem value={`item-${id}`} key={faq.question}>
                             <AccordionTrigger>
@@ -308,7 +311,7 @@ export default function MainPage() {
                 </Accordion>
             </ContentArea>
 
-            <ContentArea className="text-center" id="footnote">
+            <ContentArea className="text-center place-items-center-safe" id="footnote">
                 <Heading className="text-primary" kind="h1">
                     Lời kết
                 </Heading>
@@ -321,7 +324,7 @@ export default function MainPage() {
                 </Paragraph>
                 <Image
                     alt="Group Picture"
-                    className="rounded-2xl shadow-2xl p-4"
+                    className="rounded-2xl shadow-xl"
                     src={groupPic}
                     width={960}
                 />
@@ -347,7 +350,7 @@ export default function MainPage() {
                     Team VNS có cả Discord để các bạn giao lưu với nhau, cũng như xem
                     Behind-the-scenes các kiểu :D
                 </FavorText>
-                <div className="flex gap-5 flex-wrap">
+                <div className="flex gap-5 flex-col md:flex-row place-items-center-safe">
                     <Button asChild={true} className="bg-[#5865F2] hover:bg-[#3D4CF0]">
                         <Link href="https://discord.gg/arknights-vns">
                             <Image alt="discord" src={Discord} width={24} />
