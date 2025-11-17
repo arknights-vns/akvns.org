@@ -1,46 +1,8 @@
+import testimonyData from "@public/data/testimonyData.json";
 import Image from "next/image";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heading, Paragraph } from "@/components/ui/typography";
-
-type CardData = {
-    avatar: string;
-    description: string;
-    id: string;
-    info: string;
-    name: string;
-};
-
-const reviews: CardData[] = [
-    {
-        avatar: "/amiya.png",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.",
-        id: "review-1",
-        info: "@an_hai",
-        name: "BLYAT",
-    },
-    {
-        avatar: "/amiya.png",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.",
-        id: "review-2",
-        info: "@Eggs",
-        name: "Dut za Liems",
-    },
-    {
-        avatar: "/amiya.png",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.",
-        id: "review-3",
-        info: "@Dut",
-        name: "Dut!!",
-    },
-    {
-        avatar: "/amiya.png",
-        description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.",
-        id: "review-4",
-        info: "@JohnBalatro",
-        name: "nan-inf từ ante 0",
-    },
-];
 
 export default function Testimony() {
     return (
@@ -55,7 +17,7 @@ export default function Testimony() {
             </div>
 
             <section className={"grid grid-cols-1 sm:grid-cols-2 gap-10"}>
-                {reviews.map(c => (
+                {testimonyData.map(c => (
                     <Card
                         className={
                             "border border-accent-foreground shadow-[0_0_20px_4px_rgba(255,0,0,0.2)]"

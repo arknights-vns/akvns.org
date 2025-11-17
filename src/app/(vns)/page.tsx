@@ -13,7 +13,7 @@ import Link from "next/link";
 import FAQListing from "@/components/landing/FAQ";
 import ProjectsListing from "@/components/landing/Projects";
 import SponsorsCarousel from "@/components/landing/SponsorsCarousel";
-import Testimony from "@/components/Testimony";
+import Testimony from "@/components/landing/Testimony";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { FootNote, Heading, Paragraph } from "@/components/ui/typography";
