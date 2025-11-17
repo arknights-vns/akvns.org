@@ -163,8 +163,8 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
 
 export default function NavigationBar() {
     return (
-        <header className="px-4 sticky top-0 z-5 flex h-18 bg-background justify-between">
-            <div className="flex gap-4 w-[25vw]">
+        <header className="sticky top-0 z-5 flex h-18 justify-between bg-background px-4">
+            <div className="flex w-[25vw] gap-4">
                 <Sheet>
                     <SheetTrigger asChild={true}>
                         <Button
@@ -182,7 +182,7 @@ export default function NavigationBar() {
                             <SheetTitle>Arknights Vietnam Station</SheetTitle>
                             <SheetDescription>Các đường link trong website.</SheetDescription>
                         </SheetHeader>
-                        <div className="flex flex-col mx-4 gap-4">
+                        <div className="mx-4 flex flex-col gap-4">
                             {/** biome-ignore lint/suspicious/useIterableCallbackReturn: type-checked */}
                             {links.map((entry) => {
                                 switch (entry.type) {
@@ -191,18 +191,18 @@ export default function NavigationBar() {
                                             <Collapsible
                                                 key={`mobile-dropdown-${entry.label}`}
                                                 defaultOpen={true}
-                                                className="flex flex-col group/collapsible gap-4"
+                                                className="group/collapsible flex flex-col gap-4"
                                             >
                                                 <CollapsibleTrigger className="flex">
                                                     {entry.label}
                                                     <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                                                 </CollapsibleTrigger>
-                                                <CollapsibleContent className="flex flex-col gap-4 ml-4">
+                                                <CollapsibleContent className="ml-4 flex flex-col gap-4">
                                                     {entry.children.map((subentry) => (
                                                         <Link
                                                             href={subentry.href}
                                                             key={`${entry.label}-${subentry.label}`}
-                                                            className="flex gap-2 place-items-center-safe"
+                                                            className="place-items-center-safe flex gap-2"
                                                         >
                                                             {subentry.icon &&
                                                                 subentry.icon.type === "local" && (
@@ -240,7 +240,7 @@ export default function NavigationBar() {
                         <SheetFooter />
                     </SheetContent>
                 </Sheet>
-                <Link className="flex items-center w-[50px]" href="/">
+                <Link className="flex w-[50px] items-center" href="/">
                     <Image
                         alt="VNS_Logo_Header"
                         className="size-[50px] dark:invert"
@@ -251,7 +251,7 @@ export default function NavigationBar() {
             </div>
             <NavigationMenu
                 aria-label="nav-bar"
-                className="hidden lg:flex w-[50vw]"
+                className="hidden w-[50vw] lg:flex"
                 viewport={false}
             >
                 <NavigationMenuList className="gap-x-8">
@@ -271,7 +271,7 @@ export default function NavigationBar() {
                                                             key={`${entry.label}-${subentry.label}`}
                                                         >
                                                             <Link href={subentry.href}>
-                                                                <div className="flex place-items-center-safe gap-2">
+                                                                <div className="place-items-center-safe flex gap-2">
                                                                     {subentry.icon &&
                                                                         subentry.icon.type ===
                                                                             "local" && (
@@ -314,7 +314,7 @@ export default function NavigationBar() {
                                             className={navigationMenuTriggerStyle()}
                                         >
                                             <Link
-                                                className="relative inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:-translate-x-1/2 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"
+                                                className="after:-translate-x-1/2 relative inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"
                                                 href={entry.href}
                                             >
                                                 {entry.label}
@@ -327,7 +327,7 @@ export default function NavigationBar() {
                     })}
                 </NavigationMenuList>
             </NavigationMenu>
-            <div className="flex justify-end items-center gap-3 w-[25vw]">
+            <div className="flex w-[25vw] items-center justify-end gap-3">
                 <DiscordInfoPill />
                 <ThemeSwitcher />
             </div>

@@ -71,7 +71,7 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
                     <DialogDescription>Không phải lúc nào cũng hoạt động.</DialogDescription>
                 </DialogHeader>
                 <FileUploader
-                    className="relative bg-background rounded-lg p-2"
+                    className="relative rounded-lg bg-background p-2"
                     dropzoneOptions={{
                         accept: {
                             "image/jpeg": ["*"],
@@ -87,27 +87,27 @@ export default function UploadButton(properties: UploadToCollectionButtonPropert
                     value={files}
                 >
                     <FileInput className="outline-dashed outline-1 outline-white">
-                        <div className="flex items-center justify-center flex-col pt-3 pb-4">
+                        <div className="flex flex-col items-center justify-center pt-3 pb-4">
                             <Paperclip />
                             <span>(1000 files, max 100mb, btw)</span>
                         </div>
                     </FileInput>
-                    <FileUploaderContent className="flex items-center place-content-center-safe gap-8 flex-row flex-wrap overflow-y-scroll max-h-[50svh]">
+                    <FileUploaderContent className="place-content-center-safe flex max-h-[50svh] flex-row flex-wrap items-center gap-8 overflow-y-scroll">
                         {files?.map((file, index) => (
                             <FileUploaderItem
-                                className="flex flex-col h-auto w-1/4 p-0 rounded-md"
+                                className="flex h-auto w-1/4 flex-col rounded-md p-0"
                                 index={index}
                                 key={`${collection}-${file.name}`}
                             >
                                 <div className="flex flex-col gap-4">
                                     <Image
                                         alt={file.name}
-                                        className="size-30 p-0 object-cover"
+                                        className="size-30 object-cover p-0"
                                         height={80}
                                         src={URL.createObjectURL(file)}
                                         width={80}
                                     />
-                                    <span className="text-center text-xs font-mono">
+                                    <span className="text-center font-mono text-xs">
                                         {file.name}
                                     </span>
                                 </div>

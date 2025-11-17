@@ -54,8 +54,8 @@ export default function RichTable<TData, TValue>({
     });
 
     return (
-        <div className="flex flex-col gap-2 place-items-center-safe">
-            <Table className="border rounded-md">
+        <div className="place-items-center-safe flex flex-col gap-2">
+            <Table className="rounded-md border">
                 <TableHeader>
                     {table.getHeaderGroups().map((headerGroup) => (
                         <TableRow key={headerGroup.id}>
@@ -104,7 +104,7 @@ export default function RichTable<TData, TValue>({
                 <div className="flex flex-col items-center gap-2">
                     <div className="flex gap-2">
                         <Button
-                            className="border rounded-full p-1"
+                            className="rounded-full border p-1"
                             disabled={!table.getCanPreviousPage()}
                             onClick={() => table.firstPage()}
                             size="icon"
@@ -112,7 +112,7 @@ export default function RichTable<TData, TValue>({
                             <ChevronFirst />
                         </Button>
                         <Button
-                            className="border rounded-full p-2"
+                            className="rounded-full border p-2"
                             disabled={!table.getCanPreviousPage()}
                             onClick={() => table.previousPage()}
                             size="icon"
@@ -120,7 +120,7 @@ export default function RichTable<TData, TValue>({
                             <ChevronLeft />
                         </Button>
                         <Button
-                            className="border rounded-full p-1"
+                            className="rounded-full border p-1"
                             disabled={!table.getCanNextPage()}
                             onClick={() => table.nextPage()}
                             size="icon"
@@ -128,7 +128,7 @@ export default function RichTable<TData, TValue>({
                             <ChevronRight />
                         </Button>
                         <Button
-                            className="border rounded-full p-1"
+                            className="rounded-full border p-1"
                             disabled={!table.getCanNextPage()}
                             onClick={() => table.lastPage()}
                             size="icon"
@@ -136,7 +136,7 @@ export default function RichTable<TData, TValue>({
                             <ChevronLast />
                         </Button>
                     </div>
-                    <div className="flex gap-2 items-center-safe">
+                    <div className="items-center-safe flex gap-2">
                         <span className="flex items-center gap-1">
                             <div>Page</div>
                             <strong>
@@ -151,7 +151,7 @@ export default function RichTable<TData, TValue>({
                         <span className="flex items-center gap-1">
                             Go to page:
                             <Input
-                                className="border p-1 rounded w-16"
+                                className="w-16 rounded border p-1"
                                 defaultValue={table.getState().pagination.pageIndex + 1}
                                 max={table.getPageCount()}
                                 min="1"

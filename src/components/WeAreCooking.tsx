@@ -15,7 +15,7 @@ export default function WeAreCooking() {
     return (
         <Card className="flex max-w-sm drop-shadow-xl md:max-w-lg">
             <CardHeader>
-                <CardTitle className="text-xl font-bold">Tụi mình đang nấu.</CardTitle>
+                <CardTitle className="font-bold text-xl">Tụi mình đang nấu.</CardTitle>
                 <CardDescription>
                     Website vẫn đang trong quá trình phát triển bạn nhé!
                 </CardDescription>
@@ -42,7 +42,7 @@ export default function WeAreCooking() {
                         </Link>
                     </Button>
                 </div>
-                <div className="text-xs text-muted-foreground">
+                <div className="text-muted-foreground text-xs">
                     * Tus không trả lương team IT để làm cái này.
                 </div>
             </CardFooter>

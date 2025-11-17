@@ -104,7 +104,7 @@ export default function ComicManagementPage() {
 
                 return (
                     <Link
-                        className="font-bold underline underline-offset-2 decoration-dashed"
+                        className="font-bold underline decoration-dashed underline-offset-2"
                         href={`/manage/comic/${value.comicSeriesId}` as Route}
                     >
                         {value.title}
@@ -147,12 +147,12 @@ export default function ComicManagementPage() {
         <section className="space-y-4">
             <div className="flex justify-between">
                 <div className="space-y-4">
-                    <div className="text-4xl font-extrabold">Comic Management</div>
+                    <div className="font-extrabold text-4xl">Comic Management</div>
                     <div className="text-muted-foreground">
                         Quản lý các đầu truyện của @terrastationvn.
                     </div>
                 </div>
-                <div className="flex gap-4 place-items-end">
+                <div className="flex place-items-end gap-4">
                     <ComicCreateForm />
                 </div>
             </div>

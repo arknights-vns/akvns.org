@@ -66,10 +66,10 @@ const navigations: {
  */
 export default function FatFooter() {
     return (
-        <footer className="flex min-h-72 gap-2 flex-col justify-between bg-neutral-200 shadow-sm shadow-primary dark:bg-background">
-            <div className="flex justify-evenly gap-x-6 md:flex-row md:place-items-center-safe flex-col-reverse">
+        <footer className="flex min-h-72 flex-col justify-between gap-2 bg-neutral-200 shadow-primary shadow-sm dark:bg-background">
+            <div className="md:place-items-center-safe flex flex-col-reverse justify-evenly gap-x-6 md:flex-row">
                 {/* Logo */}
-                <div className="mt-8 flex w-full place-items-center justify-evenly gap-4 md:w-fit flex-col [&_img]:dark:invert">
+                <div className="mt-8 flex w-full flex-col place-items-center justify-evenly gap-4 md:w-fit [&_img]:dark:invert">
                     <Image
                         alt="VNS_Logo_Footer"
                         className="self-center-safe"
@@ -77,7 +77,7 @@ export default function FatFooter() {
                         title="AKVNS Banner"
                         width={200}
                     />
-                    <div className="my-4 flex place-items-center-safe gap-x-2">
+                    <div className="place-items-center-safe my-4 flex gap-x-2">
                         <Link href="https://www.facebook.com/terrastationvn">
                             <Image alt="FacebookLogo" src={FacebookLogo} width={32} />
                         </Link>
@@ -95,13 +95,13 @@ export default function FatFooter() {
                         </Link>
                     </div>
                 </div>
-                <div className="flex flex-col gap-8 md:flex-row md:place-items-center-safe">
+                <div className="md:place-items-center-safe flex flex-col gap-8 md:flex-row">
                     {navigations.map((nav) => (
                         <section
                             className="ml-8 grid h-full grid-cols-1 grid-rows-2 gap-y-2"
                             key={nav.group}
                         >
-                            <Heading kind="h3" className="self-end text-3xl font-extrabold">
+                            <Heading kind="h3" className="self-end font-extrabold text-3xl">
                                 {nav.group}
                             </Heading>
                             <div className="flex flex-col gap-y-1 [&_a_span]:underline [&_a_span]:decoration-dotted [&_a_span]:underline-offset-4">
@@ -130,7 +130,7 @@ export default function FatFooter() {
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle className="text-2xl font-bold">❤️ Donate</DialogTitle>
+                        <DialogTitle className="font-bold text-2xl">❤️ Donate</DialogTitle>
                         <DialogDescription>Cảm ơn bạn đã ủng hộ Arknights VNS!</DialogDescription>
                     </DialogHeader>
                     <div className="flex flex-col space-y-2">
@@ -148,7 +148,7 @@ export default function FatFooter() {
                     </div>
                 </DialogContent>
             </Dialog>
-            <div className="my-4 text-center font-bold italic text-sm">
+            <div className="my-4 text-center font-bold text-sm italic">
                 ©{" "}
                 <Link className="font-extrabold text-primary" href="/">
                     Arknights Vietnam Station

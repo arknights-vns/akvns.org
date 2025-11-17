@@ -11,14 +11,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export default function StaffShowcase() {
     return (
         <ContentArea id="#all-staffs" className="justify-self-center-safe place-items-center-safe">
-            <Heading kind="h1" className="text-primary text-center">
+            <Heading kind="h1" className="text-center text-primary">
                 Nhân sự tại Arknights VNS
             </Heading>
-            <FavorText className="text-muted-foreground text-center">
+            <FavorText className="text-center text-muted-foreground">
                 Toàn bộ nhân sự đang hoạt động tại Arknights VNS
             </FavorText>
-            <Tabs className="gap-y-8 w-full" defaultValue="leader">
-                <TabsList className="flex flex-wrap h-auto self-center gap-3 bg-transparent [&>button]:bg-neutral-200 [&>button]:dark:bg-neutral-600 [&>button]:rounded-md [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-white [&>button]:data-[state=active]:font-bold">
+            <Tabs className="w-full gap-y-8" defaultValue="leader">
+                <TabsList className="flex h-auto flex-wrap gap-3 self-center bg-transparent [&>button]:rounded-md [&>button]:bg-neutral-200 [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:font-bold [&>button]:data-[state=active]:text-white [&>button]:dark:bg-neutral-600">
                     <TabsTrigger value="leader">Leader</TabsTrigger>
                     <TabsTrigger value="translator">Translator</TabsTrigger>
                     <TabsTrigger value="dreamchasers">Dreamchasers</TabsTrigger>
@@ -32,7 +32,7 @@ export default function StaffShowcase() {
 
                     return (
                         <TabsContent
-                            className="self-center-safe grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 pt-4 place-items-center-safe"
+                            className="self-center-safe place-items-center-safe grid grid-cols-1 gap-8 pt-4 md:grid-cols-3 lg:grid-cols-4"
                             key={group}
                             value={group.toLowerCase()}
                         >

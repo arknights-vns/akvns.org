@@ -26,7 +26,7 @@ export default function AnnouncementDisplay() {
 
     if (data && data.content.trim() !== "")
         return (
-            <div className="py-2 z-1 sticky text-center top-18 bg-primary text-white w-full">
+            <div className="sticky top-18 z-1 w-full bg-primary py-2 text-center text-white">
                 <div className="prose">{parse(DOMPurify.sanitize(data.content))}</div>
             </div>
         );

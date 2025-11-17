@@ -46,7 +46,7 @@ export default function ImageCollectionViewer(
         <section className="space-y-4">
             <div className="flex justify-between">
                 <div className="space-y-4">
-                    <div className="text-4xl font-extrabold">
+                    <div className="font-extrabold text-4xl">
                         Collection: <span className="font-mono">{collection}</span>
                     </div>
                     <div className="text-muted-foreground">
@@ -54,7 +54,7 @@ export default function ImageCollectionViewer(
                         chịu khó reset rồi up lại nha.
                     </div>
                 </div>
-                <div className="flex gap-4 place-items-end">
+                <div className="flex place-items-end gap-4">
                     <UploadButton collection={collection} />
                     <Button
                         asChild={assets.length > 0}
@@ -62,7 +62,7 @@ export default function ImageCollectionViewer(
                         variant="ghost"
                     >
                         <Link
-                            className="flex gap-2 items-center"
+                            className="flex items-center gap-2"
                             href={`/api/gallery/${collection}/archive`}
                         >
                             <Download /> Download
@@ -78,10 +78,10 @@ export default function ImageCollectionViewer(
                 </div>
             </div>
             {assets.length > 0 && (
-                <div className="flex gap-4 flex-wrap place-items-start place-content-center-safe">
+                <div className="place-content-center-safe flex flex-wrap place-items-start gap-4">
                     {assets.map((image) => (
                         <div className="flex flex-col gap-2" key={`${collection}-${image.name}`}>
-                            <span className="font-mono text-sm text-center">{image.name}</span>
+                            <span className="text-center font-mono text-sm">{image.name}</span>
                             <Image
                                 alt={image.name}
                                 className="object-cover"
@@ -95,7 +95,7 @@ export default function ImageCollectionViewer(
             )}
             {assets.length === 0 && (
                 <div className="flex h-[60svh]">
-                    <p className="flex-1 self-center-safe text-center">Wow, such empty.</p>
+                    <p className="self-center-safe flex-1 text-center">Wow, such empty.</p>
                 </div>
             )}
         </section>

@@ -56,10 +56,10 @@ export default function AdminAlertSetup() {
         <section className="space-y-4">
             <div className="flex justify-between">
                 <div className="space-y-4">
-                    <div className="text-4xl font-extrabold">Website Alert</div>
+                    <div className="font-extrabold text-4xl">Website Alert</div>
                     <div className="text-muted-foreground">Chỉnh sửa thông báo đầu website.</div>
                 </div>
-                <div className="flex gap-4 place-items-end">
+                <div className="flex place-items-end gap-4">
                     <Field orientation="horizontal">
                         <Button type="button" variant="outline" onClick={() => reset()}>
                             Reset
@@ -88,7 +88,7 @@ export default function AdminAlertSetup() {
                                 spellCheck={false}
                                 id="announcement-content"
                                 aria-invalid={fieldState.invalid}
-                                className="min-h-[120px] font-mono bg-muted/50"
+                                className="min-h-[120px] bg-muted/50 font-mono"
                             />
                             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
                         </Field>
@@ -97,7 +97,7 @@ export default function AdminAlertSetup() {
             </form>
             <div className="space-y-2">
                 <Heading kind="h2">Preview</Heading>
-                <aside className="prose dark:prose-invert border-2 p-4 rounded-md min-h-[120px]">
+                <aside className="prose dark:prose-invert min-h-[120px] rounded-md border-2 p-4">
                     {parse(DOMPurify.sanitize(rawContent))}
                 </aside>
             </div>

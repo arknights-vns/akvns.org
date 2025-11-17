@@ -65,14 +65,14 @@ export default function DiscordInfoPill() {
     return session && discordFeatureEnabled ? (
         <DropdownMenu>
             <DropdownMenuTrigger asChild={true}>
-                <Avatar className="w-[36px] h-auto">
+                <Avatar className="h-auto w-[36px]">
                     <AvatarImage alt="Discord_Avatar" src={session.user.image || "nothing.png"} />
-                    <AvatarFallback className="rounded-full size-[36px]">VNS</AvatarFallback>
+                    <AvatarFallback className="size-[36px] rounded-full">VNS</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="mt-1">
-                <DropdownMenuLabel className="justify-center flex gap-1">
-                    <span className="font-bold space-x-1">@{session.user.name}</span>
+                <DropdownMenuLabel className="flex justify-center gap-1">
+                    <span className="space-x-1 font-bold">@{session.user.name}</span>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
@@ -101,7 +101,7 @@ export default function DiscordInfoPill() {
         </DropdownMenu>
     ) : (
         <Button
-            className="flex justify-center items-center gap-2 bg-[#5865F2] text-white hover:bg-black"
+            className="flex items-center justify-center gap-2 bg-[#5865F2] text-white hover:bg-black"
             onClick={handleLoginClick}
         >
             <Image alt="Discord_Logo" src={DiscordLogo} width={20} />

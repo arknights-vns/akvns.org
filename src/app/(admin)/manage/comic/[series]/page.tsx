@@ -184,12 +184,12 @@ export default function ComicSeriesEditor(properties: PageProps<"/manage/comic/[
         <section className="space-y-4">
             <div className="flex justify-between">
                 <div className="space-y-4">
-                    <div className="text-4xl font-extrabold">Comic Management</div>
+                    <div className="font-extrabold text-4xl">Comic Management</div>
                     <div className="text-muted-foreground">
                         Quản lý các đầu truyện của @terrastationvn.
                     </div>
                 </div>
-                <div className="flex gap-4 place-items-end">
+                <div className="flex place-items-end gap-4">
                     <Button form="comic-edit-form" type="submit">
                         <SaveAll /> Save
                     </Button>
@@ -201,11 +201,11 @@ export default function ComicSeriesEditor(properties: PageProps<"/manage/comic/[
                 id="comic-edit-form"
                 onSubmit={handleSubmit(handleFormSubmit)}
             >
-                <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex flex-col gap-4 md:flex-row">
                     <div>
                         <Image
                             alt={`${parameters.series}-thumbnail`}
-                            className="items-center h-auto"
+                            className="h-auto items-center"
                             height={280}
                             src={`/api/gallery/comic-thumbnail/image/${data.thumbnail}`}
                             unoptimized={true}
@@ -213,7 +213,7 @@ export default function ComicSeriesEditor(properties: PageProps<"/manage/comic/[
                         />
                     </div>
                     <FieldGroup>
-                        <div className="flex flex-col gap-8 w-full">
+                        <div className="flex w-full flex-col gap-8">
                             <Controller
                                 control={control}
                                 name="title"
@@ -304,7 +304,7 @@ export default function ComicSeriesEditor(properties: PageProps<"/manage/comic/[
                     </FieldGroup>
                 </div>
 
-                <FieldSet className="border rounded-md p-4">
+                <FieldSet className="rounded-md border p-4">
                     <FieldLegend>Translators</FieldLegend>
                     <Button
                         className="w-full"
@@ -347,7 +347,7 @@ export default function ComicSeriesEditor(properties: PageProps<"/manage/comic/[
                     </div>
                 </FieldSet>
 
-                <FieldSet className="border rounded-md p-4">
+                <FieldSet className="rounded-md border p-4">
                     <FieldLegend>Comic Chapters</FieldLegend>
                     <Button
                         onClick={() =>
@@ -413,13 +413,13 @@ function DraggableChapterRow({
             ref={setNodeRef}
             style={style}
             {...attributes}
-            className="flex items-center gap-2 border rounded-md p-3 bg-background shadow-sm"
+            className="flex items-center gap-2 rounded-md border bg-background p-3 shadow-sm"
         >
             <Button {...listeners} className="cursor-grab">
                 <MenuIcon />
             </Button>
 
-            <div className="flex-1 grid grid-cols-2 gap-2">
+            <div className="grid flex-1 grid-cols-2 gap-2">
                 <Input
                     {...register(`comicChapters.${index}.chapterName`)}
                     placeholder="Chapter Name"

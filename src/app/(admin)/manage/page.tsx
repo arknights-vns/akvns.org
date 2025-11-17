@@ -2,7 +2,7 @@ export default function AdminMain() {
     return (
         <main className="flex flex-col gap-8">
             <section className="flex flex-col gap-2">
-                <div className="text-3xl font-bold">Xin chào</div>
+                <div className="font-bold text-3xl">Xin chào</div>
                 <div className="text-muted-foreground">We finally have the CMS now.</div>
                 <div className="flex flex-col gap-y-1">
                     <p>
@@ -18,7 +18,7 @@ export default function AdminMain() {
                 </div>
             </section>
             <section className="flex flex-col gap-2">
-                <div className="text-3xl font-bold">Where analytics?</div>
+                <div className="font-bold text-3xl">Where analytics?</div>
                 <div className="flex flex-col gap-y-1">
                     <p>Soon.</p>
                 </div>

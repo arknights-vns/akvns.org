@@ -42,6 +42,9 @@
           },
           "level": "error"
         }
+      },
+      "nursery": {
+        "useSortedClasses": "error"
       }
     },
     "domains": {

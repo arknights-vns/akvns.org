@@ -66,54 +66,54 @@ export default function MainPage() {
     }, [api]);
 
     return (
-        <div className="flex flex-col place-items-center-safe w-full">
+        <div className="place-items-center-safe flex w-full flex-col">
             <div
                 id="main"
-                className="bg-radial-mobile md:bg-[url(/BG_Hero_White.jpg)] md:dark:bg-[url(/BG_Hero_Black.jpg)] bg-cover bg-center bg-no-repeat"
+                className="bg-center bg-cover bg-radial-mobile bg-no-repeat md:bg-[url(/BG_Hero_White.jpg)] md:dark:bg-[url(/BG_Hero_Black.jpg)]"
             >
-                <div className="flex place-items-center-safe py-18 justify-evenly">
-                    <div className="flex flex-col text-center lg:w-2/3 gap-8">
+                <div className="place-items-center-safe flex justify-evenly py-18">
+                    <div className="flex flex-col gap-8 text-center lg:w-2/3">
                         <div>
                             <Heading kind="h4" className="font-bold italic">
                                 Xin chào các bạn, tụi mình là
                             </Heading>
                             <Heading
                                 kind="h1"
-                                className="text-2xl sm:text-5xl font-extrabold bg-gradient-to-r from-[#FF0044] to-[#5728A3] bg-clip-text text-transparent"
+                                className="bg-gradient-to-r from-[#FF0044] to-[#5728A3] bg-clip-text font-extrabold text-2xl text-transparent sm:text-5xl"
                             >
                                 Arknights Vietnam Station
                             </Heading>
-                            <Paragraph className="text-md font-light md:text-2xl lg:text-justify mx-8">
+                            <Paragraph className="mx-8 font-light text-md md:text-2xl lg:text-justify">
                                 Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là
                                 Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với
                                 sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.
                             </Paragraph>
                         </div>
-                        <div className="flex justify-evenly flex-col md:flex-row gap-8">
+                        <div className="flex flex-col justify-evenly gap-8 md:flex-row">
                             <div>
-                                <div className="text-4xl font-bold">8,8K</div>
+                                <div className="font-bold text-4xl">8,8K</div>
                                 <div className="text-xl">lượt theo dõi Fanpage</div>
                             </div>
                             <div>
-                                <div className="text-4xl font-bold">36.243</div>
+                                <div className="font-bold text-4xl">36.243</div>
                                 <div className="text-xl">thành viên nhóm</div>
                             </div>
                         </div>
-                        <Paragraph className="italic text-muted-foreground">
+                        <Paragraph className="text-muted-foreground italic">
                             (*) cập nhật lần cuối vào 11/2025.
                         </Paragraph>
                     </div>
-                    <div className="w-1/5 hidden lg:block">
+                    <div className="hidden w-1/5 lg:block">
                         <Image alt="amiyi" src={amiya} />
                         <Paragraph className="text-center">
                             Mascot Amiya của Arknights VNS Offline 2025 "Dreamchasers".
                         </Paragraph>
                     </div>
                 </div>
-                <div className="text-right mr-3 mb-4 italic text-muted-foreground text-sm hidden md:block">
+                <div className="mr-3 mb-4 hidden text-right text-muted-foreground text-sm italic md:block">
                     Background credit:{" "}
                     <Link
-                        className="underline underline-offset-4 font-bold"
+                        className="font-bold underline underline-offset-4"
                         href="https://lensark.com/"
                     >
                         Lens
@@ -142,7 +142,7 @@ export default function MainPage() {
                     <CarouselContent className="place-items-center-safe w-sm md:w-full">
                         {carouselData.map((data) => (
                             <CarouselItem
-                                className="md:basis-1/4 flex flex-col justify-between place-items-center-safe"
+                                className="place-items-center-safe flex flex-col justify-between md:basis-1/4"
                                 key={data.title}
                             >
                                 <Link href={data.url as Route}>
@@ -153,7 +153,7 @@ export default function MainPage() {
                                         width={150}
                                     />
                                 </Link>
-                                <FootNote className="text-lg font-bold">{data.title}</FootNote>
+                                <FootNote className="font-bold text-lg">{data.title}</FootNote>
                             </CarouselItem>
                         ))}
                     </CarouselContent>
@@ -165,7 +165,7 @@ export default function MainPage() {
                     Meet the Leaders
                 </Heading>
                 <FavorText>What should I write here?</FavorText>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 pt-4 place-items-center-safe">
+                <div className="place-items-center-safe grid grid-cols-1 gap-8 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {membersList.Leader.map((member) => (
                         <MemberCard {...member} key={member.name} />
                     ))}
@@ -173,7 +173,7 @@ export default function MainPage() {
                 <FavorText className="text-center text-md!">
                     Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác nữa.
                 </FavorText>
-                <Button asChild={true} className="w-fit px-2 self-center">
+                <Button asChild={true} className="w-fit self-center px-2">
                     <Link href="/staff">
                         <span className="font-bold"> Toàn bộ dàn staff Arknights VNS</span>
                         <ArrowRight />
@@ -183,14 +183,14 @@ export default function MainPage() {
 
             <ContentArea id="projects">
                 <Tabs className="gap-y-8" defaultValue="fan-project">
-                    <div className="flex flex-col md:flex-row justify-between gap-y-3">
+                    <div className="flex flex-col justify-between gap-y-3 md:flex-row">
                         <div className="flex flex-col gap-2 text-center md:text-left">
                             <Heading kind="h1" className="text-primary">
                                 Chúng tôi đã nấu cl gì?
                             </Heading>
                             <FavorText>Placeholder because I'm tired - Đụt</FavorText>
                         </div>
-                        <TabsList className="flex h-auto self-center md:self-end gap-3 bg-transparent [&>button]:bg-neutral-200 [&>button]:dark:bg-neutral-600 [&>button]:rounded-md [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:text-white [&>button]:data-[state=active]:font-bold">
+                        <TabsList className="flex h-auto gap-3 self-center bg-transparent md:self-end [&>button]:rounded-md [&>button]:bg-neutral-200 [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:font-bold [&>button]:data-[state=active]:text-white [&>button]:dark:bg-neutral-600">
                             <TabsTrigger value="fan-project">Fan Projects</TabsTrigger>
                             <TabsTrigger value="event">Events</TabsTrigger>
                             <TabsTrigger value="cross">Cross-Overs</TabsTrigger>
@@ -231,7 +231,7 @@ export default function MainPage() {
                                     <CarouselPrevious className="hidden md:flex" />
                                     <CarouselNext className="hidden md:flex" />
                                 </Carousel>
-                                <div className="place-content-center-safe flex py-4 gap-x-3">
+                                <div className="place-content-center-safe flex gap-x-3 py-4">
                                     {Array.from({ length: count }).map((_, index) => {
                                         return (
                                             <Circle
@@ -257,13 +257,13 @@ export default function MainPage() {
             </ContentArea>
 
             <ContentArea id="testimony">
-                <Heading className="text-primary text-center" kind="h1">
+                <Heading className="text-center text-primary" kind="h1">
                     Mọi người nghĩ gì về mình?
                 </Heading>
                 <FavorText className="text-center">Overwhelming Negative Reviews:</FavorText>
-                <article className="grid grid-cols-1 md:grid-cols-2 place-items-center-safe gap-12 m-8">
+                <article className="place-items-center-safe m-8 grid grid-cols-1 gap-12 md:grid-cols-2">
                     {testimonyData.map((c) => (
-                        <Card className="shadow-md w-full" key={c.id}>
+                        <Card className="w-full shadow-md" key={c.id}>
                             <CardHeader className="flex flex-col">
                                 <div className="flex gap-4">
                                     <Avatar className="size-12 border shadow-sm">
@@ -272,14 +272,14 @@ export default function MainPage() {
                                         <AvatarFallback>VNS</AvatarFallback>
                                     </Avatar>
                                     <div className="flex flex-col self-center">
-                                        <CardTitle className="font-bold text-xl text-primary">
+                                        <CardTitle className="font-bold text-primary text-xl">
                                             {c.name}
                                         </CardTitle>
                                         <CardDescription>{c.info}</CardDescription>
                                     </div>
                                 </div>
                             </CardHeader>
-                            <CardContent className="leading-relaxed text-justify">
+                            <CardContent className="text-justify leading-relaxed">
                                 <span className="font-bold text-primary">"</span>
                                 {c.description}
                                 <span className="font-bold text-primary">"</span>
@@ -301,7 +301,7 @@ export default function MainPage() {
                             </AccordionTrigger>
                             <AccordionContent>
                                 {faq.answer.map((ans) => (
-                                    <Paragraph className="text-lg ml-6" key={ans}>
+                                    <Paragraph className="ml-6 text-lg" key={ans}>
                                         {ans}
                                     </Paragraph>
                                 ))}
@@ -311,7 +311,7 @@ export default function MainPage() {
                 </Accordion>
             </ContentArea>
 
-            <ContentArea className="text-center place-items-center-safe" id="footnote">
+            <ContentArea className="place-items-center-safe text-center" id="footnote">
                 <Heading className="text-primary" kind="h1">
                     Lời kết
                 </Heading>
@@ -333,16 +333,16 @@ export default function MainPage() {
                     <Paragraph>Every poet weaves words into prayers</Paragraph>
                     <Paragraph>Every dream has its own chasers.</Paragraph>
                     <Paragraph>
-                        And we, the <span className="text-primary font-bold">Dreamchasers</span>,
+                        And we, the <span className="font-bold text-primary">Dreamchasers</span>,
                         will be the ones to carve it from hope.”
                     </Paragraph>
-                    <FootNote className="text-right text-foreground! font-bold mt-5">
+                    <FootNote className="mt-5 text-right font-bold text-foreground!">
                         Shou Huỳnh - Head Admin @ Arknights Vietnam Station
                     </FootNote>
                 </BlockQuote>
             </ContentArea>
 
-            <ContentArea className="text-center place-items-center-safe" id="chat-with-us">
+            <ContentArea className="place-items-center-safe text-center" id="chat-with-us">
                 <Heading kind="h1" className="text-primary">
                     Wanna chat?
                 </Heading>
@@ -350,7 +350,7 @@ export default function MainPage() {
                     Team VNS có cả Discord để các bạn giao lưu với nhau, cũng như xem
                     Behind-the-scenes các kiểu :D
                 </FavorText>
-                <div className="flex gap-5 flex-col md:flex-row place-items-center-safe">
+                <div className="place-items-center-safe flex flex-col gap-5 md:flex-row">
                     <Button asChild={true} className="bg-[#5865F2] hover:bg-[#3D4CF0]">
                         <Link href="https://discord.gg/arknights-vns">
                             <Image alt="discord" src={Discord} width={24} />
@@ -368,7 +368,7 @@ export default function MainPage() {
                     Nếu bạn muốn liên hệ qua email thì hãy liên hệ qua email{" "}
                     <Link
                         href="mailto:contact@akvns.org"
-                        className="underline decoration-dashed underline-offset-2 font-bold"
+                        className="font-bold underline decoration-dashed underline-offset-2"
                     >
                         contact@akvns.org
                     </Link>{" "}

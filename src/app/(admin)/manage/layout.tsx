@@ -103,9 +103,9 @@ export default function AdminLayout(properties: LayoutProps<"/manage">) {
                 </SidebarContent>
                 <SidebarFooter />
             </Sidebar>
-            <main className="flex flex-col p-4 gap-2 flex-1 ml-1">
+            <main className="ml-1 flex flex-1 flex-col gap-2 p-4">
                 <div className="flex justify-between">
-                    <div className="flex place-items-center-safe gap-3">
+                    <div className="place-items-center-safe flex gap-3">
                         <SidebarTrigger />
                         <Separator orientation="vertical" />
                         <span className="italic">"Totally not written from scratch" CMS</span>

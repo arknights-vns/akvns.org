@@ -22,17 +22,17 @@ type MemberProps = {
 
 export default function MemberCard(props: MemberProps) {
     return (
-        <Card className="bg-muted/50 w-64 relative mt-8 flex flex-col justify-center items-center">
-            <CardHeader className="mt-8 flex flex-col justify-center items-center pb-2 w-full">
+        <Card className="relative mt-8 flex w-64 flex-col items-center justify-center bg-muted/50">
+            <CardHeader className="mt-8 flex w-full flex-col items-center justify-center pb-2">
                 <Image
                     alt={`${props.name} ${props.role}`}
-                    className="absolute border-2 -top-12 rounded-full size-24 aspect-square object-cover"
+                    className="-top-12 absolute aspect-square size-24 rounded-full border-2 object-cover"
                     height={96}
                     src={props.avatar}
                     width={96}
                 />
                 <CardTitle className="text-center text-2xl">{props.name}</CardTitle>
-                <CardDescription className="text-primary font-bold">{props.role}</CardDescription>
+                <CardDescription className="font-bold text-primary">{props.role}</CardDescription>
             </CardHeader>
             <CardContent className="text-center">
                 <FootNote>{props.quote}</FootNote>

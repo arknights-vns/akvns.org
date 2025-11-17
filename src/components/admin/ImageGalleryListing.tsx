@@ -173,7 +173,7 @@ export default function ImageGalleryListing() {
                             <SidebarMenuItem key={bucket}>
                                 <SidebarMenuButton asChild={true}>
                                     <Link href={`/manage/gallery/${bucket}`}>
-                                        <div className="flex font-bold place-items-center-safe gap-1">
+                                        <div className="place-items-center-safe flex gap-1 font-bold">
                                             <span>{bucket}</span>
                                         </div>
                                     </Link>
@@ -187,11 +187,11 @@ export default function ImageGalleryListing() {
                                     <DropdownMenuContent align="start" side="right">
                                         <DropdownMenuItem>
                                             <Button
-                                                className="flex place-items-center-safe gap-2"
+                                                className="place-items-center-safe flex gap-2"
                                                 onClick={() => deleteBucketMutation.mutate(bucket)}
                                             >
                                                 <Trash className="stroke-red-500" />
-                                                <span className="text-red-500 font-bold">Xóa</span>
+                                                <span className="font-bold text-red-500">Xóa</span>
                                             </Button>
                                         </DropdownMenuItem>
                                     </DropdownMenuContent>
