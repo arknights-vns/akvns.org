@@ -58,3 +58,6 @@ pgdata
 # Prisma
 src/generated/prisma
 prisma/seed.ts
+
+# Sockudo
+sockudo
