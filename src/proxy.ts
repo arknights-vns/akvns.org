@@ -6,8 +6,15 @@ import { env } from "@/lib/env";
 
 export async function proxy(request: NextRequest) {
     if (env.SKIP_AUTH) {
-        // eslint-disable-next-line no-console
-        console.warn("WARNING: SKIP_AUTH is ON!!!");
+        const environment = process.env.NODE_ENV;
+
+        if (environment === "production") {
+            const nullUrl = new URL("/auth/you-are-not-supposed-to-see-this", request.url);
+            return NextResponse.redirect(nullUrl);
+        } else {
+            // biome-ignore lint/suspicious/noConsole: on `next dev` only.
+            console.warn("WARNING: SKIP_AUTH is ON!!!");
+        }
     }
 
     if (!env.SKIP_AUTH) {
