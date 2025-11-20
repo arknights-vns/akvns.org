@@ -8,6 +8,8 @@ export const env = createEnv({
         NEXT_PUBLIC_UNLEASH_APP_NAME: z.string().default("Arknights Vietnam Station"),
         NEXT_PUBLIC_UNLEASH_FRONTEND_API_TOKEN: z.string(),
         NEXT_PUBLIC_UNLEASH_FRONTEND_API_URL: z.url().endsWith("/api/frontend"),
+        NEXT_PUBLIC_PUSHER_APP_KEY: z.string(),
+        NEXT_PUBLIC_ADELE_SOCKET_CHANNEL: z.string().default("adele-naumann"),
     },
     server: {
         AWS_S3_ACCESS_KEY_ID: z.string(),
@@ -23,9 +25,13 @@ export const env = createEnv({
         SKIP_AUTH: z.stringbool(),
         UNLEASH_SERVER_API_TOKEN: z.string(),
         UNLEASH_SERVER_API_URL: z.url().endsWith("/api"),
+        PUSHER_APP_ID: z.string(),
+        PUSHER_APP_SECRET: z.string(),
     },
     // eslint-disable-next-line perfectionist/sort-objects
     experimental__runtimeEnv: {
+        NEXT_PUBLIC_ADELE_SOCKET_CHANNEL: process.env.NEXT_PUBLIC_ADELE_SOCKET_CHANNEL,
+        NEXT_PUBLIC_PUSHER_APP_KEY: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
         NEXT_PUBLIC_PRODUCTION_URL: process.env.NEXT_PUBLIC_PRODUCTION_URL,
         NEXT_PUBLIC_UNLEASH_APP_NAME: process.env.NEXT_PUBLIC_UNLEASH_APP_NAME,
         NEXT_PUBLIC_UNLEASH_FRONTEND_API_TOKEN: process.env.NEXT_PUBLIC_UNLEASH_FRONTEND_API_TOKEN,

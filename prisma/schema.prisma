@@ -11,7 +11,6 @@ generator client {
 
 datasource db {
     provider = "postgresql"
-    url      = env("DATABASE_URL")
 }
 
 model User {
@@ -148,4 +147,34 @@ model WebsiteAlert {
     id        Int      @id @default(0)
     content   String
     updatedAt DateTime @updatedAt
+}
+
+enum QuestionType {
+    SLIDER
+    MULTI_CHOICE
+    BOOL
+    IMG_REGION
+}
+
+model QuestionSet {
+    id        String     @id
+    title     String
+    createdAt DateTime   @default(now())
+    updatedAt DateTime   @updatedAt
+    Question  Question[]
+
+    @@index([title])
+    @@map("questionSet")
+}
+
+model Question {
+    id            String       @id
+    questionSet   QuestionSet  @relation(fields: [questionSetId], references: [id])
+    questionSetId String
+    type          QuestionType @default(MULTI_CHOICE)
+    questionText  String       @default("Khi nào bán tus?")
+    response      Json
+
+    @@index([questionText, type, questionSetId])
+    @@map("question")
 }
