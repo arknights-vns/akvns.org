@@ -13,6 +13,8 @@ services:
         condition: service_healthy
       unleash:
         condition: service_healthy
+    volumes:
+      - ./public:/app/public:ro
     environment:
       PORT: ${PORT}
     ports:
