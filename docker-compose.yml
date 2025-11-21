@@ -2,9 +2,7 @@ name: arknights-vns
 
 services:
   web:
-    container_name: web
     build: .
-    hostname: akvns
     restart: unless-stopped
     depends_on:
       pgbouncer:
@@ -21,7 +19,6 @@ services:
       - ${PORT:-3000}:${PORT:-3000}
 
   postgres:
-    container_name: postgres
     image: ghcr.io/arknights-vns/postgres-17:latest
     command: [ "postgres" ]
     restart: on-failure
@@ -38,7 +35,6 @@ services:
       retries: 5
 
   pgbouncer:
-    container_name: pgbouncer
     image: edoburu/pgbouncer:v1.24.1-p1
     restart: unless-stopped
     ports:
@@ -59,7 +55,6 @@ services:
       test: [ 'CMD', 'pg_isready', '-h', 'localhost' ]
 
   s3:
-    container_name: s3
     image: minio/minio:RELEASE.2025-04-22T22-12-26Z
     ports:
       - '9000:9000'
@@ -78,7 +73,6 @@ services:
       - ./s3:/data:z
 
   postgres-unleash:
-    container_name: postgres-unleash
     image: ghcr.io/arknights-vns/postgres-17:latest
     command: [ "postgres" ]
     restart: on-failure
@@ -95,7 +89,6 @@ services:
       retries: 5
 
   unleash:
-    container_name: unleash
     image: unleashorg/unleash-server:7
     ports:
       - "4242:4242"
