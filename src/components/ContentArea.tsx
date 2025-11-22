@@ -12,7 +12,7 @@ export default function ContentArea({
         <section
             className={cn(
                 "container flex flex-col gap-4 px-6 py-20 md:px-0 md:py-28",
-                "[&:is(:first-child)]:pt-20",
+                "first:pt-20",
                 className,
             )}
             {...props}

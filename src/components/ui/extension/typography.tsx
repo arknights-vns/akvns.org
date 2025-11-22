@@ -174,7 +174,7 @@ export function Paragraph({
 }: ComponentProps<"p">) {
     return (
         <p
-            className={cn(className, "leading-7 [&:not(:first-child)]:mt-8")}
+            className={cn(className, "leading-7 not-first:mt-8")}
             {...properties}
         >
             {children}

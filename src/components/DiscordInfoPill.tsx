@@ -65,9 +65,9 @@ export default function DiscordInfoPill() {
     return session && discordFeatureEnabled ? (
         <DropdownMenu>
             <DropdownMenuTrigger asChild={true}>
-                <Avatar className="h-auto w-[36px]">
+                <Avatar className="h-auto w-9">
                     <AvatarImage alt="Discord_Avatar" src={session.user.image || "nothing.png"} />
-                    <AvatarFallback className="size-[36px] rounded-full">VNS</AvatarFallback>
+                    <AvatarFallback className="size-9 rounded-full">VNS</AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="mt-1">
