@@ -13,8 +13,7 @@
     "prepare": "husky && prisma generate",
     "db:seed": "prisma db seed",
     "db:push": "prisma db push",
-    "db:push:wipe": "prisma db push --force-reset",
-    "test": "playwright test"
+    "db:push:wipe": "prisma db push --force-reset"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.917.0",
