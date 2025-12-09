@@ -1,6 +1,6 @@
 {
   "recommendations": [
-    "dbaeumer.vscode-eslint",
+    "biomejs.biome",
     "bradlc.vscode-tailwindcss",
     "EditorConfig.EditorConfig",
     "Prisma.prisma",
@@ -9,6 +9,7 @@
     "naumovs.color-highlight"
   ],
   "unwantedRecommendations": [
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint"
   ]
 }
