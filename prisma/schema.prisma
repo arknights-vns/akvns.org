@@ -114,21 +114,32 @@ enum ComicCategory {
 }
 
 model ComicSeries {
-    comicSeriesId String         @id @default(cuid())
+    comicSeriesId String             @id @default(cuid())
     title         String
     synopsis      String
     author        String
     thumbnail     String
     category      ComicCategory
-    comicChapters ComicChapter[]
-    translators   Json
-    createdAt     DateTime       @default(now())
-    updatedAt     DateTime       @updatedAt
-    likeCount     Int            @default(0)
-    viewCount     Int            @default(0)
+    chapters      ComicChapter[]
+    contributors  ComicContributor[]
+    createdAt     DateTime           @default(now())
+    updatedAt     DateTime           @updatedAt
+    likeCount     Int                @default(0)
+    viewCount     Int                @default(0)
 
     @@index([title, author])
     @@map("comic_series")
+}
+
+model ComicContributor {
+    id            String       @id @default(cuid())
+    comicSeriesId String
+    role          String
+    members       String[]
+    comicSeries   ComicSeries? @relation(fields: [comicSeriesId], references: [comicSeriesId])
+
+    @@unique([role, comicSeriesId])
+    @@map("comic_contributor")
 }
 
 model ComicChapter {
@@ -147,4 +158,6 @@ model WebsiteAlert {
     id        Int      @id @default(0)
     content   String
     updatedAt DateTime @updatedAt
+
+    @@map("website_alert")
 }
