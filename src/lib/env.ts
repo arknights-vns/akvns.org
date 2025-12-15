@@ -10,11 +10,6 @@ export const env = createEnv({
         NEXT_PUBLIC_UNLEASH_FRONTEND_API_URL: z.url().endsWith("/api/frontend"),
     },
     server: {
-        AWS_S3_ACCESS_KEY_ID: z.string(),
-        AWS_S3_ENDPOINT: z.url(),
-        AWS_S3_FORCE_PATH_STYLE: z.stringbool().default(true),
-        AWS_S3_REGION: z.string().regex(/[a-z-0-9]+/g),
-        AWS_S3_SECRET_ACCESS_KEY: z.string(),
         DATABASE_URL: z.url(),
         DISCORD_CLIENT_ID: z.string(),
         DISCORD_CLIENT_SECRET: z.string(),

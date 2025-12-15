@@ -7,10 +7,10 @@ services:
     depends_on:
       pgbouncer:
         condition: service_healthy
-      s3:
-        condition: service_healthy
       unleash:
         condition: service_healthy
+      prisma-studio:
+        condition: service_started
     volumes:
       - ./public:/app/public:ro
     environment:
@@ -27,7 +27,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      - ./pgdata:/var/lib/postgresql/data:z
+      - ./volumes/pgdata:/var/lib/postgresql/data:z
     healthcheck:
       test: [ 'CMD', 'pg_isready', '-U', 'postgres' ]
       interval: 5s
@@ -53,44 +53,6 @@ services:
       ADMIN_USERS: ${POSTGRES_AUTHORIZED_USERS}
     healthcheck:
       test: [ 'CMD', 'pg_isready', '-h', 'localhost' ]
-
-  s3:
-    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
-    ports:
-      - '9000:9000'
-      - '9001:9001'
-    environment:
-      MINIO_ROOT_USER: ${AWS_S3_ACCESS_KEY_ID}
-      MINIO_ROOT_PASSWORD: ${AWS_S3_SECRET_ACCESS_KEY}
-      MINIO_REGION: ${AWS_S3_REGION}
-    command: server --console-address ":9001" /data
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://s3:9000/minio/health/live" ]
-      interval: 2s
-      timeout: 10s
-      retries: 5
-    volumes:
-      - ./s3:/data:z
-
-  # format: none
-  mc:
-    image: minio/mc:RELEASE.2025-05-21T01-59-54Z
-    depends_on:
-      s3:
-        condition: service_healthy
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
-      MINIO_REGION: ${AWS_S3_REGION}
-    entrypoint: >
-      /bin/sh -c "
-      /usr/bin/mc alias set minio http://s3:9000 $$MINIO_ROOT_USER $$MINIO_ROOT_PASSWORD;
-      /usr/bin/mc mb minio/staff-avatar;
-      /usr/bin/mc anonymous set download minio/staff-avatar;
-      /usr/bin/mc mb minio/comic-thumbnail;
-      /usr/bin/mc anonymous set download minio/comic-thumbnail;
-      exit 0
-      "
 
   postgres-unleash:
     image: ghcr.io/arknights-vns/postgres-17:latest
@@ -129,6 +91,24 @@ services:
       timeout: 1m
       retries: 5
       start_period: 15s
+
+  prisma-studio:
+    image: node:22-trixie
+    ports:
+      - "51212:51212"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      pgbouncer:
+        condition: service_healthy
+    environment:
+      DATABASE_DIRECT_URL: ${DATABASE_DIRECT_URL}
+    command: [ "sh", "-c", "npx --yes prisma studio --url=\"$DATABASE_DIRECT_URL\" --browser none" ]
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://prisma-studio:51212" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
 
 volumes:
   unleash-postgres-data:

@@ -2,7 +2,7 @@
 
 import DiscordLogo from "@public/brand/discord.svg";
 import { useFlag } from "@unleash/nextjs";
-import { CircleUser, CircleX, Lock, LogOut } from "lucide-react";
+import { CircleUser, CircleX, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -84,19 +84,7 @@ export default function DiscordInfoPill() {
                     onClick={handleLogoutClick}
                 >
                     <LogOut className="stroke-red-400" /> Đăng xuất
-                </DropdownMenuItem>
-                {session.user.role === "admin" && (
-                    <>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem
-                            className="font-extrabold text-green-400"
-                            onClick={handleLogoutClick}
-                        >
-                            <Lock className="stroke-green-400" />
-                            <Link href="/manage">CMS-at-home</Link>
-                        </DropdownMenuItem>
-                    </>
-                )}
+                </DropdownMenuItem>{" "}
             </DropdownMenuContent>
         </DropdownMenu>
     ) : (

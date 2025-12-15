@@ -1,33 +1,22 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import alert from "@public/website-alert.json";
 import DOMPurify from "dompurify";
 import parse from "html-react-parser";
 
 import { Announcement } from "@/schema/announcement";
 
 export default function AnnouncementDisplay() {
-    const { data, isPending, error } = useQuery({
-        queryFn: async () => {
-            const resp = await fetch("/api/announcement");
+    const data = Announcement.safeParse(alert);
 
-            if (!resp.ok) {
-                throw new Error("No announcement at the time!");
-            }
+    if (data.error) return;
 
-            const body = await resp.json();
+    const websiteAlert = data.data;
 
-            return await Announcement.parseAsync(body.message);
-        },
-        queryKey: ["announcements"],
-    });
-
-    if (isPending || error) return;
-
-    if (data && data.content.trim() !== "")
+    if (data && websiteAlert.content.trim() !== "")
         return (
             <div className="sticky top-18 z-1 w-full bg-primary py-2 text-center text-white">
-                <div className="prose">{parse(DOMPurify.sanitize(data.content))}</div>
+                <div className="prose">{parse(DOMPurify.sanitize(websiteAlert.content))}</div>
             </div>
         );
 }

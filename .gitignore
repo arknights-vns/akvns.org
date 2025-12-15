@@ -50,10 +50,7 @@ node_modules/
 /playwright/.auth/
 
 # Storage
-s3
-
-# Postgres
-pgdata
+volumes/
 
 # Prisma
 src/generated/prisma
