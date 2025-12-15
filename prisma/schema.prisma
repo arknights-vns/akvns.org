@@ -132,7 +132,7 @@ model ComicSeries {
 }
 
 model ComicContributor {
-    id            String       @id @default(cuid())
+    id            Int          @id @default(autoincrement())
     comicSeriesId String
     role          String
     members       String[]
