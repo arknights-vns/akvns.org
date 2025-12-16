@@ -1,13 +1,12 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
-// eslint-disable-next-line unicorn/prevent-abbreviations
 export const env = createEnv({
     client: {
         NEXT_PUBLIC_PRODUCTION_URL: z.url(),
-        NEXT_PUBLIC_UNLEASH_APP_NAME: z.string().default("Arknights Vietnam Station"),
-        NEXT_PUBLIC_UNLEASH_FRONTEND_API_TOKEN: z.string(),
-        NEXT_PUBLIC_UNLEASH_FRONTEND_API_URL: z.url().endsWith("/api/frontend"),
+        NEXT_PUBLIC_POSTHOG_HOST: z.url(),
+        NEXT_PUBLIC_POSTHOG_ASSET_HOST: z.url(),
+        NEXT_PUBLIC_POSTHOG_KEY: z.string(),
     },
     server: {
         DATABASE_URL: z.url(),
@@ -16,14 +15,11 @@ export const env = createEnv({
         PORT: z.coerce.number().min(1025).max(65_535).default(3000),
         SECRET_KEY: z.string(),
         SKIP_AUTH: z.stringbool(),
-        UNLEASH_SERVER_API_TOKEN: z.string(),
-        UNLEASH_SERVER_API_URL: z.url().endsWith("/api"),
     },
-    // eslint-disable-next-line perfectionist/sort-objects
     experimental__runtimeEnv: {
+        NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+        NEXT_PUBLIC_POSTHOG_ASSET_HOST: process.env.NEXT_PUBLIC_POSTHOG_ASSET_HOST,
+        NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
         NEXT_PUBLIC_PRODUCTION_URL: process.env.NEXT_PUBLIC_PRODUCTION_URL,
-        NEXT_PUBLIC_UNLEASH_APP_NAME: process.env.NEXT_PUBLIC_UNLEASH_APP_NAME,
-        NEXT_PUBLIC_UNLEASH_FRONTEND_API_TOKEN: process.env.NEXT_PUBLIC_UNLEASH_FRONTEND_API_TOKEN,
-        NEXT_PUBLIC_UNLEASH_FRONTEND_API_URL: process.env.NEXT_PUBLIC_UNLEASH_FRONTEND_API_URL,
     },
 });

@@ -9,8 +9,9 @@
     "ignoreUnknown": false,
     "includes": [
       "src/**",
-      "tests/**",
-      "prisma/seed.ts",
+      "./next.config.ts",
+      "./prisma.config.ts",
+      "./prisma/seed.ts",
       "!src/generated/prisma",
       "!src/hooks/use-mobile.ts",
       "!src/components/ui",

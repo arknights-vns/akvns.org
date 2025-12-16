@@ -7,8 +7,6 @@ services:
     depends_on:
       pgbouncer:
         condition: service_healthy
-      unleash:
-        condition: service_healthy
       prisma-studio:
         condition: service_started
     volumes:
@@ -53,45 +51,6 @@ services:
       ADMIN_USERS: ${POSTGRES_AUTHORIZED_USERS}
     healthcheck:
       test: [ 'CMD', 'pg_isready', '-h', 'localhost' ]
-
-  postgres-unleash:
-    image: ghcr.io/arknights-vns/postgres-17:latest
-    command: [ "postgres" ]
-    restart: on-failure
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: unleash
-    volumes:
-      - unleash-postgres-data:/var/lib/postgresql/data:z
-    healthcheck:
-      test: [ 'CMD', 'pg_isready', '-U', 'postgres' ]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-  unleash:
-    image: unleashorg/unleash-server:7
-    ports:
-      - "4242:4242"
-    environment:
-      DATABASE_URL: "postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres-unleash/unleash"
-      DATABASE_SSL: "false"
-      LOG_LEVEL: "warn"
-      INIT_FRONTEND_API_TOKENS: ${INIT_FRONTEND_API_TOKENS}
-      INIT_BACKEND_API_TOKENS: ${INIT_BACKEND_API_TOKENS}
-      UNLEASH_DEFAULT_ADMIN_USERNAME: ${UNLEASH_DEFAULT_ADMIN_USERNAME}
-      UNLEASH_DEFAULT_ADMIN_PASSWORD: ${UNLEASH_DEFAULT_ADMIN_PASSWORD}
-    depends_on:
-      postgres-unleash:
-        condition: service_healthy
-    healthcheck:
-      test: wget --no-verbose --tries=1 --spider http://localhost:4242/health || exit 1
-      interval: 1s
-      timeout: 1m
-      retries: 5
-      start_period: 15s
-
   prisma-studio:
     image: node:22-trixie
     ports:
@@ -109,6 +68,3 @@ services:
       interval: 5s
       timeout: 10s
       retries: 10
-
-volumes:
-  unleash-postgres-data:

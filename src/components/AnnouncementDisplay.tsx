@@ -1,13 +1,19 @@
 "use client";
 
-import alert from "@public/website-alert.json";
 import DOMPurify from "dompurify";
 import parse from "html-react-parser";
+import posthog from "posthog-js";
 
 import { Announcement } from "@/schema/announcement";
 
 export default function AnnouncementDisplay() {
-    const data = Announcement.safeParse(alert);
+    const featureName = "website-notice";
+
+    const shouldEnable = posthog.getFeatureFlag(featureName);
+    const payload = posthog.getFeatureFlagPayload(featureName);
+    const data = Announcement.safeParse(payload);
+
+    if (!shouldEnable) return;
 
     if (data.error) return;
 
@@ -15,8 +21,8 @@ export default function AnnouncementDisplay() {
 
     if (data && websiteAlert.content.trim() !== "")
         return (
-            <div className="sticky top-18 z-1 w-full bg-primary py-2 text-center text-white">
-                <div className="prose">{parse(DOMPurify.sanitize(websiteAlert.content))}</div>
-            </div>
+            <aside className="sticky top-18 z-1 w-full bg-primary py-2 text-center text-white">
+                {parse(DOMPurify.sanitize(websiteAlert.content))}
+            </aside>
         );
 }

@@ -1,11 +1,11 @@
 "use client";
 
 import DiscordLogo from "@public/brand/discord.svg";
-import { useFlag } from "@unleash/nextjs";
 import { CircleUser, CircleX, LogOut } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import posthog from "posthog-js";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,7 @@ import { authClient } from "@/lib/auth-client";
 export default function DiscordInfoPill() {
     const { data: session, error, isPending } = authClient.useSession();
     const pathname = usePathname();
-    const discordFeatureEnabled = useFlag("VNS_DISCORD_LOGIN");
+    const discordFeatureEnabled = posthog.isFeatureEnabled("discord-login");
 
     const handleLoginClick = async () => {
         await authClient.signIn.social({
@@ -38,12 +38,12 @@ export default function DiscordInfoPill() {
         globalThis.location.reload();
     };
 
-    if (isPending) {
-        return <Spinner className="size-6 text-red-400" />;
-    }
-
     if (!discordFeatureEnabled) {
         return;
+    }
+
+    if (discordFeatureEnabled && isPending) {
+        return <Spinner className="size-6 text-red-400" />;
     }
 
     if (error && discordFeatureEnabled) {
