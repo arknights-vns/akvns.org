@@ -97,9 +97,25 @@ model Project {
     mainImg     String
     date        DateTime    @default(now())
     description String
+    blog        Blog        @relation(fields: [blogId], references: [id])
+    blogId      Int         @unique
 
     @@index([title, type, date])
     @@map("project")
+}
+
+model Blog {
+    id            Int      @id @default(autoincrement())
+    slug          String   @unique
+    title         String
+    author        String
+    shortBriefing String
+    updatedAt     DateTime @updatedAt
+    project       Project?
+
+    @@unique([id, slug])
+    @@index([id, slug, title, shortBriefing, author])
+    @@map("blog")
 }
 
 enum ComicCategory {
