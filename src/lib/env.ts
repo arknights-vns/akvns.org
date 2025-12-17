@@ -15,6 +15,7 @@ export const env = createEnv({
         PORT: z.coerce.number().min(1025).max(65_535).default(3000),
         SECRET_KEY: z.string(),
         SKIP_AUTH: z.stringbool(),
+        BLOG_ASSETS_URL_PREFIX: z.url().default("https://blog-archive.akvns.org"),
     },
     experimental__runtimeEnv: {
         NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,

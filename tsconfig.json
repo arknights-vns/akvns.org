@@ -28,9 +28,6 @@
       ],
       "@public/*": [
         "./public/*"
-      ],
-      "@/content/*": [
-        "./content/*"
       ]
     }
   },

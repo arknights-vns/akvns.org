@@ -1,7 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
+import type { EvaluateOptions } from "next-mdx-remote-client/rsc";
+import { redirect } from "next/navigation";
+import { evaluate } from "next-mdx-remote-client/rsc";
 import { ArticleJsonLd } from "next-seo";
+import { Suspense } from "react";
+import remarkGfm from "remark-gfm";
+import remarkReadingTime from "remark-reading-time";
+import remarkReadingTimeMdx from "remark-reading-time/mdx";
 
 import { FavorText, Heading } from "@/components/ui/extension/typography";
+import { env } from "@/lib/env";
 
 type BlogFMType = {
     author: string;
@@ -10,12 +18,34 @@ type BlogFMType = {
     date: string;
 };
 
+type BlogInternalData = {
+    readingTime: {
+        text: string;
+        minutes: number;
+        time: number;
+        words: number;
+    };
+};
+
+export const revalidate = 86400;
+
 export async function generateMetadata(props: PageProps<"/blog/[slug]">): Promise<Metadata> {
     const { slug } = await props.params;
+    const res = await fetch(`${env.BLOG_ASSETS_URL_PREFIX}/${slug}.mdx`);
 
-    const mdx = await import(`@/content/${slug}.mdx`);
-    const { frontmatter } = mdx;
-    const meta: BlogFMType = frontmatter;
+    if (!res.ok) {
+        return {
+            title: "Huh?",
+        };
+    }
+
+    const source = await res.text();
+
+    const options: EvaluateOptions = {
+        parseFrontmatter: true,
+    };
+
+    const { frontmatter: meta } = await evaluate<BlogFMType>({ source, options });
 
     return {
         title: `Blog: ${meta.title}`,
@@ -26,14 +56,41 @@ export async function generateMetadata(props: PageProps<"/blog/[slug]">): Promis
 export default async function BlogPage(props: PageProps<"/blog/[slug]">) {
     const { slug } = await props.params;
 
-    const mdx = await import(`@/content/${slug}.mdx`);
-    const { default: Post, frontmatter } = mdx;
-    const meta: BlogFMType = frontmatter;
+    const res = await fetch(`${env.BLOG_ASSETS_URL_PREFIX}/${slug}.mdx`);
+
+    if (!res.ok) {
+        redirect("/404" as Route);
+    }
+
+    const source = await res.text();
+
+    const options: EvaluateOptions = {
+        mdxOptions: {
+            remarkPlugins: [remarkGfm, remarkReadingTime, remarkReadingTimeMdx],
+        },
+        parseFrontmatter: true,
+        vfileDataIntoScope: "toc",
+    };
+
+    const {
+        content,
+        frontmatter: meta,
+        mod,
+        error,
+    } = await evaluate<BlogFMType>({
+        source,
+        options,
+    });
+
+    if (error) {
+        redirect("/404" as Route);
+    }
 
     const dt = new Date(meta.date);
+    const readTime = (mod as BlogInternalData).readingTime.minutes;
 
     return (
-        <>
+        <Suspense>
             <ArticleJsonLd
                 headline={meta.title}
                 datePublished={dt.toISOString()}
@@ -52,14 +109,15 @@ export default async function BlogPage(props: PageProps<"/blog/[slug]">) {
                         {meta.title}
                     </Heading>
                     <aside className="font-light italic">
-                        {dt.toLocaleDateString()} - Tác giả: {meta.author}
+                        {dt.toLocaleDateString()} - Tác giả: {meta.author} - {Math.ceil(readTime)}{" "}
+                        phút đọc
                     </aside>
                     <FavorText>{meta.description}</FavorText>
                 </div>
                 <div className="prose dark:prose-invert place-items-center-safe flex min-w-[57vw] flex-col text-justify leading-loose [&_img]:max-w-xl">
-                    <Post />
+                    {content}
                 </div>
             </section>
-        </>
+        </Suspense>
     );
 }
