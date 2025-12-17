@@ -1,5 +1,8 @@
-import fs from "node:fs/promises";
+import { ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { type NextRequest, NextResponse } from "next/server";
+
+import { s3Client } from "@/lib/aws-s3";
+import { env } from "@/lib/env";
 
 /**
  * Get images of this comic collection chapter.
@@ -8,40 +11,42 @@ export async function GET(
     _: NextRequest,
     parameters: RouteContext<"/api/comic/[series]/[chapter]/images">,
 ) {
-    const parameterList = await parameters.params;
-    const { series, chapter } = parameterList;
+    const { series, chapter } = await parameters.params;
 
-    const files = await fs.readdir(`public/comic/${series}/${chapter}`);
+    const resp = await s3Client.send(
+        new ListObjectsV2Command({
+            Bucket: env.COMIC_ASSETS_AWS_BUCKET,
+            Prefix: `${series}/${chapter}`,
+        }),
+    );
 
-    const imagesOnly = files.filter((entry) => {
-        return entry.endsWith(".jpeg") || entry.endsWith(".jpg") || entry.endsWith(".png");
-    });
+    const objects = resp.Contents;
 
-    if (imagesOnly.length === 0) {
+    if (!objects || !objects.filter((x) => x.Size && x.Size > 0)) {
         return NextResponse.json(
             {
-                error: "No entries",
+                error: "Nothing here.",
             },
             {
-                status: 404,
+                status: 200,
             },
         );
     }
 
-    const sortedEntries = imagesOnly.sort((a, b) => a.localeCompare(b));
-
     return NextResponse.json(
         {
-            message: sortedEntries.map((entry) => {
-                return {
-                    name: entry,
-                    url: `/comic/${series}/${chapter}/${entry}`,
-                };
-            }),
+            message: objects
+                .filter((x) => x.Size && x.Size > 0)
+                .map((obj) => {
+                    return {
+                        name: obj.Key,
+                        url: `${env.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
+                    };
+                }),
         },
         {
             headers: {
-                "Cache-Control": "public, max-age=60, s-maxage=300",
+                "Cache-Control": "public, max-age=3600, s-maxage=3600",
             },
             status: 200,
         },

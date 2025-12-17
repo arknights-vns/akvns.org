@@ -15,6 +15,12 @@ export const env = createEnv({
         PORT: z.coerce.number().min(1025).max(65_535).default(3000),
         SECRET_KEY: z.string(),
         SKIP_AUTH: z.stringbool(),
+        AWS_ENDPOINT: z.url(),
+        AWS_REGION: z.string().default("us-east-1"),
+        AWS_ACCESS_KEY_ID: z.string(),
+        AWS_SECRET_ACCESS_KEY: z.string(),
+        COMIC_ASSETS_AWS_BUCKET: z.string(),
+        COMIC_ASSETS_URL_PREFIX: z.string().default("https://comic-assets.akvns.org"),
     },
     experimental__runtimeEnv: {
         NEXT_PUBLIC_POSTHOG_HOST: process.env.NEXT_PUBLIC_POSTHOG_HOST,
