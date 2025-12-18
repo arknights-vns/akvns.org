@@ -8,7 +8,6 @@ Well, this is the public source code for the website [akvns.org](https://akvns.o
 
 ## What is inside?
 
-- The CMS: yes, we rolled our own because Payload did not click my mind, and I prefer the total control of my data. (I know [IoC is a thing](https://en.wikipedia.org/wiki/Inversion_of_control), but not in the near future for this project.)
 - The website: duh!
 - And many more features will be added gradually.
 
@@ -25,14 +24,14 @@ and... everything is AGPLv3-licensed, so some of you guys will be pissed a lot, 
 
 Probably taking some time looking at the source code would give you the answer, but here is the short list:
 
-| Name      | Usage                             |
-|-----------|-----------------------------------|
-| Next.js   | Full-stack development, obviously.|
-| Unleash   | Feature flag management.          |
-| shadcn/ui | User Interface                    |
-| Prisma    | ORM Layer                         |
-| Postgres  | Database, [with our own version](https://github.com/arknights-vns/postgresql-17).    |
-| Biome     | Code linter                       |
+| Name      | Usage                                                                            |
+|-----------|----------------------------------------------------------------------------------|
+| Next.js   | Full-stack development, obviously.                                               |
+| PostHog   | Telemetry & flag management.                                                     |
+| shadcn/ui | User Interface                                                                   |
+| Prisma    | ORM Layer                                                                        |
+| Postgres  | Database, [with our own version](https://github.com/arknights-vns/postgresql-17).|
+| Biome     | Code linter                                                                      |
 
 > [!Note]
 > Even though there is a `Dockerfile` and a Docker Compose project in this source tree, we do not test much on it so stuffs inside may break.
