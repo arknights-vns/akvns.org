@@ -79,7 +79,7 @@ export default function MainPage() {
                             </Heading>
                             <Heading
                                 kind="h1"
-                                className="bg-gradient-to-r from-[#FF0044] to-[#5728A3] bg-clip-text font-extrabold text-2xl text-transparent sm:text-5xl"
+                                className="bg-linear-to-r from-[#FF0044] to-[#5728A3] bg-clip-text font-extrabold text-2xl text-transparent sm:text-5xl"
                             >
                                 Arknights Vietnam Station
                             </Heading>
@@ -181,7 +181,7 @@ export default function MainPage() {
                 </Button>
             </ContentArea>
 
-            <ContentArea id="projects">
+            <ContentArea className="w-[80vw]" id="projects">
                 <Tabs className="gap-y-8" defaultValue="fan-project">
                     <div className="flex flex-col justify-between gap-y-3 md:flex-row">
                         <div className="flex flex-col gap-2 text-center md:text-left">
@@ -289,7 +289,7 @@ export default function MainPage() {
                 </article>
             </ContentArea>
 
-            <ContentArea id="faq">
+            <ContentArea id="faq" className="w-[80vw]">
                 <Heading kind="h1" className="text-primary">
                     Câu hỏi thường gặp
                 </Heading>
