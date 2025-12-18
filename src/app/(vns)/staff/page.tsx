@@ -1,7 +1,7 @@
 "use client";
 
 import membersList from "@public/data/members.json";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 import ContentArea from "@/components/ContentArea";
 import MemberCard from "@/components/MemberCard";
