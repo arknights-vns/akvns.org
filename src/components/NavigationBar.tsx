@@ -13,6 +13,7 @@ import {
     Info,
     type LucideIcon,
     Menu,
+    StickyNote,
     Users,
 } from "lucide-react";
 import Image from "next/image";
@@ -95,6 +96,15 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
                 icon: {
                     type: "lucide",
                     src: Contact,
+                },
+            },
+            {
+                href: "/blog",
+                description: "Blog về mọi thứ của Arknights VNS",
+                label: "Blog",
+                icon: {
+                    type: "lucide",
+                    src: StickyNote,
                 },
             },
         ],
