@@ -169,11 +169,3 @@ model ComicChapter {
     @@index([comicChapterId, chapterName, comicSeriesId])
     @@map("comic_chapter")
 }
-
-model WebsiteAlert {
-    id        Int      @id @default(0)
-    content   String
-    updatedAt DateTime @updatedAt
-
-    @@map("website_alert")
-}
