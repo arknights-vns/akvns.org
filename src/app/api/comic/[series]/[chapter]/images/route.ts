@@ -1,4 +1,3 @@
-import { ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { type NextRequest, NextResponse } from "next/server";
 
 import { s3Client } from "@/lib/aws-s3";
@@ -13,16 +12,18 @@ export async function GET(
 ) {
     const { series, chapter } = await parameters.params;
 
-    const resp = await s3Client.send(
-        new ListObjectsV2Command({
-            Bucket: env.COMIC_ASSETS_AWS_BUCKET,
-            Prefix: `${series}/${chapter}`,
-        }),
+    const resp = await s3Client.list(
+        {
+            prefix: `${series}/${chapter}`,
+        },
+        {
+            bucket: env.COMIC_ASSETS_AWS_BUCKET,
+        },
     );
 
-    const objects = resp.Contents;
+    const objects = resp.contents;
 
-    if (!objects || !objects.filter((x) => x.Size && x.Size > 0)) {
+    if (!objects || !objects.filter((x) => x.size && x.size > 0)) {
         return NextResponse.json(
             {
                 error: "Nothing here.",
@@ -36,11 +37,11 @@ export async function GET(
     return NextResponse.json(
         {
             message: objects
-                .filter((x) => x.Size && x.Size > 0)
+                .filter((x) => x.size && x.size > 0)
                 .map((obj) => {
                     return {
-                        name: obj.Key,
-                        url: `${env.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
+                        name: obj.key,
+                        url: `${env.COMIC_ASSETS_URL_PREFIX}/${obj.key}`,
                     };
                 }),
         },
