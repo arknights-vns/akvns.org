@@ -14,7 +14,6 @@ export const env = createEnv({
         DISCORD_CLIENT_SECRET: z.string(),
         PORT: z.coerce.number().min(1025).max(65_535).default(3000),
         SECRET_KEY: z.string(),
-        SKIP_AUTH: z.stringbool(),
         BLOG_ASSETS_URL_PREFIX: z.url().default("https://blog-archive.akvns.org"),
         AWS_ENDPOINT: z.url(),
         AWS_REGION: z.string().default("us-east-1"),

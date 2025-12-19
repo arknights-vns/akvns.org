@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 
-import prisma from "@/lib/prisma";
+import { drizzleDb } from "@/lib/drizzle";
 
 /**
  * Get available comic series.
  */
 export async function GET() {
-    const results = await prisma.comicSeries.findMany({
-        select: {
+    const results = await drizzleDb.query.comicSeries.findMany({
+        columns: {
             category: true,
             comicSeriesId: true,
             likeCount: true,

@@ -28,7 +28,7 @@ export async function GET(
                 error: "Nothing here.",
             },
             {
-                status: 200,
+                status: 404,
             },
         );
     }

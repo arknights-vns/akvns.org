@@ -7,8 +7,6 @@ services:
     depends_on:
       pgbouncer:
         condition: service_healthy
-      prisma-studio:
-        condition: service_started
     volumes:
       - ./public:/app/public:ro
     environment:
@@ -51,20 +49,10 @@ services:
       ADMIN_USERS: ${POSTGRES_AUTHORIZED_USERS}
     healthcheck:
       test: [ 'CMD', 'pg_isready', '-h', 'localhost' ]
-  prisma-studio:
-    image: node:22-trixie
+
+  drizzle-gateway:
+    image: ghcr.io/drizzle-team/gateway:1.2.0
     ports:
-      - "51212:51212"
-    depends_on:
-      postgres:
-        condition: service_healthy
-      pgbouncer:
-        condition: service_healthy
-    environment:
-      DATABASE_DIRECT_URL: ${DATABASE_DIRECT_URL}
-    command: [ "sh", "-c", "npx --yes prisma studio --url=\"$DATABASE_DIRECT_URL\" --browser none" ]
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://prisma-studio:51212" ]
-      interval: 5s
-      timeout: 10s
-      retries: 10
+      - "4983:4983"
+    volumes:
+      - ./volumes/drizzle-gateway:/app:z
