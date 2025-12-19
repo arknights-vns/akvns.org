@@ -1,21 +1,18 @@
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
-import prisma from "@/lib/prisma";
+import { drizzleDb } from "@/lib/drizzle";
 
 /**
  * Get available comic series.
  */
-export async function GET() {
-    const results = await prisma.comicSeries.findMany({
-        select: {
-            category: true,
-            comicSeriesId: true,
-            likeCount: true,
-            thumbnail: true,
-            title: true,
-            updatedAt: true,
-            viewCount: true,
-        },
+export async function GET(request: NextRequest) {
+    const itemsPerPage = 10;
+
+    const pageVal = Number.parseInt(request.nextUrl.searchParams.get("page") ?? "0", 10);
+
+    const results = await drizzleDb.query.comicSeries.findMany({
+        offset: pageVal * itemsPerPage,
+        limit: itemsPerPage,
     });
 
     return NextResponse.json(

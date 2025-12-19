@@ -1,6 +1,8 @@
+import { and, gte, lt } from "drizzle-orm";
 import { type NextRequest, NextResponse } from "next/server";
 
-import prisma from "@/lib/prisma";
+import { blog } from "@/db/schema/vns-schema";
+import { drizzleDb } from "@/lib/drizzle";
 
 /**
  * Get the available blog slugs.
@@ -10,13 +12,8 @@ export async function GET(request: NextRequest) {
 
     const pageVal = Number.parseInt(request.nextUrl.searchParams.get("page") ?? "0", 10);
 
-    const records = await prisma.blog.findMany({
-        where: {
-            id: {
-                gte: pageVal * itemsPerPage,
-                lt: (pageVal + 1) * itemsPerPage,
-            },
-        },
+    const records = await drizzleDb.query.blog.findMany({
+        where: and(gte(blog.id, pageVal * itemsPerPage), lt(blog.id, (pageVal + 1) * itemsPerPage)),
     });
 
     return NextResponse.json(

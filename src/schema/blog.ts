@@ -1,10 +1,8 @@
-import { z } from "zod";
+import { createSelectSchema } from "drizzle-zod";
 
-export const BlogSchema = z.object({
-    id: z.number(),
-    slug: z.string(),
-    title: z.string(),
-    author: z.string(),
-    shortBriefing: z.string(),
-    updatedAt: z.iso.datetime(),
-});
+import { blog } from "@/db/schema";
+
+/**
+ * Data for a blog, extracted from `blog` table by `drizzle-zod`.
+ */
+export const BlogSchema = createSelectSchema(blog);

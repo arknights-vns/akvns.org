@@ -1,47 +1,27 @@
+import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
-import { ComicCategory } from "@/generated/prisma/enums";
-import { GalleryCollectionNameRegex } from "@/schema/gallery";
+import { comicChapter, comicContributor, comicSeries } from "@/db/schema";
 
 /**
- * Represent a comic contributor.
+ * Data for a comic contributor, extracted from `comic_contributor` table by `drizzle-zod`.
  */
-export const ComicContributor = z.object({
-    members: z.array(z.string()),
-    role: z.string(),
-});
+export const ComicContributor = createSelectSchema(comicContributor);
 
 /**
- * Represent a comic chapter.
+ * Data for a comic chapter, extracted from `comic_chapter` table by `drizzle-zod`.
  */
-export const ComicChapter = z.object({
-    chapterName: z.string(),
-    comicSeriesId: z.string(),
-    comicChapterId: z.string().regex(GalleryCollectionNameRegex),
-});
+export const ComicChapter = createSelectSchema(comicChapter);
 
 /**
- * Minimal series metadata stored in DB.
- *
- * Use when querying a list of titles.
+ * Data for a comic series, extracted from `comic_series` table by `drizzle-zod`.
  */
-export const ComicSeriesMetadata = z.object({
-    category: z.enum(ComicCategory),
-    comicSeriesId: z.string(),
-    likeCount: z.int(),
-    thumbnail: z.string(),
-    title: z.string(),
-    updatedAt: z.iso.datetime(),
-    viewCount: z.int(),
-});
+export const ComicSeriesData = createSelectSchema(comicSeries);
 
 /**
- * Complete title data.
+ * Complete comic data.
  */
-export const ComicSeriesData = ComicSeriesMetadata.extend({
-    author: z.string().min(1, { message: "Author is required" }),
-    chapters: z.array(ComicChapter).default([]),
-    createdAt: z.iso.datetime(),
-    contributors: z.array(ComicContributor).default([]),
-    synopsis: z.string(),
+export const CompleteComicData = ComicSeriesData.extend({
+    chapters: z.array(ComicChapter),
+    contributors: z.array(ComicContributor),
 });

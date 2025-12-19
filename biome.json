@@ -11,6 +11,7 @@
       "src/**",
       "./next.config.ts",
       "./prisma.config.ts",
+      "./drizzle.config.ts",
       "./prisma/seed.ts",
       "!src/generated/prisma",
       "!src/hooks/use-mobile.ts",
