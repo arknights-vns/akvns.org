@@ -33,7 +33,7 @@ export const blog = pgTable(
     "blog",
     {
         id: serial().primaryKey(),
-        slug: varchar({ length: 255 }).unique(),
+        slug: varchar({ length: 255 }).notNull().unique(),
         title: varchar({ length: 255 }).notNull(),
         author: varchar({ length: 255 }),
         shortBriefing: text(),

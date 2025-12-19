@@ -65,8 +65,10 @@ export default function BlogListing() {
                                             </Link>
                                         </Heading>
                                         <FavorText className="text-lg!">
-                                            {new Date(entry.updatedAt).toLocaleDateString()} - Tác
-                                            giả: {entry.author}
+                                            {new Date(
+                                                entry.updatedAt ?? Date.now(),
+                                            ).toLocaleDateString()}{" "}
+                                            - Tác giả: {entry.author}
                                         </FavorText>
                                         <Paragraph className="text-justify">
                                             {entry.shortBriefing}
