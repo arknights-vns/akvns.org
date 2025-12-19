@@ -19,7 +19,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import DiscordInfoPill from "@/components/DiscordInfoPill";
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
@@ -323,7 +322,6 @@ export default function NavigationBar() {
             </NavigationMenu>
             <div className="flex w-[25vw] items-center justify-end gap-3">
                 <DiscordInfoPill />
-                <ThemeSwitcher />
             </div>
         </header>
     );
