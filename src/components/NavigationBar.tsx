@@ -2,9 +2,9 @@
 
 import type { Route } from "next";
 import type { StaticImport } from "next/dist/shared/lib/get-img-props";
-import GitHub_Icon from "@public/brand/github.svg";
 import VNS_Icon from "@public/VNS_Icon.svg";
 import {
+    BadgeQuestionMark,
     Check,
     ChevronDown,
     Contact,
@@ -13,7 +13,6 @@ import {
     Info,
     type LucideIcon,
     Menu,
-    StickyNote,
     Users,
 } from "lucide-react";
 import Image from "next/image";
@@ -90,21 +89,30 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
                 },
             },
             {
-                href: "/#chat-with-us",
+                description: "",
+                href: "/#projects",
+                label: "Các dự án của Arknights VNS",
+                icon: {
+                    type: "lucide",
+                    src: Check,
+                },
+            },
+            {
+                href: "/#faq",
+                label: "Câu hỏi thường gặp",
+                description: "",
+                icon: {
+                    type: "lucide",
+                    src: BadgeQuestionMark,
+                },
+            },
+            {
+                href: "/#footer",
                 description: "",
                 label: "Liên hệ",
                 icon: {
                     type: "lucide",
                     src: Contact,
-                },
-            },
-            {
-                href: "/blog",
-                description: "Blog về mọi thứ của Arknights VNS",
-                label: "Blog",
-                icon: {
-                    type: "lucide",
-                    src: StickyNote,
                 },
             },
         ],
@@ -136,32 +144,8 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
         type: "dropdown",
     },
     {
-        children: [
-            {
-                description: "",
-                href: "/#projects",
-                label: "Các dự án của Arknights VNS",
-                icon: {
-                    type: "lucide",
-                    src: Check,
-                },
-            },
-            {
-                description: "Team IT của Arknights VNS, cũng là team làm nên website này.",
-                href: "https://github.com/arknights-vns",
-                label: "Arknights VNS @ GitHub",
-                icon: {
-                    type: "local",
-                    src: GitHub_Icon,
-                },
-            },
-        ],
-        label: "Dự án",
-        type: "dropdown",
-    },
-    {
-        href: "/#faq",
-        label: "Câu hỏi thường gặp",
+        href: "/blog",
+        label: "Blog",
         type: "link",
     },
     {
