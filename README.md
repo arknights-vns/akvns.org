@@ -29,7 +29,7 @@ Probably taking some time looking at the source code would give you the answer, 
 | Next.js   | Full-stack development, obviously.                                               |
 | PostHog   | Telemetry & flag management.                                                     |
 | shadcn/ui | User Interface                                                                   |
-| Prisma    | ORM Layer                                                                        |
+| Drizzle   | ORM Layer                                                                        |
 | Postgres  | Database, [with our own version](https://github.com/arknights-vns/postgresql-17).|
 | Biome     | Code linter                                                                      |
 
