@@ -2,6 +2,7 @@ import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 import { comicChapter, comicContributor, comicSeries } from "@/db/schema";
+import { createCoercedDateSelectSchema } from "@/schema/date-coercion";
 
 /**
  * Data for a comic contributor, extracted from `comic_contributor` table by `drizzle-zod`.
@@ -11,12 +12,12 @@ export const ComicContributor = createSelectSchema(comicContributor);
 /**
  * Data for a comic chapter, extracted from `comic_chapter` table by `drizzle-zod`.
  */
-export const ComicChapter = createSelectSchema(comicChapter);
+export const ComicChapter = createCoercedDateSelectSchema(comicChapter);
 
 /**
  * Data for a comic series, extracted from `comic_series` table by `drizzle-zod`.
  */
-export const ComicSeriesData = createSelectSchema(comicSeries);
+export const ComicSeriesData = createCoercedDateSelectSchema(comicSeries);
 
 /**
  * Complete comic data.
