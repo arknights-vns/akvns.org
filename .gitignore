@@ -55,3 +55,6 @@ volumes/
 # Prisma
 src/generated/prisma
 prisma/seed.ts
+
+# .idea
+.idea/git_toolbox_prj.xml
