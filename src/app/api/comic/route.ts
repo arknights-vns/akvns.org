@@ -1,5 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
+import { comicSeries } from "@/db/schema/vns-schema";
 import { drizzleDb } from "@/lib/drizzle";
 
 /**
@@ -10,16 +11,17 @@ export async function GET(request: NextRequest) {
 
     const pageVal = Number.parseInt(request.nextUrl.searchParams.get("page") ?? "0", 10);
 
-    const results = await drizzleDb.query.comicSeries.findMany({
-        offset: pageVal * itemsPerPage,
-        limit: itemsPerPage,
-    });
+    const results = await drizzleDb
+        .select()
+        .from(comicSeries)
+        .offset(pageVal * itemsPerPage)
+        .limit(itemsPerPage);
 
     return NextResponse.json(
         { message: results },
         {
             headers: {
-                "Cache-Control": "public, max-age=3600, s-maxage=7200",
+                "Cache-Control": "public, max-age=7200, s-maxage=86400",
             },
             status: 200,
         },

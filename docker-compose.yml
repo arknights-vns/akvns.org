@@ -7,6 +7,8 @@ services:
     depends_on:
       pgbouncer:
         condition: service_healthy
+      redis:
+        condition: service_started
     volumes:
       - ./public:/app/public:ro
     environment:
@@ -56,3 +58,13 @@ services:
       - "4983:4983"
     volumes:
       - ./volumes/drizzle-gateway:/app:z
+
+  redis:
+    image: redis:8.4-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --save 60 1 --loglevel warning /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./volumes/redis-data:/data:z
+      - ./volumes/redis-conf:/usr/local/etc/redis:z

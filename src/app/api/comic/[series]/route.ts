@@ -10,7 +10,7 @@ import { drizzleDb } from "@/lib/drizzle";
 export async function GET(_request: NextRequest, parameters: RouteContext<"/api/comic/[series]">) {
     const { series } = await parameters.params;
 
-    const row = await drizzleDb.query.comicSeries.findFirst({
+    const entry = await drizzleDb.query.comicSeries.findFirst({
         with: {
             chapters: true,
             contributors: true,
@@ -18,15 +18,15 @@ export async function GET(_request: NextRequest, parameters: RouteContext<"/api/
         where: eq(comicSeries.comicSeriesId, series),
     });
 
-    if (!row) {
+    if (!entry) {
         return NextResponse.json({ error: "Not Found." }, { status: 404 });
     }
 
     return NextResponse.json(
-        { message: row },
+        { message: entry },
         {
             headers: {
-                "Cache-Control": "public, max-age=60, s-maxage=300",
+                "Cache-Control": "public, max-age=7200, s-maxage=86400",
             },
             status: 200,
         },
