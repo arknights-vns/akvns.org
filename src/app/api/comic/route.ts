@@ -9,7 +9,10 @@ import { drizzleDb } from "@/lib/drizzle";
 export async function GET(request: NextRequest) {
     const itemsPerPage = 10;
 
-    const pageVal = Number.parseInt(request.nextUrl.searchParams.get("page") ?? "0", 10);
+    const pageVal = Number.parseInt(
+        request.nextUrl.searchParams.get("page") ?? "0",
+        10,
+    );
 
     const results = await drizzleDb
         .select()

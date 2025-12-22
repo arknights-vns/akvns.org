@@ -28,9 +28,13 @@ type BlogInternalData = {
 
 export const revalidate = 86400;
 
-export async function generateMetadata(props: PageProps<"/blog/[slug]">): Promise<Metadata> {
+export async function generateMetadata(
+    props: PageProps<"/blog/[slug]">,
+): Promise<Metadata> {
     const { slug } = await props.params;
-    const res = await fetch(`${process.env.BLOG_ASSETS_URL_PREFIX}/${slug}.mdx`);
+    const res = await fetch(
+        `${process.env.BLOG_ASSETS_URL_PREFIX}/${slug}.mdx`,
+    );
 
     if (!res.ok) {
         return {
@@ -44,7 +48,10 @@ export async function generateMetadata(props: PageProps<"/blog/[slug]">): Promis
         parseFrontmatter: true,
     };
 
-    const { frontmatter: meta } = await evaluate<BlogFMType>({ source, options });
+    const { frontmatter: meta } = await evaluate<BlogFMType>({
+        source,
+        options,
+    });
 
     return {
         title: `Blog: ${meta.title}`,
@@ -55,7 +62,9 @@ export async function generateMetadata(props: PageProps<"/blog/[slug]">): Promis
 export default async function BlogPage(props: PageProps<"/blog/[slug]">) {
     const { slug } = await props.params;
 
-    const res = await fetch(`${process.env.BLOG_ASSETS_URL_PREFIX}/${slug}.mdx`);
+    const res = await fetch(
+        `${process.env.BLOG_ASSETS_URL_PREFIX}/${slug}.mdx`,
+    );
 
     if (!res.ok) {
         redirect("/404" as Route);
@@ -102,14 +111,17 @@ export default async function BlogPage(props: PageProps<"/blog/[slug]">) {
                 }}
             />
 
-            <section id="blog" className="place-items-center-safe flex flex-col space-y-8 py-14">
+            <section
+                id="blog"
+                className="place-items-center-safe flex flex-col space-y-8 py-14"
+            >
                 <div className="space-y-4 text-center">
                     <Heading kind="h1" className="text-primary">
                         {meta.title}
                     </Heading>
                     <aside className="font-light italic">
-                        {dt.toLocaleDateString()} - Tác giả: {meta.author} - {Math.ceil(readTime)}{" "}
-                        phút đọc
+                        {dt.toLocaleDateString()} - Tác giả: {meta.author} -{" "}
+                        {Math.ceil(readTime)} phút đọc
                     </aside>
                     <FavorText>{meta.description}</FavorText>
                 </div>

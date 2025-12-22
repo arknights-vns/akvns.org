@@ -26,13 +26,18 @@ export function ThemeSwitcher() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="mt-1">
                 <DropdownMenuRadioGroup onValueChange={setTheme} value={theme}>
-                    <DropdownMenuRadioItem aria-label="theme-light" value="light">
+                    <DropdownMenuRadioItem
+                        aria-label="theme-light"
+                        value="light"
+                    >
                         Sáng
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem aria-label="theme-dark" value="dark">
                         Tối
                     </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="system">Thiết bị</DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="system">
+                        Thiết bị
+                    </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
             </DropdownMenuContent>
         </DropdownMenu>

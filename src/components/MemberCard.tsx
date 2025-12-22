@@ -31,8 +31,12 @@ export default function MemberCard(props: MemberProps) {
                     src={props.avatar}
                     width={96}
                 />
-                <CardTitle className="text-center text-2xl">{props.name}</CardTitle>
-                <CardDescription className="font-bold text-primary">{props.role}</CardDescription>
+                <CardTitle className="text-center text-2xl">
+                    {props.name}
+                </CardTitle>
+                <CardDescription className="font-bold text-primary">
+                    {props.role}
+                </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
                 <FootNote>{props.quote}</FootNote>

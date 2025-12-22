@@ -20,10 +20,6 @@
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "space",
-    "lineEnding": "lf",
-    "lineWidth": 100,
-    "indentWidth": 4,
     "useEditorconfig": true
   },
   "linter": {
@@ -92,13 +88,5 @@
     "parser": {
       "tailwindDirectives": true
     }
-  },
-  "overrides": [
-    {
-      "includes": ["*.ts", "*.tsx"],
-      "linter": {
-        "rules": {}
-      }
-    }
-  ]
+  }
 }

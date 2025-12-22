@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import FavIconLight from "@public/favicon.ico";
 import FavIconDark from "@public/favicon-dark.ico";
-import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
+import {
+    Quicksand as VNS_Font,
+    JetBrains_Mono as VNS_Font_Mono,
+} from "next/font/google";
 
 import Providers from "@/components/Providers";
 
@@ -12,7 +15,8 @@ const font = VNS_Font({
     variable: "--font-vns",
 });
 
-const production_url = process.env.NEXT_PUBLIC_PRODUCTION_URL || "http://localhost:3000";
+const production_url =
+    process.env.NEXT_PUBLIC_PRODUCTION_URL || "http://localhost:3000";
 
 export const metadata: Metadata = {
     authors: [
@@ -64,8 +68,14 @@ export const viewport: Viewport = {
 
 export default function RootLayout(properties: LayoutProps<"/">) {
     return (
-        <html lang="en" suppressHydrationWarning={true} data-scroll-behavior="smooth">
-            <body className={`${font.variable} ${fontMono.variable} font-sans antialiased`}>
+        <html
+            lang="en"
+            suppressHydrationWarning={true}
+            data-scroll-behavior="smooth"
+        >
+            <body
+                className={`${font.variable} ${fontMono.variable} font-sans antialiased`}
+            >
                 <Providers>{properties.children}</Providers>
             </body>
         </html>

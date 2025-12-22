@@ -10,13 +10,19 @@ import { drizzleDb } from "@/lib/drizzle";
 export async function GET(request: NextRequest) {
     const itemsPerPage = 10;
 
-    const pageVal = Number.parseInt(request.nextUrl.searchParams.get("page") ?? "0", 10);
+    const pageVal = Number.parseInt(
+        request.nextUrl.searchParams.get("page") ?? "0",
+        10,
+    );
 
     const records = await drizzleDb
         .select()
         .from(blog)
         .where(
-            and(gte(blog.id, pageVal * itemsPerPage), lt(blog.id, (pageVal + 1) * itemsPerPage)),
+            and(
+                gte(blog.id, pageVal * itemsPerPage),
+                lt(blog.id, (pageVal + 1) * itemsPerPage),
+            ),
         );
 
     return NextResponse.json(

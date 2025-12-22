@@ -82,11 +82,19 @@ export default function FatFooter() {
                     />
                     <div className="place-items-center-safe my-4 flex gap-x-2">
                         <Link href="https://www.facebook.com/terrastationvn">
-                            <Image alt="FacebookLogo" src={FacebookLogo} width={32} />
+                            <Image
+                                alt="FacebookLogo"
+                                src={FacebookLogo}
+                                width={32}
+                            />
                         </Link>
                         <div>/</div>
                         <Link href="https://www.youtube.com/@ArknightsVNS">
-                            <Image alt="YoutubeLogo" src={YoutubeLogo} width={28} />
+                            <Image
+                                alt="YoutubeLogo"
+                                src={YoutubeLogo}
+                                width={28}
+                            />
                         </Link>
                         <div>/</div>
                         <Link href="https://steamcommunity.com/groups/arknights_vietnam_station">
@@ -104,19 +112,32 @@ export default function FatFooter() {
                             className="ml-8 grid h-full grid-cols-1 grid-rows-2 gap-y-2"
                             key={nav.group}
                         >
-                            <Heading kind="h3" className="self-end font-extrabold text-3xl">
+                            <Heading
+                                kind="h3"
+                                className="self-end font-extrabold text-3xl"
+                            >
                                 {nav.group}
                             </Heading>
                             <div className="flex flex-col gap-y-1 [&_a_span]:underline [&_a_span]:decoration-dotted [&_a_span]:underline-offset-4">
                                 {nav.items.map((item) => (
-                                    <div className="flex gap-x-2" key={item.displayText}>
+                                    <div
+                                        className="flex gap-x-2"
+                                        key={item.displayText}
+                                    >
                                         <Link href={item.href as Route}>
-                                            {item.heading && <>{item.heading}: </>}
+                                            {item.heading && (
+                                                <>{item.heading}: </>
+                                            )}
                                             <span className="font-bold">
-                                                {item.cloak ? item.displayText : item.href}
+                                                {item.cloak
+                                                    ? item.displayText
+                                                    : item.href}
                                             </span>
                                         </Link>
-                                        <ArrowUpRight className="self-center" size={18} />
+                                        <ArrowUpRight
+                                            className="self-center"
+                                            size={18}
+                                        />
                                     </div>
                                 ))}
                             </div>
@@ -133,14 +154,19 @@ export default function FatFooter() {
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle className="font-bold text-2xl">❤️ Donate</DialogTitle>
-                        <DialogDescription>Cảm ơn bạn đã ủng hộ Arknights VNS!</DialogDescription>
+                        <DialogTitle className="font-bold text-2xl">
+                            ❤️ Donate
+                        </DialogTitle>
+                        <DialogDescription>
+                            Cảm ơn bạn đã ủng hộ Arknights VNS!
+                        </DialogDescription>
                     </DialogHeader>
                     <div className="flex flex-col space-y-2">
                         <Paragraph>
-                            Bằng việc Donate, các bạn đã góp phần giúp tụi mình trang trải chi phí
-                            thuê địa điểm Offline, đặt commission, mua merch Arknights, cũng như bảo
-                            trì hạ tầng IT.
+                            Bằng việc Donate, các bạn đã góp phần giúp tụi mình
+                            trang trải chi phí thuê địa điểm Offline, đặt
+                            commission, mua merch Arknights, cũng như bảo trì hạ
+                            tầng IT.
                         </Paragraph>
                         <Image
                             alt="donation_qr_code"

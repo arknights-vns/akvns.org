@@ -14,8 +14,7 @@
     "db:seed": "tsx ./src/db/seed.ts",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
-    "db:push:wipe": "drizzle-kit push --force",
-    "db:migrate": "drizzle-kit migrate"
+    "db:push:wipe": "drizzle-kit push --force"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.953.0",

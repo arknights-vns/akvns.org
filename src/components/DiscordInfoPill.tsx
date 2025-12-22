@@ -18,7 +18,11 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Spinner } from "@/components/ui/spinner";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { authClient } from "@/lib/auth-client";
 
 export default function DiscordInfoPill() {
@@ -66,13 +70,20 @@ export default function DiscordInfoPill() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild={true}>
                 <Avatar className="h-auto w-9">
-                    <AvatarImage alt="Discord_Avatar" src={session.user.image || "nothing.png"} />
-                    <AvatarFallback className="size-9 rounded-full">VNS</AvatarFallback>
+                    <AvatarImage
+                        alt="Discord_Avatar"
+                        src={session.user.image || "nothing.png"}
+                    />
+                    <AvatarFallback className="size-9 rounded-full">
+                        VNS
+                    </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="mt-1">
                 <DropdownMenuLabel className="flex justify-center gap-1">
-                    <span className="space-x-1 font-bold">@{session.user.name}</span>
+                    <span className="space-x-1 font-bold">
+                        @{session.user.name}
+                    </span>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>

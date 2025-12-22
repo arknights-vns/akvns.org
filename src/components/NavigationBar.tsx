@@ -21,7 +21,11 @@ import Link from "next/link";
 import DiscordInfoPill from "@/components/DiscordInfoPill";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import {
+    Collapsible,
+    CollapsibleContent,
+    CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -122,7 +126,8 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
     {
         children: [
             {
-                description: "Những người đang điều hành Arknights VNS đến hiện tại.",
+                description:
+                    "Những người đang điều hành Arknights VNS đến hiện tại.",
                 href: "/#leaders",
                 label: "The Leaders",
                 icon: {
@@ -174,7 +179,9 @@ export default function NavigationBar() {
                     <SheetContent className="max-w-xs" side="left">
                         <SheetHeader>
                             <SheetTitle>Arknights Vietnam Station</SheetTitle>
-                            <SheetDescription>Các đường link trong website.</SheetDescription>
+                            <SheetDescription>
+                                Các đường link trong website.
+                            </SheetDescription>
                         </SheetHeader>
                         <div className="mx-4 flex flex-col gap-4">
                             {/** biome-ignore lint/suspicious/useIterableCallbackReturn: type-checked */}
@@ -192,28 +199,44 @@ export default function NavigationBar() {
                                                     <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                                                 </CollapsibleTrigger>
                                                 <CollapsibleContent className="ml-4 flex flex-col gap-4">
-                                                    {entry.children.map((subentry) => (
-                                                        <Link
-                                                            href={subentry.href}
-                                                            key={`${entry.label}-${subentry.label}`}
-                                                            className="place-items-center-safe flex gap-2"
-                                                        >
-                                                            {subentry.icon &&
-                                                                subentry.icon.type === "local" && (
-                                                                    <Image
-                                                                        src={subentry.icon.src}
-                                                                        alt={`${entry.label}-icon`}
-                                                                        width={16}
-                                                                        className="dark:invert"
-                                                                    />
-                                                                )}
-                                                            {subentry.icon &&
-                                                                subentry.icon.type === "lucide" && (
-                                                                    <subentry.icon.src className="size-4" />
-                                                                )}
-                                                            {subentry.label}
-                                                        </Link>
-                                                    ))}
+                                                    {entry.children.map(
+                                                        (subentry) => (
+                                                            <Link
+                                                                href={
+                                                                    subentry.href
+                                                                }
+                                                                key={`${entry.label}-${subentry.label}`}
+                                                                className="place-items-center-safe flex gap-2"
+                                                            >
+                                                                {subentry.icon &&
+                                                                    subentry
+                                                                        .icon
+                                                                        .type ===
+                                                                        "local" && (
+                                                                        <Image
+                                                                            src={
+                                                                                subentry
+                                                                                    .icon
+                                                                                    .src
+                                                                            }
+                                                                            alt={`${entry.label}-icon`}
+                                                                            width={
+                                                                                16
+                                                                            }
+                                                                            className="dark:invert"
+                                                                        />
+                                                                    )}
+                                                                {subentry.icon &&
+                                                                    subentry
+                                                                        .icon
+                                                                        .type ===
+                                                                        "lucide" && (
+                                                                        <subentry.icon.src className="size-4" />
+                                                                    )}
+                                                                {subentry.label}
+                                                            </Link>
+                                                        ),
+                                                    )}
                                                 </CollapsibleContent>
                                             </Collapsible>
                                         );
@@ -254,46 +277,67 @@ export default function NavigationBar() {
                         switch (entry.type) {
                             case "dropdown": {
                                 return (
-                                    <NavigationMenuItem key={`desktop-downdown-${entry.label}`}>
-                                        <NavigationMenuTrigger>{entry.label}</NavigationMenuTrigger>
+                                    <NavigationMenuItem
+                                        key={`desktop-downdown-${entry.label}`}
+                                    >
+                                        <NavigationMenuTrigger>
+                                            {entry.label}
+                                        </NavigationMenuTrigger>
                                         <NavigationMenuContent>
                                             <ul className="grid w-[300px] gap-4">
                                                 <li>
-                                                    {entry.children.map((subentry) => (
-                                                        <NavigationMenuLink
-                                                            asChild={true}
-                                                            key={`${entry.label}-${subentry.label}`}
-                                                        >
-                                                            <Link href={subentry.href}>
-                                                                <div className="place-items-center-safe flex gap-2">
-                                                                    {subentry.icon &&
-                                                                        subentry.icon.type ===
-                                                                            "local" && (
-                                                                            <Image
-                                                                                src={
-                                                                                    subentry.icon
-                                                                                        .src
-                                                                                }
-                                                                                alt={`${entry.label}-icon`}
-                                                                                width={16}
-                                                                                className="dark:invert"
-                                                                            />
-                                                                        )}
-                                                                    {subentry.icon &&
-                                                                        subentry.icon.type ===
-                                                                            "lucide" && (
-                                                                            <subentry.icon.src />
-                                                                        )}
-                                                                    <div className="font-medium">
-                                                                        {subentry.label}
+                                                    {entry.children.map(
+                                                        (subentry) => (
+                                                            <NavigationMenuLink
+                                                                asChild={true}
+                                                                key={`${entry.label}-${subentry.label}`}
+                                                            >
+                                                                <Link
+                                                                    href={
+                                                                        subentry.href
+                                                                    }
+                                                                >
+                                                                    <div className="place-items-center-safe flex gap-2">
+                                                                        {subentry.icon &&
+                                                                            subentry
+                                                                                .icon
+                                                                                .type ===
+                                                                                "local" && (
+                                                                                <Image
+                                                                                    src={
+                                                                                        subentry
+                                                                                            .icon
+                                                                                            .src
+                                                                                    }
+                                                                                    alt={`${entry.label}-icon`}
+                                                                                    width={
+                                                                                        16
+                                                                                    }
+                                                                                    className="dark:invert"
+                                                                                />
+                                                                            )}
+                                                                        {subentry.icon &&
+                                                                            subentry
+                                                                                .icon
+                                                                                .type ===
+                                                                                "lucide" && (
+                                                                                <subentry.icon.src />
+                                                                            )}
+                                                                        <div className="font-medium">
+                                                                            {
+                                                                                subentry.label
+                                                                            }
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div className="text-muted-foreground">
-                                                                    {subentry.description}
-                                                                </div>
-                                                            </Link>
-                                                        </NavigationMenuLink>
-                                                    ))}
+                                                                    <div className="text-muted-foreground">
+                                                                        {
+                                                                            subentry.description
+                                                                        }
+                                                                    </div>
+                                                                </Link>
+                                                            </NavigationMenuLink>
+                                                        ),
+                                                    )}
                                                 </li>
                                             </ul>
                                         </NavigationMenuContent>
@@ -302,7 +346,9 @@ export default function NavigationBar() {
                             }
                             case "link": {
                                 return (
-                                    <NavigationMenuItem key={`desktop-link-${entry.label}`}>
+                                    <NavigationMenuItem
+                                        key={`desktop-link-${entry.label}`}
+                                    >
                                         <NavigationMenuLink
                                             asChild={true}
                                             className={navigationMenuTriggerStyle()}

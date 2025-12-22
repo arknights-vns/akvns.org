@@ -7,7 +7,10 @@ import { drizzleDb } from "@/lib/drizzle";
 /**
  * Get metadata for a comic series.
  */
-export async function GET(_request: NextRequest, parameters: RouteContext<"/api/comic/[series]">) {
+export async function GET(
+    _request: NextRequest,
+    parameters: RouteContext<"/api/comic/[series]">,
+) {
     const { series } = await parameters.params;
 
     const entry = await drizzleDb.query.comicSeries.findFirst({

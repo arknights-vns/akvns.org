@@ -14,7 +14,11 @@ import {
 /**
  * `project_type` enum.
  */
-export const projectTypeEnum = pgEnum("project_type", ["Community", "Event", "Cross_Over"]);
+export const projectTypeEnum = pgEnum("project_type", [
+    "Community",
+    "Event",
+    "Cross_Over",
+]);
 
 /**
  * `comic_category` enum.
@@ -39,7 +43,14 @@ export const blog = pgTable(
         shortBriefing: text(),
         updatedAt: timestamp().defaultNow(),
     },
-    (table) => [index("blog_idx").on(table.title, table.slug, table.shortBriefing, table.author)],
+    (table) => [
+        index("blog_idx").on(
+            table.title,
+            table.slug,
+            table.shortBriefing,
+            table.author,
+        ),
+    ],
 );
 
 /**
@@ -107,7 +118,11 @@ export const comicChapter = pgTable(
         updatedAt: timestamp().defaultNow(),
     },
     (table) => [
-        index("comic_chapter_idx").on(table.comicChapterId, table.chapterName, table.comicSeriesId),
+        index("comic_chapter_idx").on(
+            table.comicChapterId,
+            table.chapterName,
+            table.comicSeriesId,
+        ),
     ],
 );
 
@@ -126,15 +141,23 @@ export const comicContributor = pgTable(
         role: text().notNull(),
         members: text().array().notNull(),
     },
-    (t) => [uniqueIndex("comic_contributor_role_series_unique").on(t.role, t.comicSeriesId)],
+    (t) => [
+        uniqueIndex("comic_contributor_role_series_unique").on(
+            t.role,
+            t.comicSeriesId,
+        ),
+    ],
 );
 
-export const comicContributorRelations = relations(comicContributor, ({ one }) => ({
-    comicSeries: one(comicSeries, {
-        fields: [comicContributor.comicSeriesId],
-        references: [comicSeries.comicSeriesId],
+export const comicContributorRelations = relations(
+    comicContributor,
+    ({ one }) => ({
+        comicSeries: one(comicSeries, {
+            fields: [comicContributor.comicSeriesId],
+            references: [comicSeries.comicSeriesId],
+        }),
     }),
-}));
+);
 
 export const comicChapterRelations = relations(comicChapter, ({ one }) => ({
     comicSeries: one(comicSeries, {

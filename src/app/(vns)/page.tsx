@@ -26,7 +26,13 @@ import {
 } from "@/components/ui/accordion";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
 import {
     Carousel,
     type CarouselApi,
@@ -84,15 +90,19 @@ export default function MainPage() {
                                 Arknights Vietnam Station
                             </Heading>
                             <Paragraph className="mx-8 font-light text-md md:text-2xl lg:text-justify">
-                                Được thành lập vào năm 2021, Arknights Vietnam Station (gọi tắt là
-                                Arknights VNS) là một nhóm hoạt động phi lợi nhuận được tạo ra với
-                                sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt Nam.
+                                Được thành lập vào năm 2021, Arknights Vietnam
+                                Station (gọi tắt là Arknights VNS) là một nhóm
+                                hoạt động phi lợi nhuận được tạo ra với sứ mệnh
+                                gắn kết cộng đồng người chơi Arknights toàn Việt
+                                Nam.
                             </Paragraph>
                         </div>
                         <div className="flex flex-col justify-evenly gap-8 md:flex-row">
                             <div>
                                 <div className="font-bold text-4xl">8,8K</div>
-                                <div className="text-xl">lượt theo dõi Fanpage</div>
+                                <div className="text-xl">
+                                    lượt theo dõi Fanpage
+                                </div>
                             </div>
                             <div>
                                 <div className="font-bold text-4xl">36.243</div>
@@ -106,7 +116,8 @@ export default function MainPage() {
                     <div className="hidden w-1/5 lg:block">
                         <Image alt="amiyi" src={amiya} />
                         <Paragraph className="text-center">
-                            Mascot Amiya của Arknights VNS Offline 2025 "Dreamchasers".
+                            Mascot Amiya của Arknights VNS Offline 2025
+                            "Dreamchasers".
                         </Paragraph>
                     </div>
                 </div>
@@ -153,7 +164,9 @@ export default function MainPage() {
                                         width={150}
                                     />
                                 </Link>
-                                <FootNote className="font-bold text-lg">{data.title}</FootNote>
+                                <FootNote className="font-bold text-lg">
+                                    {data.title}
+                                </FootNote>
                             </CarouselItem>
                         ))}
                     </CarouselContent>
@@ -171,11 +184,15 @@ export default function MainPage() {
                     ))}
                 </div>
                 <FavorText className="text-center text-md!">
-                    Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác nữa.
+                    Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác
+                    nữa.
                 </FavorText>
                 <Button asChild={true} className="w-fit self-center px-2">
                     <Link href="/staff">
-                        <span className="font-bold"> Toàn bộ dàn staff Arknights VNS</span>
+                        <span className="font-bold">
+                            {" "}
+                            Toàn bộ dàn staff Arknights VNS
+                        </span>
                         <ArrowRight />
                     </Link>
                 </Button>
@@ -188,71 +205,93 @@ export default function MainPage() {
                             <Heading kind="h1" className="text-primary">
                                 Chúng tôi đã nấu cl gì?
                             </Heading>
-                            <FavorText>Placeholder because I'm tired - Đụt</FavorText>
+                            <FavorText>
+                                Placeholder because I'm tired - Đụt
+                            </FavorText>
                         </div>
                         <TabsList className="flex h-auto gap-3 self-center bg-transparent md:self-end [&>button]:rounded-md [&>button]:bg-neutral-200 [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:font-bold [&>button]:data-[state=active]:text-white [&>button]:dark:bg-neutral-600">
-                            <TabsTrigger value="fan-project">Fan Projects</TabsTrigger>
+                            <TabsTrigger value="fan-project">
+                                Fan Projects
+                            </TabsTrigger>
                             <TabsTrigger value="event">Events</TabsTrigger>
                             <TabsTrigger value="cross">Cross-Overs</TabsTrigger>
                         </TabsList>
                     </div>
-                    {(["fan-project", "event", "cross"] as const).map((category) => {
-                        const projects = projectsList[category];
+                    {(["fan-project", "event", "cross"] as const).map(
+                        (category) => {
+                            const projects = projectsList[category];
 
-                        return (
-                            <TabsContent className="mx-4" key={category} value={category}>
-                                <Carousel
-                                    className="w-full"
-                                    opts={{
-                                        align: "start",
-                                    }}
-                                    setApi={setApi}
+                            return (
+                                <TabsContent
+                                    className="mx-4"
+                                    key={category}
+                                    value={category}
                                 >
-                                    <CarouselContent className="place-content-center-safe">
-                                        {projects.map((project) => (
-                                            <CarouselItem
-                                                className="md:basis-1/2 lg:basis-1/3"
-                                                key={project.name}
-                                            >
-                                                <Card>
-                                                    <CardHeader>
-                                                        <CardTitle>{project.date}</CardTitle>
-                                                        <CardDescription>
-                                                            {project.name}
-                                                        </CardDescription>
-                                                    </CardHeader>
-                                                    <CardContent className="flex min-h-42 items-center justify-center p-6">
-                                                        <div>{project.content}</div>
-                                                    </CardContent>
-                                                </Card>
-                                            </CarouselItem>
-                                        ))}
-                                    </CarouselContent>
-                                    <CarouselPrevious className="hidden md:flex" />
-                                    <CarouselNext className="hidden md:flex" />
-                                </Carousel>
-                                <div className="place-content-center-safe flex gap-x-3 py-4">
-                                    {Array.from({ length: count }).map((_, index) => {
-                                        return (
-                                            <Circle
-                                                className={clsx(
-                                                    "stroke-primary",
-                                                    index + 1 === current && "fill-primary",
-                                                )}
-                                                key={`navigation-${
-                                                    // biome-ignore lint/suspicious/noArrayIndexKey: yes
-                                                    index
-                                                }`}
-                                                onClick={() => api?.scrollTo(index)}
-                                                role="button"
-                                                strokeWidth={1}
-                                            />
-                                        );
-                                    })}
-                                </div>
-                            </TabsContent>
-                        );
-                    })}
+                                    <Carousel
+                                        className="w-full"
+                                        opts={{
+                                            align: "start",
+                                        }}
+                                        setApi={setApi}
+                                    >
+                                        <CarouselContent className="place-content-center-safe">
+                                            {projects.map((project) => (
+                                                <CarouselItem
+                                                    className="md:basis-1/2 lg:basis-1/3"
+                                                    key={project.name}
+                                                >
+                                                    <Card>
+                                                        <CardHeader>
+                                                            <CardTitle>
+                                                                {project.date}
+                                                            </CardTitle>
+                                                            <CardDescription>
+                                                                {project.name}
+                                                            </CardDescription>
+                                                        </CardHeader>
+                                                        <CardContent className="flex min-h-42 items-center justify-center p-6">
+                                                            <div>
+                                                                {
+                                                                    project.content
+                                                                }
+                                                            </div>
+                                                        </CardContent>
+                                                    </Card>
+                                                </CarouselItem>
+                                            ))}
+                                        </CarouselContent>
+                                        <CarouselPrevious className="hidden md:flex" />
+                                        <CarouselNext className="hidden md:flex" />
+                                    </Carousel>
+                                    <div className="place-content-center-safe flex gap-x-3 py-4">
+                                        {Array.from({ length: count }).map(
+                                            (_, index) => {
+                                                return (
+                                                    <Circle
+                                                        className={clsx(
+                                                            "stroke-primary",
+                                                            index + 1 ===
+                                                                current &&
+                                                                "fill-primary",
+                                                        )}
+                                                        key={`navigation-${
+                                                            // biome-ignore lint/suspicious/noArrayIndexKey: yes
+                                                            index
+                                                        }`}
+                                                        onClick={() =>
+                                                            api?.scrollTo(index)
+                                                        }
+                                                        role="button"
+                                                        strokeWidth={1}
+                                                    />
+                                                );
+                                            },
+                                        )}
+                                    </div>
+                                </TabsContent>
+                            );
+                        },
+                    )}
                 </Tabs>
             </ContentArea>
 
@@ -260,7 +299,9 @@ export default function MainPage() {
                 <Heading className="text-center text-primary" kind="h1">
                     Mọi người nghĩ gì về mình?
                 </Heading>
-                <FavorText className="text-center">Overwhelming Negative Reviews:</FavorText>
+                <FavorText className="text-center">
+                    Overwhelming Negative Reviews:
+                </FavorText>
                 <article className="place-items-center-safe m-8 grid grid-cols-1 gap-12 md:grid-cols-2">
                     {testimonyData.map((c) => (
                         <Card className="w-full shadow-md" key={c.id}>
@@ -275,14 +316,20 @@ export default function MainPage() {
                                         <CardTitle className="font-bold text-primary text-xl">
                                             {c.name}
                                         </CardTitle>
-                                        <CardDescription>{c.info}</CardDescription>
+                                        <CardDescription>
+                                            {c.info}
+                                        </CardDescription>
                                     </div>
                                 </div>
                             </CardHeader>
                             <CardContent className="text-justify leading-relaxed">
-                                <span className="font-bold text-primary">"</span>
+                                <span className="font-bold text-primary">
+                                    "
+                                </span>
                                 {c.description}
-                                <span className="font-bold text-primary">"</span>
+                                <span className="font-bold text-primary">
+                                    "
+                                </span>
                             </CardContent>
                         </Card>
                     ))}
@@ -301,7 +348,10 @@ export default function MainPage() {
                             </AccordionTrigger>
                             <AccordionContent>
                                 {faq.answer.map((ans) => (
-                                    <Paragraph className="ml-6 text-lg" key={ans}>
+                                    <Paragraph
+                                        className="ml-6 text-lg"
+                                        key={ans}
+                                    >
                                         {ans}
                                     </Paragraph>
                                 ))}
@@ -311,13 +361,16 @@ export default function MainPage() {
                 </Accordion>
             </ContentArea>
 
-            <ContentArea className="place-items-center-safe text-center" id="footnote">
+            <ContentArea
+                className="place-items-center-safe text-center"
+                id="footnote"
+            >
                 <Heading className="text-primary" kind="h1">
                     Lời kết
                 </Heading>
                 <FavorText className="text-center">
-                    Cảm ơn bạn, và cả cộng đồng game Arknights, vì đã đồng hành cùng chúng mình
-                    trong suốt 5 năm qua.
+                    Cảm ơn bạn, và cả cộng đồng game Arknights, vì đã đồng hành
+                    cùng chúng mình trong suốt 5 năm qua.
                 </FavorText>
                 <Paragraph className="font-bold">
                     Hẹn gặp lại các bạn vào một ngày không xa!{" "}
@@ -329,12 +382,17 @@ export default function MainPage() {
                     width={960}
                 />
                 <BlockQuote className="text-left">
-                    <Paragraph>"Every artist paints with a fiery soul</Paragraph>
+                    <Paragraph>
+                        "Every artist paints with a fiery soul
+                    </Paragraph>
                     <Paragraph>Every poet weaves words into prayers</Paragraph>
                     <Paragraph>Every dream has its own chasers.</Paragraph>
                     <Paragraph>
-                        And we, the <span className="font-bold text-primary">Dreamchasers</span>,
-                        will be the ones to carve it from hope.”
+                        And we, the{" "}
+                        <span className="font-bold text-primary">
+                            Dreamchasers
+                        </span>
+                        , will be the ones to carve it from hope.”
                     </Paragraph>
                     <FootNote className="mt-5 text-right font-bold text-foreground!">
                         Shou Huỳnh - Head Admin @ Arknights Vietnam Station
@@ -342,22 +400,31 @@ export default function MainPage() {
                 </BlockQuote>
             </ContentArea>
 
-            <ContentArea className="place-items-center-safe text-center" id="chat-with-us">
+            <ContentArea
+                className="place-items-center-safe text-center"
+                id="chat-with-us"
+            >
                 <Heading kind="h1" className="text-primary">
                     Wanna chat?
                 </Heading>
                 <FavorText className="text-center">
-                    Team VNS có cả Discord để các bạn giao lưu với nhau, cũng như xem
-                    Behind-the-scenes các kiểu :D
+                    Team VNS có cả Discord để các bạn giao lưu với nhau, cũng
+                    như xem Behind-the-scenes các kiểu :D
                 </FavorText>
                 <div className="place-items-center-safe flex flex-col gap-5 md:flex-row">
-                    <Button asChild={true} className="bg-[#5865F2] hover:bg-[#3D4CF0]">
+                    <Button
+                        asChild={true}
+                        className="bg-[#5865F2] hover:bg-[#3D4CF0]"
+                    >
                         <Link href="https://discord.gg/arknights-vns">
                             <Image alt="discord" src={Discord} width={24} />
                             Arknights VNS
                         </Link>
                     </Button>
-                    <Button asChild={true} className="bg-[#5865F2] hover:bg-[#3D4CF0]">
+                    <Button
+                        asChild={true}
+                        className="bg-[#5865F2] hover:bg-[#3D4CF0]"
+                    >
                         <Link href="https://discord.gg/wgETr8d4FR">
                             <Image alt="discord" src={Discord} width={24} />
                             Phoenix Frontiers

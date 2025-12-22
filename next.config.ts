@@ -6,7 +6,11 @@ const nextConfig: NextConfig = {
     typedRoutes: true,
     experimental: {
         typedEnv: true,
+        turbopackFileSystemCacheForDev: true,
+        turbopackFileSystemCacheForBuild: true,
     },
+    skipTrailingSlashRedirect: true,
+    poweredByHeader: false,
 
     async rewrites() {
         return [
@@ -20,7 +24,24 @@ const nextConfig: NextConfig = {
             },
         ];
     },
-    skipTrailingSlashRedirect: true,
+
+    async headers() {
+        return [
+            {
+                source: "/:path*",
+                headers: [
+                    {
+                        key: "X-Tus-Wives",
+                        value: "Angelina,Fartooth,Reed,Mudrock,Emilia,Bagpipe,Archetto,Astesia,Ray,Whisperain,Saileach,Ptilopsis,Vendela,Manticore,Vendela,Typhon,Dorothy,Viviana,Meteorite,Aurora,Savage,Poncirus,Robin",
+                    },
+                    {
+                        key: "X-Powered-By",
+                        value: "Arknights VNS",
+                    },
+                ],
+            },
+        ];
+    },
 };
 
 export default nextConfig;
