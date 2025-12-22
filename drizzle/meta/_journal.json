@@ -15,6 +15,20 @@
       "when": 1766122117873,
       "tag": "0001_cute_harpoon",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1766310952594,
+      "tag": "0002_vengeful_caretaker",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1766367652768,
+      "tag": "0003_numerous_silvermane",
+      "breakpoints": true
     }
   ]
 }

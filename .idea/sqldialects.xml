@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/drizzle/0000_jittery_madelyne_pryor.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/drizzle/0001_cute_harpoon.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/drizzle/0002_vengeful_caretaker.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/drizzle/0003_numerous_silvermane.sql" dialect="PostgreSQL" />
+  </component>
+</project>
