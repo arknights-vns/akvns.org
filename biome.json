@@ -10,10 +10,8 @@
     "includes": [
       "src/**",
       "./next.config.ts",
-      "./prisma.config.ts",
       "./drizzle.config.ts",
-      "./prisma/seed.ts",
-      "!src/generated/prisma",
+      "./lint-staged.config.js",
       "!src/hooks/use-mobile.ts",
       "!src/components/ui",
       "!!**/.next",
