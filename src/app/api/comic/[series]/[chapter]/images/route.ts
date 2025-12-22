@@ -2,7 +2,6 @@ import { ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { type NextRequest, NextResponse } from "next/server";
 
 import { s3Client } from "@/lib/aws-s3";
-import { env } from "@/lib/env";
 
 /**
  * Get images of this comic collection chapter.
@@ -15,7 +14,7 @@ export async function GET(
 
     const resp = await s3Client.send(
         new ListObjectsV2Command({
-            Bucket: env.COMIC_ASSETS_AWS_BUCKET,
+            Bucket: process.env.COMIC_ASSETS_AWS_BUCKET,
             Prefix: `${series}/${chapter}`,
         }),
     );
@@ -40,7 +39,7 @@ export async function GET(
                 .map((obj) => {
                     return {
                         name: obj.Key,
-                        url: `${env.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
+                        url: `${process.env.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
                     };
                 }),
         },

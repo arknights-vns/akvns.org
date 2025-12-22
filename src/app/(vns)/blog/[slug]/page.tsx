@@ -9,7 +9,6 @@ import remarkReadingTime from "remark-reading-time";
 import remarkReadingTimeMdx from "remark-reading-time/mdx";
 
 import { FavorText, Heading } from "@/components/ui/extension/typography";
-import { env } from "@/lib/env";
 
 type BlogFMType = {
     author: string;
@@ -31,7 +30,7 @@ export const revalidate = 86400;
 
 export async function generateMetadata(props: PageProps<"/blog/[slug]">): Promise<Metadata> {
     const { slug } = await props.params;
-    const res = await fetch(`${env.BLOG_ASSETS_URL_PREFIX}/${slug}.mdx`);
+    const res = await fetch(`${process.env.BLOG_ASSETS_URL_PREFIX}/${slug}.mdx`);
 
     if (!res.ok) {
         return {
@@ -56,7 +55,7 @@ export async function generateMetadata(props: PageProps<"/blog/[slug]">): Promis
 export default async function BlogPage(props: PageProps<"/blog/[slug]">) {
     const { slug } = await props.params;
 
-    const res = await fetch(`${env.BLOG_ASSETS_URL_PREFIX}/${slug}.mdx`);
+    const res = await fetch(`${process.env.BLOG_ASSETS_URL_PREFIX}/${slug}.mdx`);
 
     if (!res.ok) {
         redirect("/404" as Route);

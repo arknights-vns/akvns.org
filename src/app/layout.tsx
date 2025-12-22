@@ -4,7 +4,6 @@ import FavIconDark from "@public/favicon-dark.ico";
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 
 import Providers from "@/components/Providers";
-import { env } from "@/lib/env";
 
 import "./globals.css";
 
@@ -13,7 +12,7 @@ const font = VNS_Font({
     variable: "--font-vns",
 });
 
-const production_url = env.NEXT_PUBLIC_PRODUCTION_URL;
+const production_url = process.env.NEXT_PUBLIC_PRODUCTION_URL || "http://localhost:3000";
 
 export const metadata: Metadata = {
     authors: [
