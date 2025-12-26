@@ -1,12 +1,10 @@
 import { S3Client } from "bun";
 
-import { env } from "@/lib/env";
-
 const s3Client = new S3Client({
-    region: env.AWS_REGION,
-    endpoint: env.AWS_ENDPOINT,
-    accessKeyId: env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION || "https://s3.us-east-1.amazonaws.com",
+    endpoint: process.env.AWS_ENDPOINT || "us-east-1",
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || "ligma",
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || "ligma",
 });
 
 export { s3Client };

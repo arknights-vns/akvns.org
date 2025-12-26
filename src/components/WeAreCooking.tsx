@@ -15,7 +15,9 @@ export default function WeAreCooking() {
     return (
         <Card className="flex max-w-sm drop-shadow-xl md:max-w-lg">
             <CardHeader>
-                <CardTitle className="font-bold text-xl">Tụi mình đang nấu.</CardTitle>
+                <CardTitle className="font-bold text-xl">
+                    Tụi mình đang nấu.
+                </CardTitle>
                 <CardDescription>
                     Website vẫn đang trong quá trình phát triển bạn nhé!
                 </CardDescription>
@@ -29,18 +31,24 @@ export default function WeAreCooking() {
             </CardContent>
             <CardFooter className="flex-col gap-y-2">
                 <div className="flex w-full place-content-evenly items-center [&_a]:font-extrabold">
-                    <Button asChild={true} className="bg-red-500">
-                        <Link href="https://www.youtube.com/watch?v=gDWMnwYkZpc">
-                            <Play />
-                            YouTube VOD
-                        </Link>
-                    </Button>
-                    <Button asChild={true} className="bg-red-500">
-                        <Link href="https://www.youtube.com/playlist?list=PLz3PfnkGmWoIfd7L6AipXMCYKLt6ursH8">
-                            <Play />
-                            Youtube Playlist
-                        </Link>
-                    </Button>
+                    <Button
+                        render={
+                            <Link href="https://www.youtube.com/watch?v=gDWMnwYkZpc">
+                                <Play />
+                                YouTube VOD
+                            </Link>
+                        }
+                        className="bg-red-500"
+                    ></Button>
+                    <Button
+                        render={
+                            <Link href="https://www.youtube.com/playlist?list=PLz3PfnkGmWoIfd7L6AipXMCYKLt6ursH8">
+                                <Play />
+                                Youtube Playlist
+                            </Link>
+                        }
+                        className="bg-red-500"
+                    ></Button>
                 </div>
                 <div className="text-muted-foreground text-xs">
                     * Tus không trả lương team IT để làm cái này.

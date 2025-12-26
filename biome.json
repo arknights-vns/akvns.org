@@ -10,10 +10,8 @@
     "includes": [
       "src/**",
       "./next.config.ts",
-      "./prisma.config.ts",
       "./drizzle.config.ts",
-      "./prisma/seed.ts",
-      "!src/generated/prisma",
+      "./lint-staged.config.js",
       "!src/hooks/use-mobile.ts",
       "!src/components/ui",
       "!!**/.next",
@@ -22,10 +20,6 @@
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "space",
-    "lineEnding": "lf",
-    "lineWidth": 100,
-    "indentWidth": 4,
     "useEditorconfig": true
   },
   "linter": {
@@ -94,13 +88,5 @@
     "parser": {
       "tailwindDirectives": true
     }
-  },
-  "overrides": [
-    {
-      "includes": ["*.ts", "*.tsx"],
-      "linter": {
-        "rules": {}
-      }
-    }
-  ]
+  }
 }

@@ -22,19 +22,21 @@ type MemberProps = {
 
 export default function MemberCard(props: MemberProps) {
     return (
-        <Card className="relative mt-8 flex w-64 flex-col items-center justify-center bg-muted/50">
+        <Card className="place-items-center-safe mt-8 flex w-64 flex-col overflow-visible">
             <CardHeader className="mt-8 flex w-full flex-col items-center justify-center pb-2">
                 <Image
                     alt={`${props.name} ${props.role}`}
-                    className="-top-12 absolute aspect-square size-24 rounded-full border-2 object-cover"
+                    className="-translate-y-20 absolute aspect-square size-24 rounded-full border bg-card object-cover"
                     height={96}
                     src={props.avatar}
                     width={96}
                 />
-                <CardTitle className="text-center text-2xl">{props.name}</CardTitle>
-                <CardDescription className="font-bold text-primary">{props.role}</CardDescription>
+                <CardTitle className="text-2xl">{props.name}</CardTitle>
+                <CardDescription className="font-bold text-primary">
+                    {props.role}
+                </CardDescription>
             </CardHeader>
-            <CardContent className="text-center">
+            <CardContent>
                 <FootNote>{props.quote}</FootNote>
             </CardContent>
             <CardFooter className="gap-2">

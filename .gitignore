@@ -52,6 +52,8 @@ node_modules/
 # Storage
 volumes/
 
-# Prisma
-src/generated/prisma
-prisma/seed.ts
+# Seed file
+src/db/seed.ts
+
+# Template content file
+content/**/*

@@ -10,7 +10,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function StaffShowcase() {
     return (
-        <ContentArea id="#all-staffs" className="justify-self-center-safe place-items-center-safe">
+        <ContentArea
+            id="#all-staffs"
+            className="justify-self-center-safe place-items-center-safe"
+        >
             <Heading kind="h1" className="text-center text-primary">
                 Nhân sự tại Arknights VNS
             </Heading>
@@ -22,11 +25,19 @@ export default function StaffShowcase() {
                     <TabsTrigger value="leader">Leader</TabsTrigger>
                     <TabsTrigger value="translator">Translator</TabsTrigger>
                     <TabsTrigger value="dreamchasers">Dreamchasers</TabsTrigger>
-                    <TabsTrigger value="ph. frontiers">Phoenix Frontiers</TabsTrigger>
+                    <TabsTrigger value="ph. frontiers">
+                        Phoenix Frontiers
+                    </TabsTrigger>
                     <TabsTrigger value="partners">Partners</TabsTrigger>
                 </TabsList>
                 {(
-                    ["Leader", "Translator", "Dreamchasers", "Ph. Frontiers", "Partners"] as const
+                    [
+                        "Leader",
+                        "Translator",
+                        "Dreamchasers",
+                        "Ph. Frontiers",
+                        "Partners",
+                    ] as const
                 ).map((group) => {
                     const members = membersList[group];
 

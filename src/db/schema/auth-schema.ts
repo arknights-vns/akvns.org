@@ -1,18 +1,29 @@
 import { relations, sql } from "drizzle-orm";
-import { boolean, index, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import {
+    boolean,
+    index,
+    pgTable,
+    text,
+    timestamp,
+    uuid,
+} from "drizzle-orm/pg-core";
 
-export const user = pgTable("user", {
-    id: uuid("id").default(sql`pg_catalog.gen_random_uuid()`).primaryKey(),
-    name: text("name").notNull(),
-    email: text("email").notNull().unique(),
-    emailVerified: boolean("email_verified").default(false).notNull(),
-    image: text("image"),
-    createdAt: timestamp("created_at").defaultNow().notNull(),
-    updatedAt: timestamp("updated_at")
-        .defaultNow()
-        .$onUpdate(() => /* @__PURE__ */ new Date())
-        .notNull(),
-});
+export const user = pgTable(
+    "user",
+    {
+        id: uuid("id").default(sql`pg_catalog.gen_random_uuid()`).primaryKey(),
+        name: text("name").notNull(),
+        email: text("email").notNull().unique(),
+        emailVerified: boolean("email_verified").default(false).notNull(),
+        image: text("image"),
+        createdAt: timestamp("created_at").defaultNow().notNull(),
+        updatedAt: timestamp("updated_at")
+            .defaultNow()
+            .$onUpdate(() => /* @__PURE__ */ new Date())
+            .notNull(),
+    },
+    (table) => [index("user_email_idx").on(table.email)],
+);
 
 export const session = pgTable(
     "session",
@@ -30,7 +41,12 @@ export const session = pgTable(
             .notNull()
             .references(() => user.id, { onDelete: "cascade" }),
     },
-    (table) => [index("session_userId_idx").on(table.userId)],
+    (table) => [
+        // doc's quite unclear, so I guess I will let GIN indexer cook?
+        index("session_userId_idx").on(table.userId),
+        index("session_token_idx").on(table.token),
+        index("session_userId_token_idx").on(table.userId, table.token),
+    ],
 );
 
 export const account = pgTable(

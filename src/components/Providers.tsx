@@ -11,7 +11,9 @@ const queryClient = new QueryClient();
 export default function Providers({ children }: { children: ReactNode }) {
     return (
         <TerraTheme>
-            <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+            <QueryClientProvider client={queryClient}>
+                {children}
+            </QueryClientProvider>
             <Toaster position="top-right" richColors={true} />
         </TerraTheme>
     );

@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
 import { s3Client } from "@/lib/aws-s3";
-import { env } from "@/lib/env";
 
 /**
  * Get images of this comic collection chapter.
@@ -17,7 +16,7 @@ export async function GET(
             prefix: `${series}/${chapter}`,
         },
         {
-            bucket: env.COMIC_ASSETS_AWS_BUCKET,
+            bucket: process.env.COMIC_ASSETS_AWS_BUCKET,
         },
     );
 
@@ -41,7 +40,7 @@ export async function GET(
                 .map((obj) => {
                     return {
                         name: obj.key,
-                        url: `${env.COMIC_ASSETS_URL_PREFIX}/${obj.key}`,
+                        url: `${process.env.COMIC_ASSETS_URL_PREFIX}/${obj.key}`,
                     };
                 }),
         },
