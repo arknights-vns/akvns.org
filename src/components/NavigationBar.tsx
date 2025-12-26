@@ -164,6 +164,7 @@ export default function NavigationBar() {
     return (
         <header className="sticky top-0 z-5 flex h-18 justify-between bg-background px-4">
             <div className="flex w-[25vw] gap-4">
+                {/* Mobile */}
                 <Sheet>
                     <SheetTrigger
                         render={
@@ -198,7 +199,7 @@ export default function NavigationBar() {
                                             >
                                                 <CollapsibleTrigger className="flex">
                                                     {entry.label}
-                                                    <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                                                    <ChevronDown className="ml-auto transition-transform group-data-open/collapsible:rotate-180" />
                                                 </CollapsibleTrigger>
                                                 <CollapsibleContent className="ml-4 flex flex-col gap-4">
                                                     {entry.children.map(
@@ -268,6 +269,7 @@ export default function NavigationBar() {
                     />
                 </Link>
             </div>
+            {/* Desktop */}
             <NavigationMenu
                 aria-label="nav-bar"
                 className="hidden w-[50vw] lg:flex"
