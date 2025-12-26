@@ -165,17 +165,19 @@ export default function NavigationBar() {
         <header className="sticky top-0 z-5 flex h-18 justify-between bg-background px-4">
             <div className="flex w-[25vw] gap-4">
                 <Sheet>
-                    <SheetTrigger asChild={true}>
-                        <Button
-                            aria-label="burger-menu"
-                            className="self-center lg:hidden"
-                            size="icon"
-                            variant="outline"
-                        >
-                            <div className="sr-only">Mobile menu</div>
-                            <Menu />
-                        </Button>
-                    </SheetTrigger>
+                    <SheetTrigger
+                        render={
+                            <Button
+                                aria-label="burger-menu"
+                                className="self-center lg:hidden"
+                                size="icon"
+                                variant="outline"
+                            >
+                                <div className="sr-only">Mobile menu</div>
+                                <Menu />
+                            </Button>
+                        }
+                    ></SheetTrigger>
                     <SheetContent className="max-w-xs" side="left">
                         <SheetHeader>
                             <SheetTitle>Arknights Vietnam Station</SheetTitle>
@@ -269,7 +271,6 @@ export default function NavigationBar() {
             <NavigationMenu
                 aria-label="nav-bar"
                 className="hidden w-[50vw] lg:flex"
-                viewport={false}
             >
                 <NavigationMenuList className="gap-x-8">
                     {/** biome-ignore lint/suspicious/useIterableCallbackReturn: type-checked */}
@@ -289,53 +290,56 @@ export default function NavigationBar() {
                                                     {entry.children.map(
                                                         (subentry) => (
                                                             <NavigationMenuLink
-                                                                asChild={true}
-                                                                key={`${entry.label}-${subentry.label}`}
-                                                            >
-                                                                <Link
-                                                                    href={
-                                                                        subentry.href
-                                                                    }
-                                                                >
-                                                                    <div className="place-items-center-safe flex gap-2">
-                                                                        {subentry.icon &&
-                                                                            subentry
-                                                                                .icon
-                                                                                .type ===
-                                                                                "local" && (
-                                                                                <Image
-                                                                                    src={
-                                                                                        subentry
-                                                                                            .icon
-                                                                                            .src
-                                                                                    }
-                                                                                    alt={`${entry.label}-icon`}
-                                                                                    width={
-                                                                                        16
-                                                                                    }
-                                                                                    className="dark:invert"
-                                                                                />
-                                                                            )}
-                                                                        {subentry.icon &&
-                                                                            subentry
-                                                                                .icon
-                                                                                .type ===
-                                                                                "lucide" && (
-                                                                                <subentry.icon.src />
-                                                                            )}
-                                                                        <div className="font-medium">
+                                                                render={
+                                                                    <Link
+                                                                        href={
+                                                                            subentry.href
+                                                                        }
+                                                                        className="flex flex-col items-start"
+                                                                    >
+                                                                        <div className="place-items-center-safe flex gap-2">
+                                                                            {/* <div> */}
+                                                                            {subentry.icon &&
+                                                                                subentry
+                                                                                    .icon
+                                                                                    .type ===
+                                                                                    "local" && (
+                                                                                    <Image
+                                                                                        src={
+                                                                                            subentry
+                                                                                                .icon
+                                                                                                .src
+                                                                                        }
+                                                                                        alt={`${entry.label}-icon`}
+                                                                                        width={
+                                                                                            16
+                                                                                        }
+                                                                                        className="dark:invert"
+                                                                                    />
+                                                                                )}
+                                                                            {subentry.icon &&
+                                                                                subentry
+                                                                                    .icon
+                                                                                    .type ===
+                                                                                    "lucide" && (
+                                                                                    <subentry.icon.src />
+                                                                                )}
+                                                                            {/* </div> */}
+                                                                            <div>
+                                                                                {
+                                                                                    subentry.label
+                                                                                }
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="text-muted-foreground">
                                                                             {
-                                                                                subentry.label
+                                                                                subentry.description
                                                                             }
                                                                         </div>
-                                                                    </div>
-                                                                    <div className="text-muted-foreground">
-                                                                        {
-                                                                            subentry.description
-                                                                        }
-                                                                    </div>
-                                                                </Link>
-                                                            </NavigationMenuLink>
+                                                                    </Link>
+                                                                }
+                                                                key={`${entry.label}-${subentry.label}`}
+                                                            ></NavigationMenuLink>
                                                         ),
                                                     )}
                                                 </li>
@@ -350,16 +354,16 @@ export default function NavigationBar() {
                                         key={`desktop-link-${entry.label}`}
                                     >
                                         <NavigationMenuLink
-                                            asChild={true}
+                                            render={
+                                                <Link
+                                                    className="after:-translate-x-1/2 relative inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"
+                                                    href={entry.href}
+                                                >
+                                                    {entry.label}
+                                                </Link>
+                                            }
                                             className={navigationMenuTriggerStyle()}
-                                        >
-                                            <Link
-                                                className="after:-translate-x-1/2 relative inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"
-                                                href={entry.href}
-                                            >
-                                                {entry.label}
-                                            </Link>
-                                        </NavigationMenuLink>
+                                        ></NavigationMenuLink>
                                     </NavigationMenuItem>
                                 );
                             }
