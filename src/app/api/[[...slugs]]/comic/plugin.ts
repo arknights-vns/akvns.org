@@ -1,5 +1,6 @@
 import { eq } from "drizzle-orm";
 import { Elysia } from "elysia";
+import { CacheControl, cacheControl } from "elysiajs-cdn-cache";
 import z from "zod";
 
 import { comicSeries } from "@/db/schema";
@@ -10,9 +11,10 @@ import { ComicSeriesData, CompleteComicData } from "@/schema/comic";
 const ITEMS_PER_PAGE = 10;
 
 const comicPlugin = new Elysia({ prefix: "/comic" })
+    .use(cacheControl())
     .get(
         "/",
-        async ({ query }) => {
+        async ({ query, cacheControl }) => {
             const { page } = query;
 
             const results = await drizzleDb
@@ -21,10 +23,18 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
                 .offset((page - 1) * ITEMS_PER_PAGE)
                 .limit(ITEMS_PER_PAGE);
 
+            cacheControl.set(
+                "Cache-Control",
+                new CacheControl()
+                    .set("public", true)
+                    .set("max-age", 24 * 60 * 60)
+                    .set("s-maxage", 2 * 24 * 60 * 60),
+            );
+
             return {
                 message: results,
                 canMoveNext: results.length === ITEMS_PER_PAGE,
-                next: page + 1,
+                next: results.length === ITEMS_PER_PAGE ? page + 1 : null,
             };
         },
         {
@@ -34,13 +44,13 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
             response: z.object({
                 message: z.array(ComicSeriesData),
                 canMoveNext: z.boolean(),
-                next: z.number().positive(),
+                next: z.number().positive().nullable(),
             }),
         },
     )
     .get(
         "/:series",
-        async ({ params, status }) => {
+        async ({ params, status, cacheControl }) => {
             const { series } = params;
 
             const entry = await drizzleDb.query.comicSeries.findFirst({
@@ -54,6 +64,14 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
             if (!entry) {
                 return status("Not Found", { error: "No entry" });
             }
+
+            cacheControl.set(
+                "Cache-Control",
+                new CacheControl()
+                    .set("public", true)
+                    .set("max-age", 24 * 60 * 60)
+                    .set("s-maxage", 2 * 24 * 60 * 60),
+            );
 
             return {
                 message: entry,
@@ -71,7 +89,7 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
     )
     .get(
         "/:series/:chapter/images",
-        async ({ params, status }) => {
+        async ({ params, status, cacheControl }) => {
             const { series, chapter } = params;
 
             const resp = await s3Client.list(
@@ -88,6 +106,14 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
             if (!objects || !objects.filter((x) => x.size && x.size > 0)) {
                 return status("Not Found", { error: "No images in record." });
             }
+
+            cacheControl.set(
+                "Cache-Control",
+                new CacheControl()
+                    .set("public", true)
+                    .set("max-age", 365 * 24 * 60 * 60)
+                    .set("s-maxage", 2 * 365 * 24 * 60 * 60),
+            );
 
             return {
                 message: objects
@@ -115,10 +141,6 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
                     ),
                 }),
                 404: z.object({ error: z.string() }),
-            },
-            details: {
-                summary: "Sign in the user",
-                tags: ["comic"],
             },
         },
     );

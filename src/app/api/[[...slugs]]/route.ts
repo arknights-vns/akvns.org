@@ -1,4 +1,5 @@
 import openapi, { fromTypes } from "@elysiajs/openapi";
+import serverTiming from "@elysiajs/server-timing";
 import { Elysia } from "elysia";
 import z from "zod";
 
@@ -15,9 +16,12 @@ const app = new Elysia({ prefix: "/api" })
             },
         }),
     )
+    .use(serverTiming())
     .use(blogPlugin)
     .use(comicPlugin)
     .mount(auth.handler);
 
 export const GET = app.fetch;
 export const POST = app.fetch;
+
+export type API = typeof app;

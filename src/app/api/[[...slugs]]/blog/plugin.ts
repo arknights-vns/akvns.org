@@ -1,5 +1,6 @@
 import { and, gte, lte } from "drizzle-orm";
 import { Elysia } from "elysia";
+import { CacheControl, cacheControl } from "elysiajs-cdn-cache";
 import z from "zod";
 
 import { blog } from "@/db/schema";
@@ -8,9 +9,9 @@ import { BlogSchema } from "@/schema/blog";
 
 const ITEMS_PER_PAGE = 10;
 
-const blogPlugin = new Elysia({ prefix: "/blog" }).get(
+const blogPlugin = new Elysia({ prefix: "/blog" }).use(cacheControl()).get(
     "/",
-    async ({ query }) => {
+    async ({ query, cacheControl }) => {
         const { page } = query;
 
         const records = await drizzleDb
@@ -23,10 +24,18 @@ const blogPlugin = new Elysia({ prefix: "/blog" }).get(
                 ),
             );
 
+        cacheControl.set(
+            "Cache-Control",
+            new CacheControl()
+                .set("public", true)
+                .set("max-age", 24 * 60 * 60)
+                .set("s-maxage", 2 * 24 * 60 * 60),
+        );
+
         return {
             message: records,
             canMoveNext: records.length === ITEMS_PER_PAGE,
-            next: page + 1,
+            next: records.length === ITEMS_PER_PAGE ? page + 1 : null,
         };
     },
     {
@@ -36,7 +45,7 @@ const blogPlugin = new Elysia({ prefix: "/blog" }).get(
         response: z.object({
             message: z.array(BlogSchema),
             canMoveNext: z.boolean(),
-            next: z.number().positive(),
+            next: z.number().positive().nullable(),
         }),
     },
 );
