@@ -17,38 +17,36 @@ services:
       - ${PORT:-3000}:${PORT:-3000}
 
   postgres:
-    image: ghcr.io/arknights-vns/postgres-17:latest
-    command: [ "postgres" ]
-    restart: on-failure
+    image: postgres:17
+    restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      - ./volumes/pgdata:/var/lib/postgresql/data:z
+      - pgdata:/var/lib/postgresql/data:Z
     healthcheck:
-      test: [ 'CMD', 'pg_isready', '-U', 'postgres' ]
+      test:  [ "CMD", "pg_isready", "-U", "postgres" ]
       interval: 5s
       timeout: 5s
       retries: 5
+    command: [ "postgres" ]
 
   pgbouncer:
-    image: edoburu/pgbouncer:v1.24.1-p1
+    image: edoburu/pgbouncer:v1.25.1-p0
     restart: unless-stopped
     ports:
-      - ${POSTGRES_PORT}:5432
+      - "5432:5432"
     depends_on:
       postgres:
-        condition: service_started
+        condition: service_healthy
     environment:
       DB_USER: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
       DB_HOST: postgres
-      # https://stackoverflow.com/a/77794602
-      # DB_NAME: ${POSTGRES_DB}
+      ADMIN_USERS: ${POSTGRES_USER}
       AUTH_TYPE: scram-sha-256
       POOL_MODE: transaction
-      ADMIN_USERS: ${POSTGRES_AUTHORIZED_USERS}
     healthcheck:
       test: [ 'CMD', 'pg_isready', '-h', 'localhost' ]
 
@@ -57,14 +55,18 @@ services:
     ports:
       - "4983:4983"
     volumes:
-      - ./volumes/drizzle-gateway:/app:z
+      - drizzle:/app:z
 
   redis:
     image: redis:8.4-alpine
     restart: unless-stopped
     ports:
       - "6379:6379"
-    command: redis-server /usr/local/etc/redis/redis.conf
+    command: redis-server
     volumes:
-      - ./volumes/redis-data:/data:z
-      - ./volumes/redis-conf:/usr/local/etc/redis:z
+      - redis:/data:z
+
+volumes:
+  pgdata:
+  drizzle:
+  redis:
