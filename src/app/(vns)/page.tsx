@@ -187,15 +187,19 @@ export default function MainPage() {
                     Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác
                     nữa.
                 </FavorText>
-                <Button asChild={true} className="w-fit self-center px-2">
-                    <Link href="/staff">
-                        <span className="font-bold">
-                            {" "}
-                            Toàn bộ dàn staff Arknights VNS
-                        </span>
-                        <ArrowRight />
-                    </Link>
-                </Button>
+                <Button
+                    render={
+                        <Link href="/staff">
+                            <span className="font-bold">
+                                {" "}
+                                Toàn bộ dàn staff Arknights VNS
+                            </span>
+                            <ArrowRight />
+                        </Link>
+                    }
+                    nativeButton={false}
+                    className="w-fit self-center px-2"
+                />
             </ContentArea>
 
             <ContentArea className="w-[80vw]" id="projects">
@@ -340,7 +344,7 @@ export default function MainPage() {
                 <Heading kind="h1" className="text-primary">
                     Câu hỏi thường gặp
                 </Heading>
-                <Accordion type="multiple" defaultValue={[]}>
+                <Accordion multiple={true} defaultValue={[]}>
                     {faqsData.map((faq, id) => (
                         <AccordionItem value={`item-${id}`} key={faq.question}>
                             <AccordionTrigger>
@@ -413,23 +417,25 @@ export default function MainPage() {
                 </FavorText>
                 <div className="place-items-center-safe flex flex-col gap-5 md:flex-row">
                     <Button
-                        asChild={true}
+                        render={
+                            <Link href="https://discord.gg/arknights-vns">
+                                <Image alt="discord" src={Discord} width={24} />
+                                Arknights VNS
+                            </Link>
+                        }
+                        nativeButton={false}
                         className="bg-[#5865F2] hover:bg-[#3D4CF0]"
-                    >
-                        <Link href="https://discord.gg/arknights-vns">
-                            <Image alt="discord" src={Discord} width={24} />
-                            Arknights VNS
-                        </Link>
-                    </Button>
+                    />
                     <Button
-                        asChild={true}
+                        render={
+                            <Link href="https://discord.gg/wgETr8d4FR">
+                                <Image alt="discord" src={Discord} width={24} />
+                                Phoenix Frontiers
+                            </Link>
+                        }
+                        nativeButton={false}
                         className="bg-[#5865F2] hover:bg-[#3D4CF0]"
-                    >
-                        <Link href="https://discord.gg/wgETr8d4FR">
-                            <Image alt="discord" src={Discord} width={24} />
-                            Phoenix Frontiers
-                        </Link>
-                    </Button>
+                    />
                 </div>
                 <Paragraph>
                     Nếu bạn muốn liên hệ qua email thì hãy liên hệ qua email{" "}

@@ -146,12 +146,14 @@ export default function FatFooter() {
                 </div>
             </div>
             <Dialog>
-                <DialogTrigger asChild={true}>
-                    <Button className="max-w-sm self-center font-bold">
-                        <HeartHandshake />
-                        Donate cho Arknights VNS
-                    </Button>
-                </DialogTrigger>
+                <DialogTrigger
+                    render={
+                        <Button className="max-w-sm self-center font-bold">
+                            <HeartHandshake />
+                            Donate cho Arknights VNS
+                        </Button>
+                    }
+                ></DialogTrigger>
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle className="font-bold text-2xl">

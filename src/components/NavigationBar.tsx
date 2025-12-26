@@ -44,6 +44,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 
 type DropDownNavigation = {
     children: {
@@ -162,20 +163,23 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
 
 export default function NavigationBar() {
     return (
-        <header className="sticky top-0 z-5 flex h-18 justify-between bg-background px-4">
+        <header className="sticky top-0 z-5 flex h-18 justify-between bg-background/50 px-4 backdrop-blur-lg">
             <div className="flex w-[25vw] gap-4">
+                {/* Mobile */}
                 <Sheet>
-                    <SheetTrigger asChild={true}>
-                        <Button
-                            aria-label="burger-menu"
-                            className="self-center lg:hidden"
-                            size="icon"
-                            variant="outline"
-                        >
-                            <div className="sr-only">Mobile menu</div>
-                            <Menu />
-                        </Button>
-                    </SheetTrigger>
+                    <SheetTrigger
+                        render={
+                            <Button
+                                aria-label="burger-menu"
+                                className="self-center lg:hidden"
+                                size="icon"
+                                variant="outline"
+                            >
+                                <div className="sr-only">Mobile menu</div>
+                                <Menu />
+                            </Button>
+                        }
+                    ></SheetTrigger>
                     <SheetContent className="max-w-xs" side="left">
                         <SheetHeader>
                             <SheetTitle>Arknights Vietnam Station</SheetTitle>
@@ -196,7 +200,7 @@ export default function NavigationBar() {
                                             >
                                                 <CollapsibleTrigger className="flex">
                                                     {entry.label}
-                                                    <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                                                    <ChevronDown className="ml-auto transition-transform group-data-open/collapsible:rotate-180" />
                                                 </CollapsibleTrigger>
                                                 <CollapsibleContent className="ml-4 flex flex-col gap-4">
                                                     {entry.children.map(
@@ -266,10 +270,10 @@ export default function NavigationBar() {
                     />
                 </Link>
             </div>
+            {/* Desktop */}
             <NavigationMenu
                 aria-label="nav-bar"
                 className="hidden w-[50vw] lg:flex"
-                viewport={false}
             >
                 <NavigationMenuList className="gap-x-8">
                     {/** biome-ignore lint/suspicious/useIterableCallbackReturn: type-checked */}
@@ -278,9 +282,9 @@ export default function NavigationBar() {
                             case "dropdown": {
                                 return (
                                     <NavigationMenuItem
-                                        key={`desktop-downdown-${entry.label}`}
+                                        key={`desktop-dropdown-${entry.label}`}
                                     >
-                                        <NavigationMenuTrigger>
+                                        <NavigationMenuTrigger className="rounded-none bg-transparent">
                                             {entry.label}
                                         </NavigationMenuTrigger>
                                         <NavigationMenuContent>
@@ -289,19 +293,18 @@ export default function NavigationBar() {
                                                     {entry.children.map(
                                                         (subentry) => (
                                                             <NavigationMenuLink
-                                                                asChild={true}
-                                                                key={`${entry.label}-${subentry.label}`}
-                                                            >
-                                                                <Link
-                                                                    href={
-                                                                        subentry.href
-                                                                    }
-                                                                >
-                                                                    <div className="place-items-center-safe flex gap-2">
-                                                                        {subentry.icon &&
-                                                                            subentry
+                                                                render={
+                                                                    <Link
+                                                                        href={
+                                                                            subentry.href
+                                                                        }
+                                                                        className="flex flex-col items-start"
+                                                                    >
+                                                                        <div className="place-items-center-safe flex gap-2">
+                                                                            {/* <div> */}
+                                                                            {subentry
                                                                                 .icon
-                                                                                .type ===
+                                                                                ?.type ===
                                                                                 "local" && (
                                                                                 <Image
                                                                                     src={
@@ -316,26 +319,28 @@ export default function NavigationBar() {
                                                                                     className="dark:invert"
                                                                                 />
                                                                             )}
-                                                                        {subentry.icon &&
-                                                                            subentry
+                                                                            {subentry
                                                                                 .icon
-                                                                                .type ===
+                                                                                ?.type ===
                                                                                 "lucide" && (
                                                                                 <subentry.icon.src />
                                                                             )}
-                                                                        <div className="font-medium">
+                                                                            {/* </div> */}
+                                                                            <div>
+                                                                                {
+                                                                                    subentry.label
+                                                                                }
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="text-muted-foreground">
                                                                             {
-                                                                                subentry.label
+                                                                                subentry.description
                                                                             }
                                                                         </div>
-                                                                    </div>
-                                                                    <div className="text-muted-foreground">
-                                                                        {
-                                                                            subentry.description
-                                                                        }
-                                                                    </div>
-                                                                </Link>
-                                                            </NavigationMenuLink>
+                                                                    </Link>
+                                                                }
+                                                                key={`${entry.label}-${subentry.label}`}
+                                                            ></NavigationMenuLink>
                                                         ),
                                                     )}
                                                 </li>
@@ -350,16 +355,20 @@ export default function NavigationBar() {
                                         key={`desktop-link-${entry.label}`}
                                     >
                                         <NavigationMenuLink
-                                            asChild={true}
-                                            className={navigationMenuTriggerStyle()}
-                                        >
-                                            <Link
-                                                className="after:-translate-x-1/2 relative inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"
-                                                href={entry.href}
-                                            >
-                                                {entry.label}
-                                            </Link>
-                                        </NavigationMenuLink>
+                                            render={
+                                                <Link
+                                                    className="after:-translate-x-1/2 relative inline-block after:absolute after:bottom-[-0.25em] after:left-1/2 after:h-[3px] after:w-0 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"
+                                                    href={entry.href}
+                                                >
+                                                    {entry.label}
+                                                </Link>
+                                            }
+                                            className={cn(
+                                                navigationMenuTriggerStyle(),
+                                                "rounded-none",
+                                                "bg-transparent",
+                                            )}
+                                        ></NavigationMenuLink>
                                     </NavigationMenuItem>
                                 );
                             }
