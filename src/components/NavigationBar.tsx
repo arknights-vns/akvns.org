@@ -44,6 +44,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 
 type DropDownNavigation = {
     children: {
@@ -162,7 +163,7 @@ const links: (DropDownNavigation | NormalNavigation)[] = [
 
 export default function NavigationBar() {
     return (
-        <header className="sticky top-0 z-5 flex h-18 justify-between bg-background px-4">
+        <header className="sticky top-0 z-5 flex h-18 justify-between bg-background/50 px-4 backdrop-blur-lg">
             <div className="flex w-[25vw] gap-4">
                 {/* Mobile */}
                 <Sheet>
@@ -281,9 +282,9 @@ export default function NavigationBar() {
                             case "dropdown": {
                                 return (
                                     <NavigationMenuItem
-                                        key={`desktop-downdown-${entry.label}`}
+                                        key={`desktop-dropdown-${entry.label}`}
                                     >
-                                        <NavigationMenuTrigger>
+                                        <NavigationMenuTrigger className="rounded-none bg-transparent">
                                             {entry.label}
                                         </NavigationMenuTrigger>
                                         <NavigationMenuContent>
@@ -301,31 +302,29 @@ export default function NavigationBar() {
                                                                     >
                                                                         <div className="place-items-center-safe flex gap-2">
                                                                             {/* <div> */}
-                                                                            {subentry.icon &&
-                                                                                subentry
-                                                                                    .icon
-                                                                                    .type ===
-                                                                                    "local" && (
-                                                                                    <Image
-                                                                                        src={
-                                                                                            subentry
-                                                                                                .icon
-                                                                                                .src
-                                                                                        }
-                                                                                        alt={`${entry.label}-icon`}
-                                                                                        width={
-                                                                                            16
-                                                                                        }
-                                                                                        className="dark:invert"
-                                                                                    />
-                                                                                )}
-                                                                            {subentry.icon &&
-                                                                                subentry
-                                                                                    .icon
-                                                                                    .type ===
-                                                                                    "lucide" && (
-                                                                                    <subentry.icon.src />
-                                                                                )}
+                                                                            {subentry
+                                                                                .icon
+                                                                                ?.type ===
+                                                                                "local" && (
+                                                                                <Image
+                                                                                    src={
+                                                                                        subentry
+                                                                                            .icon
+                                                                                            .src
+                                                                                    }
+                                                                                    alt={`${entry.label}-icon`}
+                                                                                    width={
+                                                                                        16
+                                                                                    }
+                                                                                    className="dark:invert"
+                                                                                />
+                                                                            )}
+                                                                            {subentry
+                                                                                .icon
+                                                                                ?.type ===
+                                                                                "lucide" && (
+                                                                                <subentry.icon.src />
+                                                                            )}
                                                                             {/* </div> */}
                                                                             <div>
                                                                                 {
@@ -364,7 +363,11 @@ export default function NavigationBar() {
                                                     {entry.label}
                                                 </Link>
                                             }
-                                            className={navigationMenuTriggerStyle()}
+                                            className={cn(
+                                                navigationMenuTriggerStyle(),
+                                                "rounded-none",
+                                                "bg-transparent",
+                                            )}
                                         ></NavigationMenuLink>
                                     </NavigationMenuItem>
                                 );
