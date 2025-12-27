@@ -179,7 +179,7 @@ export default function NavigationBar() {
                                 <Menu />
                             </Button>
                         }
-                    ></SheetTrigger>
+                    />
                     <SheetContent className="max-w-xs" side="left">
                         <SheetHeader>
                             <SheetTitle>Arknights Vietnam Station</SheetTitle>

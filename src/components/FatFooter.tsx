@@ -153,7 +153,7 @@ export default function FatFooter() {
                             Donate cho Arknights VNS
                         </Button>
                     }
-                ></DialogTrigger>
+                />
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle className="font-bold text-2xl">

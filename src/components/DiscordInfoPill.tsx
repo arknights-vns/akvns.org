@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
+    DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
@@ -80,24 +81,26 @@ export default function DiscordInfoPill() {
                         </AvatarFallback>
                     </Avatar>
                 }
-            ></DropdownMenuTrigger>
+            />
             <DropdownMenuContent align="end" className="mt-1">
-                <DropdownMenuLabel className="flex justify-center gap-1">
-                    <span className="space-x-1 font-bold">
-                        @{session.user.name}
-                    </span>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                    <CircleUser />
-                    <Link href="#">Hồ sơ</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                    className="font-extrabold text-red-400 hover:cursor-pointer"
-                    onClick={handleLogoutClick}
-                >
-                    <LogOut className="stroke-red-400" /> Đăng xuất
-                </DropdownMenuItem>{" "}
+                <DropdownMenuGroup>
+                    <DropdownMenuLabel className="flex justify-center gap-1">
+                        <span className="space-x-1 font-bold">
+                            @{session.user.name}
+                        </span>
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                        <CircleUser />
+                        <Link href="#">Hồ sơ</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                        className="font-extrabold text-red-400 hover:cursor-pointer"
+                        onClick={handleLogoutClick}
+                    >
+                        <LogOut className="stroke-red-400" /> Đăng xuất
+                    </DropdownMenuItem>
+                </DropdownMenuGroup>
             </DropdownMenuContent>
         </DropdownMenu>
     ) : (
