@@ -14,9 +14,14 @@ const app = new Elysia({ prefix: "/api" })
             mapJsonSchema: {
                 zod: z.toJSONSchema,
             },
+            enabled: process.env.NODE_ENV === "development",
         }),
     )
-    .use(serverTiming())
+    .use(
+        serverTiming({
+            enabled: process.env.NODE_ENV === "development",
+        }),
+    )
     .use(blogPlugin)
     .use(comicPlugin)
     .mount(auth.handler);
