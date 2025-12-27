@@ -5,6 +5,16 @@ import { comicChapter, comicContributor, comicSeries } from "@/db/schema";
 import { createCoercedDateSelectSchema } from "@/schema/date-coercion";
 
 /**
+ * A general data for comic assets.
+ *
+ * Most of the time is used in conjunction with `z.array()`
+ */
+export const ComicImage = z.object({
+    name: z.string(),
+    url: z.url(),
+});
+
+/**
  * Data for a comic contributor, extracted from `comic_contributor` table by `drizzle-zod`.
  */
 export const ComicContributor = createSelectSchema(comicContributor);

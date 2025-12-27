@@ -6,7 +6,8 @@ import z from "zod";
 import { comicSeries } from "@/db/schema";
 import { s3Client } from "@/lib/aws-s3";
 import { drizzleDb } from "@/lib/drizzle";
-import { ComicSeriesData, CompleteComicData } from "@/schema/comic";
+import { redis } from "@/lib/redis";
+import { ComicImage, ComicSeriesData, CompleteComicData } from "@/schema/comic";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -91,6 +92,18 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
         "/:series/:chapter/images",
         async ({ params, status, cacheControl }) => {
             const { series, chapter } = params;
+            const REDIS_KEY = `comic-assets:${series}:${chapter}`;
+
+            if (await redis.exists(REDIS_KEY)) {
+                const value = await redis.get(REDIS_KEY);
+                if (value) {
+                    return {
+                        message: await z
+                            .array(ComicImage)
+                            .parseAsync(JSON.parse(value)),
+                    };
+                }
+            }
 
             const resp = await s3Client.list(
                 {
@@ -115,15 +128,24 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
                     .set("s-maxage", 2 * 365 * 24 * 60 * 60),
             );
 
+            const filteredObjects = objects
+                .filter((x) => x.size && x.size > 0)
+                .map((obj) => {
+                    return {
+                        name: obj.key,
+                        url: `${process.env.COMIC_ASSETS_URL_PREFIX}/${obj.key}`,
+                    };
+                });
+
+            await redis.set(
+                REDIS_KEY,
+                JSON.stringify(filteredObjects),
+                "EX",
+                7 * 24 * 60 * 60,
+            );
+
             return {
-                message: objects
-                    .filter((x) => x.size && x.size > 0)
-                    .map((obj) => {
-                        return {
-                            name: obj.key,
-                            url: `${process.env.COMIC_ASSETS_URL_PREFIX}/${obj.key}`,
-                        };
-                    }),
+                message: filteredObjects,
             };
         },
         {
@@ -133,12 +155,7 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
             }),
             response: {
                 200: z.object({
-                    message: z.array(
-                        z.object({
-                            name: z.string(),
-                            url: z.url(),
-                        }),
-                    ),
+                    message: z.array(ComicImage),
                 }),
                 404: z.object({ error: z.string() }),
             },
