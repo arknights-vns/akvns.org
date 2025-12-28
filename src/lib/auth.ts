@@ -3,6 +3,7 @@ import { betterAuth } from "better-auth/minimal";
 import { nextCookies } from "better-auth/next-js";
 
 import { drizzleDb } from "@/lib/drizzle";
+import { redis } from "@/lib/redis";
 
 export const auth = betterAuth({
     appName: "Arknights Vietnam Station",
@@ -15,8 +16,13 @@ export const auth = betterAuth({
     session: {
         cookieCache: {
             enabled: true,
-            maxAge: 60 * 60,
+            maxAge: 5 * 60,
+            strategy: "jwe",
+            refreshCache: false,
         },
+    },
+    rateLimit: {
+        storage: "secondary-storage",
     },
     socialProviders: {
         discord: {
@@ -29,5 +35,17 @@ export const auth = betterAuth({
     },
     advanced: {
         database: { generateId: "uuid" },
+    },
+    secondaryStorage: {
+        get: async (key) => {
+            return await redis.get(key);
+        },
+        set: async (key, value, ttl) => {
+            if (ttl) await redis.set(key, value, "EX", ttl);
+            else await redis.set(key, value);
+        },
+        delete: async (key) => {
+            await redis.del(key);
+        },
     },
 });
