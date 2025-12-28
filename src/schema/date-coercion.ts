@@ -6,9 +6,7 @@ import { createSchemaFactory } from "drizzle-zod";
  * I want Temporal API so bad.
  */
 const { createSelectSchema } = createSchemaFactory({
-    coerce: {
-        date: true,
-    },
+    coerce: true,
 });
 
 export { createSelectSchema as createCoercedDateSelectSchema };
