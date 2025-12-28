@@ -1,8 +1,8 @@
 "use client";
 
 import type { Route } from "next";
+import { SiDiscord } from "@icons-pack/react-simple-icons";
 import amiya from "@public/amiya.png";
-import Discord from "@public/brand/discord.svg";
 import carouselData from "@public/data/carouselData.json";
 import faqsData from "@public/data/faqsData.json";
 import membersList from "@public/data/members.json";
@@ -419,7 +419,7 @@ export default function MainPage() {
                     <Button
                         render={
                             <Link href="https://discord.gg/arknights-vns">
-                                <Image alt="discord" src={Discord} width={24} />
+                                <SiDiscord />
                                 Arknights VNS
                             </Link>
                         }
@@ -429,7 +429,7 @@ export default function MainPage() {
                     <Button
                         render={
                             <Link href="https://discord.gg/wgETr8d4FR">
-                                <Image alt="discord" src={Discord} width={24} />
+                                <SiDiscord />
                                 Phoenix Frontiers
                             </Link>
                         }

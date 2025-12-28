@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
         typedEnv: true,
         turbopackFileSystemCacheForDev: true,
         turbopackFileSystemCacheForBuild: true,
+        optimizePackageImports: ["@icons-pack/react-simple-icons"],
     },
     skipTrailingSlashRedirect: true,
     poweredByHeader: false,
