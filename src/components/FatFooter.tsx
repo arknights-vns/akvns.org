@@ -1,8 +1,10 @@
 import type { Route } from "next";
-import FacebookLogo from "@public/brand/facebook.svg";
-import GithubLogo from "@public/brand/github.svg";
-import SteamLogo from "@public/brand/steam.svg";
-import YoutubeLogo from "@public/brand/youtube.svg";
+import {
+    SiFacebook,
+    SiGithub,
+    SiSteam,
+    SiYoutube,
+} from "@icons-pack/react-simple-icons";
 import VNS_Donate from "@public/VNS_Donate.jpg";
 import VNS_Logo from "@public/VNS_Logo.png";
 import { ArrowUpRight, HeartHandshake } from "lucide-react";
@@ -82,27 +84,19 @@ export default function FatFooter() {
                     />
                     <div className="place-items-center-safe my-4 flex gap-x-2">
                         <Link href="https://www.facebook.com/terrastationvn">
-                            <Image
-                                alt="FacebookLogo"
-                                src={FacebookLogo}
-                                width={32}
-                            />
+                            <SiFacebook />
                         </Link>
                         <div>/</div>
                         <Link href="https://www.youtube.com/@ArknightsVNS">
-                            <Image
-                                alt="YoutubeLogo"
-                                src={YoutubeLogo}
-                                width={28}
-                            />
+                            <SiYoutube />
                         </Link>
                         <div>/</div>
                         <Link href="https://steamcommunity.com/groups/arknights_vietnam_station">
-                            <Image alt="SteamLogo" src={SteamLogo} width={28} />
+                            <SiSteam />
                         </Link>
                         <div>/</div>
                         <Link href="https://github.com/arknights-vietnam-station">
-                            <Image alt="GitHub" src={GithubLogo} width={20} />
+                            <SiGithub />
                         </Link>
                     </div>
                 </div>
@@ -153,7 +147,7 @@ export default function FatFooter() {
                             Donate cho Arknights VNS
                         </Button>
                     }
-                ></DialogTrigger>
+                />
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle className="font-bold text-2xl">

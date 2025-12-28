@@ -1,6 +1,6 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
+import { MonitorSmartphone, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
@@ -25,19 +25,25 @@ export function ThemeSwitcher() {
                         <Moon className="absolute size-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                     </Button>
                 }
-            ></DropdownMenuTrigger>
+            />
             <DropdownMenuContent align="end" className="mt-1">
                 <DropdownMenuRadioGroup onValueChange={setTheme} value={theme}>
                     <DropdownMenuRadioItem
                         aria-label="theme-light"
                         value="light"
                     >
+                        <Sun />
                         Sáng
                     </DropdownMenuRadioItem>
                     <DropdownMenuRadioItem aria-label="theme-dark" value="dark">
+                        <Moon />
                         Tối
                     </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="system">
+                    <DropdownMenuRadioItem
+                        aria-label="theme-system"
+                        value="system"
+                    >
+                        <MonitorSmartphone />
                         Thiết bị
                     </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>

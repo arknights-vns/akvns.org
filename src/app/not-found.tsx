@@ -17,9 +17,9 @@ export default function NotFound() {
             <NavigationBar />
             <main className="flex min-h-screen flex-col items-center justify-center gap-4 text-center">
                 <Image alt="Amiya" src={Amiya} width={240} />
-                <div className="font-bold text-4xl">
+                <span className="font-bold text-4xl">
                     Hông có gì ở đây hết...
-                </div>
+                </span>
                 <div>
                     <Link className="font-extrabold underline" href="/">
                         Bấm vào đây

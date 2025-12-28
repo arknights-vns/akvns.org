@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
+    "@databuddy/cache": "^0.0.120",
+    "@icons-pack/react-simple-icons": "^13.8.0",
     "@elysiajs/eden": "^1.4.6",
     "@elysiajs/openapi": "^1.4.12",
     "@elysiajs/server-timing": "^1.4.0",
