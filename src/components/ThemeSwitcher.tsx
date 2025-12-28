@@ -39,7 +39,10 @@ export function ThemeSwitcher() {
                         <Moon />
                         Tối
                     </DropdownMenuRadioItem>
-                    <DropdownMenuRadioItem value="system">
+                    <DropdownMenuRadioItem
+                        aria-label="theme-system"
+                        value="system"
+                    >
                         <MonitorSmartphone />
                         Thiết bị
                     </DropdownMenuRadioItem>
