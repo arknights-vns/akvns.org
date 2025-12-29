@@ -9,4 +9,4 @@ const { createSelectSchema } = createSchemaFactory({
     coerce: true,
 });
 
-export { createSelectSchema as createCoercedDateSelectSchema };
+export { createSelectSchema as createCoercedSelectSchema };

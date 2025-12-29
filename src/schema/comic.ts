@@ -1,8 +1,7 @@
-import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
 import { comicChapter, comicContributor, comicSeries } from "@/db/schema";
-import { createCoercedDateSelectSchema } from "@/schema/date-coercion";
+import { createCoercedSelectSchema } from "@/schema/zod-coerced";
 
 /**
  * A general data for comic assets.
@@ -17,17 +16,17 @@ export const ComicImage = z.object({
 /**
  * Data for a comic contributor, extracted from `comic_contributor` table by `drizzle-zod`.
  */
-export const ComicContributor = createSelectSchema(comicContributor);
+export const ComicContributor = createCoercedSelectSchema(comicContributor);
 
 /**
  * Data for a comic chapter, extracted from `comic_chapter` table by `drizzle-zod`.
  */
-export const ComicChapter = createCoercedDateSelectSchema(comicChapter);
+export const ComicChapter = createCoercedSelectSchema(comicChapter);
 
 /**
  * Data for a comic series, extracted from `comic_series` table by `drizzle-zod`.
  */
-export const ComicSeriesData = createCoercedDateSelectSchema(comicSeries);
+export const ComicSeriesData = createCoercedSelectSchema(comicSeries);
 
 /**
  * Complete comic data.

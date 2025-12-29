@@ -1,7 +1,7 @@
 import { blog } from "@/db/schema";
-import { createCoercedDateSelectSchema } from "@/schema/date-coercion";
+import { createCoercedSelectSchema } from "@/schema/zod-coerced";
 
 /**
  * Data for a blog, extracted from `blog` table by `drizzle-zod`.
  */
-export const BlogSchema = createCoercedDateSelectSchema(blog);
+export const BlogSchema = createCoercedSelectSchema(blog);
