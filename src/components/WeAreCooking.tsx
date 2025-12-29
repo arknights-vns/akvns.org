@@ -38,6 +38,7 @@ export default function WeAreCooking() {
                                 YouTube VOD
                             </Link>
                         }
+                        nativeButton={false}
                         className="bg-red-500"
                     ></Button>
                     <Button
@@ -47,6 +48,7 @@ export default function WeAreCooking() {
                                 Youtube Playlist
                             </Link>
                         }
+                        nativeButton={false}
                         className="bg-red-500"
                     ></Button>
                 </div>

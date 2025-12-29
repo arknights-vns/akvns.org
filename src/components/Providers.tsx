@@ -6,7 +6,13 @@ import { Toaster } from "sonner";
 
 import { TerraTheme } from "@/components/TerraTheme";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            retry: false,
+        },
+    },
+});
 
 export default function Providers({ children }: { children: ReactNode }) {
     return (

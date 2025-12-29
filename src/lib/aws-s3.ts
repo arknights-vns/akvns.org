@@ -1,11 +1,12 @@
 import { S3Client } from "@aws-sdk/client-s3";
 
 const s3Client = new S3Client({
-    region: process.env.AWS_REGION || "https://s3.us-east-1.amazonaws.com",
-    endpoint: process.env.AWS_ENDPOINT || "us-east-1",
+    region: process.env.S3_AWS_REGION || "us-east-1",
+    endpoint:
+        process.env.S3_AWS_ENDPOINT || "https://s3.us-east-1.amazonaws.com",
     credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID || "ligma",
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || "ligma",
+        accessKeyId: process.env.S3_AWS_ACCESS_KEY_ID || "ligma",
+        secretAccessKey: process.env.S3_AWS_SECRET_ACCESS_KEY || "ligma",
     },
 });
 

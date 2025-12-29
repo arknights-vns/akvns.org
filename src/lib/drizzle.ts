@@ -3,17 +3,21 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 
 import * as schema from "@/db/schema";
-import { redis } from "@/lib/redis";
+import { redisClient } from "@/lib/redis";
+
+const cache = new RedisDrizzleCache({
+    redis: redisClient,
+    defaultTtl: 600,
+    namespace: "drizzle:cache",
+    strategy: "all",
+});
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
 });
 
-const cache = new RedisDrizzleCache({
-    redis,
-    defaultTtl: 600,
-    strategy: "all",
-    namespace: "akvns:cache",
+export const drizzleDb = drizzle({
+    client: pool,
+    schema,
+    cache,
 });
-
-export const drizzleDb = drizzle({ client: pool, schema, cache });

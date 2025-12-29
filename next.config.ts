@@ -33,7 +33,10 @@ const nextConfig: NextConfig = {
                 headers: [
                     {
                         key: "X-Tus-Wives",
-                        value: "Angelina,Fartooth,Reed,Mudrock,Emilia,Bagpipe,Archetto,Astesia,Ray,Whisperain,Saileach,Ptilopsis,Vendela,Manticore,Vendela,Typhon,Dorothy,Viviana,Meteorite,Aurora,Savage,Poncirus,Robin",
+                        value:
+                            "Angelina, Fartooth, Reed, Mudrock, Emilia, Bagpipe, Archetto, Astesia, Ray, " +
+                            "Whisperain, Saileach, Ptilopsis, Vendela, Manticore, Vendela, Typhon, Dorothy, " +
+                            "Viviana, Meteorite, Aurora, Savage, Poncirus,Robin",
                     },
                     {
                         key: "X-Powered-By",

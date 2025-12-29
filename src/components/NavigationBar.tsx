@@ -75,16 +75,16 @@ const links: Navigable[] = [
         label: "Nhân sự",
         type: "dropdown",
     },
-    {
-        href: "/blog",
-        label: "Blog",
-        type: "link",
-    },
-    {
-        href: "#",
-        label: "Truyện tại Trạm",
-        type: "link",
-    },
+    // {
+    //     href: "/blog",
+    //     label: "Blog",
+    //     type: "link",
+    // },
+    // {
+    //     href: "/comic",
+    //     label: "Truyện tại Trạm",
+    //     type: "link",
+    // },
 ];
 
 export default function NavigationBar() {
