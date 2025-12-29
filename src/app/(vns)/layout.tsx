@@ -8,7 +8,9 @@ export default function AKVNSLayout(properties: LayoutProps<"/">) {
         <>
             <NavigationBar />
             <AnnouncementDisplay />
-            <main className="min-h-screen max-w-screen">{properties.children}</main>
+            <main className="min-h-screen max-w-screen">
+                {properties.children}
+            </main>
             <BackToTop />
             <FatFooter />
         </>

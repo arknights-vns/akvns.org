@@ -1,7 +1,7 @@
 "use client";
 
-import DOMPurify from "dompurify";
 import parse from "html-react-parser";
+import DOMPurify from "isomorphic-dompurify";
 import posthog from "posthog-js";
 
 import { Announcement } from "@/schema/announcement";

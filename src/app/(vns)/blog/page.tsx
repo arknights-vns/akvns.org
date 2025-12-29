@@ -3,42 +3,41 @@
 import type { Route } from "next";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { z } from "zod/mini";
 
 import ContentArea from "@/components/ContentArea";
 import { Button } from "@/components/ui/button";
-import { FavorText, Heading, Paragraph } from "@/components/ui/extension/typography";
+import {
+    FavorText,
+    Heading,
+    Paragraph,
+} from "@/components/ui/extension/typography";
 import { Separator } from "@/components/ui/separator";
-import { BlogSchema } from "@/schema/blog";
-
-const BlogList = z.array(BlogSchema);
+import elysianRealm from "@/lib/elysian-realm";
 
 export default function BlogListing() {
-    const { data, status, hasNextPage, fetchNextPage, isFetching } = useInfiniteQuery({
-        queryFn: async ({ pageParam }) => {
-            const resp = await fetch(`/api/blog?page=${pageParam}`);
+    const { data, status, hasNextPage, fetchNextPage, isFetching } =
+        useInfiniteQuery({
+            queryFn: async ({ pageParam }) => {
+                const resp = await elysianRealm.blog.get({
+                    query: { page: pageParam },
+                });
 
-            if (!resp.ok) {
-                throw new Error("Unable to get blog list");
-            }
+                if (resp.error) {
+                    throw new Error("Unable to get blog list");
+                }
 
-            const json = await resp.json();
+                const json = resp.data;
 
-            const data = await BlogList.safeParseAsync(json.message);
+                const next = json.next;
+                const canMoveNext = json.canMoveNext as boolean;
 
-            const next = Number.parseInt(json.next, 10);
-            const canMoveNext = json.canMoveNext as boolean;
-
-            if (!data.success || data.error) {
-                throw data.error;
-            }
-
-            return { body: data.data, next, canMoveNext };
-        },
-        queryKey: ["blog"],
-        initialPageParam: 0,
-        getNextPageParam: (lastpage, _pages) => (lastpage.canMoveNext ? lastpage.next : null),
-    });
+                return { body: json, next, canMoveNext };
+            },
+            queryKey: ["blog"],
+            initialPageParam: 1,
+            getNextPageParam: (lastpage, _pages) =>
+                lastpage.canMoveNext ? lastpage.next : null,
+        });
 
     if (status === "pending" || !data) {
         return;
@@ -49,18 +48,28 @@ export default function BlogListing() {
             <Heading kind="h1" className="text-center text-primary">
                 Blog
             </Heading>
-            <FavorText className="text-center">Tản mạn tùm lum thứ về Arknights VNS</FavorText>
+            <FavorText className="text-center">
+                Tản mạn tùm lum thứ về Arknights VNS
+            </FavorText>
 
             <div className="place-items-center-safe flex flex-col">
                 {data.pages.map((page, i) => {
                     return (
                         // biome-ignore lint/suspicious/noArrayIndexKey: I have to
                         <div key={i} className="flex flex-col gap-y-12">
-                            {page.body.map((entry) => {
+                            {page.body.message.map((entry) => {
                                 return (
-                                    <section id={entry.slug} key={entry.id} className="space-y-4">
+                                    <section
+                                        id={entry.slug}
+                                        key={entry.id}
+                                        className="space-y-4"
+                                    >
                                         <Heading kind="h2">
-                                            <Link href={`blog/${entry.slug}` as Route}>
+                                            <Link
+                                                href={
+                                                    `blog/${entry.slug}` as Route
+                                                }
+                                            >
                                                 {entry.title}
                                             </Link>
                                         </Heading>

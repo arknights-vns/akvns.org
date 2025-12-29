@@ -1,26 +1,51 @@
 import type { NextConfig } from "next";
 
-import { env } from "@/lib/env";
-
 const nextConfig: NextConfig = {
     output: "standalone",
     reactCompiler: true,
-    transpilePackages: ["@t3-oss/env-nextjs", "@t3-oss/env-core"],
     typedRoutes: true,
+    experimental: {
+        typedEnv: true,
+        turbopackFileSystemCacheForDev: true,
+        turbopackFileSystemCacheForBuild: true,
+        optimizePackageImports: ["@icons-pack/react-simple-icons"],
+    },
+    skipTrailingSlashRedirect: true,
+    poweredByHeader: false,
 
     async rewrites() {
         return [
             {
                 source: "/posthog/static/:path*",
-                destination: `${env.NEXT_PUBLIC_POSTHOG_ASSET_HOST}/static/:path*`,
+                destination: `${process.env.NEXT_PUBLIC_POSTHOG_ASSET_HOST}/static/:path*`,
             },
             {
                 source: "/posthog/:path*",
-                destination: `${env.NEXT_PUBLIC_POSTHOG_HOST}/:path*`,
+                destination: `${process.env.NEXT_PUBLIC_POSTHOG_HOST}/:path*`,
             },
         ];
     },
-    skipTrailingSlashRedirect: true,
+
+    async headers() {
+        return [
+            {
+                source: "/:path*",
+                headers: [
+                    {
+                        key: "X-Tus-Wives",
+                        value:
+                            "Angelina, Fartooth, Reed, Mudrock, Emilia, Bagpipe, Archetto, Astesia, Ray, " +
+                            "Whisperain, Saileach, Ptilopsis, Vendela, Manticore, Vendela, Typhon, Dorothy, " +
+                            "Viviana, Meteorite, Aurora, Savage, Poncirus,Robin",
+                    },
+                    {
+                        key: "X-Powered-By",
+                        value: "Arknights VNS",
+                    },
+                ],
+            },
+        ];
+    },
 };
 
 export default nextConfig;

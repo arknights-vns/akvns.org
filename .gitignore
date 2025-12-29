@@ -58,3 +58,9 @@ prisma/seed.ts
 
 # .idea
 .idea/git_toolbox_prj.xml
+
+# Seed file
+src/db/seed.ts
+
+# Template content file
+content/**/*

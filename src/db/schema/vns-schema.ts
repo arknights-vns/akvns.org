@@ -14,7 +14,11 @@ import {
 /**
  * `project_type` enum.
  */
-export const projectTypeEnum = pgEnum("project_type", ["Community", "Event", "Cross_Over"]);
+export const projectTypeEnum = pgEnum("project_type", [
+    "Community",
+    "Event",
+    "Cross_Over",
+]);
 
 /**
  * `comic_category` enum.
@@ -37,9 +41,18 @@ export const blog = pgTable(
         title: varchar({ length: 255 }).notNull(),
         author: varchar({ length: 255 }),
         shortBriefing: text(),
-        updatedAt: timestamp().defaultNow(),
+        updatedAt: timestamp({ precision: 0, mode: "string" })
+            .defaultNow()
+            .$onUpdate(() => /* @__PURE__ */ new Date().toISOString()),
     },
-    (table) => [index("blog_idx").on(table.title, table.slug, table.shortBriefing, table.author)],
+    (table) => [
+        index("blog_idx").on(
+            table.title,
+            table.slug,
+            table.shortBriefing,
+            table.author,
+        ),
+    ],
 );
 
 /**
@@ -52,7 +65,7 @@ export const project = pgTable(
         title: text().notNull(),
         type: projectTypeEnum().notNull().default("Event"),
         mainImg: text(),
-        date: timestamp().defaultNow(),
+        date: timestamp({ precision: 0, mode: "string" }).defaultNow(),
         description: text(),
         blogId: integer("blog_id")
             .unique()
@@ -76,8 +89,10 @@ export const comicSeries = pgTable(
 
         category: comicCategoryEnum().notNull(),
 
-        createdAt: timestamp().defaultNow(),
-        updatedAt: timestamp().defaultNow(),
+        createdAt: timestamp({ precision: 0, mode: "string" }).defaultNow(),
+        updatedAt: timestamp({ precision: 0, mode: "string" })
+            .defaultNow()
+            .$onUpdate(() => /* @__PURE__ */ new Date().toISOString()),
 
         likeCount: integer().default(0),
         viewCount: integer().default(0),
@@ -91,7 +106,9 @@ export const comicSeries = pgTable(
 export const comicChapter = pgTable(
     "comic_chapter",
     {
-        comicChapterId: varchar({ length: 255 }).primaryKey(),
+        id: integer().primaryKey().generatedAlwaysAsIdentity(),
+
+        comicChapterId: varchar({ length: 255 }),
         chapterName: text().notNull(),
 
         comicSeriesId: varchar({ length: 255 })
@@ -101,11 +118,17 @@ export const comicChapter = pgTable(
                 onUpdate: "cascade",
             }),
 
-        createdAt: timestamp().defaultNow(),
-        updatedAt: timestamp().defaultNow(),
+        createdAt: timestamp({ precision: 0, mode: "string" }).defaultNow(),
+        updatedAt: timestamp({ precision: 0, mode: "string" })
+            .defaultNow()
+            .$onUpdate(() => /* @__PURE__ */ new Date().toISOString()),
     },
     (table) => [
-        index("comic_chapter_idx").on(table.comicChapterId, table.chapterName, table.comicSeriesId),
+        index("comic_chapter_idx").on(
+            table.comicChapterId,
+            table.chapterName,
+            table.comicSeriesId,
+        ),
     ],
 );
 
@@ -124,15 +147,23 @@ export const comicContributor = pgTable(
         role: text().notNull(),
         members: text().array().notNull(),
     },
-    (t) => [uniqueIndex("comic_contributor_role_series_unique").on(t.role, t.comicSeriesId)],
+    (t) => [
+        uniqueIndex("comic_contributor_role_series_unique").on(
+            t.role,
+            t.comicSeriesId,
+        ),
+    ],
 );
 
-export const comicContributorRelations = relations(comicContributor, ({ one }) => ({
-    comicSeries: one(comicSeries, {
-        fields: [comicContributor.comicSeriesId],
-        references: [comicSeries.comicSeriesId],
+export const comicContributorRelations = relations(
+    comicContributor,
+    ({ one }) => ({
+        comicSeries: one(comicSeries, {
+            fields: [comicContributor.comicSeriesId],
+            references: [comicSeries.comicSeriesId],
+        }),
     }),
-}));
+);
 
 export const comicChapterRelations = relations(comicChapter, ({ one }) => ({
     comicSeries: one(comicSeries, {
