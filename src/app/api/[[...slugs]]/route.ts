@@ -1,10 +1,11 @@
+import { node } from "@elysiajs/node";
 import { Elysia } from "elysia";
 
 import comicPlugin from "@/app/api/[[...slugs]]/blog/plugin";
 import blogPlugin from "@/app/api/[[...slugs]]/comic/plugin";
 import { auth } from "@/lib/auth";
 
-const app = new Elysia({ prefix: "/api" })
+const app = new Elysia({ adapter: node(), prefix: "/api" })
     .use(blogPlugin)
     .use(comicPlugin)
     .mount(auth.handler);

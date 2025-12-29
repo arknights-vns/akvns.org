@@ -1,3 +1,4 @@
+import { ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { eq } from "drizzle-orm";
 import { Elysia } from "elysia";
 import { CacheControl, cacheControl } from "elysiajs-cdn-cache";
@@ -6,7 +7,7 @@ import z from "zod";
 import { comicSeries } from "@/db/schema";
 import { s3Client } from "@/lib/aws-s3";
 import { drizzleDb } from "@/lib/drizzle";
-import { redis } from "@/lib/redis";
+import { redisClient } from "@/lib/redis";
 import { ComicImage, ComicSeriesData, CompleteComicData } from "@/schema/comic";
 
 const ITEMS_PER_PAGE = 10;
@@ -94,8 +95,8 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
             const { series, chapter } = params;
             const REDIS_KEY = `comic-assets:${series}:${chapter}`;
 
-            if (await redis.exists(REDIS_KEY)) {
-                const value = await redis.get(REDIS_KEY);
+            if (await redisClient.exists(REDIS_KEY)) {
+                const value = await redisClient.get(REDIS_KEY);
                 if (value) {
                     return {
                         message: await z
@@ -105,18 +106,16 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
                 }
             }
 
-            const resp = await s3Client.list(
-                {
-                    prefix: `${series}/${chapter}`,
-                },
-                {
-                    bucket: process.env.COMIC_ASSETS_AWS_BUCKET,
-                },
+            const resp = await s3Client.send(
+                new ListObjectsV2Command({
+                    Prefix: `${series}/${chapter}`,
+                    Bucket: process.env.COMIC_ASSETS_AWS_BUCKET,
+                }),
             );
 
-            const objects = resp.contents;
+            const objects = resp.Contents;
 
-            if (!objects || !objects.filter((x) => x.size && x.size > 0)) {
+            if (!objects || !objects.filter((x) => x.Size && x.Size > 0)) {
                 return status("Not Found", { error: "No images in record." });
             }
 
@@ -129,15 +128,16 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
             );
 
             const filteredObjects = objects
-                .filter((x) => x.size && x.size > 0)
+                .filter((x) => x.Size && x.Size > 0)
                 .map((obj) => {
                     return {
-                        name: obj.key,
-                        url: `${process.env.COMIC_ASSETS_URL_PREFIX}/${obj.key}`,
+                        // biome-ignore lint/style/noNonNullAssertion: There is.
+                        name: obj.Key!,
+                        url: `${process.env.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
                     };
                 });
 
-            await redis.set(
+            await redisClient.set(
                 REDIS_KEY,
                 JSON.stringify(filteredObjects),
                 "EX",

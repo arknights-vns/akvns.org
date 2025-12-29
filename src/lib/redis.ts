@@ -1,5 +1,5 @@
-import { RedisClient } from "bun";
+import { Redis } from "ioredis";
 
-export const redis = new RedisClient(
+export const redisClient = new Redis(
     process.env.REDIS_URL || "redis://ligma:ligma@localhost:6379",
 );

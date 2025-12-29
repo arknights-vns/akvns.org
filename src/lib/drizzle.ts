@@ -1,19 +1,23 @@
 import { RedisDrizzleCache } from "@databuddy/cache";
-import { SQL } from "bun";
-import { drizzle } from "drizzle-orm/bun-sql";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
 
 import * as schema from "@/db/schema";
-import { redis } from "@/lib/redis";
+import { redisClient } from "@/lib/redis";
 
 const cache = new RedisDrizzleCache({
-    redis: redis,
+    redis: redisClient,
     defaultTtl: 600,
     namespace: "drizzle:cache",
     strategy: "all",
 });
 
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+});
+
 export const drizzleDb = drizzle({
-    client: new SQL(process.env.DATABASE_URL as string),
+    client: pool,
     schema,
     cache,
 });
