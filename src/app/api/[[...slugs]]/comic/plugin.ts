@@ -10,7 +10,7 @@ import { drizzleDb } from "@/lib/drizzle";
 import { redisClient } from "@/lib/redis";
 import { ComicImage, ComicSeriesData, CompleteComicData } from "@/schema/comic";
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 9;
 
 const comicPlugin = new Elysia({ prefix: "/comic" })
     .use(cacheControl())
@@ -107,9 +107,7 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
                     );
 
                     return {
-                        message: await z
-                            .array(ComicImage)
-                            .parseAsync(JSON.parse(value)),
+                        message: await z.array(ComicImage).parseAsync(JSON.parse(value)),
                     };
                 }
             }
@@ -137,12 +135,7 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
                     };
                 });
 
-            await redisClient.set(
-                REDIS_KEY,
-                JSON.stringify(filteredObjects),
-                "EX",
-                7 * 24 * 60 * 60,
-            );
+            await redisClient.set(REDIS_KEY, JSON.stringify(filteredObjects), "EX", 7 * 24 * 60 * 60);
 
             cacheControl.set(
                 "Cache-Control",
@@ -181,12 +174,7 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
                     next: comicChapter.nextChapterId,
                 })
                 .from(comicChapter)
-                .where(
-                    and(
-                        eq(comicChapter.comicSeriesId, series),
-                        eq(comicChapter.comicChapterId, chapter),
-                    ),
-                )
+                .where(and(eq(comicChapter.comicSeriesId, series), eq(comicChapter.comicChapterId, chapter)))
                 .limit(1);
 
             if (data.length === 0) {

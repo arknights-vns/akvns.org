@@ -22,18 +22,13 @@ import {
 import { Separator } from "@/components/ui/separator";
 import elysianRealm from "@/lib/elysian-realm";
 
-export default function MangaReaderPage(
-    props: PageProps<"/comic/[series]/[chapter]">,
-) {
+export default function MangaReaderPage(props: PageProps<"/comic/[series]/[chapter]">) {
     const { series, chapter } = use(props.params);
 
     const { data: serverImages, isPending: imagesFetching } = useQuery({
         queryKey: ["comic-images", series, chapter],
         queryFn: async () => {
-            const response = await elysianRealm
-                .comic({ series })
-                .info({ chapter })
-                .images.get();
+            const response = await elysianRealm.comic({ series }).info({ chapter }).images.get();
 
             if (response.error) {
                 throw new Error("Failed to fetch comic");
@@ -59,10 +54,7 @@ export default function MangaReaderPage(
     const { data: chapterData } = useQuery({
         queryKey: ["comic-chapter-data", chapter],
         queryFn: async () => {
-            const response = await elysianRealm
-                .comic({ series })
-                .info({ chapter })
-                .get();
+            const response = await elysianRealm.comic({ series }).info({ chapter }).get();
 
             if (response.error) {
                 throw new Error("Failed to fetch comic");
@@ -97,28 +89,18 @@ export default function MangaReaderPage(
                 {/* It's all copying and pasting, like the old Dreamchasers web. */}
                 <aside className="place-items-center-safe sticky top-18 flex w-full flex-col gap-2 bg-background/50 pt-1 backdrop-blur-lg">
                     <div className="flex gap-1 md:hidden">
-                        <Link
-                            href={`/comic/${series}`}
-                            className="hover:underline"
-                        >
+                        <Link href={`/comic/${series}`} className="hover:underline">
                             {seriesData.title}
                         </Link>
-                        <Separator
-                            orientation="vertical"
-                            className="inline bg-foreground"
-                        />
+                        <Separator orientation="vertical" className="inline bg-foreground" />
                         <span>{chapterData.name}</span>
                     </div>
-                    <div className="place-items-center-safe flex w-[90vw] justify-between">
+                    <div className="place-items-center-safe flex justify-between gap-3">
                         <Button
                             disabled={chapterData.prev === null}
                             render={
                                 chapterData.prev ? (
-                                    <Link
-                                        href={
-                                            `/comic/${series}/${chapterData.prev}` as Route
-                                        }
-                                    />
+                                    <Link href={`/comic/${series}/${chapterData.prev}` as Route} />
                                 ) : (
                                     <Button />
                                 )
@@ -130,16 +112,10 @@ export default function MangaReaderPage(
                         </Button>
 
                         <div className="place-items-center-safe hidden gap-4 md:flex">
-                            <Link
-                                href={`/comic/${series}`}
-                                className="hover:underline"
-                            >
+                            <Link href={`/comic/${series}`} className="hover:underline">
                                 {seriesData.title}
                             </Link>
-                            <Separator
-                                orientation="vertical"
-                                className="bg-foreground"
-                            />
+                            <Separator orientation="vertical" className="bg-foreground" />
                             <span>{chapterData.name}</span>
                             <DropdownMenu>
                                 <DropdownMenuTrigger
@@ -149,19 +125,12 @@ export default function MangaReaderPage(
                                         </Button>
                                     }
                                 />
-                                <DropdownMenuContent
-                                    className="w-56"
-                                    align="start"
-                                >
+                                <DropdownMenuContent className="w-56" align="start">
                                     {serverImages.map((entry, index) => (
                                         <DropdownMenuItem
                                             key={entry.url}
                                             render={
-                                                <Link
-                                                    href={
-                                                        `/comic/${series}/${chapter}#page-${index + 1}` as Route
-                                                    }
-                                                />
+                                                <Link href={`/comic/${series}/${chapter}#page-${index + 1}` as Route} />
                                             }
                                         >
                                             Trang {index + 1}
@@ -180,19 +149,12 @@ export default function MangaReaderPage(
                                         </Button>
                                     }
                                 />
-                                <DropdownMenuContent
-                                    className="w-56"
-                                    align="start"
-                                >
+                                <DropdownMenuContent className="w-56" align="start">
                                     {serverImages.map((entry, index) => (
                                         <DropdownMenuItem
                                             key={entry.url}
                                             render={
-                                                <Link
-                                                    href={
-                                                        `/comic/${series}/${chapter}#page-${index + 1}` as Route
-                                                    }
-                                                />
+                                                <Link href={`/comic/${series}/${chapter}#page-${index + 1}` as Route} />
                                             }
                                         >
                                             Trang {index + 1}
@@ -206,11 +168,7 @@ export default function MangaReaderPage(
                             disabled={chapterData.next === null}
                             render={
                                 chapterData.next ? (
-                                    <Link
-                                        href={
-                                            `/comic/${series}/${chapterData.next}` as Route
-                                        }
-                                    />
+                                    <Link href={`/comic/${series}/${chapterData.next}` as Route} />
                                 ) : (
                                     <Button />
                                 )
@@ -224,9 +182,7 @@ export default function MangaReaderPage(
                     <ScrollProgress className="h-1 self-start rounded-r-full rounded-l-full bg-primary" />
                 </aside>
                 <ScrollProgressContainer>
-                    <div className="flex flex-col gap-2 py-4">
-                        {images.map((x) => x)}
-                    </div>
+                    <div className="flex flex-col gap-2 py-4">{images.map((x) => x)}</div>
                 </ScrollProgressContainer>
             </div>
         </ScrollProgressProvider>

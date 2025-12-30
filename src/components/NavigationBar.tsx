@@ -2,15 +2,7 @@
 
 import type { Navigable } from "@/components/navbar/navigation-type";
 import VNS_Icon from "@public/VNS_Icon.svg";
-import {
-    BadgeQuestionMark,
-    Check,
-    Contact,
-    Crown,
-    Handshake,
-    Info,
-    Users,
-} from "lucide-react";
+import { BadgeQuestionMark, Check, Contact, Crown, Handshake, Info, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -59,8 +51,7 @@ const links: Navigable[] = [
     {
         children: [
             {
-                description:
-                    "Những người đang điều hành Arknights VNS đến hiện tại.",
+                description: "Những người đang điều hành Arknights VNS đến hiện tại.",
                 href: "/#leaders",
                 label: "The Leaders",
                 icon: Crown,
@@ -80,11 +71,11 @@ const links: Navigable[] = [
     //     label: "Blog",
     //     type: "link",
     // },
-    // {
-    //     href: "/comic",
-    //     label: "Truyện tại Trạm",
-    //     type: "link",
-    // },
+    {
+        href: "/comic",
+        label: "Truyện tại Trạm",
+        type: "link",
+    },
 ];
 
 export default function NavigationBar() {
@@ -93,12 +84,7 @@ export default function NavigationBar() {
             <aside className="place-items-center-safe flex w-[25vw] gap-4">
                 <MobileNavigationSidebar links={links} />
                 <Link href="/">
-                    <Image
-                        alt="VNS_Logo_Header"
-                        className="size-12.5 dark:invert"
-                        src={VNS_Icon}
-                        title="AKVNS Logo"
-                    />
+                    <Image alt="VNS_Logo_Header" className="size-12.5 dark:invert" src={VNS_Icon} title="AKVNS Logo" />
                 </Link>
             </aside>
             <DesktopNavigationMenu links={links} />
