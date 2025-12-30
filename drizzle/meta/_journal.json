@@ -36,6 +36,13 @@
       "when": 1766912269154,
       "tag": "0004_flippant_spot",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1767057023664,
+      "tag": "0005_mysterious_hitman",
+      "breakpoints": true
     }
   ]
 }

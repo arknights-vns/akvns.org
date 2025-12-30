@@ -118,6 +118,9 @@ export const comicChapter = pgTable(
                 onUpdate: "cascade",
             }),
 
+        prevChapterId: text(),
+        nextChapterId: text(),
+
         createdAt: timestamp({ precision: 0, mode: "string" }).defaultNow(),
         updatedAt: timestamp({ precision: 0, mode: "string" })
             .defaultNow()
