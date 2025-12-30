@@ -43,6 +43,13 @@
       "when": 1767057023664,
       "tag": "0005_mysterious_hitman",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1767100139776,
+      "tag": "0006_brief_hellion",
+      "breakpoints": true
     }
   ]
 }

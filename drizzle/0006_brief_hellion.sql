@@ -1,0 +1,1 @@
+ALTER TABLE "comic_series" ALTER COLUMN "thumbnail" DROP NOT NULL;

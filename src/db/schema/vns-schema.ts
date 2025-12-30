@@ -85,7 +85,7 @@ export const comicSeries = pgTable(
         title: text().notNull(),
         synopsis: text().notNull(),
         author: text().notNull(),
-        thumbnail: text().notNull(),
+        thumbnail: text(),
 
         category: comicCategoryEnum().notNull(),
 
