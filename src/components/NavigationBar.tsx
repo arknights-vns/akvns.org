@@ -95,7 +95,7 @@ export default function NavigationBar() {
                 <Link href="/">
                     <Image
                         alt="VNS_Logo_Header"
-                        className="size-[50px] dark:invert"
+                        className="size-12.5 dark:invert"
                         src={VNS_Icon}
                         title="AKVNS Logo"
                     />
