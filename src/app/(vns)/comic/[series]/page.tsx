@@ -174,13 +174,13 @@ export default function ComicSeriesDetail(
                         </Heading>
                         <Separator className="mb-4" />
                         <ScrollArea className="h-100">
-                            <div className="place-items-center-safe flex flex-col gap-2 pr-4">
+                            <div className="place-items-center-safe grid grid-cols-1 gap-2 md:grid-cols-3">
                                 {data.chapters
                                     .sort((x, y) => x.id - y.id)
                                     .map((chapter) => (
                                         <Button
                                             key={chapter.comicChapterId}
-                                            className="w-78 bg-stone-200 font-bold text-accent hover:text-white"
+                                            className="w-56 bg-stone-200 font-bold text-accent hover:text-white"
                                             render={
                                                 <Link
                                                     href={
