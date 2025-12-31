@@ -119,7 +119,9 @@ export default function MangaReaderPage(
                             nativeButton={chapterData.prev === null}
                         >
                             <ArrowLeft />
-                            Chương trước
+                            <span className="hidden md:inline">
+                                Chương trước
+                            </span>
                         </Button>
 
                         <div className="place-items-center-safe gap-4">
@@ -169,7 +171,7 @@ export default function MangaReaderPage(
                             }
                             nativeButton={chapterData.next === null}
                         >
-                            Chương kế
+                            <span className="hidden md:inline">Chương kế</span>
                             <ArrowRight />
                         </Button>
                     </div>

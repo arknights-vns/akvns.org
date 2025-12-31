@@ -117,7 +117,7 @@ export default function ComicListingPage() {
                     </div>
                 ))}
             </div>
-            <div className="place-items-center-safe flex flex-col gap-4">
+            <div className="place-items-center-safe my-4 flex flex-col gap-4">
                 <span className="text-muted-foreground">
                     Có vẻ tới đây là hết trang rồi.
                 </span>
@@ -127,7 +127,7 @@ export default function ComicListingPage() {
                     onClick={() => fetchNextPage()}
                 >
                     <Plus />
-                    Tải thêm data
+                    Tải thêm danh sách truyện
                 </Button>
             </div>
         </div>
