@@ -29,7 +29,7 @@ export default function DesktopNavigationMenu(props: NavComponentProps) {
                                     {entry.label}
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent>
-                                    <ul className="grid w-[300px]">
+                                    <ul className="w-75">
                                         {entry.children.map((subentry) => (
                                             <li key={subentry.label}>
                                                 <NavigationMenuLink
