@@ -19,7 +19,6 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Separator } from "@/components/ui/separator";
 import elysianRealm from "@/lib/elysian-realm";
 
 export default function MangaReaderPage(
@@ -94,23 +93,16 @@ export default function MangaReaderPage(
     return (
         <ScrollProgressProvider global={true}>
             <div className="flex flex-col items-center gap-4">
-                {/* To whom gonna perform the code review on this, my condolences - Đụt */}
-                {/* It's all copying and pasting, like the old Dreamchasers web. */}
-                <aside className="place-items-center-safe sticky top-18 flex w-full flex-col gap-2 bg-background/50 pt-1 backdrop-blur-lg">
-                    <div className="flex gap-1 md:hidden">
+                <aside className="place-items-center-safe sticky top-0 z-99 flex w-full flex-col gap-2 bg-background/75 pt-1 backdrop-blur-lg">
+                    <div className="flex gap-1 text-lg">
                         <Link
                             href={`/comic/${series}`}
                             className="hover:underline"
                         >
                             {seriesData.title}
                         </Link>
-                        <Separator
-                            orientation="vertical"
-                            className="inline bg-foreground"
-                        />
-                        <span>{chapterData.name}</span>
                     </div>
-                    <div className="place-items-center-safe flex justify-between gap-3">
+                    <div className="place-items-center-safe flex justify-between gap-2">
                         <Button
                             disabled={chapterData.prev === null}
                             render={
@@ -130,54 +122,13 @@ export default function MangaReaderPage(
                             Chương trước
                         </Button>
 
-                        <div className="place-items-center-safe hidden gap-4 md:flex">
-                            <Link
-                                href={`/comic/${series}`}
-                                className="hover:underline"
-                            >
-                                {seriesData.title}
-                            </Link>
-                            <Separator
-                                orientation="vertical"
-                                className="bg-foreground"
-                            />
-                            <span>{chapterData.name}</span>
+                        <div className="place-items-center-safe gap-4">
                             <DropdownMenu>
                                 <DropdownMenuTrigger
                                     render={
                                         <Button>
-                                            <BookOpen /> Đi đến trang
-                                        </Button>
-                                    }
-                                />
-                                <DropdownMenuContent
-                                    className="w-56"
-                                    align="start"
-                                >
-                                    {serverImages.map((entry, index) => (
-                                        <DropdownMenuItem
-                                            key={entry.url}
-                                            render={
-                                                <Link
-                                                    href={
-                                                        `/comic/${series}/${chapter}#page-${index + 1}` as Route
-                                                    }
-                                                />
-                                            }
-                                        >
-                                            Trang {index + 1}
-                                        </DropdownMenuItem>
-                                    ))}
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </div>
-
-                        <div className="md:hidden">
-                            <DropdownMenu>
-                                <DropdownMenuTrigger
-                                    render={
-                                        <Button>
-                                            <BookOpen /> Đi đến trang
+                                            <BookOpen />
+                                            {chapterData.name}
                                         </Button>
                                     }
                                 />
@@ -218,8 +169,8 @@ export default function MangaReaderPage(
                             }
                             nativeButton={chapterData.next === null}
                         >
-                            <ArrowRight />
                             Chương kế
+                            <ArrowRight />
                         </Button>
                     </div>
                     <ScrollProgress className="h-1 self-start rounded-r-full rounded-l-full bg-primary" />
