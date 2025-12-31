@@ -2,7 +2,7 @@
 
 import type { Route } from "next";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpFromLine, BookOpen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { use } from "react";
@@ -93,7 +93,7 @@ export default function MangaReaderPage(
     return (
         <ScrollProgressProvider global={true}>
             <div className="flex flex-col items-center gap-4">
-                <aside className="place-items-center-safe sticky top-0 z-99 flex w-full flex-col gap-2 bg-background/75 pt-1 backdrop-blur-lg">
+                <aside className="place-items-center-safe sticky top-0 z-2 flex w-full flex-col gap-2 bg-background/75 pt-1 backdrop-blur-lg">
                     <div className="flex gap-1 text-lg">
                         <Link
                             href={`/comic/${series}`}
@@ -180,6 +180,16 @@ export default function MangaReaderPage(
                         {images.map((x) => x)}
                     </div>
                 </ScrollProgressContainer>
+                <Button
+                    render={
+                        <Link href={`/comic/${series}/${chapter}#page-1`} />
+                    }
+                    nativeButton={false}
+                    className="my-8 p-4"
+                >
+                    <ArrowUpFromLine />
+                    Về trang nhất
+                </Button>
             </div>
         </ScrollProgressProvider>
     );
