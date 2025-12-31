@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
     },
     skipTrailingSlashRedirect: true,
     poweredByHeader: false,
+    images: {
+        remotePatterns: [
+            new URL("https://comic-assets.akvns.org/**"),
+            new URL("https://cdn.akvns.org/**"),
+        ],
+    },
 
     async rewrites() {
         return [

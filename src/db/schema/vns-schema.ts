@@ -85,7 +85,7 @@ export const comicSeries = pgTable(
         title: text().notNull(),
         synopsis: text().notNull(),
         author: text().notNull(),
-        thumbnail: text().notNull(),
+        thumbnail: text(),
 
         category: comicCategoryEnum().notNull(),
 
@@ -117,6 +117,9 @@ export const comicChapter = pgTable(
                 onDelete: "cascade",
                 onUpdate: "cascade",
             }),
+
+        prevChapterId: text(),
+        nextChapterId: text(),
 
         createdAt: timestamp({ precision: 0, mode: "string" }).defaultNow(),
         updatedAt: timestamp({ precision: 0, mode: "string" })

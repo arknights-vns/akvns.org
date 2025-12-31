@@ -1,16 +1,16 @@
 import { ListObjectsV2Command } from "@aws-sdk/client-s3";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { Elysia } from "elysia";
 import { CacheControl, cacheControl } from "elysiajs-cdn-cache";
 import z from "zod";
 
-import { comicSeries } from "@/db/schema";
+import { comicChapter, comicSeries } from "@/db/schema";
 import { s3Client } from "@/lib/aws-s3";
 import { drizzleDb } from "@/lib/drizzle";
 import { redisClient } from "@/lib/redis";
 import { ComicImage, ComicSeriesData, CompleteComicData } from "@/schema/comic";
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 9;
 
 const comicPlugin = new Elysia({ prefix: "/comic" })
     .use(cacheControl())
@@ -90,7 +90,7 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
         },
     )
     .get(
-        "/:series/:chapter/images",
+        "/:series/info/:chapter/images",
         async ({ params, status, cacheControl }) => {
             const { series, chapter } = params;
             const REDIS_KEY = `comic-assets:${series}:${chapter}`;
@@ -98,6 +98,14 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
             if (await redisClient.exists(REDIS_KEY)) {
                 const value = await redisClient.get(REDIS_KEY);
                 if (value) {
+                    cacheControl.set(
+                        "Cache-Control",
+                        new CacheControl()
+                            .set("public", true)
+                            .set("max-age", 365 * 24 * 60 * 60)
+                            .set("s-maxage", 2 * 365 * 24 * 60 * 60),
+                    );
+
                     return {
                         message: await z
                             .array(ComicImage)
@@ -119,14 +127,6 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
                 return status("Not Found", { error: "No images in record." });
             }
 
-            cacheControl.set(
-                "Cache-Control",
-                new CacheControl()
-                    .set("public", true)
-                    .set("max-age", 365 * 24 * 60 * 60)
-                    .set("s-maxage", 2 * 365 * 24 * 60 * 60),
-            );
-
             const filteredObjects = objects
                 .filter((x) => x.Size && x.Size > 0)
                 .map((obj) => {
@@ -144,6 +144,14 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
                 7 * 24 * 60 * 60,
             );
 
+            cacheControl.set(
+                "Cache-Control",
+                new CacheControl()
+                    .set("public", true)
+                    .set("max-age", 365 * 24 * 60 * 60)
+                    .set("s-maxage", 2 * 365 * 24 * 60 * 60),
+            );
+
             return {
                 message: filteredObjects,
             };
@@ -156,6 +164,61 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
             response: {
                 200: z.object({
                     message: z.array(ComicImage),
+                }),
+                404: z.object({ error: z.string() }),
+            },
+        },
+    )
+    .get(
+        "/:series/info/:chapter",
+        async ({ params, status, cacheControl }) => {
+            const { series, chapter } = params;
+
+            const data = await drizzleDb
+                .select({
+                    name: comicChapter.chapterName,
+                    prev: comicChapter.prevChapterId,
+                    next: comicChapter.nextChapterId,
+                })
+                .from(comicChapter)
+                .where(
+                    and(
+                        eq(comicChapter.comicSeriesId, series),
+                        eq(comicChapter.comicChapterId, chapter),
+                    ),
+                )
+                .limit(1);
+
+            if (data.length === 0) {
+                return status("Not Found", {
+                    error: "No entry",
+                });
+            }
+
+            cacheControl.set(
+                "Cache-Control",
+                new CacheControl()
+                    .set("public", true)
+                    .set("max-age", 60 * 60)
+                    .set("s-maxage", 24 * 60 * 60),
+            );
+
+            return {
+                message: data[0],
+            };
+        },
+        {
+            params: z.object({
+                series: z.string(),
+                chapter: z.string(),
+            }),
+            response: {
+                200: z.object({
+                    message: z.object({
+                        name: z.string(),
+                        prev: z.string().nullable(),
+                        next: z.string().nullable(),
+                    }),
                 }),
                 404: z.object({ error: z.string() }),
             },

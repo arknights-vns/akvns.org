@@ -3,12 +3,12 @@
 import type { Route } from "next";
 import { SiDiscord } from "@icons-pack/react-simple-icons";
 import amiya from "@public/amiya.png";
-import carouselData from "@public/data/carouselData.json";
-import faqsData from "@public/data/faqsData.json";
+// import faqsData from "@public/data/faqsData.json";
 import membersList from "@public/data/members.json";
-import projectsList from "@public/data/projects.json";
-import testimonyData from "@public/data/testimonyData.json";
+// import testimonyData from "@public/data/testimonyData.json";
 import groupPic from "@public/group.jpg";
+import partnerList from "@resources/data/partner.json";
+import projectsList from "@resources/data/projects.json";
 import { clsx } from "clsx";
 import AutoScroll from "embla-carousel-auto-scroll";
 import { ArrowRight, Circle } from "lucide-react";
@@ -18,13 +18,6 @@ import { useEffect, useState } from "react";
 
 import ContentArea from "@/components/ContentArea";
 import MemberCard from "@/components/MemberCard";
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -133,11 +126,11 @@ export default function MainPage() {
                 </div>
             </div>
 
-            <ContentArea className="text-center" id="sponsors">
+            <ContentArea className="space-y-8 text-center" id="sponsors">
                 <Heading kind="h1" className="text-primary">
-                    Meet the Sponsors
+                    Các đối tác của Arknights VNS
                 </Heading>
-                <FavorText>Some are weirdly, familiar</FavorText>
+                <Heading kind="h2">Fanpage</Heading>
                 <Carousel
                     className="w-full"
                     opts={{
@@ -151,33 +144,63 @@ export default function MainPage() {
                     ]}
                 >
                     <CarouselContent className="place-items-center-safe w-sm md:w-full">
-                        {carouselData.map((data) => (
-                            <CarouselItem
-                                className="place-items-center-safe flex flex-col justify-between md:basis-1/4"
-                                key={data.title}
-                            >
-                                <Link href={data.url as Route}>
-                                    <Image
-                                        alt={data.title}
-                                        height={96}
-                                        src={data.image}
-                                        width={150}
-                                    />
-                                </Link>
-                                <FootNote className="font-bold text-lg">
-                                    {data.title}
-                                </FootNote>
-                            </CarouselItem>
-                        ))}
+                        {partnerList
+                            .filter((data) => data.type === "fanpage")
+                            .map((data) => (
+                                <CarouselItem
+                                    className="place-items-center-safe flex flex-col justify-between gap-2 md:basis-1/4"
+                                    key={data.title}
+                                >
+                                    <Link href={data.url as Route}>
+                                        <Image
+                                            alt={data.title}
+                                            src={data.image}
+                                            height={150}
+                                            width={150}
+                                            className="size-37.5 rounded-full border-2"
+                                            priority={true}
+                                        />
+                                    </Link>
+                                    <FootNote className="font-bold text-lg">
+                                        {data.title}
+                                    </FootNote>
+                                </CarouselItem>
+                            ))}
                     </CarouselContent>
                 </Carousel>
+                <Heading kind="h2">Artist</Heading>
+                <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+                    {partnerList
+                        .filter((data) => data.type === "artist")
+                        .map((entry) => {
+                            return (
+                                <div
+                                    key={entry.title}
+                                    className="place-items-center-safe flex flex-col gap-2"
+                                >
+                                    <Link href={entry.url as Route}>
+                                        <Image
+                                            src={entry.image}
+                                            alt={entry.title}
+                                            height={150}
+                                            width={150}
+                                            className="size-37.5 rounded-full border-2"
+                                            priority={true}
+                                        />
+                                    </Link>
+                                    <FootNote className="font-bold text-lg">
+                                        {entry.title}
+                                    </FootNote>
+                                </div>
+                            );
+                        })}
+                </div>
             </ContentArea>
 
             <ContentArea className="text-center" id="leaders">
                 <Heading kind="h1" className="text-primary">
-                    Meet the Leaders
+                    Đội ngũ Staff
                 </Heading>
-                <FavorText>What should I write here?</FavorText>
                 <div className="place-items-center-safe grid grid-cols-1 gap-8 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {membersList.Leader.map((member) => (
                         <MemberCard {...member} key={member.name} />
@@ -207,18 +230,23 @@ export default function MainPage() {
                     <div className="flex flex-col justify-between gap-y-3 md:flex-row">
                         <div className="flex flex-col gap-2 text-center md:text-left">
                             <Heading kind="h1" className="text-primary">
-                                Chúng tôi đã nấu cl gì?
+                                Những dự án của Arknights VNS
                             </Heading>
                             <FavorText>
-                                Placeholder because I'm tired - Đụt
+                                Các dự án do Arknights VNS hoặc cộng đồng tổ
+                                chức
                             </FavorText>
                         </div>
-                        <TabsList className="flex h-auto gap-3 self-center bg-transparent md:self-end [&>button]:rounded-md [&>button]:bg-neutral-200 [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:font-bold [&>button]:data-[state=active]:text-white [&>button]:dark:bg-neutral-600">
-                            <TabsTrigger value="fan-project">
-                                Fan Projects
+                        <TabsList className="flex h-auto gap-3 self-center bg-transparent md:self-end [&>button]:rounded-md [&>button]:bg-neutral-600 [&>button]:px-4 [&>button]:py-2 [&>button]:text-white [&>button]:data-active:bg-primary [&>button]:data-active:font-bold [&>button]:data-active:dark:bg-primary">
+                            <TabsTrigger value="event">
+                                Arknights VNS
                             </TabsTrigger>
-                            <TabsTrigger value="event">Events</TabsTrigger>
-                            <TabsTrigger value="cross">Cross-Overs</TabsTrigger>
+                            <TabsTrigger value="fan-project">
+                                Cộng đồng
+                            </TabsTrigger>
+                            <TabsTrigger value="cross">
+                                Collab / Cross-Overs
+                            </TabsTrigger>
                         </TabsList>
                     </div>
                     {(["fan-project", "event", "cross"] as const).map(
@@ -246,19 +274,15 @@ export default function MainPage() {
                                                 >
                                                     <Card>
                                                         <CardHeader>
-                                                            <CardTitle>
-                                                                {project.date}
+                                                            <CardTitle className="font-bold text-xl">
+                                                                {project.name}
                                                             </CardTitle>
                                                             <CardDescription>
-                                                                {project.name}
+                                                                {project.date}
                                                             </CardDescription>
                                                         </CardHeader>
-                                                        <CardContent className="flex min-h-42 items-center justify-center p-6">
-                                                            <div>
-                                                                {
-                                                                    project.content
-                                                                }
-                                                            </div>
+                                                        <CardContent className="flex h-52 p-6 text-justify leading-relaxed">
+                                                            {project.content}
                                                         </CardContent>
                                                     </Card>
                                                 </CarouselItem>
@@ -299,71 +323,71 @@ export default function MainPage() {
                 </Tabs>
             </ContentArea>
 
-            <ContentArea id="testimony">
-                <Heading className="text-center text-primary" kind="h1">
-                    Mọi người nghĩ gì về mình?
-                </Heading>
-                <FavorText className="text-center">
-                    Overwhelming Negative Reviews:
-                </FavorText>
-                <article className="place-items-center-safe m-8 grid grid-cols-1 gap-12 md:grid-cols-2">
-                    {testimonyData.map((c) => (
-                        <Card className="w-full shadow-md" key={c.id}>
-                            <CardHeader className="flex flex-col">
-                                <div className="flex gap-4">
-                                    <Avatar className="size-12 border shadow-sm">
-                                        {/* FIXME: actual avatars soon. */}
-                                        {/*<AvatarImage src="/VNS_Icon.svg" alt={`${c.name}-avatar`} />*/}
-                                        <AvatarFallback>VNS</AvatarFallback>
-                                    </Avatar>
-                                    <div className="flex flex-col self-center">
-                                        <CardTitle className="font-bold text-primary text-xl">
-                                            {c.name}
-                                        </CardTitle>
-                                        <CardDescription>
-                                            {c.info}
-                                        </CardDescription>
-                                    </div>
-                                </div>
-                            </CardHeader>
-                            <CardContent className="text-justify leading-relaxed">
-                                <span className="font-bold text-primary">
-                                    "
-                                </span>
-                                {c.description}
-                                <span className="font-bold text-primary">
-                                    "
-                                </span>
-                            </CardContent>
-                        </Card>
-                    ))}
-                </article>
-            </ContentArea>
+            {/*<ContentArea id="testimony">*/}
+            {/*    <Heading className="text-center text-primary" kind="h1">*/}
+            {/*        Mọi người nghĩ gì về mình?*/}
+            {/*    </Heading>*/}
+            {/*    <FavorText className="text-center">*/}
+            {/*        Overwhelming Negative Reviews:*/}
+            {/*    </FavorText>*/}
+            {/*    <article className="place-items-center-safe m-8 grid grid-cols-1 gap-12 md:grid-cols-2">*/}
+            {/*        {testimonyData.map((c) => (*/}
+            {/*            <Card className="w-full shadow-md" key={c.id}>*/}
+            {/*                <CardHeader className="flex flex-col">*/}
+            {/*                    <div className="flex gap-4">*/}
+            {/*                        <Avatar className="size-12 border shadow-sm">*/}
+            {/*                            /!* FIXME: actual avatars soon. *!/*/}
+            {/*                            /!*<AvatarImage src="/VNS_Icon.svg" alt={`${c.name}-avatar`} />*!/*/}
+            {/*                            <AvatarFallback>VNS</AvatarFallback>*/}
+            {/*                        </Avatar>*/}
+            {/*                        <div className="flex flex-col self-center">*/}
+            {/*                            <CardTitle className="font-bold text-primary text-xl">*/}
+            {/*                                {c.name}*/}
+            {/*                            </CardTitle>*/}
+            {/*                            <CardDescription>*/}
+            {/*                                {c.info}*/}
+            {/*                            </CardDescription>*/}
+            {/*                        </div>*/}
+            {/*                    </div>*/}
+            {/*                </CardHeader>*/}
+            {/*                <CardContent className="text-justify leading-relaxed">*/}
+            {/*                    <span className="font-bold text-primary">*/}
+            {/*                        "*/}
+            {/*                    </span>*/}
+            {/*                    {c.description}*/}
+            {/*                    <span className="font-bold text-primary">*/}
+            {/*                        "*/}
+            {/*                    </span>*/}
+            {/*                </CardContent>*/}
+            {/*            </Card>*/}
+            {/*        ))}*/}
+            {/*    </article>*/}
+            {/*</ContentArea>*/}
 
-            <ContentArea id="faq" className="w-[80vw]">
-                <Heading kind="h1" className="text-primary">
-                    Câu hỏi thường gặp
-                </Heading>
-                <Accordion multiple={true} defaultValue={[]}>
-                    {faqsData.map((faq, id) => (
-                        <AccordionItem value={`item-${id}`} key={faq.question}>
-                            <AccordionTrigger>
-                                <Heading kind="h4">{faq.question}</Heading>
-                            </AccordionTrigger>
-                            <AccordionContent>
-                                {faq.answer.map((ans) => (
-                                    <Paragraph
-                                        className="ml-6 text-lg"
-                                        key={ans}
-                                    >
-                                        {ans}
-                                    </Paragraph>
-                                ))}
-                            </AccordionContent>
-                        </AccordionItem>
-                    ))}
-                </Accordion>
-            </ContentArea>
+            {/*<ContentArea id="faq" className="w-[80vw]">*/}
+            {/*    <Heading kind="h1" className="text-primary">*/}
+            {/*        Câu hỏi thường gặp*/}
+            {/*    </Heading>*/}
+            {/*    <Accordion multiple={true} defaultValue={[]}>*/}
+            {/*        {faqsData.map((faq, id) => (*/}
+            {/*            <AccordionItem value={`item-${id}`} key={faq.question}>*/}
+            {/*                <AccordionTrigger>*/}
+            {/*                    <Heading kind="h4">{faq.question}</Heading>*/}
+            {/*                </AccordionTrigger>*/}
+            {/*                <AccordionContent>*/}
+            {/*                    {faq.answer.map((ans) => (*/}
+            {/*                        <Paragraph*/}
+            {/*                            className="ml-6 text-lg"*/}
+            {/*                            key={ans}*/}
+            {/*                        >*/}
+            {/*                            {ans}*/}
+            {/*                        </Paragraph>*/}
+            {/*                    ))}*/}
+            {/*                </AccordionContent>*/}
+            {/*            </AccordionItem>*/}
+            {/*        ))}*/}
+            {/*    </Accordion>*/}
+            {/*</ContentArea>*/}
 
             <ContentArea
                 className="place-items-center-safe text-center"
