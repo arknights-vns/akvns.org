@@ -85,7 +85,7 @@ export default function MangaReaderPage(
                 height={360}
                 id={`page-${index + 1}`}
                 priority={true}
-                className="border"
+                className="w-auto scroll-mt-19 border md:h-[90vh]"
             />
         );
     });
@@ -177,10 +177,8 @@ export default function MangaReaderPage(
                     </div>
                     <ScrollProgress className="h-1 self-start rounded-r-full rounded-l-full bg-primary" />
                 </aside>
-                <ScrollProgressContainer>
-                    <div className="flex flex-col gap-2 py-4">
-                        {images.map((x) => x)}
-                    </div>
+                <ScrollProgressContainer className="flex flex-col gap-2">
+                    {images.map((x) => x)}
                 </ScrollProgressContainer>
                 <Button
                     render={
