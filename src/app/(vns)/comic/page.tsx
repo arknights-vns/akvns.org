@@ -2,16 +2,18 @@
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { clsx } from "clsx";
+import { Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { FavorText, Heading } from "@/components/ui/extension/typography";
 import { Skeleton } from "@/components/ui/skeleton";
 import elysianRealm from "@/lib/elysian-realm";
 
 export default function ComicListingPage() {
-    const { data } = useInfiniteQuery({
+    const { data, hasNextPage, fetchNextPage } = useInfiniteQuery({
         queryKey: ["comic"],
         queryFn: async ({ pageParam }) => {
             const resp = await elysianRealm.comic.get({
@@ -37,7 +39,7 @@ export default function ComicListingPage() {
     if (!data) return;
 
     return (
-        <div className="space-y-4">
+        <div className="flex flex-col gap-4">
             <div className="space-y-4 text-center">
                 <Heading kind="h1" className="text-primary">
                     Truyện tại Trạm
@@ -114,6 +116,19 @@ export default function ComicListingPage() {
                         })}
                     </div>
                 ))}
+            </div>
+            <div className="place-items-center-safe flex flex-col gap-4">
+                <span className="text-muted-foreground">
+                    Có vẻ tới đây là hết trang rồi.
+                </span>
+                <Button
+                    disabled={!hasNextPage}
+                    className="w-fit"
+                    onClick={() => fetchNextPage()}
+                >
+                    <Plus />
+                    Tải thêm data
+                </Button>
             </div>
         </div>
     );
