@@ -18,7 +18,6 @@ import Link from "next/link";
 // import DiscordInfoPill from "@/components/DiscordInfoPill";
 import DesktopNavigationMenu from "@/components/navbar/DesktopNavigationMenu";
 import MobileNavigationSidebar from "@/components/navbar/MobileNavigationSidebar";
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
 
 const links: Navigable[] = [
@@ -126,7 +125,7 @@ export default function NavigationBar() {
                     <SiFacebook />
                     Group
                 </Button>
-                <ThemeSwitcher />
+                {/*<ThemeSwitcher />*/}
             </aside>
         </header>
     );
