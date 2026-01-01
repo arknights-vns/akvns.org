@@ -11,13 +11,16 @@ import partnerList from "@resources/data/partner.json";
 import projectsList from "@resources/data/projects.json";
 import { clsx } from "clsx";
 import AutoScroll from "embla-carousel-auto-scroll";
-import { ArrowRight, Circle } from "lucide-react";
+import { ArrowDown, ArrowRight, Circle } from "lucide-react";
+import { Caveat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Typewriter from "typewriter-effect";
 
 import ContentArea from "@/components/ContentArea";
 import MemberCard from "@/components/MemberCard";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -43,6 +46,11 @@ import {
 } from "@/components/ui/extension/typography";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+const caveat = Caveat({
+    preload: true,
+    weight: "500",
+});
+
 export default function MainPage() {
     const [api, setApi] = useState<CarouselApi>();
     const [current, setCurrent] = useState(0);
@@ -66,65 +74,129 @@ export default function MainPage() {
 
     return (
         <div className="place-items-center-safe flex w-full flex-col">
-            <div
-                id="main"
-                className="bg-center bg-cover bg-radial-mobile bg-no-repeat md:bg-[url(/BG_Hero_White.jpg)] md:dark:bg-[url(/BG_Hero_Black.jpg)]"
+            <figure
+                id="hero"
+                className="h-[85vh] w-full bg-[url(/hero.jpg)] bg-center bg-cover bg-muted bg-no-repeat bg-blend-overlay"
             >
-                <div className="place-items-center-safe flex justify-evenly py-18">
-                    <div className="flex flex-col gap-8 text-center lg:w-2/3">
-                        <div>
-                            <Heading kind="h4" className="font-bold italic">
-                                Xin chào các bạn, tụi mình là
-                            </Heading>
-                            <Heading
-                                kind="h1"
-                                className="bg-linear-to-r from-[#FF0044] to-[#5728A3] bg-clip-text font-extrabold text-2xl text-transparent sm:text-5xl"
+                <div className="place-items-center-safe flex size-full flex-col justify-between">
+                    <div></div>
+                    <div className="place-items-center-safe flex flex-col gap-8">
+                        <div className="font-bold text-xl">
+                            Xin chào mọi người, tụi mình là...
+                        </div>
+                        <div
+                            className={clsx(
+                                caveat.className,
+                                "text-center text-8xl text-primary text-shadow-lg text-shadow-red-600/30",
+                            )}
+                        >
+                            Arknights Vietnam Station
+                        </div>
+                        <div className="font-bold font-mono italic">
+                            {/*"For the Doctors, by the Doctors."*/}
+                            <Typewriter
+                                onInit={(typewriter) => {
+                                    typewriter
+                                        .typeString(
+                                            "For the <span style='color: oklch(74.6% 0.16 232.661)'>Doctors</span>, by the <span style='color: oklch(74.6% 0.16 232.661)'>Doctors</span>.",
+                                        )
+                                        .pauseFor(1000)
+                                        .deleteAll()
+                                        .typeString(
+                                            "For the <span style='color: yellow'>Endministrators</span>, by the <span style='color: yellow'>Endministrators</span>.",
+                                        )
+                                        .pauseFor(1000)
+                                        .deleteAll()
+                                        .typeString(
+                                            "For the <span style='color: lab(63.7053% 60.7449 31.3109)'>Dreamchasers</span>, by the <span style='color: lab(63.7053% 60.7449 31.3109)'>Dreamchasers</span>.",
+                                        )
+                                        .pause()
+                                        .start();
+                                }}
+                                options={{
+                                    autoStart: true,
+                                }}
+                            />
+                        </div>
+                        <Badge className="self-center bg-red-500 p-3 font-mono text-[1bem]">
+                            (est. 2022)
+                        </Badge>
+                    </div>
+                    <div className="place-items-center-safe grid w-[98svw] grid-cols-3">
+                        <div className="-z-2 relative text-center text-primary">
+                            <span className="hidden md:inline">
+                                Wrong place to look for egg!
+                            </span>
+                        </div>
+                        <div className="place-items-center-safe my-4 flex animate-bounce gap-1 rounded-full bg-primary px-4 py-2">
+                            <ArrowDown size={24} />
+                            <span className="hidden md:block">
+                                Lướt xuống để đọc thêm
+                            </span>
+                        </div>
+                        <div className="-z-2 relative text-center text-primary">
+                            <span className="hidden md:inline">
+                                L2Etd29ybGQteWV0LXRvLWtub3du
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </figure>
+
+            <ContentArea id="briefing" className="w-[80vw] text-center">
+                <Heading kind="h1" className="text-primary">
+                    Giới thiệu
+                </Heading>
+                <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+                    <div className="h-96 text-lg">
+                        <Paragraph className="text-justify">
+                            Được thành lập vào năm{" "}
+                            <span className="font-bold text-primary">2022</span>
+                            , Arknights Vietnam Station (gọi tắt là{" "}
+                            <span className="font-bold text-primary">
+                                Arknights VNS
+                            </span>
+                            ) là một nhóm hoạt động phi lợi nhuận được tạo ra
+                            với sứ mệnh gắn kết cộng đồng người chơi Arknights
+                            toàn Việt Nam.
+                        </Paragraph>
+                        <Paragraph className="text-justify">
+                            Tính đến tháng 12/2025, Arknights VNS đã có cho mình{" "}
+                            <Link
+                                href="https://www.facebook.com/terrastationvn"
+                                className="font-bold text-primary hover:underline"
                             >
-                                Arknights Vietnam Station
-                            </Heading>
-                            <Paragraph className="mx-8 font-light text-md md:text-2xl lg:text-justify">
-                                Được thành lập vào năm 2021, Arknights Vietnam
-                                Station (gọi tắt là Arknights VNS) là một nhóm
-                                hoạt động phi lợi nhuận được tạo ra với sứ mệnh
-                                gắn kết cộng đồng người chơi Arknights toàn Việt
-                                Nam.
-                            </Paragraph>
-                        </div>
-                        <div className="flex flex-col justify-evenly gap-8 md:flex-row">
-                            <div>
-                                <div className="font-bold text-4xl">8,8K</div>
-                                <div className="text-xl">
-                                    lượt theo dõi Fanpage
-                                </div>
-                            </div>
-                            <div>
-                                <div className="font-bold text-4xl">36.243</div>
-                                <div className="text-xl">thành viên nhóm</div>
-                            </div>
-                        </div>
-                        <Paragraph className="text-muted-foreground italic">
-                            (*) cập nhật lần cuối vào 11/2025.
+                                ~9.300 lượt theo dõi fanpage
+                            </Link>{" "}
+                            và{" "}
+                            <Link
+                                href="https://www.facebook.com/groups/1546174542442137"
+                                className="font-bold text-primary hover:underline"
+                            >
+                                ~35.000 thành viên nhóm
+                            </Link>{" "}
+                            , khẳng định vị trí của Arknights VNS trên bản đồ
+                            cộng đồng Arknights Việt Nam và quốc tế.
+                        </Paragraph>
+                        <Paragraph className="text-justify">
+                            Thông qua website này, tụi mình hy vọng bạn sẽ có
+                            đầy đủ thông tin về tầm nhìn, các đối tác, và cũng
+                            như những hoạt động đã và đang diễn ra của Arknights
+                            VNS.
+                        </Paragraph>
+                        <Paragraph className="text-justify font-light italic">
+                            From Team Dreamchasers with love!
                         </Paragraph>
                     </div>
-                    <div className="hidden w-1/5 lg:block">
-                        <Image alt="amiyi" src={amiya} />
-                        <Paragraph className="text-center">
+                    <div className="place-items-center-safe">
+                        <Image alt="amiyi" src={amiya} height={280} />
+                        <Paragraph className="text-center font-light text-muted-foreground italic">
                             Mascot Amiya của Arknights VNS Offline 2025
-                            "Dreamchasers".
+                            "Dreamchasers"
                         </Paragraph>
                     </div>
                 </div>
-                <div className="mr-3 mb-4 hidden text-right text-muted-foreground text-sm italic md:block">
-                    Background credit:{" "}
-                    <Link
-                        className="font-bold underline underline-offset-4"
-                        href="https://lensark.com/"
-                    >
-                        Lens
-                    </Link>{" "}
-                    (commissioned)
-                </div>
-            </div>
+            </ContentArea>
 
             <ContentArea className="space-y-8 text-center" id="sponsors">
                 <Heading kind="h1" className="text-primary">
@@ -148,7 +220,7 @@ export default function MainPage() {
                             .filter((data) => data.type === "fanpage")
                             .map((data) => (
                                 <CarouselItem
-                                    className="place-items-center-safe flex flex-col justify-between gap-2 md:basis-1/4"
+                                    className="place-items-center-safe flex basis-1/2 flex-col justify-between gap-2 md:basis-1/4 lg:basis-1/5"
                                     key={data.title}
                                 >
                                     <Link href={data.url as Route}>
