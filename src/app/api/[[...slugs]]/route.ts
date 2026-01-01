@@ -3,11 +3,13 @@ import { Elysia } from "elysia";
 
 import comicPlugin from "@/app/api/[[...slugs]]/blog/plugin";
 import blogPlugin from "@/app/api/[[...slugs]]/comic/plugin";
+import noticePlugin from "@/app/api/[[...slugs]]/notice/plugin";
 import { auth } from "@/lib/auth";
 
 const app = new Elysia({ adapter: node(), prefix: "/api" })
     .use(blogPlugin)
     .use(comicPlugin)
+    .use(noticePlugin)
     .mount(auth.handler);
 
 export const GET = app.fetch;

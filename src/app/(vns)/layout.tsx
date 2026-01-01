@@ -6,8 +6,8 @@ import NavigationBar from "@/components/NavigationBar";
 export default function AKVNSLayout(properties: LayoutProps<"/">) {
     return (
         <>
-            <NavigationBar />
             <AnnouncementDisplay />
+            <NavigationBar />
             <main className="min-h-screen max-w-screen">
                 {properties.children}
             </main>
