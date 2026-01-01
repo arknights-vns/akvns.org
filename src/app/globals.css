@@ -7,9 +7,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@utility bg-radial-mobile {
-    @apply bg-radial-[at_bottom] from-primary/25 to-transparent;
-    @apply rounded-b-3xl md:rounded-none;
+@utility tab-button {
+    @apply [&>button]:rounded-md [&>button]:bg-neutral-600 [&>button]:px-4 [&>button]:py-2 [&>button]:text-white [&>button]:data-active:bg-primary [&>button]:data-active:font-bold [&>button]:data-active:dark:bg-primary;
 }
 
 @theme inline {

@@ -4,7 +4,7 @@ import type { Route } from "next";
 import { SiDiscord } from "@icons-pack/react-simple-icons";
 import amiya from "@public/amiya.png";
 // import faqsData from "@public/data/faqsData.json";
-import membersList from "@public/data/members.json";
+// import membersList from "@public/data/members.json";
 // import testimonyData from "@public/data/testimonyData.json";
 import groupPic from "@public/group.jpg";
 import partnerList from "@resources/data/partner.json";
@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 import Typewriter from "typewriter-effect";
 
 import ContentArea from "@/components/ContentArea";
-import MemberCard from "@/components/MemberCard";
+// import MemberCard from "@/components/MemberCard";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -114,6 +114,7 @@ export default function MainPage() {
                                 }}
                                 options={{
                                     autoStart: true,
+                                    delay: 0.1 * 1000,
                                 }}
                             />
                         </div>
@@ -272,14 +273,13 @@ export default function MainPage() {
                 <Heading kind="h1" className="text-primary">
                     Đội ngũ Staff
                 </Heading>
-                <div className="place-items-center-safe grid grid-cols-1 gap-8 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {membersList.Leader.map((member) => (
-                        <MemberCard {...member} key={member.name} />
-                    ))}
-                </div>
+                {/*<div className="place-items-center-safe grid grid-cols-1 gap-8 pt-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">*/}
+                {/*    {membersList.Leader.map((member) => (*/}
+                {/*        <MemberCard {...member} key={member.name} />*/}
+                {/*    ))}*/}
+                {/*</div>*/}
                 <FavorText className="text-center text-md!">
-                    Bên cạnh đó, Arknights VNS còn hoạt động ở nhiều ban khác
-                    nữa.
+                    *Under construction
                 </FavorText>
                 <Button
                     render={
@@ -296,7 +296,7 @@ export default function MainPage() {
                 />
             </ContentArea>
 
-            <ContentArea className="w-[80vw]" id="projects">
+            <ContentArea className="w-[90vw]" id="projects">
                 <Tabs className="gap-y-8" defaultValue="fan-project">
                     <div className="flex flex-col justify-between gap-y-3 md:flex-row">
                         <div className="flex flex-col gap-2 text-center md:text-left">
@@ -308,16 +308,14 @@ export default function MainPage() {
                                 chức
                             </FavorText>
                         </div>
-                        <TabsList className="flex h-auto gap-3 self-center bg-transparent md:self-end [&>button]:rounded-md [&>button]:bg-neutral-600 [&>button]:px-4 [&>button]:py-2 [&>button]:text-white [&>button]:data-active:bg-primary [&>button]:data-active:font-bold [&>button]:data-active:dark:bg-primary">
+                        <TabsList className="tab-button gap-3 self-center bg-transparent md:self-end">
                             <TabsTrigger value="event">
                                 Arknights VNS
                             </TabsTrigger>
                             <TabsTrigger value="fan-project">
                                 Cộng đồng
                             </TabsTrigger>
-                            <TabsTrigger value="cross">
-                                Collab / Cross-Overs
-                            </TabsTrigger>
+                            <TabsTrigger value="cross">Collab</TabsTrigger>
                         </TabsList>
                     </div>
                     {(["fan-project", "event", "cross"] as const).map(
@@ -343,24 +341,24 @@ export default function MainPage() {
                                                     className="md:basis-1/2 lg:basis-1/3"
                                                     key={project.name}
                                                 >
-                                                    <Card>
+                                                    <Card className="h-96">
                                                         <CardHeader>
-                                                            <CardTitle className="font-bold text-xl">
+                                                            <CardTitle className="font-bold">
                                                                 {project.name}
                                                             </CardTitle>
                                                             <CardDescription>
                                                                 {project.date}
                                                             </CardDescription>
                                                         </CardHeader>
-                                                        <CardContent className="flex h-52 p-6 text-justify leading-relaxed">
+                                                        <CardContent className="flex h-72 p-6 text-justify leading-relaxed">
                                                             {project.content}
                                                         </CardContent>
                                                     </Card>
                                                 </CarouselItem>
                                             ))}
                                         </CarouselContent>
-                                        <CarouselPrevious className="hidden md:flex" />
-                                        <CarouselNext className="hidden md:flex" />
+                                        <CarouselPrevious className="hidden bg-primary! md:flex" />
+                                        <CarouselNext className="hidden bg-primary! md:flex" />
                                     </Carousel>
                                     <div className="place-content-center-safe flex gap-x-3 py-4">
                                         {Array.from({ length: count }).map(
@@ -373,10 +371,8 @@ export default function MainPage() {
                                                                 current &&
                                                                 "fill-primary",
                                                         )}
-                                                        key={`navigation-${
-                                                            // biome-ignore lint/suspicious/noArrayIndexKey: yes
-                                                            index
-                                                        }`}
+                                                        // biome-ignore lint/suspicious/noArrayIndexKey: yes
+                                                        key={index}
                                                         onClick={() =>
                                                             api?.scrollTo(index)
                                                         }
@@ -474,12 +470,30 @@ export default function MainPage() {
                 <Paragraph className="font-bold">
                     Hẹn gặp lại các bạn vào một ngày không xa!{" "}
                 </Paragraph>
-                <Image
-                    alt="Group Picture"
-                    className="rounded-2xl shadow-xl"
-                    src={groupPic}
-                    width={960}
-                />
+                <div className="relative">
+                    <Image
+                        alt="Group Picture"
+                        className="h-auto rounded-2xl shadow-xl"
+                        src={groupPic}
+                        width={720}
+                    />
+                    {/* https://stackoverflow.com/a/53597608 */}
+                    <div title="yes, this is Dreamchasers banner">
+                        <div className="absolute top-[40%] left-[8%] size-12 bg-transparent" />
+                    </div>
+                    <Link href="https://www.youtube.com/watch?v=iSaxrvtwCfo">
+                        <div className="absolute top-[31%] left-[34%] size-8 bg-transparent" />
+                    </Link>
+                    <div title="hint: the path will eventually lights in the dark">
+                        <div className="absolute top-[25%] left-[28%] size-8 bg-transparent" />
+                    </div>
+                    <Link href="/station-comm-1">
+                        <div className="absolute top-[57%] left-[42%] size-10 bg-transparent" />
+                    </Link>
+                    <div title="Kamito was here">
+                        <div className="absolute top-[36%] left-[82%] size-14 bg-transparent" />
+                    </div>
+                </div>
                 <BlockQuote className="text-left">
                     <Paragraph>
                         "Every artist paints with a fiery soul
@@ -539,8 +553,8 @@ export default function MainPage() {
                         className="font-bold underline decoration-dashed underline-offset-2"
                     >
                         contact@akvns.org
-                    </Link>{" "}
-                    nhé, tụi mình sẽ liên lạc lại sau 2-3 ngày làm việc ạ!
+                    </Link>
+                    , tụi mình sẽ liên lạc lại sau 2-3 ngày làm việc nhé!
                 </Paragraph>
             </ContentArea>
         </div>

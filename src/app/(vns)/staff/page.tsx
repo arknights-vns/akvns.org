@@ -1,6 +1,6 @@
 "use client";
 
-import membersList from "@public/data/members.json";
+import crewList from "@resources/data/crew.json";
 import { motion } from "motion/react";
 
 import ContentArea from "@/components/ContentArea";
@@ -21,25 +21,29 @@ export default function StaffShowcase() {
                 Toàn bộ nhân sự đang hoạt động tại Arknights VNS
             </FavorText>
             <Tabs className="w-full gap-y-8" defaultValue="leader">
-                <TabsList className="flex h-auto flex-wrap gap-3 self-center bg-transparent [&>button]:rounded-md [&>button]:bg-neutral-200 [&>button]:px-4 [&>button]:py-2 [&>button]:data-[state=active]:bg-primary [&>button]:data-[state=active]:font-bold [&>button]:data-[state=active]:text-white [&>button]:dark:bg-neutral-600">
-                    <TabsTrigger value="leader">Leader</TabsTrigger>
-                    <TabsTrigger value="translator">Translator</TabsTrigger>
-                    <TabsTrigger value="dreamchasers">Dreamchasers</TabsTrigger>
-                    <TabsTrigger value="ph. frontiers">
-                        Phoenix Frontiers
+                <TabsList className="tab-button mb-12 grid h-auto grid-cols-2 gap-3 self-center bg-transparent md:grid-cols-4">
+                    <TabsTrigger value="facebook-mod">
+                        Facebook Moderator
                     </TabsTrigger>
-                    <TabsTrigger value="partners">Partners</TabsTrigger>
+                    <TabsTrigger value="discord-mod">
+                        Discord Moderator
+                    </TabsTrigger>
+                    <TabsTrigger value="dreamchasers">Dreamchasers</TabsTrigger>
+                    <TabsTrigger value="translation">
+                        Translation Team
+                    </TabsTrigger>
                 </TabsList>
                 {(
                     [
-                        "Leader",
-                        "Translator",
-                        "Dreamchasers",
-                        "Ph. Frontiers",
-                        "Partners",
+                        "facebook-mod",
+                        "discord-mod",
+                        "dreamchasers",
+                        "translation",
                     ] as const
                 ).map((group) => {
-                    const members = membersList[group];
+                    const members = crewList.filter((entry) =>
+                        entry.categories.includes(group),
+                    );
 
                     return (
                         <TabsContent
@@ -64,13 +68,24 @@ export default function StaffShowcase() {
                                         type: "tween",
                                     }}
                                 >
-                                    <MemberCard {...member} />
+                                    <MemberCard
+                                        avatar={member.avatar || ""}
+                                        name={member.name}
+                                        role={member.roles[group] || ""}
+                                        quote={member.quote || ""}
+                                        links={member.links || {}}
+                                    />
                                 </motion.div>
                             ))}
                         </TabsContent>
                     );
                 })}
             </Tabs>
+            <div className="mt-8 text-center">
+                Nếu bạn có trong team nhưng không có trong đây thì báo lại cho{" "}
+                <span className="font-mono text-primary">@shostakt</span> trên
+                Discord nhé!
+            </div>
         </ContentArea>
     );
 }

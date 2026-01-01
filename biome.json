@@ -9,6 +9,7 @@
     "ignoreUnknown": false,
     "includes": [
       "src/**",
+      "resources/data/**",
       "./next.config.ts",
       "./drizzle.config.ts",
       "./lint-staged.config.js",

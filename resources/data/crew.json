@@ -1,0 +1,263 @@
+[
+  {
+    "name": "Shou Huỳnh",
+    "avatar": "https://cdn.akvns.org/crew/shou.jpg",
+    "categories": [
+      "facebook-mod",
+      "discord-mod",
+      "dreamchasers",
+      "translation"
+    ],
+    "roles": {
+      "facebook-mod": "Founder",
+      "discord-mod": "Head Administrator",
+      "dreamchasers": "Event Director",
+      "translation": "Leader"
+    }
+  },
+  {
+    "name": "Nguyễn Đức Dương",
+    "avatar": "https://cdn.akvns.org/crew/Nguyễn Đức Dương.jpg",
+    "categories": ["facebook-mod"],
+    "roles": {
+      "facebook-mod": "Administrator"
+    }
+  },
+  {
+    "name": "Nguyễn Trang",
+    "avatar": "https://cdn.akvns.org/crew/Nguyễn Trang.jpg",
+    "categories": ["facebook-mod"],
+    "roles": {
+      "facebook-mod": "Administrator"
+    }
+  },
+  {
+    "name": "Nguyệt Vi Hoa Thiên",
+    "avatar": "https://cdn.akvns.org/crew/Syalis.jpg",
+    "categories": ["facebook-mod"],
+    "roles": {
+      "facebook-mod": "Administrator"
+    }
+  },
+  {
+    "name": "Quang Trường",
+    "categories": ["facebook-mod"],
+    "roles": {
+      "facebook-mod": "Moderator"
+    }
+  },
+  {
+    "name": "Luong Dung",
+    "avatar": "https://cdn.akvns.org/crew/Luong Dung.jpg",
+    "categories": ["facebook-mod"],
+    "roles": {
+      "facebook-mod": "Moderator"
+    }
+  },
+  {
+    "name": "Bùi Minh Anh",
+    "avatar": "https://cdn.akvns.org/crew/Bùi Minh Anh.png",
+    "categories": ["facebook-mod"],
+    "roles": {
+      "facebook-mod": "Moderator"
+    }
+  },
+  {
+    "name": "Nguyễn Trung Kiên",
+    "avatar": "https://cdn.akvns.org/crew/Nguyễn Trung Kiên.jpg",
+    "categories": ["facebook-mod"],
+    "roles": {
+      "facebook-mod": "Moderator"
+    }
+  },
+  {
+    "name": "Meruko",
+    "avatar": "https://cdn.akvns.org/crew/Meruko.jpg",
+    "categories": ["facebook-mod", "dreamchasers"],
+    "roles": {
+      "facebook-mod": "Moderator",
+      "dreamchasers": "General Consultant"
+    }
+  },
+  {
+    "name": "Kazaha Kamito",
+    "avatar": "https://cdn.akvns.org/crew/Kamito.jpg",
+    "categories": ["discord-mod", "dreamchasers"],
+    "roles": {
+      "discord-mod": "Administrator",
+      "dreamchasers": "IT - SysAdmin"
+    }
+  },
+  {
+    "name": "Ein Schwarz",
+    "avatar": "https://cdn.akvns.org/crew/Ein Schwarz.png",
+    "categories": ["discord-mod"],
+    "roles": {
+      "discord-mod": "Moderator"
+    }
+  },
+  {
+    "name": "Thorns",
+    "avatar": "https://cdn.akvns.org/crew/Thorns.png",
+    "categories": ["discord-mod"],
+    "roles": {
+      "discord-mod": "Moderator"
+    }
+  },
+  {
+    "name": "Hamaru",
+    "avatar": "https://cdn.akvns.org/crew/Hamaru.png",
+    "categories": ["discord-mod"],
+    "roles": {
+      "discord-mod": "Moderator"
+    }
+  },
+  {
+    "name": "Sadus",
+    "avatar": "https://cdn.akvns.org/crew/Sadus.jpg",
+    "categories": ["discord-mod", "dreamchasers"],
+    "roles": {
+      "discord-mod": "Moderator",
+      "dreamchasers": "Secretary"
+    }
+  },
+  {
+    "name": "Hestia Rita",
+    "avatar": "https://cdn.akvns.org/crew/Hestia Rita.jpg",
+    "categories": ["discord-mod"],
+    "roles": {
+      "discord-mod": "Moderator"
+    }
+  },
+  {
+    "name": "manh.",
+    "avatar": "https://cdn.akvns.org/crew/manh..png",
+    "categories": ["discord-mod"],
+    "roles": {
+      "discord-mod": "Moderator"
+    }
+  },
+  {
+    "name": "Kamaeiri",
+    "avatar": "https://cdn.akvns.org/crew/Kamaeiri.jpg",
+    "categories": ["dreamchasers"],
+    "roles": {
+      "dreamchasers": "Senior Consultant"
+    }
+  },
+  {
+    "name": "Shihotori",
+    "avatar": "https://cdn.akvns.org/crew/Shihotori.jpg",
+    "categories": ["dreamchasers"],
+    "roles": {
+      "dreamchasers": "Technician"
+    }
+  },
+  {
+    "name": "East",
+    "avatar": "https://cdn.akvns.org/crew/AkaneOSK.jpg",
+    "categories": ["dreamchasers"],
+    "roles": {
+      "dreamchasers": "Secretary"
+    }
+  },
+  {
+    "name": "Swyrin",
+    "avatar": "https://cdn.akvns.org/crew/Swyrin.jpg",
+    "categories": ["dreamchasers"],
+    "roles": {
+      "dreamchasers": "IT - Cái gì cũng làm"
+    },
+    "quote": "BASHAME POWER!!!!",
+    "links": {
+      "email": "mailto:swyrin@akvns.org",
+      "facebook": "https://facebook.com/this.is.dut",
+      "personal-web": "https://akvns.org"
+    }
+  },
+  {
+    "name": "Shiina Kochiya",
+    "avatar": "https://cdn.akvns.org/crew/Shiina.jpg",
+    "categories": ["dreamchasers"],
+    "roles": {
+      "dreamchasers": "IT - Front-End"
+    }
+  },
+  {
+    "name": "jameshanderson",
+    "categories": ["dreamchasers"],
+    "roles": {
+      "dreamchasers": "IT - Front-End"
+    }
+  },
+  {
+    "name": "giabao",
+    "avatar": "https://cdn.akvns.org/crew/Elmer.jpg",
+    "categories": ["dreamchasers"],
+    "roles": {
+      "dreamchasers": "IT - SysAdmin"
+    }
+  },
+  {
+    "name": "Succhusa",
+    "avatar": "https://cdn.akvns.org/crew/Succhusa.jpg",
+    "categories": ["dreamchasers"],
+    "roles": {
+      "dreamchasers": "Graphic Designer"
+    }
+  },
+  {
+    "name": "Silver",
+    "avatar": "https://cdn.akvns.org/crew/TuanAnh.jpg",
+    "categories": ["dreamchasers"],
+    "roles": {
+      "dreamchasers": "Minigames Advisor"
+    }
+  },
+  {
+    "name": "noname4now",
+    "categories": ["dreamchasers"],
+    "quote": "Culi hàng hiệu của Swyrin",
+    "roles": {
+      "dreamchasers": "IT - Front-End"
+    }
+  },
+  {
+    "name": "Peashooter",
+    "categories": ["dreamchasers"],
+    "roles": {
+      "dreamchasers": "IT - Back-End"
+    }
+  },
+  {
+    "name": "Rosaline",
+    "categories": ["translation"],
+    "roles": {
+      "translation": "Advisor & Proofread"
+    }
+  },
+  {
+    "name": "I Love Priestess",
+    "avatar": "https://cdn.akvns.org/crew/I Love Priestess.jpg",
+    "categories": ["translation"],
+    "roles": {
+      "translation": "Main Editor"
+    }
+  },
+  {
+    "name": "Lisk",
+    "avatar": "https://cdn.akvns.org/crew/Lisk.jpg",
+    "categories": ["translation"],
+    "roles": {
+      "translation": "Translator"
+    }
+  },
+  {
+    "name": "Ken",
+    "avatar": "https://cdn.akvns.org/crew/Ken.jpg",
+    "categories": ["translator"],
+    "roles": {
+      "translation": "Translator & Editor"
+    }
+  }
+]
