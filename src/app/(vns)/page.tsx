@@ -92,8 +92,7 @@ export default function MainPage() {
                         >
                             Arknights Vietnam Station
                         </div>
-                        <div className="font-bold font-mono italic">
-                            {/*"For the Doctors, by the Doctors."*/}
+                        <div className="text-center font-bold font-mono italic">
                             <Typewriter
                                 onInit={(typewriter) => {
                                     typewriter
@@ -148,7 +147,7 @@ export default function MainPage() {
                     Giới thiệu
                 </Heading>
                 <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
-                    <div className="h-96 text-lg">
+                    <div className="text-lg">
                         <Paragraph className="text-justify">
                             Được thành lập vào năm{" "}
                             <span className="font-bold text-primary">2022</span>
