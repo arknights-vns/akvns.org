@@ -1,3 +1,5 @@
+"use client";
+
 import { Play } from "lucide-react";
 import Link from "next/link";
 
@@ -40,7 +42,7 @@ export default function WeAreCooking() {
                         }
                         nativeButton={false}
                         className="bg-red-500"
-                    ></Button>
+                    />
                     <Button
                         render={
                             <Link href="https://www.youtube.com/playlist?list=PLz3PfnkGmWoIfd7L6AipXMCYKLt6ursH8">
@@ -50,7 +52,7 @@ export default function WeAreCooking() {
                         }
                         nativeButton={false}
                         className="bg-red-500"
-                    ></Button>
+                    />
                 </div>
                 <div className="text-muted-foreground text-xs">
                     * Tus không trả lương team IT để làm cái này.
