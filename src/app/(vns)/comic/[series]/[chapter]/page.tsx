@@ -2,7 +2,13 @@
 
 import type { Route } from "next";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, ArrowRight, ArrowUpFromLine, BookOpen } from "lucide-react";
+import {
+    ArrowLeft,
+    ArrowRight,
+    ArrowUpFromLine,
+    BookOpen,
+    StickyNote,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { use } from "react";
@@ -13,10 +19,13 @@ import {
     ScrollProgressProvider,
 } from "@/components/animate-ui/primitives/animate/scroll-progress";
 import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
+    DropdownMenuRadioGroup,
+    DropdownMenuRadioItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import elysianRealm from "@/lib/elysian-realm";
@@ -146,35 +155,71 @@ export default function MangaReaderPage(
                         </Button>
 
                         <div className="place-items-center-safe gap-4">
-                            <DropdownMenu>
-                                <DropdownMenuTrigger
-                                    render={
-                                        <Button>
-                                            <BookOpen />
-                                            {chapterData.name}
-                                        </Button>
-                                    }
-                                />
-                                <DropdownMenuContent
-                                    className="w-56"
-                                    align="start"
-                                >
-                                    {serverImages.map((entry, index) => (
-                                        <DropdownMenuItem
-                                            key={entry.url}
-                                            render={
-                                                <Link
-                                                    href={
-                                                        `/comic/${series}/${chapter}#page-${index + 1}` as Route
+                            <ButtonGroup>
+                                {/* Chapter select */}
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger
+                                        render={
+                                            <Button>
+                                                <BookOpen />
+                                                {chapterData.name}
+                                            </Button>
+                                        }
+                                    />
+                                    <DropdownMenuContent
+                                        className="w-56"
+                                        align="start"
+                                    >
+                                        <DropdownMenuRadioGroup value={chapter}>
+                                            {chapterList.map((entry) => (
+                                                <DropdownMenuRadioItem
+                                                    key={entry.id}
+                                                    value={entry.id}
+                                                    render={
+                                                        <Link
+                                                            href={
+                                                                `/comic/${series}/${entry.id}` as Route
+                                                            }
+                                                        />
                                                     }
-                                                />
-                                            }
-                                        >
-                                            Trang {index + 1}
-                                        </DropdownMenuItem>
-                                    ))}
-                                </DropdownMenuContent>
-                            </DropdownMenu>
+                                                >
+                                                    {entry.name}
+                                                </DropdownMenuRadioItem>
+                                            ))}
+                                        </DropdownMenuRadioGroup>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                                {/* Jump to page */}
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger
+                                        render={
+                                            <Button>
+                                                <StickyNote />
+                                                Nhảy đến
+                                            </Button>
+                                        }
+                                    />
+                                    <DropdownMenuContent
+                                        className="w-56"
+                                        align="start"
+                                    >
+                                        {serverImages.map((entry, index) => (
+                                            <DropdownMenuItem
+                                                key={entry.url}
+                                                render={
+                                                    <Link
+                                                        href={
+                                                            `/comic/${series}/${chapter}#page-${index + 1}` as Route
+                                                        }
+                                                    />
+                                                }
+                                            >
+                                                Trang {index + 1}
+                                            </DropdownMenuItem>
+                                        ))}
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </ButtonGroup>
                         </div>
 
                         <Button
