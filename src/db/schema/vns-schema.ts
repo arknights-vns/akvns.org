@@ -108,7 +108,7 @@ export const comicChapter = pgTable(
     {
         id: integer().primaryKey().generatedAlwaysAsIdentity(),
 
-        comicChapterId: varchar({ length: 255 }),
+        comicChapterId: varchar({ length: 255 }).notNull(),
         chapterName: text().notNull(),
 
         comicSeriesId: varchar({ length: 255 })
