@@ -71,9 +71,30 @@ export default function MangaReaderPage(
         },
     });
 
+    const { data: chapterList } = useQuery({
+        queryKey: ["comic-chapter-list", chapter],
+        queryFn: async () => {
+            const response = await elysianRealm
+                .comic({ series })
+                .info.chapters.get();
+
+            if (response.error) {
+                throw new Error("Failed to fetch comic");
+            }
+
+            return response.data.message;
+        },
+    });
+
     if (imagesFetching) return;
 
-    if (!seriesData || !chapterData || !serverImages) return;
+    if (!seriesData || !chapterData || !serverImages || !chapterList) return;
+
+    const listOfChapters = chapterList.map((x) => x.id);
+    const currentPosition = listOfChapters.indexOf(chapter);
+
+    const hasPrev = currentPosition - 1 >= 0;
+    const hasNext = currentPosition + 1 < listOfChapters.length;
 
     const images = serverImages.map((x, index) => {
         return (
@@ -104,19 +125,19 @@ export default function MangaReaderPage(
                     </div>
                     <div className="place-items-center-safe flex justify-between gap-2">
                         <Button
-                            disabled={chapterData.prev === null}
+                            disabled={!hasPrev}
                             render={
-                                chapterData.prev ? (
+                                hasPrev ? (
                                     <Link
                                         href={
-                                            `/comic/${series}/${chapterData.prev}` as Route
+                                            `/comic/${series}/${listOfChapters[currentPosition - 1]}` as Route
                                         }
                                     />
                                 ) : (
                                     <Button />
                                 )
                             }
-                            nativeButton={chapterData.prev === null}
+                            nativeButton={!hasPrev}
                         >
                             <ArrowLeft />
                             <span className="hidden md:inline">
@@ -157,22 +178,22 @@ export default function MangaReaderPage(
                         </div>
 
                         <Button
-                            disabled={chapterData.next === null}
+                            disabled={!hasNext}
                             render={
-                                chapterData.next ? (
+                                hasNext ? (
                                     <Link
                                         href={
-                                            `/comic/${series}/${chapterData.next}` as Route
+                                            `/comic/${series}/${listOfChapters[currentPosition + 1]}` as Route
                                         }
                                     />
                                 ) : (
                                     <Button />
                                 )
                             }
-                            nativeButton={chapterData.next === null}
+                            nativeButton={!hasNext}
                         >
-                            <span className="hidden md:inline">Chương kế</span>
                             <ArrowRight />
+                            <span className="hidden md:inline">Chương sau</span>
                         </Button>
                     </div>
                     <ScrollProgress className="h-1 self-start rounded-r-full rounded-l-full bg-primary" />

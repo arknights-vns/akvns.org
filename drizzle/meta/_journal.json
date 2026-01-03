@@ -43,6 +43,13 @@
       "when": 1767412672736,
       "tag": "0005_handy_surge",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1767442451888,
+      "tag": "0006_eager_sleeper",
+      "breakpoints": true
     }
   ]
 }

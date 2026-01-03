@@ -177,8 +177,6 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
             const data = await drizzleDb
                 .select({
                     name: comicChapter.chapterName,
-                    prev: comicChapter.prevChapterId,
-                    next: comicChapter.nextChapterId,
                 })
                 .from(comicChapter)
                 .where(
@@ -216,9 +214,58 @@ const comicPlugin = new Elysia({ prefix: "/comic" })
                 200: z.object({
                     message: z.object({
                         name: z.string(),
-                        prev: z.string().nullable(),
-                        next: z.string().nullable(),
                     }),
+                }),
+                404: z.object({ error: z.string() }),
+            },
+        },
+    )
+    .get(
+        "/:series/info/chapters",
+        async ({ params, status, cacheControl }) => {
+            const { series } = params;
+
+            const data = await drizzleDb
+                .select({
+                    name: comicChapter.chapterName,
+                    id: comicChapter.comicChapterId,
+                })
+                .from(comicChapter)
+                .where(and(eq(comicChapter.comicSeriesId, series)))
+                .orderBy(comicChapter.id);
+            //           ^ this shit is auto-incremented, unless Postgres has something I don't know.
+            //   Your truly, Đụt
+
+            if (data.length === 0) {
+                return status("Not Found", {
+                    error: "No entry",
+                });
+            }
+
+            cacheControl.set(
+                "Cache-Control",
+                new CacheControl()
+                    .set("public", true)
+                    .set("max-age", 60 * 60)
+                    .set("s-maxage", 24 * 60 * 60),
+            );
+
+            return {
+                message: data,
+            };
+        },
+        {
+            params: z.object({
+                series: z.string(),
+            }),
+            response: {
+                200: z.object({
+                    message: z.array(
+                        z.object({
+                            name: z.string(),
+                            id: z.string(),
+                        }),
+                    ),
                 }),
                 404: z.object({ error: z.string() }),
             },
