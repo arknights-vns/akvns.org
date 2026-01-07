@@ -15,101 +15,368 @@
       "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
     },
     {
-      "name": "Swyrin",
-      "role": "Đế vương #IT-Zone",
-      "quote": "In love with Shoujo U.",
-      "avatar": "/members/swyrin.jpg",
-      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
-    },
-    {
-      "name": "Kazaha Kamito",
-      "role": "Bá tước giàu nhất VNS",
-      "quote": "Nghỉ mệt sau story Babel",
-      "avatar": "/members/kmt.jpg",
-      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
-    },
-    {
-      "name": "Shihotori",
-      "role": "Finance",
-      "quote": "Subscribe to OverHeaven",
-      "avatar": "/members/shihotori.jpg",
-      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
-    },
-    {
-      "name": "Con Đầu Hồng 5",
-      "role": "Tiểu tam giật chồng với PRTS",
-      "quote": "Nghỉ mệt sau story Babel",
-      "avatar": "/amiya.png",
-      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
-    },
-    {
-      "name": "Con Đầu Hồng 4",
-      "role": "Tiểu tam giật chồng với PRTS",
-      "quote": "Nghỉ mệt sau story Babel",
-      "avatar": "/amiya.png",
-      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
-    },
-    {
-      "name": "Con Đầu Hồng 6",
-      "role": "Tiểu tam giật chồng với PRTS",
-      "quote": "Nghỉ mệt sau story Babel",
-      "avatar": "/amiya.png",
-      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
-    },
-    {
-      "name": "Con Đầu Hồng 7",
-      "role": "Tiểu tam giật chồng với PRTS",
-      "quote": "Nghỉ mệt sau story Babel",
-      "avatar": "/amiya.png",
-      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
-    },
-    {
-      "name": "Con Đầu Hồng 8",
-      "role": "Tiểu tam giật chồng với PRTS",
-      "quote": "Nghỉ mệt sau story Babel",
+      "name": "Kamaeiri",
+      "role": "<Placeholder>",
+      "quote": "<Placeholder>.",
       "avatar": "/amiya.png",
       "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
     }
   ],
   "Translator": [
     {
-      "name": "Con Đầu Hồng",
-      "role": "Tiểu tam giật chồng với PRTS",
-      "quote": "Nghỉ mệt sau story Babel",
+      "name": "Rosaline",
+      "role": "Proofread & Translate",
+      "quote": "<Placeholder>",
       "avatar": "/amiya.png",
       "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
     },
     {
-      "name": "Con Đầu Hồng 8",
-      "role": "Tiểu tam giật chồng với PRTS",
-      "quote": "Nghỉ mệt sau story Babel",
+      "name": "I Love Priestess",
+      "role": "Quality check & Edit",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "Ken",
+      "role": "Translator & Editor",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
+    },
+    {
+      "name": "List",
+      "role": "Translator",
+      "quote": "<Placeholder>",
       "avatar": "/amiya.png",
       "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }, { "icon": "Globe", "url": "#" }]
     }
   ],
   "Dreamchasers": [
     {
-      "name": "Con Đầu Hồng",
-      "role": "Tiểu tam giật chồng với PRTS",
-      "quote": "Nghỉ mệt sau story Babel",
+      "name": "Shihotori",
+      "role": "Consultant and Tech",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "AkaneOSK",
+      "role": "Secretary",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "WhaTa SixX",
+      "role": "Photographer",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Succhusa",
+      "role": "Designer & Videographer",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "SADUS",
+      "role": "Logistic",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Red",
+      "role": "Kahoot designer",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "シイナ•コチヤ",
+      "role": "Frontend Dev, Minigame Designer & Photographer",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "セイタ・エルマー",
+      "role": "Backend Dev & Tech",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Kazaha Kamito",
+      "role": "IT, Tech and Donator",
+      "quote": "Ewww mãi hoii",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "TuanAnh",
+      "role": "IT, Kahoot & Minigame designer",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Swyrin",
+      "role": "Đại đế #IT-zone",
+      "quote": "<Placeholder>",
       "avatar": "/amiya.png",
       "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
     }
+
   ],
   "Ph. Frontiers": [
     {
-      "name": "Con Đầu Hồng",
-      "role": "Tiểu tam giật chồng với PRTS",
-      "quote": "Nghỉ mệt sau story Babel",
+      "name": "Airin",
+      "role": "Artist",
+      "quote": "Ewww mãi hoii no.2",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Nitrous",
+      "role": "Creative Hub",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Izanami Yuuko",
+      "role": "Artist",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Acsyncct",
+      "role": "Artist",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Anika Naoki",
+      "role": "3D Artist",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Hestia Rita",
+      "role": "Artist",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Nancyyy",
+      "role": "Artist",
+      "quote": "<Placeholder>",
       "avatar": "/amiya.png",
       "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
     }
   ],
   "Partners": [
     {
-      "name": "Aririn",
-      "role": "Tiểu tam giật chồng với PRTS",
-      "quote": "Nghỉ mệt sau story Babel",
+      "name": "Phổ Lang",
+      "role": "Donator",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "bibom10",
+      "role": "Donator",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Rei",
+      "role": "Donator",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Staug",
+      "role": "Donator",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Higato",
+      "role": "Donator",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Admin Civilight Eterna Database",
+      "role": "Donator",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Ｈｙｐｅｒ－Ｖ△",
+      "role": "Photographer",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Satoh Nguyễn",
+      "role": "Photographer",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Cerberose",
+      "role": "IT",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Monoka",
+      "role": "Illustration Artist",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Smol Lappcheto",
+      "role": "Artist",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "DuyBong",
+      "role": "Graphic Designer",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Lens",
+      "role": "Graphic Designer",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Zopu",
+      "role": "Graphic Designer",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Tkieen",
+      "role": "Graphic Designer",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "HieuTrungMC",
+      "role": "Vietnam Community League",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Hoaq",
+      "role": "Vietnam Community League",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Orei",
+      "role": "Vietnam Community League",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Phoeni",
+      "role": "Vietnam Community League",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Ekkusu Hikari",
+      "role": "Offline 2024: Staff",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Floppa",
+      "role": "Offline 2024: Staff",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Miarow Hans",
+      "role": "Offline 2024: Staff",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Akihito",
+      "role": "Offline 2024: Staff",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Syalis",
+      "role": "Offline 2024: Leader",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Moorce",
+      "role": "Video Editor",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Ryuka",
+      "role": "Cosplayers Manager",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Harlow Kuro",
+      "role": "Tournament Caster",
+      "quote": "<Placeholder>",
+      "avatar": "/amiya.png",
+      "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
+    },
+    {
+      "name": "Hidr0",
+      "role": "Videographer",
+      "quote": "<Placeholder>",
       "avatar": "/amiya.png",
       "links": [{ "icon": "Github", "url": "#" }, { "icon": "Linkedin", "url": "#" }]
     }
