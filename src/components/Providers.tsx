@@ -1,26 +1,15 @@
-"use client";
-
 import type { ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "sonner";
+import { ConfigCatWebProvider } from "@openfeature/config-cat-web-provider";
+import { OpenFeature, OpenFeatureProvider } from "@openfeature/react-sdk";
 
-import { TerraTheme } from "@/components/TerraTheme";
+const configCatProvider = ConfigCatWebProvider.create(import.meta.env.VITE_CONFIG_CAT_API_KEY);
 
-const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            retry: false,
-        },
-    },
-});
+if (!OpenFeature.getProvider()) {
+  // Instantiate and set our provider (be sure this only happens once)!
+  // Note: there's no need to await its initialization, the React SDK handles re-rendering and suspense for you!
+  OpenFeature.setProvider(configCatProvider);
+}
 
 export default function Providers({ children }: { children: ReactNode }) {
-    return (
-        <TerraTheme>
-            <QueryClientProvider client={queryClient}>
-                {children}
-            </QueryClientProvider>
-            <Toaster position="top-right" richColors={true} />
-        </TerraTheme>
-    );
+  return <OpenFeatureProvider>{children}</OpenFeatureProvider>;
 }

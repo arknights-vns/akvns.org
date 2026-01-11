@@ -9,12 +9,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
-    volumes:
-      - ./public:/app/public:ro
-    environment:
-      PORT: ${PORT}
     ports:
-      - ${PORT:-3000}:${PORT:-3000}
+      - "3000:3000"
 
   postgres:
     image: postgres:17
@@ -24,7 +20,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      - pgdata:/var/lib/postgresql/data:Z
+      - pgdata:/var/lib/postgresql/data
     healthcheck:
       test:  [ "CMD", "pg_isready", "-U", "postgres" ]
       interval: 5s
@@ -55,7 +51,7 @@ services:
     ports:
       - "4983:4983"
     volumes:
-      - drizzle:/app:z
+      - drizzle:/app
 
   redis:
     image: redis:8.4-alpine
@@ -64,7 +60,7 @@ services:
       - "6379:6379"
     command: redis-server
     volumes:
-      - redis:/data:z
+      - redis:/data
 
 volumes:
   pgdata:

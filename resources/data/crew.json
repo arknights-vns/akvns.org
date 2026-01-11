@@ -1,14 +1,32 @@
 [
   {
+    "name": "Sơn Trần",
+    "avatar": "",
+    "categories": ["founder"],
+    "roles": {
+      "founder": "Founder"
+    }
+  },
+  {
+    "name": "Bùi Đạt",
+    "avatar": "",
+    "categories": ["founder"],
+    "roles": {
+      "founder": "Founder"
+    }
+  },
+  {
     "name": "Shou Huỳnh",
     "avatar": "https://cdn.akvns.org/crew/shou.jpg",
     "categories": [
       "facebook-mod",
       "discord-mod",
       "dreamchasers",
-      "translation"
+      "translation",
+      "founder"
     ],
     "roles": {
+      "founder": "Founder",
       "facebook-mod": "Founder",
       "discord-mod": "Head Administrator",
       "dreamchasers": "Event Director",
@@ -18,16 +36,18 @@
   {
     "name": "Nguyễn Đức Dương",
     "avatar": "https://cdn.akvns.org/crew/Nguyễn Đức Dương.jpg",
-    "categories": ["facebook-mod"],
+    "categories": ["facebook-mod", "founder"],
     "roles": {
-      "facebook-mod": "Administrator"
+      "facebook-mod": "Administrator",
+      "founder": "Founder"
     }
   },
   {
     "name": "Nguyễn Trang",
     "avatar": "https://cdn.akvns.org/crew/Nguyễn Trang.jpg",
-    "categories": ["facebook-mod"],
+    "categories": ["facebook-mod", "founder"],
     "roles": {
+      "founder": "Founder",
       "facebook-mod": "Administrator"
     }
   },
@@ -82,8 +102,9 @@
   {
     "name": "Kazaha Kamito",
     "avatar": "https://cdn.akvns.org/crew/Kamito.jpg",
-    "categories": ["discord-mod", "dreamchasers"],
+    "categories": ["discord-mod", "dreamchasers", "founder"],
     "roles": {
+      "founder": "Founder",
       "discord-mod": "Administrator",
       "dreamchasers": "IT - SysAdmin"
     }
@@ -231,6 +252,7 @@
   },
   {
     "name": "Rosaline",
+    "avatar": "https://cdn.akvns.org/crew/Rosaline.jpg",
     "categories": ["translation"],
     "roles": {
       "translation": "Advisor & Proofread"

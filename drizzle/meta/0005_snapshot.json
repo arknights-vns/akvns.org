@@ -111,12 +111,8 @@
           "name": "account_user_id_user_id_fk",
           "tableFrom": "account",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -240,12 +236,8 @@
           "name": "session_user_id_user_id_fk",
           "tableFrom": "session",
           "tableTo": "user",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -255,9 +247,7 @@
         "session_token_unique": {
           "name": "session_token_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "token"
-          ]
+          "columns": ["token"]
         }
       },
       "policies": {},
@@ -338,9 +328,7 @@
         "user_email_unique": {
           "name": "user_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},
@@ -498,9 +486,7 @@
         "blog_slug_unique": {
           "name": "blog_slug_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "slug"
-          ]
+          "columns": ["slug"]
         }
       },
       "policies": {},
@@ -607,12 +593,8 @@
           "name": "comic_chapter_comicSeriesId_comic_series_comicSeriesId_fk",
           "tableFrom": "comic_chapter",
           "tableTo": "comic_series",
-          "columnsFrom": [
-            "comicSeriesId"
-          ],
-          "columnsTo": [
-            "comicSeriesId"
-          ],
+          "columnsFrom": ["comicSeriesId"],
+          "columnsTo": ["comicSeriesId"],
           "onDelete": "cascade",
           "onUpdate": "cascade"
         }
@@ -691,12 +673,8 @@
           "name": "comic_contributor_comicSeriesId_comic_series_comicSeriesId_fk",
           "tableFrom": "comic_contributor",
           "tableTo": "comic_series",
-          "columnsFrom": [
-            "comicSeriesId"
-          ],
-          "columnsTo": [
-            "comicSeriesId"
-          ],
+          "columnsFrom": ["comicSeriesId"],
+          "columnsTo": ["comicSeriesId"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -891,12 +869,8 @@
           "name": "project_blog_id_blog_id_fk",
           "tableFrom": "project",
           "tableTo": "blog",
-          "columnsFrom": [
-            "blog_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["blog_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -906,9 +880,7 @@
         "project_blog_id_unique": {
           "name": "project_blog_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "blog_id"
-          ]
+          "columns": ["blog_id"]
         }
       },
       "policies": {},
@@ -920,21 +892,12 @@
     "public.comic_category": {
       "name": "comic_category",
       "schema": "public",
-      "values": [
-        "Arknights_VNS",
-        "Partner",
-        "Collaboration",
-        "Community"
-      ]
+      "values": ["Arknights_VNS", "Partner", "Collaboration", "Community"]
     },
     "public.project_type": {
       "name": "project_type",
       "schema": "public",
-      "values": [
-        "Community",
-        "Event",
-        "Cross_Over"
-      ]
+      "values": ["Community", "Event", "Cross_Over"]
     }
   },
   "schemas": {},

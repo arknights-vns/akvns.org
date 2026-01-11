@@ -1,23 +1,26 @@
 import type { LucideIcon } from "lucide-react";
-import type { Route } from "next";
 
-type MultiNavigation = {
-    children: {
-        description: string;
-        href: Route;
-        label: string;
-        icon: LucideIcon | null;
-    }[];
+interface MultiNavigation {
+  children: {
+    description: string;
+    href: string;
+    hash: string;
     label: string;
-    type: "dropdown";
-};
+    icon: LucideIcon | null;
+  }[];
+  label: string;
+  type: "dropdown";
+}
 
-type NormalNavigation = {
-    href: Route;
-    label: string;
-    type: "link";
-};
+interface NormalNavigation {
+  href: string;
+  hash: string;
+  label: string;
+  type: "link";
+}
 
 export type Navigable = MultiNavigation | NormalNavigation;
 
-export type NavComponentProps = { links: Navigable[] };
+export interface NavComponentProps {
+  links: Navigable[];
+}

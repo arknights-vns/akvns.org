@@ -1,5 +1,5 @@
 import { Redis } from "ioredis";
 
-export const redisClient = new Redis(
-    process.env.REDIS_URL || "redis://ligma:ligma@localhost:6379",
-);
+import { serverEnv } from "@/env/server";
+
+export const redisClient = new Redis(serverEnv.REDIS_URL);

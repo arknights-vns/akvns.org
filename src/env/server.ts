@@ -1,0 +1,21 @@
+import { createEnv } from "@t3-oss/env-core";
+import * as z from "zod";
+
+export const serverEnv = createEnv({
+  server: {
+    SECRET_KEY: z.string(),
+    REDIS_URL: z.url(),
+    DATABASE_URL: z.url(),
+    COMIC_ASSETS_AWS_BUCKET: z.string().default("terrastationvn"),
+    COMIC_ASSETS_URL_PREFIX: z.url().default("https://comic-assets.akvns.org"),
+
+    S3_AWS_ENDPOINT: z.url("https://s3.us-east-1.amazonaws.com"),
+    S3_AWS_REGION: z.string().default("us-east-1"),
+    S3_AWS_ACCESS_KEY_ID: z.string(),
+    S3_AWS_SECRET_ACCESS_KEY: z.string(),
+
+    DISCORD_CLIENT_ID: z.string(),
+    DISCORD_CLIENT_SECRET: z.string(),
+  },
+  runtimeEnv: process.env,
+});

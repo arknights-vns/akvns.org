@@ -2,5 +2,5 @@ Dockerfile
 .dockerignore
 node_modules
 npm-debug.log
-.next
-src/generated/prisma
+.output
+drizzle
