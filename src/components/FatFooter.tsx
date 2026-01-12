@@ -1,20 +1,9 @@
 import { SiFacebook, SiGithub, SiSteam, SiYoutube } from "@icons-pack/react-simple-icons";
-import { Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
-import { ArrowUpRight, HeartHandshake } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Heading, Paragraph } from "@/components/ui/extension/typography";
 
-import VNS_Donate from "/VNS_Donate.jpg?url";
 import VNS_Logo from "/VNS_Logo.png?url";
 
 const navigations: {
@@ -48,9 +37,9 @@ const navigations: {
     items: [
       {
         cloak: true,
-        displayText: "contact@akvns.org",
+        displayText: "arknightsvns@gmail.com",
         heading: "Email",
-        href: "mailto:contact@akvns.org",
+        href: "mailto:arknightsvns@gmail.com",
       },
     ],
   },
@@ -63,27 +52,24 @@ const navigations: {
  */
 export default function FatFooter() {
   return (
-    <footer
-      className="flex min-h-72 flex-col justify-between gap-2 bg-neutral-200 shadow-primary shadow-sm dark:bg-background"
-      id="footer"
-    >
+    <footer className="flex flex-col justify-between border border-primary/25" id="footer">
       <div className="md:place-items-center-safe flex flex-col-reverse justify-evenly gap-x-6 md:flex-row">
         {/* Logo */}
         <div className="mt-8 flex w-full flex-col place-items-center justify-evenly gap-4 md:w-fit [&_img]:dark:invert">
-          <Image alt="VNS_Logo_Footer" className="self-center-safe" height={400} src={VNS_Logo} width={200} />
+          <Image alt="VNS_Logo_Footer" className="self-center-safe" height={600} src={VNS_Logo} width={250} />
           <div className="place-items-center-safe my-4 flex gap-x-2">
             <a href="https://www.facebook.com/terrastationvn">
               <SiFacebook />
             </a>
-            <div>/</div>
+            <span className="text-muted-foreground">/</span>
             <a href="https://www.youtube.com/@ArknightsVNS">
               <SiYoutube />
             </a>
-            <div>/</div>
+            <span className="text-muted-foreground">/</span>
             <a href="https://steamcommunity.com/groups/arknights_vietnam_station">
               <SiSteam />
             </a>
-            <div>/</div>
+            <span className="text-muted-foreground">/</span>
             <a href="https://github.com/arknights-vns">
               <SiGithub />
             </a>
@@ -91,54 +77,36 @@ export default function FatFooter() {
         </div>
         <div className="md:place-items-center-safe flex flex-col gap-8 md:flex-row">
           {navigations.map((nav) => (
-            <section className="ml-8 grid h-full grid-cols-1 grid-rows-2 gap-y-2" key={nav.group}>
-              <Heading className="self-end font-extrabold text-3xl" kind="h3">
+            <div className="ml-8 grid h-full grid-cols-1 grid-rows-2 gap-y-2" key={nav.group}>
+              <Heading className="self-end font-bold text-primary" kind="h2">
                 {nav.group}
               </Heading>
-              <div className="flex flex-col gap-y-1 [&_a_span]:underline [&_a_span]:decoration-dotted [&_a_span]:underline-offset-4">
+              <ul className="flex flex-col gap-y-2">
                 {nav.items.map((item) => (
-                  <div className="flex gap-x-2" key={item.displayText}>
+                  <li className="place-items-center-safe flex gap-1" key={item.displayText}>
                     <a href={item.href}>
                       {item.heading && <>{item.heading}: </>}
-                      <span className="font-bold">{item.cloak ? item.displayText : item.href}</span>
+                      <span className="font-bold underline decoration-primary decoration-dashed underline-offset-4">
+                        {item.cloak ? item.displayText : item.href}
+                      </span>
                     </a>
-                    <ArrowUpRight className="self-center" size={18} />
-                  </div>
+                    <ArrowUpRight className="self-center stroke-3 stroke-primary" size={12} />
+                  </li>
                 ))}
-              </div>
-            </section>
+              </ul>
+            </div>
           ))}
         </div>
       </div>
-      <Dialog>
-        <DialogTrigger
-          render={
-            <Button className="max-w-sm self-center font-bold">
-              <HeartHandshake />
-              Donate cho Arknights VNS
-            </Button>
-          }
-        />
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="font-bold text-2xl">❤️ Donate</DialogTitle>
-            <DialogDescription>Cảm ơn bạn đã ủng hộ Arknights VNS!</DialogDescription>
-          </DialogHeader>
-          <div className="flex flex-col space-y-2">
-            <Paragraph>
-              Bằng việc Donate, các bạn đã góp phần giúp tụi mình trang trải chi phí thuê địa điểm Offline,
-              đặt commission, mua merch Arknights, cũng như bảo trì hạ tầng IT.
-            </Paragraph>
-            <Image alt="donation_qr_code" className="self-center" height={600} src={VNS_Donate} width={320} />
-          </div>
-        </DialogContent>
-      </Dialog>
-      <div className="my-4 text-center font-bold text-sm italic">
-        ©{" "}
-        <Link className="font-extrabold text-primary" to="/">
-          Arknights Vietnam Station
-        </Link>
-        , 2022-nay.
+      <div className="place-items-center-safe mx-4 text-center font-inter text-muted-foreground text-xs [&>p]:not-first:mt-0">
+        <Paragraph>
+          "Arknights" là thương hiệu đã được đăng ký bởi Hypergryph Network Technology Co., Ltd. "Arknights:
+          Endfield" là thương hiệu đã được đăng ký bởi GRYPH FRONTIER PTE. LTD. Những thương hiệu khác thuộc
+          về các chủ sở hữu có thẩm quyền.
+        </Paragraph>
+      </div>
+      <div className="m-4 text-center text-sm">
+        &copy; Arknights Vietnam Station, 2022-nay. Tất cả mọi quyền được bảo lưu.
       </div>
     </footer>
   );

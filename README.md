@@ -24,17 +24,14 @@ and... everything is AGPLv3-licensed, so some of you guys will be pissed a lot, 
 
 Probably taking some time looking at the source code would give you the answer, but here is the short list:
 
-| Name      | Usage                                                                            |
-|-----------|----------------------------------------------------------------------------------|
-| Next.js   | Full-stack development, obviously.                                               |
-| PostHog   | Telemetry & flag management.                                                     |
-| shadcn/ui | User Interface                                                                   |
-| Drizzle   | ORM Layer                                                                        |
-| Postgres  | Database, [with our own version](https://github.com/arknights-vns/postgresql-17).|
-| Biome     | Code linter                                                                      |
-
-> [!Note]
-> Even though there is a `Dockerfile` and a Docker Compose project in this source tree, we do not test much on it so stuffs inside may break.
+| Name             | Usage                                                                            |
+|------------------|----------------------------------------------------------------------------------|
+| TanStack Start   | Full-stack development, obviously.                                               |
+| shadcn/ui        | User Interface                                                                   |
+| Drizzle          | ORM Layer                                                                        |
+| Postgres         | Database. Yes, just the vanilla version.                                         |
+| Biome            | Code linter                                                                      |
+| Docker           | "It worked on my machine!" sort of stuffs. (not frequently tested)               |
 
 ## What about contributions?
 

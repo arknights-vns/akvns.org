@@ -53,13 +53,11 @@
     "remark-reading-time": "^2.0.2",
     "shadcn": "^3.6.2",
     "tailwind-merge": "^3.3.1",
-    "typewriter-effect": "^2.22.0",
     "zod": "^4.1.12"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.11",
     "@fontsource-variable/caveat": "^5.2.8",
-    "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/jetbrains-mono": "^5.2.8",
     "@fontsource-variable/quicksand": "^5.2.10",
     "@tailwindcss/typography": "^0.5.19",
