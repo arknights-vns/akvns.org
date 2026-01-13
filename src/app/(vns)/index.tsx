@@ -1,5 +1,8 @@
 import crewList from "@resources/data/crew.json";
 import partnerList from "@resources/data/partner.json";
+import amiya from "@resources/image/amiya.png";
+import groupPic from "@resources/image/group.jpg";
+import hero from "@resources/image/hero.jpg";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import AutoScroll from "embla-carousel-auto-scroll";
@@ -14,9 +17,6 @@ import { Timeline } from "@/components/ui/extension/timeline";
 import { BlockQuote, FavorText, FootNote, Heading, Paragraph } from "@/components/ui/extension/typography";
 import { cn } from "@/lib/utils";
 
-import amiya from "/amiya.png?url";
-import groupPic from "/group.jpg?url";
-
 export const Route = createFileRoute("/(vns)/")({
   component: LandingPage,
 });
@@ -25,8 +25,11 @@ function LandingPage() {
   return (
     <div className="place-items-center-safe flex w-full flex-col overflow-x-hidden">
       <figure
-        className="h-[85vh] w-full bg-[url(/hero.jpg)] bg-center bg-cover bg-muted bg-no-repeat bg-blend-overlay"
+        className="h-[85vh] w-full bg-center bg-cover bg-muted bg-no-repeat bg-blend-overlay"
         id="hero"
+        style={{
+          backgroundImage: `url(${hero})`,
+        }}
       >
         <div className="place-items-center-safe flex size-full flex-col justify-between">
           <div />
@@ -133,8 +136,8 @@ function LandingPage() {
                     <Image
                       alt={data.title}
                       className="size-37.5 rounded-full border-2"
+                      fetchPriority="high"
                       height={150}
-                      loading="eager"
                       referrerPolicy="no-referrer"
                       src={data.image}
                       width={150}
@@ -156,8 +159,8 @@ function LandingPage() {
                     <Image
                       alt={entry.title}
                       className="size-37.5 rounded-full border-2"
+                      fetchPriority="high"
                       height={150}
-                      loading="eager"
                       referrerPolicy="no-referrer"
                       src={entry.image}
                       width={150}
@@ -191,12 +194,12 @@ function LandingPage() {
         </div>
       </ContentArea>
 
-      <ContentArea id="timeline">
+      <ContentArea className="container" id="timeline">
         <Heading className="text-primary" kind="h1">
           Timeline
         </Heading>
         <FavorText>Lịch sử hình thành và phát triển của Arknights VNS.</FavorText>
-        <div className="size-full">
+        <div className="container relative overflow-clip">
           <Timeline
             data={[
               {

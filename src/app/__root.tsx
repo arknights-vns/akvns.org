@@ -1,6 +1,8 @@
 /// <reference types="vite/client" />
 
 import type { RouterContext } from "@/router-context";
+import Amiya from "@resources/image/amiya.png";
+import ogImage from "@resources/image/opengraph-image.jpg";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import { createRootRouteWithContext, HeadContent, Link, Outlet, Scripts } from "@tanstack/react-router";
@@ -12,20 +14,21 @@ import NavigationBar from "@/components/NavigationBar";
 import Providers from "@/components/Providers";
 import { clientEnv } from "@/env/client";
 
-import Amiya from "/amiya.png?url";
 import FavIconDark from "/favicon-dark.ico?url";
 import FavIconLight from "/favicon-light.ico?url";
-import ogImage from "/opengraph-image.jpg?url";
 import appCss from "./globals.css?url";
 
-const SITE_URL = clientEnv.VITE_PRODUCTION_URL;
+const SITE_URL = import.meta.env.DEV ? "http://localhost:3000" : clientEnv.VITE_PRODUCTION_URL;
 const PAGE_TITLE = "Arknights Vietnam Station";
-const PAGE_DESC = "For the Dreamchasers, by the Dreamchasers";
-const PAGE_IMAGE = `${SITE_URL}/${ogImage}`;
+const PAGE_DESC = "For the Dreamchasers, by the Dreamchasers.";
+const PAGE_IMAGE = `${SITE_URL}${ogImage}`;
 
 export const Route = createRootRouteWithContext<RouterContext>()({
   head: () => ({
     meta: [
+      {
+        charSet: "utf-8",
+      },
       { title: PAGE_TITLE },
       {
         name: "description",
@@ -34,6 +37,10 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       {
         name: "viewport",
         content: "width=device-width, initial-scale=1",
+      },
+      {
+        name: "keywords",
+        content: "arknights,arknights vietnam station,terrastationvn,arknights endfield,endministrator",
       },
       {
         name: "theme-color",
@@ -62,6 +69,10 @@ export const Route = createRootRouteWithContext<RouterContext>()({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      {
+        rel: "icon",
+        href: "/favicon.ico",
+      },
       {
         rel: "icon",
         href: FavIconLight,

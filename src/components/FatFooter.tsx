@@ -1,10 +1,9 @@
 import { SiFacebook, SiGithub, SiSteam, SiYoutube } from "@icons-pack/react-simple-icons";
+import VNS_Logo from "@resources/image/VNS_Logo.png";
 import { Image } from "@unpic/react";
 import { ArrowUpRight } from "lucide-react";
 
 import { Heading, Paragraph } from "@/components/ui/extension/typography";
-
-import VNS_Logo from "/VNS_Logo.png?url";
 
 const navigations: {
   group: string;

@@ -1,5 +1,7 @@
 import type { Navigable } from "@/components/navbar/navigation-type";
 import { SiDiscord, SiFacebook } from "@icons-pack/react-simple-icons";
+import VNS_Donate from "@resources/image/VNS_Donate.jpg";
+import VNS_Icon from "@resources/image/VNS_Icon.svg";
 import { Link } from "@tanstack/react-router";
 import { Image } from "@unpic/react";
 import { Handshake, Heart, HeartHandshake, Info } from "lucide-react";
@@ -17,9 +19,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Paragraph } from "@/components/ui/extension/typography";
-
-import VNS_Donate from "/VNS_Donate.jpg?url";
-import VNS_Icon from "/VNS_Icon.svg?url";
 
 const links: Navigable[] = [
   {
@@ -73,7 +72,14 @@ export default function NavigationBar() {
       <aside className="place-items-center-safe flex w-[25vw] gap-4">
         <MobileNavigationSidebar links={links} />
         <Link to="/">
-          <Image alt="VNS_Logo_Header" className="dark:invert" height={52} src={VNS_Icon} width={52} />
+          <Image
+            alt="VNS_Logo_Header"
+            aspectRatio={1}
+            className="dark:invert"
+            height={64}
+            layout="constrained"
+            src={VNS_Icon}
+          />
         </Link>
       </aside>
       <DesktopNavigationMenu links={links} />
@@ -105,7 +111,7 @@ export default function NavigationBar() {
             render={
               <Button className="border-primary! hover:bg-primary!" variant="outline">
                 <HeartHandshake />
-                Donate
+                <span className="hidden md:inline">Donate</span>
               </Button>
             }
           />

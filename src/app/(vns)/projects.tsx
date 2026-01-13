@@ -24,7 +24,7 @@ function RouteComponent() {
   const selected: CategoryType[] = filter.length > 0 ? filter : ["event", "fan-project", "cross"];
 
   return (
-    <ContentArea className="flex flex-col gap-4 text-center" id="projects">
+    <ContentArea className="place-items-center-safe flex flex-col gap-4 text-center" id="projects">
       <Heading className="text-primary" kind="h1">
         Những dự án của Arknights VNS
       </Heading>
@@ -34,7 +34,7 @@ function RouteComponent() {
         <div className="place-items-center-safe flex gap-2">
           <div className="hidden font-bold md:inline">Bộ lọc:</div>
           <ToggleGroup
-            className="place-items-center-safe"
+            className="place-items-center-safe flex-wrap"
             multiple={true}
             onValueChange={setFilter}
             size="lg"
@@ -44,7 +44,7 @@ function RouteComponent() {
           >
             <ToggleGroupItem
               aria-label="Arknights VNS"
-              className="data-pressed:border-primary data-pressed:bg-primary/30 data-pressed:*:[svg]:fill-yellow-500 data-pressed:*:[svg]:stroke-yellow-500"
+              className="grow data-pressed:border-primary data-pressed:bg-primary/30 data-pressed:*:[svg]:fill-yellow-500 data-pressed:*:[svg]:stroke-yellow-500"
               value="event"
             >
               <Star />
@@ -52,7 +52,7 @@ function RouteComponent() {
             </ToggleGroupItem>
             <ToggleGroupItem
               aria-label="Community"
-              className="data-pressed:border-primary data-pressed:bg-primary/30 data-pressed:*:[svg]:fill-red-500 data-pressed:*:[svg]:stroke-red-500"
+              className="grow data-pressed:border-primary data-pressed:bg-primary/30 data-pressed:*:[svg]:fill-red-500 data-pressed:*:[svg]:stroke-red-500"
               value="fan-project"
             >
               <Heart />
@@ -60,7 +60,7 @@ function RouteComponent() {
             </ToggleGroupItem>
             <ToggleGroupItem
               aria-label="Collaboration"
-              className="data-pressed:border-primary data-pressed:bg-primary/30 data-pressed:*:[svg]:fill-white data-pressed:*:[svg]:stroke-white"
+              className="grow data-pressed:border-primary data-pressed:bg-primary/30 data-pressed:*:[svg]:fill-white data-pressed:*:[svg]:stroke-white"
               value="cross"
             >
               <Users />

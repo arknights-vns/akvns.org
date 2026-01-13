@@ -5,13 +5,11 @@
     "module": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["vite/client"],
-
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": false,
     "noEmit": true,
-
     /* Linting */
     "skipLibCheck": true,
     "strict": true,
@@ -20,7 +18,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "baseUrl": ".",
-
     "allowJs": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -28,9 +25,15 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"],
+      "@public/*": ["./public/*"],
       "@resources/*": ["./resources/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "vite.config.js"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "vite.config.js",
+    "src/tanstack-start.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

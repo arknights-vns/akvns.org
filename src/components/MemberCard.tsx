@@ -18,9 +18,9 @@ export default function MemberCard(props: MemberProps) {
           alt={`${props.name}-${props.role}`}
           className="absolute aspect-square size-24 -translate-y-20 rounded-full border border-primary/50 bg-card object-cover"
           height={96}
-          priority={true}
+          loading="lazy"
           referrerPolicy="no-referrer"
-          src={props.avatar}
+          src={props.avatar !== "" ? props.avatar : "#"}
           width={96}
         />
         <CardTitle className="font-bold text-xl">{props.name}</CardTitle>
