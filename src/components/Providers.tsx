@@ -1,15 +1,12 @@
+"use client";
+
 import type { ReactNode } from "react";
-import { ConfigCatWebProvider } from "@openfeature/config-cat-web-provider";
-import { OpenFeature, OpenFeatureProvider } from "@openfeature/react-sdk";
+import { QueryClientProvider } from "@tanstack/react-query";
 
-const configCatProvider = ConfigCatWebProvider.create(import.meta.env.VITE_CONFIG_CAT_API_KEY);
-
-if (!OpenFeature.getProvider()) {
-  // Instantiate and set our provider (be sure this only happens once)!
-  // Note: there's no need to await its initialization, the React SDK handles re-rendering and suspense for you!
-  OpenFeature.setProvider(configCatProvider);
-}
+import { getQueryClient } from "@/lib/query-client";
 
 export default function Providers({ children }: { children: ReactNode }) {
-  return <OpenFeatureProvider>{children}</OpenFeatureProvider>;
+  const queryClient = getQueryClient();
+
+  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 }

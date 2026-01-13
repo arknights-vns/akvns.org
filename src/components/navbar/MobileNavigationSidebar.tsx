@@ -1,6 +1,6 @@
 import type { NavComponentProps } from "@/components/navbar/navigation-type";
-import { Link } from "@tanstack/react-router";
 import { ChevronDown, Menu } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -46,16 +46,15 @@ export default function MobileNavigationSidebar(props: NavComponentProps) {
                   <CollapsibleContent className="ml-4 space-y-4">
                     {entry.children.map((subentry) => (
                       <Link
-                        activeOptions={{
-                          includeHash: true,
-                        }}
-                        activeProps={{
-                          className: "bg-primary p-2 rounded-lg",
-                        }}
+                        // activeOptions={{
+                        //   includeHash: true,
+                        // }}
+                        // activeProps={{
+                        //   className: "bg-primary p-2 rounded-lg",
+                        // }}
                         className="place-items-center-safe flex gap-2 p-1"
-                        hash={subentry.hash}
+                        href={{ pathname: subentry.href, hash: subentry.hash }}
                         key={`${entry.label}-${subentry.label}`}
-                        to={subentry.href}
                       >
                         {subentry.icon && <subentry.icon size={16} />}
                         {subentry.label}
@@ -68,16 +67,15 @@ export default function MobileNavigationSidebar(props: NavComponentProps) {
 
             return (
               <Link
-                activeOptions={{
-                  includeHash: true,
-                }}
-                activeProps={{
-                  className: "bg-primary p-2 rounded-lg",
-                }}
+                // activeOptions={{
+                //   includeHash: true,
+                // }}
+                // activeProps={{
+                //   className: "bg-primary p-2 rounded-lg",
+                // }}
                 className="font-bold"
-                hash={entry.hash}
+                href={{ pathname: entry.href, hash: entry.hash }}
                 key={`mobile-link-${entry.label}`}
-                to={entry.href}
               >
                 {entry.label}
               </Link>

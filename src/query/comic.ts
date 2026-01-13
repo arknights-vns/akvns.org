@@ -1,15 +1,9 @@
 import { infiniteQueryOptions, queryOptions } from "@tanstack/react-query";
 
-import {
-  getComicChapterList,
-  getComicSeriesChapterImages,
-  getComicSeriesChapterInfo,
-  getComicSeriesInfo,
-  getComicSeriesListByPage,
-} from "@/functions/comic";
+import { elysianRealm } from "@/lib/elysian-realm";
 
 /**
- * React Query Options for fetching comic series data.
+ * TanStack Query options for fetching comic series data.
  *
  * @param series Series name.
  * @returns The query options.
@@ -18,52 +12,52 @@ export const comicSeriesDataQueryOptions = (series: string) =>
   queryOptions({
     queryKey: ["comic-series", series],
     queryFn: async () => {
-      const resp = await getComicSeriesInfo({
-        data: {
+      const resp = await elysianRealm
+        .comic({
           series,
-        },
-      });
+        })
+        .get();
 
-      return resp.message;
+      if (resp.error) {
+        throw new Error("Unable to fetch series Data");
+      }
+
+      return resp.data.message;
     },
   });
 
+/**
+ * TanStack Query options for fetching comic series chapter images.
+ *
+ * @param series Series name.
+ * @param chapter Chapter ID.
+ * @returns The query options.
+ */
 export const comicImageQueryOptions = ({ series, chapter }: { series: string; chapter: string }) =>
   queryOptions({
     queryKey: ["comic-images", series, chapter],
     queryFn: async () => {
-      const resp = await getComicSeriesChapterImages({
-        data: {
-          series,
-          chapter,
-        },
-      });
+      const resp = await elysianRealm.comic({ series }).images({ chapter }).get();
 
-      return resp.message;
+      if (resp.error) {
+        throw new Error("Unable to fetch series Data");
+      }
+
+      return resp.data.message;
     },
   });
 
-export const comicChapterQueryOptions = ({ series, chapter }: { series: string; chapter: string }) =>
-  queryOptions({
-    queryKey: ["comic-chapter", series, chapter],
-    queryFn: async () => {
-      const response = await getComicSeriesChapterInfo({
-        data: {
-          series,
-          chapter,
-        },
-      });
-
-      return response.message;
-    },
-  });
-
+/**
+ * TanStack Query infinite query options for fetching comic series listing. Defaults to 15 per pages.
+ *
+ * @returns The infinite query options.
+ */
 export const comicSeriesListingQueryOptions = () =>
   infiniteQueryOptions({
     queryKey: ["comic"],
     queryFn: async ({ pageParam }) => {
-      const resp = await getComicSeriesListByPage({
-        data: {
+      const { data: resp } = await elysianRealm.comic.get({
+        query: {
           page: pageParam,
         },
       });
@@ -72,20 +66,6 @@ export const comicSeriesListingQueryOptions = () =>
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
-      return lastPage.canMoveNext ? lastPage.next : null;
-    },
-  });
-
-export const comicChapterListQueryOptions = (series: string) =>
-  queryOptions({
-    queryKey: ["comic-chapters", series],
-    queryFn: async () => {
-      const response = await getComicChapterList({
-        data: {
-          series,
-        },
-      });
-
-      return response.message;
+      return lastPage?.canMoveNext ? lastPage.next : null;
     },
   });

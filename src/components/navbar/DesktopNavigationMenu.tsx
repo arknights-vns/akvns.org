@@ -1,5 +1,5 @@
 import type { NavComponentProps } from "@/components/navbar/navigation-type";
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 
 import {
   NavigationMenu,
@@ -32,8 +32,7 @@ export default function DesktopNavigationMenu(props: NavComponentProps) {
                           render={
                             <Link
                               className="flex flex-col items-start"
-                              hash={subentry.hash}
-                              to={subentry.href}
+                              href={{ pathname: subentry.href, hash: subentry.hash }}
                             >
                               <div className="place-items-center-safe flex gap-2 font-bold">
                                 {subentry.icon && <subentry.icon size={16} />}
@@ -54,12 +53,8 @@ export default function DesktopNavigationMenu(props: NavComponentProps) {
                 className={cn(navigationMenuTriggerStyle(), "rounded-none", "bg-transparent")}
                 render={
                   <Link
-                    activeProps={{
-                      className: "underline underline-offset-13 decoration-primary decoration-4",
-                    }}
                     className="after:absolute after:-bottom-1 after:left-1/2 after:h-1 after:w-0 after:-translate-x-1/2 after:bg-primary after:transition-[width] after:duration-300 hover:after:w-full"
-                    hash={entry.hash}
-                    to={entry.href}
+                    href={{ pathname: entry.href, hash: entry.hash }}
                   >
                     {entry.label}
                   </Link>

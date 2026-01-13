@@ -10,24 +10,25 @@ RUN npm ci
 
 FROM base AS builder
 WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1 \
+    NODE_ENV=production
 COPY --from=deps /app/node_modules ./node_modules
-COPY tsconfig.json vite.config.ts package.json ./
-COPY public ./public
-COPY src ./src
-COPY resources ./resources
-RUN npm run build && npm prune --production
+COPY . .
+RUN npm run build
 
 FROM base AS runner
 WORKDIR /app
-ENV NODE_ENV=production
 
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 akvns
+ENV NEXT_TELEMETRY_DISABLED=1 \
+    NODE_ENV=production \
+    HOSTNAME="0.0.0.0"
 
-COPY --from=builder /app/.output ./.output
-COPY .env ./.env
-COPY package.json ./package.json
+RUN groupadd --system --gid 1001 nodejs && \
+    useradd --system --uid 1001 --no-log-init -g nodejs nextjs
 
-USER akvns
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-CMD ["npm", "run", "start"]
+USER nextjs
+CMD ["node", "server.js"]

@@ -1,4 +1,4 @@
-import { Image } from "@unpic/react";
+import Image from "next/image";
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -16,11 +16,9 @@ export default function MemberCard(props: MemberProps) {
       <CardHeader className="mt-8 flex w-full flex-col items-center justify-center space-y-4 pb-2">
         <Image
           alt={`${props.name}-${props.role}`}
-          className="absolute aspect-square size-24 -translate-y-20 rounded-full border border-primary/50 bg-card object-cover"
+          className="absolute aspect-square size-24 -translate-y-20 rounded-full border border-primary/50 bg-card"
           height={96}
-          loading="lazy"
-          referrerPolicy="no-referrer"
-          src={props.avatar !== "" ? props.avatar : "#"}
+          src={props.avatar !== "" ? props.avatar : "/#"}
           width={96}
         />
         <CardTitle className="font-bold text-xl">{props.name}</CardTitle>

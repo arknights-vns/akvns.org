@@ -1,7 +1,9 @@
+import type { Route } from "next";
 import { SiFacebook, SiGithub, SiSteam, SiYoutube } from "@icons-pack/react-simple-icons";
-import VNS_Logo from "@resources/image/VNS_Logo.png";
-import { Image } from "@unpic/react";
+import VNS_Logo from "@public/VNS_Wordmark.png";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 import { Heading, Paragraph } from "@/components/ui/extension/typography";
 
@@ -57,21 +59,21 @@ export default function FatFooter() {
         <div className="mt-8 flex w-full flex-col place-items-center justify-evenly gap-4 md:w-fit [&_img]:dark:invert">
           <Image alt="VNS_Logo_Footer" className="self-center-safe" height={600} src={VNS_Logo} width={250} />
           <div className="place-items-center-safe my-4 flex gap-x-2">
-            <a href="https://www.facebook.com/terrastationvn">
+            <Link href="https://www.facebook.com/terrastationvn">
               <SiFacebook />
-            </a>
+            </Link>
             <span className="text-muted-foreground">/</span>
-            <a href="https://www.youtube.com/@ArknightsVNS">
+            <Link href="https://www.youtube.com/@ArknightsVNS">
               <SiYoutube />
-            </a>
+            </Link>
             <span className="text-muted-foreground">/</span>
-            <a href="https://steamcommunity.com/groups/arknights_vietnam_station">
+            <Link href="https://steamcommunity.com/groups/arknights_vietnam_station">
               <SiSteam />
-            </a>
+            </Link>
             <span className="text-muted-foreground">/</span>
-            <a href="https://github.com/arknights-vns">
+            <Link href="https://github.com/arknights-vns">
               <SiGithub />
-            </a>
+            </Link>
           </div>
         </div>
         <div className="md:place-items-center-safe flex flex-col gap-8 md:flex-row">
@@ -83,12 +85,12 @@ export default function FatFooter() {
               <ul className="flex flex-col gap-y-2">
                 {nav.items.map((item) => (
                   <li className="place-items-center-safe flex gap-1" key={item.displayText}>
-                    <a href={item.href}>
+                    <Link href={item.href as Route}>
                       {item.heading && <>{item.heading}: </>}
                       <span className="font-bold underline decoration-primary decoration-dashed underline-offset-4">
                         {item.cloak ? item.displayText : item.href}
                       </span>
-                    </a>
+                    </Link>
                     <ArrowUpRight className="self-center stroke-3 stroke-primary" size={12} />
                   </li>
                 ))}

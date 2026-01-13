@@ -1,19 +1,14 @@
 import type { LucideIcon } from "lucide-react";
+import type { Route } from "next";
 
 interface MultiNavigation {
-  children: {
-    description: string;
-    href: string;
-    hash: string;
-    label: string;
-    icon: LucideIcon | null;
-  }[];
+  children: (Omit<NormalNavigation, "type"> & { description: string | null; icon: LucideIcon })[];
   label: string;
   type: "dropdown";
 }
 
 interface NormalNavigation {
-  href: string;
+  href: Route;
   hash: string;
   label: string;
   type: "link";

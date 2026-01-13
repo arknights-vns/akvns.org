@@ -1,17 +1,16 @@
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { betterAuth } from "better-auth/minimal";
-import { tanstackStartCookies } from "better-auth/tanstack-start";
+import { nextCookies } from "better-auth/next-js";
 
 import { serverEnv } from "@/env/server";
 import { drizzleDb } from "@/lib/drizzle";
 import { redisClient } from "@/lib/redis";
 
 export const auth = betterAuth({
-  appName: "Arknights Vietnam Station",
   database: drizzleAdapter(drizzleDb, {
     provider: "pg",
   }),
-  plugins: [tanstackStartCookies()],
+  plugins: [nextCookies()],
   secret: serverEnv.SECRET_KEY,
   session: {
     cookieCache: {
