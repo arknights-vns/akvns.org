@@ -17,6 +17,8 @@
       "!src/components/ui",
       "!src/components/animate-ui",
       "!src/components/smoothui",
+      "!src/sentry.server.config.ts",
+      "!src/sentry.edge.config.ts",
       "!!./next",
       "!!**/node_modules"
     ]
@@ -28,9 +30,7 @@
   },
   "overrides": [
     {
-      "includes": [
-        "src/**/*"
-      ],
+      "includes": ["src/**/*"],
       "linter": {
         "enabled": true,
         "rules": {
@@ -47,10 +47,7 @@
       }
     },
     {
-      "includes": [
-        "src/**/*.ts",
-        "src/**/*.tsx"
-      ],
+      "includes": ["src/**/*.ts", "src/**/*.tsx"],
       "assist": {
         "enabled": true,
         "actions": {
@@ -65,9 +62,7 @@
                   ":NODE:",
                   ":PACKAGE:",
                   ":BLANK_LINE:",
-                  [
-                    "@public/**"
-                  ],
+                  ["@public/**"],
                   ":BLANK_LINE:",
                   "@/**",
                   ":BLANK_LINE:",
@@ -80,9 +75,7 @@
       }
     },
     {
-      "includes": [
-        "src/app/*.css"
-      ],
+      "includes": ["src/app/*.css"],
       "css": {
         "parser": {
           "tailwindDirectives": true
