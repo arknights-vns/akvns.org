@@ -11,7 +11,7 @@ export async function generateMetadata(props: LayoutProps<"/comic/[series]/[chap
   const currentChapter = comicData.chapters.filter((x) => x.comicChapterId === chapter)[0].chapterName;
 
   return {
-    title: `Arknights VNS | Truyện: ${comicData.title} | ${currentChapter}`,
+    title: `Arknights VNS | ${comicData.title} | ${currentChapter}`,
   };
 }
 
