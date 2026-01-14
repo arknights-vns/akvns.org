@@ -1,20 +1,5 @@
 import { relations } from "drizzle-orm";
-import {
-  index,
-  integer,
-  pgEnum,
-  pgTable,
-  serial,
-  text,
-  timestamp,
-  uniqueIndex,
-  varchar,
-} from "drizzle-orm/pg-core";
-
-/**
- * `project_type` enum.
- */
-export const projectTypeEnum = pgEnum("project_type", ["Community", "Event", "Cross_Over"]);
+import { index, integer, pgEnum, pgTable, text, timestamp, uniqueIndex, varchar } from "drizzle-orm/pg-core";
 
 /**
  * `comic_category` enum.
@@ -25,43 +10,6 @@ export const comicCategoryEnum = pgEnum("comic_category", [
   "Collaboration",
   "Community",
 ]);
-
-/**
- * `blog` table.
- */
-export const blog = pgTable(
-  "blog",
-  {
-    id: serial().primaryKey(),
-    slug: varchar({ length: 255 }).notNull().unique(),
-    title: varchar({ length: 255 }).notNull(),
-    author: varchar({ length: 255 }),
-    shortBriefing: text(),
-    updatedAt: timestamp({ precision: 0, mode: "string" })
-      .defaultNow()
-      .$onUpdate(() => /* @__PURE__ */ new Date().toISOString()),
-  },
-  (table) => [index("blog_idx").on(table.title, table.slug, table.shortBriefing, table.author)]
-);
-
-/**
- * `project` table.
- */
-export const project = pgTable(
-  "project",
-  {
-    id: varchar({ length: 255 }).primaryKey(),
-    title: text().notNull(),
-    type: projectTypeEnum().notNull().default("Event"),
-    mainImg: text(),
-    date: timestamp({ precision: 0, mode: "string" }).defaultNow(),
-    description: text(),
-    blogId: integer("blog_id")
-      .unique()
-      .references(() => blog.id),
-  },
-  (table) => [index("project_idx").on(table.title, table.type, table.date)]
-);
 
 /**
  * `comic_series` table.
@@ -78,9 +26,10 @@ export const comicSeries = pgTable(
 
     category: comicCategoryEnum().notNull(),
 
-    createdAt: timestamp({ precision: 0, mode: "string" }).defaultNow(),
-    updatedAt: timestamp({ precision: 0, mode: "string" })
+    createdAt: timestamp({ mode: "string" }).defaultNow().notNull(),
+    updatedAt: timestamp({ mode: "string" })
       .defaultNow()
+      .notNull()
       .$onUpdate(() => /* @__PURE__ */ new Date().toISOString()),
 
     likeCount: integer().default(0),
@@ -107,9 +56,10 @@ export const comicChapter = pgTable(
         onUpdate: "cascade",
       }),
 
-    createdAt: timestamp({ precision: 0, mode: "string" }).defaultNow(),
-    updatedAt: timestamp({ precision: 0, mode: "string" })
+    createdAt: timestamp({ mode: "string" }).defaultNow().notNull(),
+    updatedAt: timestamp({ mode: "string" })
       .defaultNow()
+      .notNull()
       .$onUpdate(() => /* @__PURE__ */ new Date().toISOString()),
   },
   (table) => [index("comic_chapter_idx").on(table.comicChapterId, table.chapterName, table.comicSeriesId)]
@@ -150,14 +100,4 @@ export const comicChapterRelations = relations(comicChapter, ({ one }) => ({
 export const comicSeriesRelations = relations(comicSeries, ({ many }) => ({
   chapters: many(comicChapter),
   contributors: many(comicContributor),
-}));
-
-/**
- * one `project` may have a `blog`.
- */
-export const projectRelations = relations(project, ({ one }) => ({
-  blog: one(blog, {
-    fields: [project.blogId],
-    references: [blog.id],
-  }),
 }));

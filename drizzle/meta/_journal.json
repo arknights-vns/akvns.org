@@ -50,6 +50,13 @@
       "when": 1767442451888,
       "tag": "0006_eager_sleeper",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1768356785839,
+      "tag": "0007_chief_vivisector",
+      "breakpoints": true
     }
   ]
 }
