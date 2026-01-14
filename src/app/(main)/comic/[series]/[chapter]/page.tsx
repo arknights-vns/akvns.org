@@ -48,8 +48,6 @@ export default function ComicReadPage(props: PageProps<"/comic/[series]/[chapter
         height={380}
         id={`page-${index + 1}`}
         key={x.name}
-        loading="lazy"
-        referrerPolicy="no-referrer"
         src={x.url}
         width={520}
       />
@@ -67,7 +65,10 @@ export default function ComicReadPage(props: PageProps<"/comic/[series]/[chapter
           </div>
           <div className="place-items-center-safe flex justify-between gap-2">
             <Button disabled={!hasPrev}>
-              <Link href={hasPrev ? `/comic/${series}/${listOfChapters[currentPosition - 1]}` : "/"}>
+              <Link
+                className="place-items-center-safe flex gap-1"
+                href={hasPrev ? `/comic/${series}/${listOfChapters[currentPosition - 1]}` : "/"}
+              >
                 <ArrowLeft />
                 <span className="hidden md:inline">Chương trước</span>
               </Link>
@@ -118,7 +119,10 @@ export default function ComicReadPage(props: PageProps<"/comic/[series]/[chapter
               </ButtonGroup>
             </div>
             <Button disabled={!hasNext}>
-              <Link href={hasNext ? `/comic/${series}/${listOfChapters[currentPosition + 1]}` : "/"}>
+              <Link
+                className="place-items-center-safe flex gap-1"
+                href={hasNext ? `/comic/${series}/${listOfChapters[currentPosition + 1]}` : "/"}
+              >
                 <span className="hidden md:inline">Chương kế</span>
                 <ArrowRight />
               </Link>

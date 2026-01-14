@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   output: "standalone",
   reactCompiler: true,
   typedRoutes: true,
+  cacheComponents: true,
   experimental: {
     typedEnv: true,
     turbopackFileSystemCacheForDev: true,
