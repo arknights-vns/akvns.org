@@ -148,10 +148,7 @@ export default function DevelopmentTimeline() {
                     >
                       Vietnam Community League
                     </Link>{" "}
-                    để tổ chức sự kiện cộng đồng.{" "}
-                    <span className="text-muted-foreground/50">
-                      Ừ thì có cả website cho Offline nữa nhưng chúng ta sẽ không nói về nó.
-                    </span>
+                    để tổ chức sự kiện cộng đồng.
                   </Paragraph>
                 </div>
               ),

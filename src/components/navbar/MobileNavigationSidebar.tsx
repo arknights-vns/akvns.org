@@ -2,7 +2,6 @@ import type { NavComponentProps } from "@/components/navbar/navigation-type";
 import { ChevronDown, Menu } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   Sheet,
@@ -18,13 +17,12 @@ export default function MobileNavigationSidebar(props: NavComponentProps) {
   return (
     <Sheet>
       <SheetTrigger
-        render={
-          <Button aria-label="burger-menu" className="self-center lg:hidden" size="icon" variant="outline">
-            <div className="sr-only">Mobile menu</div>
-            <Menu />
-          </Button>
-        }
-      />
+        aria-label="burger-menu"
+        className="self-center rounded-sm border bg-stone-900 p-1 lg:hidden"
+      >
+        <div className="sr-only">Mobile menu</div>
+        <Menu size={24} />
+      </SheetTrigger>
       <SheetContent className="max-w-xs" side="left">
         <SheetHeader>
           <SheetTitle>Arknights Vietnam Station</SheetTitle>
@@ -46,12 +44,6 @@ export default function MobileNavigationSidebar(props: NavComponentProps) {
                   <CollapsibleContent className="ml-4 space-y-4">
                     {entry.children.map((subentry) => (
                       <Link
-                        // activeOptions={{
-                        //   includeHash: true,
-                        // }}
-                        // activeProps={{
-                        //   className: "bg-primary p-2 rounded-lg",
-                        // }}
                         className="place-items-center-safe flex gap-2 p-1"
                         href={{ pathname: subentry.href, hash: subentry.hash }}
                         key={`${entry.label}-${subentry.label}`}
@@ -67,12 +59,6 @@ export default function MobileNavigationSidebar(props: NavComponentProps) {
 
             return (
               <Link
-                // activeOptions={{
-                //   includeHash: true,
-                // }}
-                // activeProps={{
-                //   className: "bg-primary p-2 rounded-lg",
-                // }}
                 className="font-bold"
                 href={{ pathname: entry.href, hash: entry.hash }}
                 key={`mobile-link-${entry.label}`}
