@@ -19,7 +19,7 @@ export const comicSeriesDataQueryOptions = (series: string) =>
         .get();
 
       if (resp.error) {
-        throw new Error("Unable to fetch series Data");
+        throw new Error("Unable to fetch series data");
       }
 
       return resp.data.message;
@@ -40,7 +40,7 @@ export const comicImageQueryOptions = ({ series, chapter }: { series: string; ch
       const resp = await elysianRealm.comic({ series }).images({ chapter }).get();
 
       if (resp.error) {
-        throw new Error("Unable to fetch series Data");
+        throw new Error("Unable to fetch series chapter images");
       }
 
       return resp.data.message;
@@ -56,13 +56,17 @@ export const comicSeriesListingQueryOptions = () =>
   infiniteQueryOptions({
     queryKey: ["comic"],
     queryFn: async ({ pageParam }) => {
-      const { data: resp } = await elysianRealm.comic.get({
+      const resp = await elysianRealm.comic.get({
         query: {
           page: pageParam,
         },
       });
 
-      return resp;
+      if (resp.error) {
+        throw new Error("Unable to fetch paginated series listing");
+      }
+
+      return resp.data;
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
