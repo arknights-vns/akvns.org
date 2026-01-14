@@ -14,5 +14,10 @@ export const elysia = new Elysia({ adapter: node(), prefix: "/api" })
   });
 
 export const GET = elysia.fetch;
+export const POST = elysia.fetch;
+export const HEAD = elysia.fetch;
+export const PUT = elysia.fetch;
+export const DELETE = elysia.fetch;
+export const OPTIONS = elysia.fetch;
 
 export type ElysiaAPI = typeof elysia;
