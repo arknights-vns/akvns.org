@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 
+import Providers from "@/components/Providers";
 import { clientEnv } from "@/env/client";
 
 const fontSans = VNS_Font({
@@ -43,8 +44,7 @@ function RootLayout(props: LayoutProps<"/">) {
   return (
     <html className="dark" data-scroll-behavior="smooth" lang="vi">
       <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
-        {/* <Providers>{properties.children}</Providers> */}
-        {props.children}
+        <Providers>{props.children}</Providers>
       </body>
     </html>
   );
