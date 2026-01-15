@@ -42,12 +42,26 @@
             "useFilenamingConvention": "off",
             "noNonNullAssertion": "warn",
             "useConsistentCurlyBraces": "error"
+          },
+          "suspicious": {
+            "noConsole": "error"
           }
         }
+      },
+      "formatter": {
+        "bracketSpacing": true
       }
     },
     {
       "includes": ["src/**/*.ts", "src/**/*.tsx"],
+      "formatter": {
+        "bracketSpacing": true
+      },
+      "javascript": {
+        "formatter": {
+          "bracketSpacing": true
+        }
+      },
       "assist": {
         "enabled": true,
         "actions": {

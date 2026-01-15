@@ -5,7 +5,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { BookCopy, ListOrdered } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { use } from "react";
+import { use, useEffect, useState } from "react";
 
 import {
   Breadcrumb,
@@ -24,10 +24,16 @@ import { comicSeriesDataQueryOptions } from "@/query/comic";
 
 export default function ComicSeriesDetail(properties: PageProps<"/comic/[series]">) {
   const { series } = use(properties.params);
+  const [hasRead, setHasRead] = useState("a-very-long-and-random-ass-and-i-wrote-this-by-hand");
 
   const { data } = useSuspenseQuery(comicSeriesDataQueryOptions(series));
 
-  const hasRead = localStorage.getItem(`comic-${series}`) ?? "";
+  useEffect(() => {
+    // obligatory: https://react.dev/learn/you-might-not-need-an-effect
+    // localStorage counts as one I guess?
+    const readItem = localStorage.getItem(`comic-${series}`) ?? "";
+    setHasRead(readItem);
+  }, [series]);
 
   const readChapter = data.chapters.filter((ch) => ch.comicChapterId === hasRead);
   const isValidPreviousChapter = hasRead && readChapter.length > 0;
@@ -53,6 +59,7 @@ export default function ComicSeriesDetail(properties: PageProps<"/comic/[series]
               alt={data.comicSeriesId}
               className="h-96 w-auto object-contain"
               height={576}
+              loading="eager"
               src={data.thumbnail}
               width={384}
             />
@@ -94,11 +101,11 @@ export default function ComicSeriesDetail(properties: PageProps<"/comic/[series]
               </li>
               <li>
                 <span className="font-bold">Ngày đăng truyện: </span>
-                {new Date(data.createdAt).toLocaleDateString()}
+                {new Date(data.createdAt).toDateString()}
               </li>
               <li>
                 <span className="font-bold">Cập nhật gần nhất: </span>
-                {new Date(data.updatedAt).toLocaleDateString()}
+                {new Date(data.updatedAt).toDateString()}
               </li>
               <li>
                 {/* https://stackoverflow.com/a/5899394 */}

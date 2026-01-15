@@ -1,6 +1,5 @@
 import { eq } from "drizzle-orm";
 import { cacheLife, cacheTag } from "next/cache";
-import { cache } from "react";
 
 import { comicSeries } from "@/db/schema/vns-schema";
 import { drizzleDb } from "@/lib/drizzle";
@@ -10,10 +9,10 @@ import { drizzleDb } from "@/lib/drizzle";
  *
  * Stupid Elysia, works very shit when prefetching stuffs.
  */
-export const fetchComicSeriesData = cache(async (series: string) => {
+export async function fetchComicSeriesData(series: string) {
   "use cache";
-  cacheTag("comic");
-  cacheLife("days");
+  cacheTag("comic", series);
+  cacheLife("hours");
 
   const entry = await drizzleDb.query.comicSeries.findFirst({
     with: {
@@ -27,4 +26,4 @@ export const fetchComicSeriesData = cache(async (series: string) => {
   }
 
   return entry;
-});
+}

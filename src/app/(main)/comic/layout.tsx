@@ -19,8 +19,8 @@ export default function ComicPageLayout(props: LayoutProps<"/comic">) {
   queryClient.prefetchInfiniteQuery(comicSeriesListingQueryOptions()).then();
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense fallback={<LoadingLappy />}>{props.children}</Suspense>
-    </HydrationBoundary>
+    <Suspense fallback={<LoadingLappy />}>
+      <HydrationBoundary state={dehydrate(queryClient)}>{props.children}</HydrationBoundary>
+    </Suspense>
   );
 }
