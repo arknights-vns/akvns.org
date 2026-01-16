@@ -41,7 +41,14 @@
           "style": {
             "useFilenamingConvention": "off",
             "noNonNullAssertion": "warn",
-            "useConsistentCurlyBraces": "error"
+            "useConsistentCurlyBraces": "error",
+            "noImplicitBoolean": "error",
+            "useSelfClosingElements": {
+              "level": "warn",
+              "options": {
+                "ignoreHtmlElements": true
+              }
+            }
           },
           "suspicious": {
             "noConsole": "error"
@@ -54,14 +61,6 @@
     },
     {
       "includes": ["src/**/*.ts", "src/**/*.tsx"],
-      "formatter": {
-        "bracketSpacing": true
-      },
-      "javascript": {
-        "formatter": {
-          "bracketSpacing": true
-        }
-      },
       "assist": {
         "enabled": true,
         "actions": {
@@ -76,6 +75,7 @@
                   ":NODE:",
                   ":PACKAGE:",
                   ":BLANK_LINE:",
+                  ["@resources/**"],
                   ["@public/**"],
                   ":BLANK_LINE:",
                   "@/**",
