@@ -12,9 +12,10 @@ export default function FinalWords() {
         Lời kết
       </Heading>
       <FavorText className="text-center">
-        Cảm ơn bạn, và cả cộng đồng game Arknights, vì đã đồng hành cùng chúng mình trong suốt 5 năm qua.
+        Cảm ơn các bạn, và cả cộng đồng game Arknights Việt Nam nói chung, vì đã đồng hành cùng tụi mình trong
+        suốt 4 năm qua.
       </FavorText>
-      <Paragraph className="font-bold">Hẹn gặp lại các bạn vào một ngày không xa! </Paragraph>
+      <Paragraph className="font-bold">We love you, moah moah! </Paragraph>
       <div className="relative">
         <Image
           alt="Group Picture"

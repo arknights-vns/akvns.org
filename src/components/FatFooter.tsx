@@ -13,7 +13,7 @@ const navigations: {
     cloak: boolean;
     displayText: string;
     heading: string;
-    href: string;
+    href: Route;
   }>[];
 }[] = [
   {
@@ -34,7 +34,7 @@ const navigations: {
     ],
   },
   {
-    group: "Liên hệ",
+    group: "Wanna chat?",
     items: [
       {
         cloak: true,

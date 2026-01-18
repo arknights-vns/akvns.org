@@ -1,4 +1,5 @@
 import { Play } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,8 +8,8 @@ export default function WeAreCooking() {
   return (
     <Card className="flex max-w-sm drop-shadow-xl md:max-w-lg">
       <CardHeader>
-        <CardTitle className="font-bold text-xl">Tụi mình đang nấu.</CardTitle>
-        <CardDescription>Website vẫn đang trong quá trình phát triển bạn nhé!</CardDescription>
+        <CardTitle className="font-bold text-xl">Welp...</CardTitle>
+        <CardDescription>Phần này của website đang trong quá trình được nấu bạn nhé!</CardDescription>
       </CardHeader>
       <CardContent>
         Trong lúc đó bạn có thể ghé qua xem lại{" "}
@@ -17,26 +18,24 @@ export default function WeAreCooking() {
       </CardContent>
       <CardFooter className="flex-col gap-y-2">
         <div className="flex w-full place-content-evenly items-center [&_a]:font-extrabold">
-          <Button
-            className="bg-red-500"
-            nativeButton={false}
-            render={
-              <a href="https://www.youtube.com/watch?v=gDWMnwYkZpc">
-                <Play />
-                YouTube VOD
-              </a>
-            }
-          />
-          <Button
-            className="bg-red-500"
-            nativeButton={false}
-            render={
-              <a href="https://www.youtube.com/playlist?list=PLz3PfnkGmWoIfd7L6AipXMCYKLt6ursH8">
-                <Play />
-                Youtube Playlist
-              </a>
-            }
-          />
+          <Button>
+            <Link
+              className="place-items-center-safe flex gap-2"
+              href="https://www.youtube.com/watch?v=gDWMnwYkZpc"
+            >
+              <Play />
+              YouTube VOD
+            </Link>
+          </Button>
+          <Button>
+            <Link
+              className="place-items-center-safe flex gap-2"
+              href="https://www.youtube.com/playlist?list=PLz3PfnkGmWoIfd7L6AipXMCYKLt6ursH8"
+            >
+              <Play />
+              Youtube Playlist
+            </Link>
+          </Button>
         </div>
         <div className="text-muted-foreground text-xs">* Tus không trả lương team IT để làm cái này.</div>
       </CardFooter>

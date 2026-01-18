@@ -42,12 +42,12 @@ export default function Introduction() {
           </Paragraph>
           <Paragraph className="text-justify font-light italic">From Team Dreamchasers with love!</Paragraph>
         </div>
-        <div className="place-items-center-safe">
+        <figure className="place-items-center-safe">
           <Image alt="amiyi" className="h-auto" loading="eager" src={Amiya_Dreamchasers} width={280} />
-          <Paragraph className="text-center font-light text-muted-foreground italic">
+          <figcaption className="text-center font-light text-muted-foreground italic">
             Mascot Amiya của Arknights VNS Offline 2025 "Dreamchasers"
-          </Paragraph>
-        </div>
+          </figcaption>
+        </figure>
       </div>
     </ContentArea>
   );

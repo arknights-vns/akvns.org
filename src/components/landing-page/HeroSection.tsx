@@ -10,7 +10,7 @@ const fontCaveat = Caveat({
 
 export default function HeroSection() {
   return (
-    <figure className="h-[85vh] w-full bg-[url(/hero.jpg)] bg-center bg-cover bg-muted bg-no-repeat bg-blend-overlay">
+    <div className="h-[85vh] w-full bg-[url(/hero.jpg)] bg-center bg-cover bg-muted bg-no-repeat bg-blend-overlay dark:bg-muted">
       <div className="place-items-center-safe flex size-full flex-col justify-between">
         <div />
         <div className="place-items-center-safe flex flex-col gap-4 text-center">
@@ -31,7 +31,7 @@ export default function HeroSection() {
         </div>
         <div className="place-items-center-safe grid w-[98svw] grid-cols-3">
           <div />
-          <div className="place-items-center-safe my-4 flex gap-1 rounded-full border bg-secondary px-4 py-2">
+          <div className="place-items-center-safe my-4 flex gap-1 rounded-full border border-primary bg-secondary px-4 py-2">
             <ArrowDown size={24} />
             <span className="hidden md:block">Lướt xuống để xem thêm</span>
           </div>
@@ -40,6 +40,6 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-    </figure>
+    </div>
   );
 }
