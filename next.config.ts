@@ -4,6 +4,33 @@ import type { NextConfig } from "next";
 import "@/env/client";
 import "@/env/server";
 
+const isDev = process.env.NODE_ENV === "development";
+const tusWives = [
+  "Angelina",
+  "Fartooth",
+  "Reed",
+  "Mudrock",
+  "Emilia",
+  "Bagpipe",
+  "Archetto",
+  "Astesia",
+  "Ray",
+  "Whisperain",
+  "Saileach",
+  "Ptilopsis",
+  "Vendela",
+  "Manticore",
+  "Vendela",
+  "Typhon",
+  "Dorothy",
+  "Viviana",
+  "Meteorite",
+  "Aurora",
+  "Savage",
+  "Poncirus",
+  "Robin",
+];
+
 const nextConfig: NextConfig = {
   output: "standalone",
   reactCompiler: true,
@@ -28,10 +55,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "X-Tus-Wives",
-            value:
-              "Angelina, Fartooth, Reed, Mudrock, Emilia, Bagpipe, Archetto, Astesia, Ray, " +
-              "Whisperain, Saileach, Ptilopsis, Vendela, Manticore, Vendela, Typhon, Dorothy, " +
-              "Viviana, Meteorite, Aurora, Savage, Poncirus, Robin",
+            value: tusWives.join(", "),
           },
           {
             key: "X-Powered-By",
@@ -49,10 +73,10 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: `
     default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    style-src 'self' 'unsafe-inline';
+    script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""};
+    style-src 'self'${isDev ? " 'unsafe-inline'" : ""};
     connect-src 'self' https://*.sentry.io;
-    img-src 'self' data: https://*.akvns.org;
+    img-src 'self' https://*.akvns.org;
     font-src 'self';
     object-src 'none';
     base-uri 'self';
