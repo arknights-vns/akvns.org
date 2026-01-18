@@ -24,35 +24,47 @@ import { Paragraph } from "@/components/ui/extension/typography";
 export default function NavigationBar() {
   return (
     <header className="sticky top-0 z-1 flex h-18 justify-between bg-background px-4">
-      <aside className="place-items-center-safe flex w-[25vw] gap-4">
+      <div className="place-items-center-safe flex w-[25vw] gap-4">
         <MobileNavigationSidebar links={links} />
         <Link href="/">
           <Image alt="VNS_Logo_Header" className="dark:invert" height={52} loading="eager" src={VNS_Icon} />
         </Link>
-      </aside>
+      </div>
       <DesktopNavigationMenu links={links} />
-      <aside className="place-items-center-safe flex w-[25vw] justify-end gap-2">
-        <Button className="border-[#1877f2]! hover:bg-[#1877f2]!" size="icon" variant="outline">
-          <Link href="https://www.facebook.com/groups/1546174542442137">
-            <SiFacebook />
-          </Link>
-        </Button>
-        <Button className="border-[#5865F2]! hover:bg-[#5865F2]!" size="icon" variant="outline">
-          <Link href="https://discord.gg/arknights-vns">
-            <SiDiscord />
-          </Link>
-        </Button>
+      <div className="place-items-center-safe flex w-[25vw] justify-end gap-2">
+        <Button
+          className="border-[#1877f2]! hover:bg-[#1877f2]!"
+          nativeButton={false}
+          render={
+            <Link href="https://www.facebook.com/groups/1546174542442137">
+              <SiFacebook />
+              <span className="sr-only">Facebook</span>
+            </Link>
+          }
+          size="icon-lg"
+          variant="outline"
+        />
+        <Button
+          className="border-[#5865F2]! hover:bg-[#5865F2]!"
+          nativeButton={false}
+          render={
+            <Link href="https://discord.gg/arknights-vns">
+              <SiDiscord />
+              <span className="sr-only">Discord</span>
+            </Link>
+          }
+          size="icon-lg"
+          variant="outline"
+        />
         <Dialog>
           <DialogTrigger
             render={
-              <Button className="border-primary! hover:bg-primary!" variant="outline">
+              <Button className="border-primary! hover:bg-primary!" size="icon-lg" variant="outline">
                 <HeartHandshake />
-                <span className="hidden md:inline">Donate</span>
+                <span className="sr-only">Donate</span>
               </Button>
             }
-          >
-            Donate
-          </DialogTrigger>
+          />
           <DialogContent>
             <DialogHeader>
               <DialogTitle className="place-items-center-safe flex gap-2 font-bold text-2xl">
@@ -75,7 +87,9 @@ export default function NavigationBar() {
             </div>
           </DialogContent>
         </Dialog>
-      </aside>
+        {/* FIXME: idk */}
+        {/*<ThemeSwitcher />*/}
+      </div>
     </header>
   );
 }

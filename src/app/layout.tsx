@@ -42,7 +42,7 @@ export const viewport: Viewport = {
 
 function RootLayout(props: LayoutProps<"/">) {
   return (
-    <html className="dark" data-scroll-behavior="smooth" lang="vi">
+    <html data-scroll-behavior="smooth" lang="vi" suppressHydrationWarning={true}>
       <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
         <Providers>{props.children}</Providers>
       </body>
