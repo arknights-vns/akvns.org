@@ -1,3 +1,5 @@
+"use client";
+
 import type { NavComponentProps } from "@/components/navbar/navigation-type";
 import Link from "next/link";
 
@@ -14,7 +16,7 @@ import { cn } from "@/lib/utils";
 
 export default function DesktopNavigationMenu(props: NavComponentProps) {
   return (
-    <NavigationMenu aria-label="nav-bar" className="hidden w-[50vw] lg:flex">
+    <NavigationMenu className="hidden w-[50vw] lg:flex">
       <NavigationMenuList className="gap-x-8">
         {props.links.map((entry) => (
           <NavigationMenuItem key={entry.label}>

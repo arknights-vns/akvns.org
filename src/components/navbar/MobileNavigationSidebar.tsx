@@ -1,3 +1,5 @@
+"use client";
+
 import type { NavComponentProps } from "@/components/navbar/navigation-type";
 import { ChevronDown, Menu } from "lucide-react";
 import Link from "next/link";
@@ -16,12 +18,9 @@ import {
 export default function MobileNavigationSidebar(props: NavComponentProps) {
   return (
     <Sheet>
-      <SheetTrigger
-        aria-label="burger-menu"
-        className="self-center rounded-sm border bg-stone-900 p-1 lg:hidden"
-      >
+      <SheetTrigger aria-label="burger-menu" className="self-center rounded-sm border bg-muted p-1 lg:hidden">
         <div className="sr-only">Mobile menu</div>
-        <Menu size={24} />
+        <Menu size={20} />
       </SheetTrigger>
       <SheetContent className="max-w-xs" side="left">
         <SheetHeader>
