@@ -1,14 +1,16 @@
 import { node } from "@elysiajs/node";
 import { Elysia } from "elysia";
+import { healthcheckPlugin } from "elysia-healthcheck";
 
 import { elysiaComic } from "@/app/(api)/api/[[...splat]]/-plugins/comic";
 
 export const elysia = new Elysia({ adapter: node(), prefix: "/api" })
+  .use(healthcheckPlugin())
+  .use(elysiaComic)
   .get("/", () => 'Yes, Arknights Vietnam Station is using Elysia.js for the API <(")')
-  .get("/make-tea", ({ status }) => {
+  .get("/make-coffee", ({ status }) => {
     return status("I'm a teapot");
   })
-  .use(elysiaComic)
   .headers({
     "X-VNS-API-Version": "1.0",
   });

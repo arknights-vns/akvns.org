@@ -1,9 +1,8 @@
 import { ListObjectsV2Command } from "@aws-sdk/client-s3";
-import { node } from "@elysiajs/node";
 import { eq } from "drizzle-orm";
 import { Elysia } from "elysia";
 import { CacheControl, cacheControl } from "elysiajs-cdn-cache";
-import z from "zod";
+import { z } from "zod";
 
 import { comicSeries } from "@/db/schema/vns-schema";
 import { s3Client } from "@/lib/aws-s3";
@@ -13,7 +12,7 @@ import { ComicImage, ComicSeriesData, CompleteComicData } from "@/schema/comic";
 
 const ITEMS_PER_PAGE = 15;
 
-export const elysiaComic = new Elysia({ adapter: node(), prefix: "/comic" })
+export const elysiaComic = new Elysia({ prefix: "/comic" })
   .use(cacheControl())
   .get(
     "/",
