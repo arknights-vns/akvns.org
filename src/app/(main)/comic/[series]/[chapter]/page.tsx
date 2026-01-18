@@ -4,7 +4,8 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight, ArrowUpFromLine, BookOpen, StickyNote } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { use, useEffect } from "react";
+import { use, useEffect, useState } from "react";
+import { InView } from "react-intersection-observer";
 
 import {
   ScrollProgress,
@@ -25,6 +26,8 @@ import { comicImageQueryOptions, comicSeriesDataQueryOptions } from "@/query/com
 
 export default function ComicReadPage(props: PageProps<"/comic/[series]/[chapter]">) {
   const { series, chapter } = use(props.params);
+  const [currentPage, setCurrentPage] = useState(1);
+
 
   useEffect(() => {
     localStorage.setItem(`comic-${series}`, chapter);
@@ -42,15 +45,16 @@ export default function ComicReadPage(props: PageProps<"/comic/[series]/[chapter
 
   const images = serverImages.map((x, index) => {
     return (
-      <Image
-        alt={x.name}
-        className="scroll-mt-19 border object-contain"
-        height={380}
-        id={`page-${index + 1}`}
-        key={x.name}
-        src={x.url}
-        width={520}
-      />
+      <InView as="div" key={x.name} onChange={(inView) => inView && setCurrentPage(index + 1)}>
+        <Image
+          alt={x.name}
+          className="scroll-mt-19 border object-contain"
+          height={380}
+          id={`page-${index + 1}`}
+          src={x.url}
+          width={520}
+        />
+      </InView>
     );
   });
 
