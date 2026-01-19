@@ -33,7 +33,8 @@ const tusWives = [
 ];
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  // fumanama broke?
+  // output: "standalone",
   reactStrictMode: true,
   reactCompiler: true,
   typedRoutes: true,
