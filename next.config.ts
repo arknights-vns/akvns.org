@@ -74,9 +74,9 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: `
     default-src 'self';
-    script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""};
+    script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://*.googletagmanager.com;
     style-src 'self' 'unsafe-inline';
-    connect-src 'self' https://*.sentry.io;
+    connect-src 'self' https://*.sentry.io https://*.google-analytics.com;
     img-src 'self' https://*.akvns.org;
     font-src 'self';
     object-src 'none';
