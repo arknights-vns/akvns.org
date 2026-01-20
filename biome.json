@@ -6,87 +6,97 @@
     "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": false,
+    "ignoreUnknown": true,
     "includes": [
       "src/**",
+      "resources/data/**",
       "./next.config.ts",
       "./drizzle.config.ts",
       "./lint-staged.config.js",
       "!src/hooks/use-mobile.ts",
       "!src/components/ui",
-      "!!**/.next",
+      "!src/components/animate-ui",
+      "!src/components/smoothui",
+      "!src/sentry.server.config.ts",
+      "!src/sentry.edge.config.ts",
+      "!!./next",
       "!!**/node_modules"
     ]
   },
   "formatter": {
     "enabled": true,
-    "useEditorconfig": true
+    "useEditorconfig": true,
+    "lineWidth": 110
   },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "correctness": {
-        "useImportExtensions": "off"
-      },
-      "style": {
-        "useConsistentCurlyBraces": "error",
-        "noImplicitBoolean": "error",
-        "useConsistentTypeDefinitions": {
-          "options": {
-            "style": "type"
+  "overrides": [
+    {
+      "includes": ["src/**/*"],
+      "linter": {
+        "enabled": true,
+        "rules": {
+          "recommended": true,
+          "style": {
+            "useFilenamingConvention": "off",
+            "noNonNullAssertion": "warn",
+            "useConsistentCurlyBraces": "error",
+            "noImplicitBoolean": "error",
+            "useSelfClosingElements": {
+              "level": "warn",
+              "options": {
+                "ignoreHtmlElements": true
+              }
+            }
           },
-          "level": "error"
+          "suspicious": {
+            "noConsole": "error"
+          }
         }
       },
-      "nursery": {
-        "useSortedClasses": "error"
-      },
-      "suspicious": {
-        "noConsole": "error"
+      "formatter": {
+        "bracketSpacing": true
       }
     },
-    "domains": {
-      "next": "recommended",
-      "react": "recommended",
-      "test": "recommended",
-      "project": "recommended"
-    }
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "double",
-      "semicolons": "always"
-    }
-  },
-  "assist": {
-    "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": {
-          "level": "on",
-          "options": {
-            "groups": [
-              {
-                "type": true
-              },
-              ":NODE:",
-              ":PACKAGE:",
-              ":BLANK_LINE:",
-              ["@public/**"],
-              ":BLANK_LINE:",
-              "@/**",
-              ":BLANK_LINE:",
-              ":PATH:"
-            ]
+    {
+      "includes": ["src/**/*.ts", "src/**/*.tsx"],
+      "assist": {
+        "enabled": true,
+        "actions": {
+          "source": {
+            "organizeImports": {
+              "level": "on",
+              "options": {
+                "groups": [
+                  {
+                    "type": true
+                  },
+                  ":NODE:",
+                  ":PACKAGE:",
+                  ":BLANK_LINE:",
+                  ["@resources/**"],
+                  ["@public/**"],
+                  ":BLANK_LINE:",
+                  "@/**",
+                  ":BLANK_LINE:",
+                  ":PATH:"
+                ]
+              }
+            }
           }
         }
       }
+    },
+    {
+      "includes": ["src/app/*.css"],
+      "css": {
+        "parser": {
+          "tailwindDirectives": true
+        }
+      }
     }
-  },
-  "css": {
-    "parser": {
-      "tailwindDirectives": true
-    }
-  }
+  ],
+  "extends": [
+    "ultracite/biome/core",
+    "ultracite/biome/react",
+    "ultracite/biome/next"
+  ]
 }

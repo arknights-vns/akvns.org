@@ -1,0 +1,30 @@
+[
+  {
+    "avatar": "/amiya.png",
+    "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.",
+    "id": "review-1",
+    "info": "@an_hai",
+    "name": "BLYAT"
+  },
+  {
+    "avatar": "/amiya.png",
+    "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.",
+    "id": "review-2",
+    "info": "@Eggs",
+    "name": "Dut za Liems"
+  },
+  {
+    "avatar": "/amiya.png",
+    "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.",
+    "id": "review-3",
+    "info": "@Dut",
+    "name": "Dut!!"
+  },
+  {
+    "avatar": "/amiya.png",
+    "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.",
+    "id": "review-4",
+    "info": "@JohnBalatro",
+    "name": "nan-inf từ ante 0"
+  }
+]

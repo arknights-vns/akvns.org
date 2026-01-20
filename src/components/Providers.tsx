@@ -1,26 +1,19 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "sonner";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-import { TerraTheme } from "@/components/TerraTheme";
-
-const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            retry: false,
-        },
-    },
-});
+import { getQueryClient } from "@/lib/query-client";
 
 export default function Providers({ children }: { children: ReactNode }) {
-    return (
-        <TerraTheme>
-            <QueryClientProvider client={queryClient}>
-                {children}
-            </QueryClientProvider>
-            <Toaster position="top-right" richColors={true} />
-        </TerraTheme>
-    );
+  const queryClient = getQueryClient();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <NextThemesProvider attribute="class" defaultTheme="dark" enableSystem={true}>
+        {children}
+      </NextThemesProvider>
+    </QueryClientProvider>
+  );
 }

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { comicChapter, comicContributor, comicSeries } from "@/db/schema";
+import { comicChapter, comicContributor, comicSeries } from "@/db/schema/vns-schema";
 import { createCoercedSelectSchema } from "@/schema/zod-coerced";
 
 /**
@@ -9,8 +9,8 @@ import { createCoercedSelectSchema } from "@/schema/zod-coerced";
  * Most of the time is used in conjunction with `z.array()`
  */
 export const ComicImage = z.object({
-    name: z.string(),
-    url: z.url(),
+  name: z.string(),
+  url: z.url(),
 });
 
 /**
@@ -32,6 +32,6 @@ export const ComicSeriesData = createCoercedSelectSchema(comicSeries);
  * Complete comic data.
  */
 export const CompleteComicData = ComicSeriesData.extend({
-    chapters: z.array(ComicChapter),
-    contributors: z.array(ComicContributor),
+  chapters: z.array(ComicChapter),
+  contributors: z.array(ComicContributor),
 });

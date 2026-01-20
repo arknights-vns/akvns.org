@@ -1,36 +1,17 @@
 import type { Metadata } from "next";
-import Amiya from "@public/amiya.png";
-import Image from "next/image";
-import Link from "next/link";
 
-import FatFooter from "@/components/FatFooter";
-import NavigationBar from "@/components/NavigationBar";
+import WeAreCooking from "@/components/WeAreCooking";
 
 export const metadata: Metadata = {
-    description: "You found something...",
-    title: "404",
+  title: "Arknights VNS | Not Found",
 };
 
 export default function NotFound() {
-    return (
-        <>
-            <NavigationBar />
-            <main className="flex min-h-screen flex-col items-center justify-center gap-4 text-center">
-                <Image alt="Amiya" src={Amiya} width={240} />
-                <span className="font-bold text-4xl">
-                    Hông có gì ở đây hết...
-                </span>
-                <div>
-                    <Link className="font-extrabold underline" href="/">
-                        Bấm vào đây
-                    </Link>{" "}
-                    để quay về trang chính,{" "}
-                    <span className="text-neutral-400 italic">
-                        hoặc là bạn nên ở lại thêm tí nữa?
-                    </span>
-                </div>
-            </main>
-            <FatFooter />
-        </>
-    );
+  return (
+    <div className="flex h-screen w-screen items-center justify-center">
+      <div>
+        <WeAreCooking />
+      </div>
+    </div>
+  );
 }

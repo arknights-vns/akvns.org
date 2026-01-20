@@ -52,8 +52,23 @@ node_modules/
 # Storage
 volumes/
 
+# Build output
+.output
+.tanstack
+dist
+
 # Seed file
 src/db/seed.ts
 
 # Template content file
 content/**/*
+
+# IDE
+.idea
+.vscode
+
+# Fumadocs
+.source
+
+# Sentry Config File
+.env.sentry-build-plugin

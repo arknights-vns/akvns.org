@@ -1,5 +1,7 @@
 # syntax=docker/dockerfile:1
 
+# Sauce: https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
+
 FROM node:22-alpine AS base
 
 FROM base AS deps
@@ -23,14 +25,12 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
     NODE_ENV=production \
     HOSTNAME="0.0.0.0"
 
-RUN groupadd --system --gid 1001 nodejs && \
-    useradd --system --uid 1001 --no-log-init -g nodejs nextjs
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
-# already routed from the Compose
-# COPY --from=builder /app/public ./public
-
+COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-USER nextjs
 
+USER nextjs
 CMD ["node", "server.js"]

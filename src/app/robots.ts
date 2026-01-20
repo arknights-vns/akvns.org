@@ -1,15 +1,16 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl =
-    process.env.NEXT_PUBLIC_PRODUCTION_URL || "http://localhost:3000";
+import { clientEnv } from "@/env/client";
+
+const PAGE_URL =
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : clientEnv.NEXT_PUBLIC_PRODUCTION_URL;
 
 export default function robots(): MetadataRoute.Robots {
-    return {
-        rules: {
-            userAgent: "*",
-            allow: "/",
-            disallow: "/manage/",
-        },
-        sitemap: `${baseUrl}/sitemap.xml`,
-    };
+  return {
+    rules: {
+      userAgent: "*",
+      allow: "/",
+    },
+    sitemap: `${PAGE_URL}/sitemap.xml`,
+  };
 }

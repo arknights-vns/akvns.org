@@ -1,83 +1,55 @@
 import type { Metadata, Viewport } from "next";
-import FavIconLight from "@public/favicon.ico";
-import FavIconDark from "@public/favicon-dark.ico";
-import {
-    Quicksand as VNS_Font,
-    JetBrains_Mono as VNS_Font_Mono,
-} from "next/font/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 
 import Providers from "@/components/Providers";
-
+import { clientEnv } from "@/env/client";
 import "./globals.css";
 
-const font = VNS_Font({
-    subsets: ["latin", "vietnamese"],
-    variable: "--font-vns",
+const fontSans = VNS_Font({
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-vns",
 });
-
-const production_url =
-    process.env.NEXT_PUBLIC_PRODUCTION_URL || "http://localhost:3000";
-
-export const metadata: Metadata = {
-    authors: [
-        {
-            name: "Trạm dừng chân chốn Terra",
-            url: "https://facebook.com/terrastationvn",
-        },
-        {
-            name: "Dreamchasers - IT Team",
-            url: "https://github.com/arknights-vns",
-        },
-    ],
-    description: "For the Doctors, by the Doctors.",
-    icons: {
-        icon: [
-            {
-                href: FavIconLight.src,
-                media: "(prefers-color-scheme: light)",
-                url: FavIconLight.src,
-            },
-            {
-                href: FavIconDark.src,
-                media: "(prefers-color-scheme: dark)",
-                url: FavIconDark.src,
-            },
-        ],
-    },
-    metadataBase: new URL(production_url),
-    openGraph: {
-        countryName: "Vietnam",
-        description: "For the Doctors, by the Doctors.",
-        locale: "vi-VN",
-        siteName: "Arknights Vietnam Station",
-        title: "Arknights Vietnam Station",
-    },
-    title: "Arknights Vietnam Station",
-};
 
 const fontMono = VNS_Font_Mono({
-    subsets: ["latin", "vietnamese"],
-    variable: "--font-vns-mono",
+  subsets: ["latin", "vietnamese"],
+  variable: "--font-vns-mono",
 });
 
-export const viewport: Viewport = {
-    colorScheme: "light dark",
-    initialScale: 1,
-    themeColor: "#fe0606",
+const PAGE_TITLE = "Arknights Vietnam Station";
+const PAGE_DESC = "For the Dreamchasers, by the Dreamchasers.";
+
+const PAGE_URL =
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : clientEnv.NEXT_PUBLIC_PRODUCTION_URL;
+
+export const metadata: Metadata = {
+  metadataBase: new URL(PAGE_URL),
+  title: PAGE_TITLE,
+  description: PAGE_DESC,
+  openGraph: {
+    url: new URL(PAGE_URL),
+    title: PAGE_TITLE,
+    description: PAGE_DESC,
+  },
+  keywords: "arknights,arknights vietnam station,terrastationvn,arknights endfield,endministrator",
 };
 
-export default function RootLayout(properties: LayoutProps<"/">) {
-    return (
-        <html
-            lang="vi"
-            suppressHydrationWarning={true}
-            data-scroll-behavior="smooth"
-        >
-            <body
-                className={`${font.variable} ${fontMono.variable} font-sans antialiased`}
-            >
-                <Providers>{properties.children}</Providers>
-            </body>
-        </html>
-    );
+export const viewport: Viewport = {
+  colorScheme: "dark",
+  initialScale: 1,
+  themeColor: "#fe0606",
+};
+
+function RootLayout(props: LayoutProps<"/">) {
+  return (
+    <html data-scroll-behavior="smooth" lang="vi" suppressHydrationWarning={true}>
+      <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
+        <Providers>{props.children}</Providers>
+        <GoogleAnalytics gaId="G-Y625KEE6HT" />
+        <GoogleTagManager gtmId="GTM-PT7MFG5F" />
+      </body>
+    </html>
+  );
 }
+
+export default RootLayout;
