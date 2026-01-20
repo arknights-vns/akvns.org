@@ -1,6 +1,5 @@
+import { docs as VnsWorkspace } from "collections/vns-blog/server";
 import { loader, multiple } from "fumadocs-core/source";
-
-import { docs as VnsWorkspace } from "fumadocs-mdx:collections/vns-blog/server";
 
 export const source = loader(
   multiple({

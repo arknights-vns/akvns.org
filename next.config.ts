@@ -1,9 +1,9 @@
 import { withSentryConfig } from "@sentry/nextjs";
+import { createMDX } from "fumadocs-mdx/next";
 import type { NextConfig } from "next";
 
 import "@/env/client";
 import "@/env/server";
-import { createMDX } from "fumadocs-mdx/next";
 
 const isDev = process.env.NODE_ENV === "development";
 const tusWives = [
@@ -33,8 +33,7 @@ const tusWives = [
 ];
 
 const nextConfig: NextConfig = {
-  // fumanama broke?
-  // output: "standalone",
+  output: "standalone",
   reactStrictMode: true,
   reactCompiler: true,
   typedRoutes: true,

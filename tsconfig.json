@@ -22,7 +22,7 @@
       "@/*": ["./src/*"],
       "@public/*": ["./public/*"],
       "@resources/*": ["./resources/*"],
-      "fumadocs-mdx:collections/*": ["./.source/*"]
+      "collections/*": ["./.source/*"]
     }
   },
   "include": [

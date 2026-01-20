@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import "./globals.css";
-
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 
 import Providers from "@/components/Providers";
 import { clientEnv } from "@/env/client";
+import "./globals.css";
 
 const fontSans = VNS_Font({
   subsets: ["latin", "vietnamese"],
@@ -45,6 +45,8 @@ function RootLayout(props: LayoutProps<"/">) {
     <html data-scroll-behavior="smooth" lang="vi" suppressHydrationWarning={true}>
       <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
         <Providers>{props.children}</Providers>
+        <GoogleAnalytics gaId="G-Y625KEE6HT" />
+        <GoogleTagManager gtmId="GTM-PT7MFG5F" />
       </body>
     </html>
   );
