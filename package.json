@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.958.0",
-    "@base-ui/react": "^1.0.0",
+    "@base-ui/react": "1.0.0",
     "@databuddy/cache": "^0.0.120",
     "@elysiajs/eden": "^1.4.6",
     "@elysiajs/node": "^1.4.3",

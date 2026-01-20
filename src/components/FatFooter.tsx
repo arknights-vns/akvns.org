@@ -53,7 +53,7 @@ const navigations: {
  */
 export default function FatFooter() {
   return (
-    <footer className="flex flex-col justify-between border border-primary/25" id="footer">
+    <footer className="flex flex-col justify-between border-primary/25 border-t" id="footer">
       <div className="md:place-items-center-safe flex flex-col-reverse justify-evenly gap-x-6 md:flex-row">
         {/* Logo */}
         <div className="mt-8 flex w-full flex-col place-items-center justify-evenly gap-4 md:w-fit [&_img]:dark:invert">
