@@ -24,14 +24,14 @@ and... everything is AGPLv3-licensed, so some of you guys will be pissed a lot, 
 
 Probably taking some time looking at the source code would give you the answer, but here is the short list:
 
-| Name             | Usage                                                                            |
-|------------------|----------------------------------------------------------------------------------|
-| TanStack Start   | Full-stack development, obviously.                                               |
-| shadcn/ui        | User Interface                                                                   |
-| Drizzle          | ORM Layer                                                                        |
-| Postgres         | Database. Yes, just the vanilla version.                                         |
-| Biome            | Code linter                                                                      |
-| Docker           | "It worked on my machine!" sort of stuffs. (not frequently tested)               |
+| Name      | Usage                                                              |
+|-----------|--------------------------------------------------------------------|
+| Next.js   | Full-stack development, obviously.                                 |
+| shadcn/ui | User Interface                                                     |
+| Drizzle   | ORM Layer                                                          |
+| Postgres  | Database. Yes, just the vanilla version.                           |
+| Biome     | Code linter                                                        |
+| Docker    | "It worked on my machine!" sort of stuffs. (not frequently tested) |
 
 ## What about contributions?
 
