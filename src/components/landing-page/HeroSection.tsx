@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 const fontCaveat = Caveat({
   weight: "400",
+  subsets: ["latin"],
 });
 
 export default function HeroSection() {
