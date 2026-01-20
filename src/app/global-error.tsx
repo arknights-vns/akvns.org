@@ -1,7 +1,7 @@
 "use client";
 
 import We_Are_Sorry from "@resources/image/we-are-sorry.jpg";
-import * as Sentry from "@sentry/nextjs";
+import { captureException } from "@sentry/nextjs";
 import Image from "next/image";
 import { useEffect } from "react";
 
@@ -16,7 +16,7 @@ export default function SiteError({
   reset: () => void;
 }) {
   useEffect(() => {
-    Sentry.captureException(error);
+    captureException(error);
   }, [error]);
 
   return (
@@ -32,7 +32,7 @@ export default function SiteError({
           thời gian sớm nhất!
         </FavorText>
         <div className="text-center text-sm italic">
-          (*) Trừ khi bạn bật Adblocker và/hoặc chặn <span className="font-mono">https://*.sentry.io</span>
+          (*) Trừ khi bạn chặn <span className="font-mono">https://*.sentry.io</span>
         </div>
         <Button onClick={() => reset()}>Thử lại?</Button>
       </div>
