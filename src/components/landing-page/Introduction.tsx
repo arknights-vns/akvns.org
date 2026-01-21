@@ -14,18 +14,18 @@ export default function Introduction() {
       <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
         <div className="text-lg">
           <Paragraph className="text-justify">
-            Được thành lập vào năm <span className="font-bold text-primary">2022</span>, Arknights Vietnam
-            Station (gọi tắt là <span className="font-bold text-primary">Arknights VNS</span>) là một nhóm
-            hoạt động phi lợi nhuận được tạo ra với sứ mệnh gắn kết cộng đồng người chơi Arknights toàn Việt
-            Nam.
+            Được thành lập vào năm <span className="font-bold text-primary">26/01/2022</span>, Arknights
+            Vietnam Station (gọi tắt là <span className="font-bold text-primary">Arknights VNS</span>) hoạt
+            động với tư cách là một tổ chức cộng đồng phi lợi nhuận, mang sứ mệnh kết nối và phát triển cộng
+            đồng người chơi Arknights tại Việt Nam.
           </Paragraph>
           <Paragraph className="text-justify">
-            Tính đến tháng 12/2025, Arknights VNS đã có cho mình{" "}
+            Trải qua hơn 4 năm phát triển, tính đến tháng 12/2025, Arknights VNS đã có cho mình{" "}
             <Link
               className="font-bold text-primary hover:underline"
               href="https://www.facebook.com/terrastationvn"
             >
-              ~9.300 lượt theo dõi fanpage
+              ~9.500 lượt theo dõi fanpage
             </Link>{" "}
             và{" "}
             <Link
@@ -37,8 +37,10 @@ export default function Introduction() {
             , khẳng định vị trí của Arknights VNS trên bản đồ cộng đồng Arknights Việt Nam và quốc tế.
           </Paragraph>
           <Paragraph className="text-justify">
-            Thông qua website này, tụi mình hy vọng bạn sẽ có đầy đủ thông tin về tầm nhìn, các đối tác, và
-            cũng như những hoạt động đã và đang diễn ra của Arknights VNS.
+            Thông qua website này, Arknights VNS hy vọng các bạn có thể khám phá những dự án tâm huyết và
+            những giá trị mà chúng mình đang nỗ lực xây dựng mỗi ngày, nhằm cung cấp cái nhìn toàn diện nhất
+            về tầm nhìn, mạng lưới đối tác, cũng như những thành tựu và chuỗi hoạt động sôi nổi mà chúng mình
+            đã và đang thực hiện.
           </Paragraph>
           <Paragraph className="text-justify font-light italic">From Team Dreamchasers with love!</Paragraph>
         </div>

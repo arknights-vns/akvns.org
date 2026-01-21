@@ -1,8 +1,9 @@
+import VNS_Donate_Example from "@public/VNS_Donate_Example.jpg";
+import Image from "next/image";
 import Link from "next/link";
-
 import ContentArea from "@/components/ContentArea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Heading } from "@/components/ui/extension/typography";
+import { Heading, Paragraph } from "@/components/ui/extension/typography";
 
 export default function QuestionsForUs() {
   return (
@@ -13,86 +14,150 @@ export default function QuestionsForUs() {
       <Accordion multiple={true}>
         <AccordionItem>
           <AccordionTrigger>
-            <Heading kind="h4">Website này không gắn quảng cáo thật à?</Heading>
+            <Heading kind="h4">Arknights Vietnam Station là gì?</Heading>
           </AccordionTrigger>
-          <AccordionContent className="space-y-2 text-muted-foreground md:text-lg">
-            <ul className="list-inside list-disc leading-relaxed">
-              <li>Đúng, thật sự là không có quảng cáo nhé. Và cũng không hề check Adblocker gì luôn.</li>
-              <li>
-                Vấn đề gắn quảng cáo là một vấn đề đã âm ỉ rất rất lâu trong suốt quá trình phát triển cái
-                website, từ việc Tú (Shou Huỳnh, Product Owner) muốn có một phần thu nhập để trang trải các
-                chi phí liên quan, tiêu biểu là host cái website này.
-              </li>
-              <li>
-                Và khi bắt tay vào làm cái web, thì mình lại muốn đặt trải nghiệm người dùng (UX) lên hàng
-                đầu. Quảng cáo đi ngược lại với điều đó, và mọi người biết kết quả rồi nhỉ :D
-              </li>
-            </ul>
+          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+            <Paragraph>
+              Arknights Vietnam Station [Arknights VNS] là cộng đồng dành cho người chơi tựa game Arknights và
+              các sản phẩm liên quan (IP) thuộc công ty Hypergryph. Mọi hoạt động của nhóm đều dựa trên tinh
+              thần phi lợi nhuận và vì sự phát triển bền vững của cộng đồng Arknights tại Việt Nam.
+            </Paragraph>
           </AccordionContent>
         </AccordionItem>
+
         <AccordionItem>
           <AccordionTrigger>
-            <Heading kind="h4">Nhưng nếu vậy thì nguồn thu của team đến từ đâu?</Heading>
+            <Heading kind="h4">Mối quan hệ giữa chúng tôi với Hypergryph & Yostar là gì?</Heading>
           </AccordionTrigger>
-          <AccordionContent className="space-y-2 text-muted-foreground md:text-lg">
-            <div>Tính đến hiện tại, tụi mình có 04 nguồn thu nhập chính</div>
+          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+            <Paragraph>
+              Chúng tôi là một cộng đồng người chơi hoạt động độc lập. Chúng tôi không có bất kỳ mối quan hệ
+              pháp lý ràng buộc hay trực thuộc nào đối với Hypergryph (Nhà phát triển) và Yostar (Nhà phát
+              hành)
+              <Link className="no-underline!" href="https://www.youtube.com/watch?v=ECZVU4x6Xq0&t=97s">
+                .
+              </Link>
+            </Paragraph>
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem>
+          <AccordionTrigger>
+            <Heading kind="h4">Website có gắn quảng cáo không?</Heading>
+          </AccordionTrigger>
+          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+            <Paragraph>
+              Không. Website này hoàn toàn không gắn quảng cáo và cũng không cài đặt bất kỳ mã theo dõi chặn
+              quảng cáo (block AdBlocker) nào.
+            </Paragraph>
+            <Paragraph>
+              Thực lòng mà nói, đây là một sự đấu tranh tư tưởng rất dài của đội ngũ phát triển, đặc biệt là
+              Shou Huỳnh (Product Owner). Dù việc có thêm thu nhập để chi trả phí duy trì Server/Hosting là
+              rất hấp dẫn, nhưng sau cùng, chúng tôi quyết định đặt Trải nghiệm người dùng (UX) lên hàng đầu.
+              Quảng cáo thường đi ngược lại với sự mượt mà đó, và chúng tôi chọn sự thoải mái của các bạn thay
+              vì doanh thu.
+            </Paragraph>
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem>
+          <AccordionTrigger>
+            <Heading kind="h4">Không có quảng cáo, vậy nguồn thu đến từ đâu để duy trì?</Heading>
+          </AccordionTrigger>
+          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <ul className="list-inside list-disc leading-relaxed">
               <li>
-                <span className="font-bold">Cái nút "Donate" ở góc phải phía trên</span> - phần tiền này sẽ
-                vào Quỹ chung cho các sự kiện như Offline, Mini-Fest, kiểu thế.
+                <span className="font-bold text-primary">Cái nút "Donate" ở góc phải phía trên</span> - Toàn
+                bộ số tiền này sẽ được chuyển thẳng vào Quỹ chung để tổ chức các sự kiện lớn như
+                Mini-Festival.
               </li>
               <li>
-                Ở phần comment mỗi bài đăng Truyện trên Fanpage,{" "}
-                <Link href="https://www.facebook.com/terrastationvn/posts/pfbid02J1ySbi8RawCkF34cotWNsoQkmj7PbDyE6MLxyKXyPELpq36PNXvDk56TZ1zozb4wl?comment_id=1232462605272258">
-                  ví dụ như cái này đi
-                </Link>
-                , thì sẽ vào Quỹ cho team dịch.
+                <span className="font-bold text-primary">Donate qua Fanpage</span> - Các khoản ủng hộ tại phần
+                bình luận (comment) của các bài đăng truyện tranh sẽ được chuyển vào Quỹ Team Dịch, sẽ dùng
+                cho các việc như mua raw để dịch.
+                <figure className="my-4 flex flex-col items-center justify-center">
+                  <Image
+                    alt="VNS_Donate_Example"
+                    className="object-center"
+                    src={VNS_Donate_Example}
+                    width={480}
+                  />
+                  <figcaption className="text-muted-foreground">Nó sẽ giống giống thế này.</figcaption>
+                </figure>
               </li>
-              <li>Tiền mua vé Offline, quà các kiểu (áo, keychain, ...) từ người tham dự :D</li>
-              <li>Đi làm {'<(")'}.</li>
+              <li>
+                <span className="font-bold">"Lấy lương nuôi đam mê"</span> - Nguồn tài trợ lớn nhất chính là
+                từ... tiền túi và công việc chính (day job) của các thành viên trong Ban quản trị. {'<(")'}.
+              </li>
             </ul>
           </AccordionContent>
         </AccordionItem>
+
         <AccordionItem>
           <AccordionTrigger>
             <Heading kind="h4">Arknights VNS có đang tuyển thành viên không?</Heading>
           </AccordionTrigger>
-          <AccordionContent className="space-y-2 text-muted-foreground md:text-lg">
-            <div>
-              Tùy vào nội bộ của Arknights VNS mà tụi mình sẽ chia ra tuyển thành viên theo đợt, bạn có thể
-              theo dõi{" "}
-              <Link className="font-bold text-[#1877f2]" href="https://www.facebook.com/terrastationvn">
-                Fanpage 'Trạm dừng chân chốn Terra'
-              </Link>{" "}
-              để nắm bắt thông tin sớm nhất.
-            </div>
-            <div>
-              Hoặc là, nếu tụi mình thấy bạn là một nhân tố tiềm năng của team, tụi mình sẽ liên lạc với bạn
-              để trao đổi về việc <span className="font-bold">"tuyển thẳng"</span> luôn, cho nên đừng ngần
-              ngại phô diễn tài năng, cheers!
-            </div>
+          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+            <Paragraph>Có 02 cách để bạn gia nhập đội ngũ của chúng tôi:</Paragraph>
+            <ul className="list-inside list-disc">
+              <li>
+                <span className="font-bold text-primary">Tuyển theo đợt</span>: Chúng tôi sẽ mở đơn tuyển dụng
+                công khai tùy theo nhu cầu nhân sự. Hãy theo dõi Fanpage{" "}
+                <Link className="font-bold text-[#1877f2]" href="https://www.facebook.com/terrastationvn">
+                  'Trạm dừng chân chốn Terra'
+                </Link>{" "}
+                để không bỏ lỡ bất kỳ thông báo nào nhé.
+              </li>
+              <li>
+                <span className="font-bold text-primary">Headhunting</span>: Nếu chúng tôi nhận thấy bạn là
+                một nhân tố tài năng và phù hợp qua các hoạt động sôi nổi của bạn trong nhóm, Staff sẽ chủ
+                động liên hệ để mời bạn gia nhập!
+              </li>
+            </ul>
             <div>Hẹn gặp bạn trong Arknights VNS!</div>
           </AccordionContent>
         </AccordionItem>
+
         <AccordionItem>
           <AccordionTrigger>
-            <Heading kind="h4">Mình cần làm gì nếu muốn hợp tác với Arknights VNS?</Heading>
+            <Heading kind="h4">
+              Nhóm có quy định như thế nào về việc thảo luận nội dung chưa ra mắt (Spoiler) từ máy chủ CN?
+            </Heading>
           </AccordionTrigger>
-          <AccordionContent className="space-y-2 text-muted-foreground md:text-lg">
-            <div>Tùy vào nhu cầu của các bạn thì sẽ có vài option sau:</div>
+          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+            <Paragraph>
+              Do đặc thù chênh lệch thời gian giữa máy chủ CN và Global/EN, chúng tôi áp dụng quy định chặt
+              chẽ về việc kiểm soát nội dung "Leak & Spoiler". Điều này nhằm đảm bảo sự tôn trọng tối đa đối
+              với trải nghiệm khám phá cốt truyện của người chơi Global.
+            </Paragraph>
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem>
+          <AccordionTrigger>
+            <Heading kind="h4">Arknights VNS có mở rộng cơ hội hợp tác phát triển không?</Heading>
+          </AccordionTrigger>
+          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+            <Paragraph>
+              Có, chúng tôi luôn tìm kiếm các cơ hội hợp tác phù hợp với giá trị và mục tiêu của cộng đồng.
+              Nếu bạn có bất kỳ dự án thú vị hoặc ý tưởng sự kiện nào có thể mang lại lợi ích cho cộng đồng
+              người hâm mộ Arknights tại Việt Nam, đừng ngần ngại liên hệ với chúng tôi qua
+            </Paragraph>
             <ul className="list-inside list-disc leading-relaxed">
               <li>
-                Bạn có thể liên hệ qua{" "}
+                Fanpage{" "}
                 <Link className="font-bold text-[#1877f2]" href="https://www.facebook.com/terrastationvn">
-                  Fanpage 'Trạm dừng chân chốn Terra'
-                </Link>{" "}
-                hoặc{" "}
-                <Link className="font-bold text-[#1877f2]" href="https://www.facebook.com/shou.huynhf">
-                  Facebook của Head Admin.
+                  'Trạm dừng chân chốn Terra'
                 </Link>
               </li>
               <li>
-                Bạn có thể liên hệ qua email{" "}
+                <Link className="font-bold text-[#1877f2]" href="https://www.facebook.com/shou.huynhf">
+                  Facebook cá nhân
+                </Link>{" "}
+                của Head Admin.
+              </li>
+              <li>
+                Email{" "}
                 <Link className="font-bold text-primary" href="mailto:arknightsvns@gmail.com">
                   arknightsvns@gmail.com
                 </Link>

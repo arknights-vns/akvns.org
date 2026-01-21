@@ -16,7 +16,7 @@ export default function MemberCard(props: MemberProps) {
       <CardHeader className="mt-8 flex w-full flex-col items-center justify-center space-y-4 pb-2">
         <Image
           alt={`${props.name}-${props.role}`}
-          className="absolute aspect-square size-24 -translate-y-20 rounded-full border border-primary/50 bg-card"
+          className="absolute aspect-square size-24 -translate-y-20 rounded-full border border-primary/50 bg-card object-cover object-center"
           height={96}
           src={props.avatar !== "" ? props.avatar : "/#"}
           width={96}
