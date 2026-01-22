@@ -1,6 +1,7 @@
-import type { Metadata, Viewport } from "next";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import type { Metadata, Viewport } from "next";
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import Providers from "@/components/Providers";
 import { clientEnv } from "@/env/client";
@@ -44,9 +45,11 @@ function RootLayout(props: LayoutProps<"/">) {
   return (
     <html data-scroll-behavior="smooth" lang="vi" suppressHydrationWarning={true}>
       <body className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}>
-        <Providers>{props.children}</Providers>
-        <GoogleAnalytics gaId="G-Y625KEE6HT" />
-        <GoogleTagManager gtmId="GTM-PT7MFG5F" />
+        <NuqsAdapter>
+          <Providers>{props.children}</Providers>
+          <GoogleAnalytics gaId="G-Y625KEE6HT" />
+          <GoogleTagManager gtmId="GTM-PT7MFG5F" />
+        </NuqsAdapter>
       </body>
     </html>
   );

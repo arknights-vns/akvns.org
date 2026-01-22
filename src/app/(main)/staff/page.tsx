@@ -2,13 +2,26 @@
 
 import crewList from "@resources/data/crew.json";
 import { motion } from "motion/react";
-
+import { useQueryState } from "nuqs";
 import ContentArea from "@/components/ContentArea";
 import MemberCard from "@/components/MemberCard";
 import { FavorText, Heading } from "@/components/ui/extension/typography";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+const entries = {
+  "facebook-mod": "Facebook Moderator",
+  "discord-mod": "Discord Moderator",
+  dreamchasers: "Dreamchasers",
+  translation: "Translation Team",
+};
+
+// https://www.charpeni.com/blog/properly-type-object-keys-and-object-entries
+type Keys = (keyof typeof entries)[] & {};
+const typedKeys = Object.keys(entries) as Keys;
+
 export default function StaffPage() {
+  const [tab, setTab] = useQueryState("tab", { defaultValue: "facebook-mod" });
+
   return (
     <ContentArea className="justify-self-center-safe place-items-center-safe" id="#all-staffs">
       <Heading className="text-center text-primary" kind="h1">
@@ -17,14 +30,15 @@ export default function StaffPage() {
       <FavorText className="text-center text-muted-foreground">
         Toàn bộ nhân sự đang hoạt động tại Arknights VNS
       </FavorText>
-      <Tabs className="w-full gap-y-8" defaultValue="leader">
+      <Tabs className="w-full gap-y-8" onValueChange={(value) => setTab(value)} value={tab}>
         <TabsList className="tab-button mb-12 grid h-auto grid-cols-2 gap-3 self-center bg-transparent md:grid-cols-4">
-          <TabsTrigger value="facebook-mod">Facebook Moderator</TabsTrigger>
-          <TabsTrigger value="discord-mod">Discord Moderator</TabsTrigger>
-          <TabsTrigger value="dreamchasers">Dreamchasers</TabsTrigger>
-          <TabsTrigger value="translation">Translation Team</TabsTrigger>
+          {typedKeys.map((group) => (
+            <TabsTrigger key={group} value={group}>
+              {entries[group]}
+            </TabsTrigger>
+          ))}
         </TabsList>
-        {(["facebook-mod", "discord-mod", "dreamchasers", "translation"] as const).map((group) => {
+        {typedKeys.map((group) => {
           const members = crewList.filter((entry) => entry.categories.includes(group));
 
           return (
