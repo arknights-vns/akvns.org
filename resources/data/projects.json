@@ -1,8 +1,8 @@
 {
-  "fan-project": [
+  "community": [
     {
       "name": "Cosplay Gathering #2",
-      "banner": "cosplay-gathering-2.jpg",
+      "banner": "https://cdn.akvns.org/events/cosplay-gathering-2.jpg",
       "date": "2024-11-03",
       "content": "",
       "post": null
@@ -10,74 +10,74 @@
     {
       "name": "Cosplay Gathering #3",
       "date": "2025-07-20",
-      "banner": "cosplay-gathering-3.jpg",
+      "banner": "https://cdn.akvns.org/events/cosplay-gathering-3.jpg",
       "content": "",
       "post": null
     },
     {
       "name": "Cosplay Gathering #4",
       "date": "2025-12-14",
-      "banner": "cosplay-gathering-4.jpg",
+      "banner": "https://cdn.akvns.org/events/cosplay-gathering-4.jpg",
       "content": "",
       "post": null
     }
   ],
-  "event": [
+  "akvns": [
     {
       "name": "Arknights: Operation Pyrite",
+      "banner": "https://cdn.akvns.org/events/operation-pyrite.jpg",
       "date": "2022-11-27",
       "content": "Bài hát là một dự án fanmade bởi Over Heaven, dưới sự hợp tác với Arknights VNS & Kazdel Team, nhằm đưa đến các Doctor quốc tế nói chung và Việt Nam nói riêng một trải nghiệm “mới mẻ” hơn về bài hát, đồng thời cũng là một lời tri ân đến bài hát huyền thoại một thời trong cả cộng đồng Arknights.",
-      "post": "https://www.youtube.com/watch?v=LHUnS_HqJRU",
-      "banner": "operation-pyrite.jpg"
+      "post": "https://www.youtube.com/watch?v=LHUnS_HqJRU"
     },
     {
       "name": "Arknights: Merciful Broken Sun",
       "date": "2024-12-01",
-      "banner": "overheaven-merciless-broken-sun.jpg",
+      "banner": "https://cdn.akvns.org/events/overheaven-merciless-broken-sun.jpg",
       "content": "Đây là một bản remix của Over Heaven cho bài hát Merciful Broken Sun,, dưới sự hợp tác với Arknights VNS, nhằm tham dự sự kiện “Timeless Echoes Video Creation Event” của Yostar, và cuối cùng là xuất sắc đạt được giải nhì trong cả sự kiện.",
       "post": "https://www.facebook.com/groups/arknights.vietnam.station/posts/2276500029409581"
     },
     {
       "name": "VNS Offline 2024 - The show must go on",
       "date": "2024-01-14",
-      "banner": "vns-offline-2024.jpg",
+      "banner": "https://cdn.akvns.org/events/vns-offline-2024.jpg",
       "content": "",
       "post": "https://www.facebook.com/groups/arknights.vietnam.station/posts/2035816776811242"
     },
     {
       "name": "VNS Offline 2025 - Dreamchasers",
       "date": "2025-08-10",
-      "banner": "vns-offline-2025.jpg",
+      "banner": "https://cdn.akvns.org/events/vns-offline-2025.jpg",
       "content": "",
       "post": "https://www.facebook.com/groups/arknights.vietnam.station/posts/2489873254738923"
     }
   ],
-  "cross": [
+  "crossover": [
     {
       "name": "Arknights VNS x Zeklewa",
       "date": "2023-04-27",
-      "banner": "zeklewa-collab.jpg",
+      "banner": "https://cdn.akvns.org/events/zeklewa-collab.jpg",
       "content": "Anh đã vào nhóm Facebook của chúng ta để thực hiện 2 phần Q&A, 1 dưới hình thức livestream trên nhóm và 1 dưới dạng phỏng vấn độc quyền bởi team Staff của Arknights VNS. Ngoài ra, anh cũng đã chủ động ủng hộ quà của mình cho Arknights VNS Offline 2024: The Show Must Go On!.",
       "post": "https://www.facebook.com/groups/arknights.vietnam.station/posts/1876122536114001"
     },
     {
       "name": "maimai Student Open Cup",
       "date": "2024-12-08",
-      "banner": "msoc.jpg",
+      "banner": "https://cdn.akvns.org/events/msoc.jpg",
       "content": "",
       "post": "https://www.facebook.com/permalink.php?story_fbid=pfbid02tynZeNmVsYcy7Urne2VqydVBEfdk42gNH1i56QVVNeAxBpa44KixYRWDqP6if5sql&id=61560498161631"
     },
     {
       "name": "UMYT Project: Sonorous",
       "date": "2023-12-25",
-      "banner": "umyt-collab.jpg",
+      "banner": "https://cdn.akvns.org/events/umyt-collab.jpg",
       "content": "",
       "post": "https://www.facebook.com/umytproject/posts/pfbid036ajpVDSkV7WekofWM79RyTJGqSdtNvf3hBHky69bo81itPdFHVA27CCdgci8VLCMl"
     },
     {
       "name": "Nutbreakers",
       "date": "2025-09-21",
-      "banner": "nutbreakers.jpg",
+      "banner": "https://cdn.akvns.org/events/nutbreakers.jpg",
       "content": "",
       "post": "https://www.facebook.com/groups/arknights.vietnam.station/posts/2538334966559418"
     }
