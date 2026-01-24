@@ -31,7 +31,7 @@
     ],
     "roles": {
       "founder": "Founder",
-      "facebook-mod": "Founder",
+      "facebook-mod": "Lead Administrator",
       "discord-mod": "Head Administrator",
       "dreamchasers": "Event Director",
       "translation": "Leader"
@@ -45,7 +45,7 @@
       "founder"
     ],
     "roles": {
-      "facebook-mod": "Administrator",
+      "facebook-mod": "Senior Administrator",
       "founder": "Founder"
     }
   },
