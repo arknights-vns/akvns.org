@@ -1,10 +1,9 @@
+import { clientEnv } from "@arknights-vns/env-var/client";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata, Viewport } from "next";
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-
 import Providers from "@/components/Providers";
-import { clientEnv } from "@/env/client";
 import "@arknights-vns/ui/globals.css";
 
 const fontSans = VNS_Font({

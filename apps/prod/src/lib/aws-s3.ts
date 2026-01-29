@@ -1,6 +1,5 @@
+import { serverEnv } from "@arknights-vns/env-var/server";
 import { S3Client } from "@aws-sdk/client-s3";
-
-import { serverEnv } from "@/env/server";
 
 const s3Client = new S3Client({
   region: serverEnv.S3_AWS_REGION,

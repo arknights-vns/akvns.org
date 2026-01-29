@@ -1,6 +1,6 @@
+import { clientEnv } from "@arknights-vns/env-var/client";
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { clientEnv } from "@/env/client";
 
 export const metadata: Metadata = {
   title: "Arknights VNS | Dự án",

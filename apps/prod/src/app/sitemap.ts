@@ -1,7 +1,6 @@
+import { clientEnv } from "@arknights-vns/env-var/client";
 import type { MetadataRoute } from "next";
-
 import { comicSeries } from "@/db/schema/vns-schema";
-import { clientEnv } from "@/env/client";
 import { drizzleDb } from "@/lib/drizzle";
 
 const PAGE_URL =

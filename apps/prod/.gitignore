@@ -31,6 +31,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
+.env*
 .env.production
 !.env.example
 
@@ -58,7 +59,7 @@ volumes/
 dist
 
 # Seed file
-src/db/seed.ts
+../../packages/database/scripts/seed.ts
 
 # Template content file
 content/**/*

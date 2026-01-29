@@ -1,8 +1,8 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
-import "@/env/client";
-import "@/env/server";
+import "@arknights-vns/env-var/client";
+import "@arknights-vns/env-var/server";
 
 const isDev = process.env.NODE_ENV === "development";
 const tusWives = [
@@ -43,7 +43,7 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["@icons-pack/react-simple-icons"],
   },
   poweredByHeader: false,
-  transpilePackages: ["@t3-oss/env-nextjs", "@t3-oss/env-core", "@arknights-vns/ui"],
+  transpilePackages: ["@arknights-vns/ui", "@arknights-vns/env-var"],
   images: {
     remotePatterns: [new URL("https://cdn.akvns.org/**"), new URL("https://comic-assets.akvns.org/**")],
   },

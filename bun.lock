@@ -16,6 +16,8 @@
       "name": "akvns.org",
       "version": "0.1.0",
       "dependencies": {
+        "@arknights-vns/env-var": "workspace:*",
+        "@arknights-vns/ui": "workspace:*",
         "@aws-sdk/client-s3": "^3.958.0",
         "@databuddy/cache": "^0.0.120",
         "@elysiajs/eden": "^1.4.6",
@@ -28,7 +30,6 @@
         "@openfeature/react-sdk": "^1.1.0",
         "@openfeature/server-sdk": "^1.20.1",
         "@sentry/nextjs": "^10.33.0",
-        "@t3-oss/env-nextjs": "^0.13.10",
         "@tanstack/query-core": "^5.90.16",
         "@tanstack/react-query": "^5.90.16",
         "drizzle-orm": "0.45.1",
@@ -55,7 +56,6 @@
       },
       "devDependencies": {
         "@arknights-vns/ts-config": "workspace:*",
-        "@arknights-vns/ui": "workspace:*",
         "@types/node": "^24.10.4",
         "@types/pg": "^8.16.0",
         "@types/react": "19.2.10",
@@ -65,6 +65,18 @@
         "drizzle-kit": "0.31.8",
         "tsx": "^4.21.0",
         "typescript": "^5.9.3",
+      },
+    },
+    "packages/env-var": {
+      "name": "@arknights-vns/env-var",
+      "version": "0.1.0",
+      "dependencies": {
+        "@arknights-vns/ts-config": "workspace:*",
+        "@t3-oss/env-nextjs": "0.13.10",
+        "zod": "^4.1.12",
+      },
+      "devDependencies": {
+        "@types/node": "^24",
       },
     },
     "packages/ts-config": {
@@ -104,6 +116,8 @@
     "@apm-js-collab/code-transformer": ["@apm-js-collab/code-transformer@0.8.2", "", {}, ""],
 
     "@apm-js-collab/tracing-hooks": ["@apm-js-collab/tracing-hooks@0.3.1", "", { "dependencies": { "@apm-js-collab/code-transformer": "^0.8.0", "debug": "^4.4.1", "module-details-from-path": "^1.0.4" } }, ""],
+
+    "@arknights-vns/env-var": ["@arknights-vns/env-var@workspace:packages/env-var"],
 
     "@arknights-vns/ts-config": ["@arknights-vns/ts-config@workspace:packages/ts-config"],
 

@@ -1,7 +1,7 @@
 import "dotenv/config";
 
+import { serverEnv } from "@arknights-vns/env-var/server";
 import { defineConfig } from "drizzle-kit";
-import { serverEnv } from "@/env/server";
 
 export default defineConfig({
   out: "./drizzle",
