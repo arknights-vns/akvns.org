@@ -1,14 +1,14 @@
-# Welcome to Arknights VNS
+# Welcome to Arknights VNS website?
 
 > Yes, it is in English despite the fact that the entire team (at time of writing this) are all Vietnamese.
 
 ## What is this project?
 
-Well, this is the public source code for the website [akvns.org](https://akvns.org).
+Well, this is the public source code for the website [akvns.org](https://akvns.org) and everything under that domain prefix.
 
 ## What is inside?
 
-- The website: duh!
+- The portfolio website: duh!
 - And many more features will be added gradually.
 
 and... everything is AGPLv3-licensed, so some of you guys will be pissed a lot, but it is what it is, welcome to OSS.
@@ -26,7 +26,8 @@ Probably taking some time looking at the source code would give you the answer, 
 
 | Name      | Usage                                                              |
 |-----------|--------------------------------------------------------------------|
-| Next.js   | Full-stack development, obviously.                                 |
+| Turborepo | Monorepo management                                                |
+| Next.js   | Full-stack development.                                            |
 | shadcn/ui | User Interface                                                     |
 | Drizzle   | ORM Layer                                                          |
 | Postgres  | Database. Yes, just the vanilla version.                           |

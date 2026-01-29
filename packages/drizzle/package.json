@@ -1,0 +1,24 @@
+{
+  "name": "@arknights-vns/drizzle",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "db:seed": "bun ./scripts/seed.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:push:wipe": "drizzle-kit push --force"
+  },
+  "dependencies": {
+    "@arknights-vns/ts-config": "workspace:*",
+    "@arknights-vns/env-var": "workspace:*",
+    "@arknights-vns/redis": "workspace:*",
+    "@databuddy/cache": "^0.0.120",
+    "drizzle-orm": "0.45.1"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.7",
+    "drizzle-kit": "0.31.8",
+    "dotenv": "^17.2.3"
+  }
+}

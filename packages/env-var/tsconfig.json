@@ -1,0 +1,5 @@
+{
+  "extends": "@arknights-vns/ts-config/nextjs.json",
+  "include": ["."],
+  "exclude": ["node_modules", "dist"]
+}
