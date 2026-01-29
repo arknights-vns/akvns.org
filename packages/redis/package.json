@@ -1,0 +1,13 @@
+{
+  "name": "@arknights-vns/redis",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@arknights-vns/ts-config": "workspace:*",
+    "@arknights-vns/env-var": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.7"
+  }
+}

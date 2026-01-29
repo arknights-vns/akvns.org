@@ -32,6 +32,8 @@ const tusWives = [
 ];
 
 const nextConfig: NextConfig = {
+  // dear Windows users,
+  // you might need to comment the output: "standalone" line below.
   output: "standalone",
   reactStrictMode: true,
   reactCompiler: true,
@@ -43,7 +45,13 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["@icons-pack/react-simple-icons"],
   },
   poweredByHeader: false,
-  transpilePackages: ["@arknights-vns/ui", "@arknights-vns/env-var"],
+  transpilePackages: [
+    "@arknights-vns/ts-config",
+    "@arknights-vns/ui",
+    "@arknights-vns/env-var",
+    "@arknights-vns/redis",
+    "@arknights-vns/drizzle",
+  ],
   images: {
     remotePatterns: [new URL("https://cdn.akvns.org/**"), new URL("https://comic-assets.akvns.org/**")],
   },

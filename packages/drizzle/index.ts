@@ -1,10 +1,10 @@
 import { serverEnv } from "@arknights-vns/env-var/server";
+import { redisClient } from "@arknights-vns/redis";
 import { RedisDrizzleCache } from "@databuddy/cache";
-import { drizzle } from "drizzle-orm/node-postgres";
-import { Pool } from "pg";
+import { SQL } from "bun";
+import { drizzle } from "drizzle-orm/bun-sql";
 // biome-ignore lint/performance/noNamespaceImport: I have to
-import * as vnsSchema from "@/db/schema/vns-schema";
-import { redisClient } from "@/lib/redis";
+import * as vnsSchema from "./schema/vns-schema";
 
 const cache = new RedisDrizzleCache({
   redis: redisClient,
@@ -13,9 +13,7 @@ const cache = new RedisDrizzleCache({
   strategy: "all",
 });
 
-const client = new Pool({
-  connectionString: serverEnv.DATABASE_URL,
-});
+const client = new SQL(serverEnv.DATABASE_URL);
 
 export const drizzleDb = drizzle({
   client,

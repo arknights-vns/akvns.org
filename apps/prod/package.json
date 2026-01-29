@@ -4,18 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "bun --bun next dev",
     "typegen:next": "next typegen",
-    "build": "next build",
-    "start": "next start"
+    "build": "bun --bun next build",
+    "start": "bun --bun next start"
   },
   "dependencies": {
     "@arknights-vns/env-var": "workspace:*",
     "@arknights-vns/ui": "workspace:*",
-    "@aws-sdk/client-s3": "^3.958.0",
-    "@databuddy/cache": "^0.0.120",
+    "@arknights-vns/drizzle": "workspace:*",
+    "@arknights-vns/redis": "workspace:*",
     "@elysiajs/eden": "^1.4.6",
-    "@elysiajs/node": "^1.4.3",
     "@flags-sdk/openfeature": "^0.1.2",
     "@icons-pack/react-simple-icons": "^13.8.0",
     "@next/third-parties": "^16.1.4",
@@ -27,7 +26,6 @@
     "@tanstack/react-query": "^5.90.16",
     "@tanstack/query-core": "^5.90.16",
     "drizzle-orm": "0.45.1",
-    "drizzle-seed": "0.3.1",
     "drizzle-zod": "^0.8.3",
     "elysia": "^1.4.21",
     "elysia-healthcheck": "^1.0.0",
@@ -35,14 +33,12 @@
     "embla-carousel-auto-scroll": "^8.6.0",
     "flags": "^4.0.2",
     "html-react-parser": "^5.2.10",
-    "ioredis": "^5.8.2",
     "lucide-react": "^0.562.0",
     "motion": "^12.26.2",
     "next": "16.1.6",
     "next-seo": "^7.0.1",
     "next-themes": "^0.4.6",
     "nuqs": "^2.8.6",
-    "pg": "^8.16.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-intersection-observer": "^10.0.2",
@@ -50,14 +46,10 @@
   },
   "devDependencies": {
     "@arknights-vns/ts-config": "workspace:*",
-    "@types/node": "^24.10.4",
-    "@types/pg": "^8.16.0",
+    "@types/bun": "^1.3.7",
     "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
     "babel-plugin-react-compiler": "^1.0.0",
-    "dotenv": "^17.2.3",
-    "drizzle-kit": "0.31.8",
-    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

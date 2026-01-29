@@ -1,12 +1,11 @@
-import { ListObjectsV2Command } from "@aws-sdk/client-s3";
+import { drizzleDb } from "@arknights-vns/drizzle";
+import { comicSeries } from "@arknights-vns/drizzle/schema/vns-schema";
+import { redisClient } from "@arknights-vns/redis";
 import { eq } from "drizzle-orm";
 import { Elysia } from "elysia";
 import { CacheControl, cacheControl } from "elysiajs-cdn-cache";
 import { z } from "zod";
-import { comicSeries } from "@/db/schema/vns-schema";
 import { s3Client } from "@/lib/aws-s3";
-import { drizzleDb } from "@/lib/drizzle";
-import { redisClient } from "@/lib/redis";
 import { ComicImage, ComicSeriesData, CompleteComicData } from "@/schema/comic";
 
 const ITEMS_PER_PAGE = 15;
@@ -102,26 +101,28 @@ export const elysiaComic = new Elysia({ prefix: "/comic" })
 
         images = await z.array(ComicImage).parseAsync(JSON.parse(redisCached));
       } else {
-        const resp = await s3Client.send(
-          new ListObjectsV2Command({
-            Prefix: `${series}/${chapter}`,
-            Bucket: process.env.COMIC_ASSETS_AWS_BUCKET,
-          })
+        const resp = await s3Client.list(
+          {
+            prefix: `${series}/${chapter}`,
+          },
+          {
+            bucket: process.env.COMIC_ASSETS_AWS_BUCKET,
+          }
         );
 
-        const objects = resp.Contents;
+        const objects = resp.contents;
 
-        if (!objects?.filter((x) => x.Size && x.Size > 0)) {
+        if (!objects?.filter((x) => x.size && x.size > 0)) {
           throw new Error("No images on record!");
         }
 
         images = objects
-          .filter((x) => x.Size && x.Size > 0)
+          .filter((x) => x.size && x.size > 0)
           .map((obj) => {
             return {
               // biome-ignore lint/style/noNonNullAssertion: There is.
-              name: obj.Key!,
-              url: `${process.env.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
+              name: obj.key!,
+              url: `${process.env.COMIC_ASSETS_URL_PREFIX}/${obj.key}`,
             };
           });
       }

@@ -8,9 +8,6 @@
     "@t3-oss/env-nextjs": "0.13.10",
     "zod": "^4.1.12"
   },
-  "devDependencies": {
-    "@types/node": "^24"
-  },
   "exports": {
     "./server": "./src/server.ts",
     "./client": "./src/client.ts"

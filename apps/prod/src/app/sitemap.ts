@@ -1,7 +1,7 @@
+import { drizzleDb } from "@arknights-vns/drizzle";
+import { comicSeries } from "@arknights-vns/drizzle/schema/vns-schema";
 import { clientEnv } from "@arknights-vns/env-var/client";
 import type { MetadataRoute } from "next";
-import { comicSeries } from "@/db/schema/vns-schema";
-import { drizzleDb } from "@/lib/drizzle";
 
 const PAGE_URL =
   process.env.NODE_ENV === "development" ? "http://localhost:3000" : clientEnv.NEXT_PUBLIC_PRODUCTION_URL;

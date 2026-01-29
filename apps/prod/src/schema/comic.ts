@@ -1,5 +1,5 @@
+import { comicChapter, comicContributor, comicSeries } from "@arknights-vns/drizzle/schema/vns-schema";
 import { z } from "zod";
-import { comicChapter, comicContributor, comicSeries } from "@/db/schema/vns-schema";
 import { createCoercedSelectSchema } from "@/schema/zod-coerced";
 
 /**

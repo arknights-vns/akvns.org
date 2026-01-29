@@ -1,8 +1,7 @@
+import { drizzleDb } from "@arknights-vns/drizzle";
+import { comicSeries } from "@arknights-vns/drizzle/schema/vns-schema";
 import { eq } from "drizzle-orm";
 import { cacheLife, cacheTag } from "next/cache";
-
-import { comicSeries } from "@/db/schema/vns-schema";
-import { drizzleDb } from "@/lib/drizzle";
 
 /**
  * The worst way to get the information.

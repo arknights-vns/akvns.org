@@ -1,10 +1,9 @@
-import { node } from "@elysiajs/node";
 import { Elysia } from "elysia";
 import { healthcheckPlugin } from "elysia-healthcheck";
 
 import { elysiaComic } from "@/app/(api)/api/[[...splat]]/-plugins/comic";
 
-export const elysia = new Elysia({ adapter: node(), prefix: "/api" })
+export const elysia = new Elysia({ prefix: "/api" })
   .use(healthcheckPlugin())
   .use(elysiaComic)
   .get("/", () => 'Yes, Arknights Vietnam Station is using Elysia.js for the API <(")')

@@ -15,6 +15,9 @@
     "dev": {
       "persistent": true,
       "cache": false
-    }
+    },
+    "db:generate": {},
+    "db:seed": {},
+    "db:push": {}
   }
 }

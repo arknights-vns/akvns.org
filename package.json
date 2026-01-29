@@ -20,7 +20,10 @@
     "prepare": "husky",
     "format": "turbo format",
     "lint": "turbo lint",
-    "dev": "turbo dev"
+    "dev": "turbo dev",
+    "db:generate": "turbo db:generate",
+    "db:push": "turbo db:push",
+    "db:seed": "turbo db:seed"
   },
   "bugs": {
     "url": "https://github.com/arknights-vns/akvns.org/issues"
