@@ -1,0 +1,122 @@
+{
+  "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": [
+      "apps/**",
+      "packages/**",
+      "!packages/ui/src/components/*",
+      "!!**/.next",
+      "!!**/node_modules",
+      "!!**/.source"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "useEditorconfig": true,
+    "lineWidth": 110
+  },
+  "overrides": [
+    {
+      "includes": [
+        "**/*"
+      ],
+      "linter": {
+        "enabled": true,
+        "rules": {
+          "recommended": true,
+          "style": {
+            "useFilenamingConvention": "off",
+            "noNonNullAssertion": "warn",
+            "useConsistentCurlyBraces": "error",
+            "noImplicitBoolean": "error",
+            "useSelfClosingElements": {
+              "level": "warn",
+              "options": {
+                "ignoreHtmlElements": true
+              }
+            }
+          },
+          "suspicious": {
+            "noConsole": "error"
+          }
+        }
+      },
+      "formatter": {
+        "bracketSpacing": true
+      }
+    },
+    {
+      "includes": [
+        "**/*.json",
+        "**/*.jsonc",
+        "!biome.json"
+      ],
+      "json": {
+        "formatter": {
+          "enabled": false
+        }
+      }
+    },
+    {
+      "includes": [
+        "*.js",
+        "*.mjs",
+        "*.jsx",
+        "*.ts",
+        ".mts",
+        "*.tsx"
+      ],
+      "assist": {
+        "enabled": true,
+        "actions": {
+          "source": {
+            "organizeImports": {
+              "level": "on",
+              "options": {
+                "groups": [
+                  {
+                    "type": true
+                  },
+                  ":NODE:",
+                  ":PACKAGE:",
+                  ":BLANK_LINE:",
+                  [
+                    "@resources/**"
+                  ],
+                  [
+                    "@public/**"
+                  ],
+                  ":BLANK_LINE:",
+                  "@/**",
+                  ":BLANK_LINE:",
+                  ":PATH:"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "src/app/globals.css"
+      ],
+      "css": {
+        "parser": {
+          "tailwindDirectives": true
+        }
+      }
+    }
+  ],
+  "extends": [
+    "ultracite/biome/core",
+    "ultracite/biome/react",
+    "ultracite/biome/next"
+  ]
+}

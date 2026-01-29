@@ -1,0 +1,70 @@
+name: arknights-vns
+
+services:
+  web:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      pgbouncer:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    ports:
+      - "3000:3000"
+
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    command: [ "postgres" ]
+
+  pgbouncer:
+    image: edoburu/pgbouncer:v1.25.1-p0
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_USER: ${POSTGRES_USER}
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_HOST: postgres
+      ADMIN_USERS: ${POSTGRES_USER}
+      AUTH_TYPE: scram-sha-256
+      POOL_MODE: transaction
+    healthcheck:
+      test: [ 'CMD', 'pg_isready', '-h', 'localhost' ]
+
+  drizzle-gateway:
+    image: ghcr.io/drizzle-team/gateway:1.2.0
+    ports:
+      - "4983:4983"
+    volumes:
+      - drizzle:/app
+
+  redis:
+    image: redis:8.4-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server
+    volumes:
+      - redis:/data
+
+volumes:
+  pgdata:
+  drizzle:
+  redis:
