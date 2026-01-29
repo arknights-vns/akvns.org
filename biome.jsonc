@@ -23,9 +23,7 @@
   },
   "overrides": [
     {
-      "includes": [
-        "**/*"
-      ],
+      "includes": ["**/*"],
       "linter": {
         "enabled": true,
         "rules": {
@@ -49,14 +47,15 @@
       },
       "formatter": {
         "bracketSpacing": true
+      },
+      "css": {
+        "parser": {
+          "tailwindDirectives": true
+        }
       }
     },
     {
-      "includes": [
-        "**/*.json",
-        "**/*.jsonc",
-        "!biome.json"
-      ],
+      "includes": ["**/*.json", "**/*.jsonc", "!biome.json", "!biome.jsonc"],
       "json": {
         "formatter": {
           "enabled": false
@@ -64,14 +63,7 @@
       }
     },
     {
-      "includes": [
-        "*.js",
-        "*.mjs",
-        "*.jsx",
-        "*.ts",
-        ".mts",
-        "*.tsx"
-      ],
+      "includes": ["*.js", "*.mjs", "*.jsx", "*.ts", ".mts", "*.tsx"],
       "assist": {
         "enabled": true,
         "actions": {
@@ -86,12 +78,8 @@
                   ":NODE:",
                   ":PACKAGE:",
                   ":BLANK_LINE:",
-                  [
-                    "@resources/**"
-                  ],
-                  [
-                    "@public/**"
-                  ],
+                  ["@resources/**"],
+                  ["@public/**"],
                   ":BLANK_LINE:",
                   "@/**",
                   ":BLANK_LINE:",
@@ -100,16 +88,6 @@
               }
             }
           }
-        }
-      }
-    },
-    {
-      "includes": [
-        "src/app/globals.css"
-      ],
-      "css": {
-        "parser": {
-          "tailwindDirectives": true
         }
       }
     }
