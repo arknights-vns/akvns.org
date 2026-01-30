@@ -1,0 +1,13 @@
+diff --git a/apps/prod/next.config.ts b/apps/prod/next.config.ts
+index 69a0601..77aea5f 100644
+--- a/apps/prod/next.config.ts
++++ b/apps/prod/next.config.ts
+@@ -34,7 +34,7 @@ const tusWives = [
+ const nextConfig: NextConfig = {
+   // dear Windows users,
+   // you might need to comment the output: "standalone" line below.
+-  output: "standalone",
++  // output: "standalone",
+   reactStrictMode: true,
+   reactCompiler: true,
+   typedRoutes: true,
