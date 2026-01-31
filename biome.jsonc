@@ -10,7 +10,7 @@
     "includes": [
       "apps/**",
       "packages/**",
-      "!packages/ui/src/components/*",
+      "!packages/shadcn-ui/src/components/*",
       "!!**/.next",
       "!!**/node_modules",
       "!!**/.source"

@@ -2,3 +2,4 @@ env = true
 
 [install]
 linker = "isolated"
+minimumReleaseAge = 259200
