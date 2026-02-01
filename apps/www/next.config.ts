@@ -32,8 +32,6 @@ const tusWives = [
 ];
 
 const nextConfig: NextConfig = {
-  // dear Windows users,
-  // you might need to comment the output: "standalone" line below.
   output: "standalone",
   reactStrictMode: true,
   reactCompiler: true,
