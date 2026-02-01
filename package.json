@@ -18,12 +18,11 @@
   },
   "scripts": {
     "prepare": "husky",
-    "format": "turbo format",
-    "lint": "turbo lint",
-    "dev": "turbo dev",
-    "db:generate": "turbo db:generate",
-    "db:push": "turbo db:push",
-    "db:seed": "turbo db:seed"
+    "format": "biome check . --write",
+    "format:unsafe": "biome check . --write --unsafe",
+    "lint": "biome check .",
+    "dev": "turbo run dev",
+    "start": "turbo run start"
   },
   "bugs": {
     "url": "https://github.com/arknights-vns/akvns.org/issues"
