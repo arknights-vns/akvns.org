@@ -4,4 +4,6 @@
 node_modules
 .idea
 .vscode
-.env*
+apps/www/.env
+!.env.example
+out

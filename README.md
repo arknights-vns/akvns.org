@@ -32,7 +32,6 @@ Probably taking some time looking at the source code would give you the answer, 
 | Drizzle   | ORM Layer                                                          |
 | Postgres  | Database. Yes, just the vanilla version.                           |
 | Biome     | Code linter                                                        |
-| Docker    | "It worked on my machine!" sort of stuffs. (not frequently tested) |
 
 ## What about contributions?
 

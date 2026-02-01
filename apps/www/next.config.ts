@@ -32,7 +32,6 @@ const tusWives = [
 ];
 
 const nextConfig: NextConfig = {
-  output: "standalone",
   reactStrictMode: true,
   reactCompiler: true,
   typedRoutes: true,
@@ -43,7 +42,12 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["@icons-pack/react-simple-icons"],
   },
   poweredByHeader: false,
-  transpilePackages: ["@arknights-vns/ts-config", "@t3-oss/env-nextjs", "@t3-oss/env-core"],
+  transpilePackages: [
+    "@arknights-vns/ts-config",
+    "@arknights-vns/shadcn-ui",
+    "@t3-oss/env-nextjs",
+    "@t3-oss/env-core",
+  ],
   images: {
     remotePatterns: [new URL("https://cdn.akvns.org/**"), new URL("https://comic-assets.akvns.org/**")],
   },

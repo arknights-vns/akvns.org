@@ -1,5 +1,7 @@
 {
   "$schema": "https://turborepo.dev/schema.json",
+  "globalDependencies": [".env", "**/.env*"],
+  "globalEnv": ["NODE_ENV"],
   "tasks": {
     "build": {
       "dependsOn": [
@@ -15,9 +17,6 @@
     "dev": {
       "persistent": true,
       "cache": false
-    },
-    "db:generate": {},
-    "db:seed": {},
-    "db:push": {}
+    }
   }
 }
