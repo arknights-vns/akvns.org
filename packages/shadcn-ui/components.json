@@ -14,9 +14,9 @@
   "menuColor": "default",
   "menuAccent": "bold",
   "aliases": {
-    "components": "@/components",
-    "hooks": "@/hooks",
-    "lib": "@/lib",
+    "components": "@arknights-vns/shadcn-ui/components",
+    "hooks": "@arknights-vns/shadcn-ui/hooks",
+    "lib": "@arknights-vns/shadcn-ui/lib",
     "utils": "@arknights-vns/shadcn-ui/lib/utils",
     "ui": "@arknights-vns/shadcn-ui/components"
   }
