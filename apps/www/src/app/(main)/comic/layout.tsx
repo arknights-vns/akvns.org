@@ -5,7 +5,6 @@ import { Suspense } from "react";
 
 import LoadingLappy from "@/components/LoadingLappy";
 import { getQueryClient } from "@/lib/query-client";
-import { comicSeriesListingQueryOptions } from "@/react-query/comic";
 
 export const metadata: Metadata = {
   title: "Arknights VNS | Truyện tại Trạm",
@@ -16,7 +15,7 @@ export const metadata: Metadata = {
 export default function ComicPageLayout(props: LayoutProps<"/comic">) {
   const queryClient = getQueryClient();
 
-  queryClient.prefetchInfiniteQuery(comicSeriesListingQueryOptions()).then();
+  // queryClient.prefetchInfiniteQuery(comicSeriesListingQueryOptions()).then();
 
   return (
     <Suspense fallback={<LoadingLappy />}>

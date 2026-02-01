@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 
 import { fetchComicSeriesData } from "@/app/(main)/comic/_data/fetch-data";
-import { getQueryClient } from "@/lib/query-client";
-import { comicImageQueryOptions } from "@/react-query/comic";
 
 export async function generateMetadata(props: LayoutProps<"/comic/[series]/[chapter]">): Promise<Metadata> {
   const { series, chapter } = await props.params;
@@ -17,10 +15,10 @@ export async function generateMetadata(props: LayoutProps<"/comic/[series]/[chap
 }
 
 export default async function ComicSeriesChapterReadLayout(props: LayoutProps<"/comic/[series]/[chapter]">) {
-  const { series, chapter } = await props.params;
-  const queryClient = getQueryClient();
+  // const { series, chapter } = await props.params;
+  // const queryClient = getQueryClient();
 
-  queryClient.prefetchQuery(comicImageQueryOptions({ series, chapter })).then();
+  // queryClient.prefetchQuery(comicImageQueryOptions({ series, chapter })).then();
 
   return <>{props.children}</>;
 }

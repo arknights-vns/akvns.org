@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { ArticleJsonLd } from "next-seo";
 
 import { fetchComicSeriesData } from "@/app/(main)/comic/_data/fetch-data";
-import { getQueryClient } from "@/lib/query-client";
-import { comicSeriesDataQueryOptions } from "@/react-query/comic";
 
 export async function generateMetadata(props: LayoutProps<"/comic/[series]">): Promise<Metadata> {
   const { series } = await props.params;
@@ -18,8 +16,9 @@ export default async function ComicDataLayout(props: LayoutProps<"/comic/[series
   const { series } = await props.params;
   const data = await fetchComicSeriesData(series);
 
-  const queryClient = getQueryClient();
-  queryClient.prefetchQuery(comicSeriesDataQueryOptions(series)).then();
+  // const queryClient = getQueryClient();
+
+  // queryClient.prefetchQuery(comicSeriesDataQueryOptions(series)).then();
 
   return (
     <>
