@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { cacheLife } from "next/cache";
 import { ArticleJsonLd } from "next-seo";
-
 import { fetchComicSeriesData } from "@/app/(main)/comic/_data/fetch-data";
+import { drizzleDb } from "@/lib/drizzle";
 
 export async function generateMetadata(props: LayoutProps<"/comic/[series]">): Promise<Metadata> {
   const { series } = await props.params;
@@ -10,6 +11,23 @@ export async function generateMetadata(props: LayoutProps<"/comic/[series]">): P
   return {
     title: `Arknights VNS | ${comicData.title}`,
   };
+}
+
+export async function generateStaticParams() {
+  "use cache";
+  cacheLife("days");
+
+  const series = await drizzleDb.query.comicSeries.findMany({
+    columns: {
+      comicSeriesId: true,
+    },
+  });
+
+  return series.map((entry) => {
+    return {
+      series: entry.comicSeriesId,
+    };
+  });
 }
 
 export default async function ComicDataLayout(props: LayoutProps<"/comic/[series]">) {
