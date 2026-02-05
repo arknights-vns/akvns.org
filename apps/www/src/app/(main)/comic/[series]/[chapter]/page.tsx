@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@arknights-vns/shadcn-ui/components/button";
 import { ButtonGroup } from "@arknights-vns/shadcn-ui/components/button-group";
 import {
@@ -11,22 +9,74 @@ import {
   DropdownMenuTrigger,
 } from "@arknights-vns/shadcn-ui/components/dropdown-menu";
 import { ScrollProgress } from "@arknights-vns/shadcn-ui/components/scroll-progress";
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowRight, ArrowUpFromLine, BookOpen, StickyNote } from "lucide-react";
+import type { Metadata } from "next";
+import { cacheLife } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
-import { use, useEffect } from "react";
-import { comicImageQueryOptions, comicSeriesDataQueryOptions } from "@/react-query/comic";
+import { notFound } from "next/navigation";
+import { fetchComicSeriesData, fetchComicSeriesImagesByChapter } from "@/app/(main)/comic/_data/fetch-data";
+import { drizzleDb } from "@/lib/drizzle";
 
-export default function ComicReadPage(props: PageProps<"/comic/[series]/[chapter]">) {
-  const { series, chapter } = use(props.params);
+export async function generateMetadata(props: PageProps<"/comic/[series]/[chapter]">): Promise<Metadata> {
+  const { series, chapter } = await props.params;
 
-  useEffect(() => {
-    localStorage.setItem(`comic-${series}`, chapter);
-  }, [chapter, series]);
+  const comicData = await fetchComicSeriesData(series);
 
-  const { data: seriesData } = useSuspenseQuery(comicSeriesDataQueryOptions(series));
-  const { data: serverImages } = useSuspenseQuery(comicImageQueryOptions({ series, chapter }));
+  if (!comicData) {
+    notFound();
+  }
+
+  const currentChapter = comicData.chapters.filter((x) => x.comicChapterId === chapter)[0]?.chapterName;
+
+  return {
+    title: `Arknights VNS | ${comicData.title} | ${currentChapter}`,
+  };
+}
+
+export async function generateStaticParams() {
+  "use cache";
+  cacheLife("days");
+
+  const series = await drizzleDb.query.comicSeries.findMany({
+    columns: {
+      comicSeriesId: true,
+    },
+    with: {
+      chapters: true,
+    },
+  });
+
+  const entries: { series: string; chapter: string }[] = [];
+
+  for (const entry of series) {
+    const chapters = entry.chapters.map((ch) => ch.comicChapterId);
+
+    for (const chapter of chapters) {
+      entries.push({
+        series: entry.comicSeriesId,
+        chapter,
+      });
+    }
+  }
+
+  return entries;
+}
+
+export default async function ComicReadPage(props: PageProps<"/comic/[series]/[chapter]">) {
+  const { series, chapter } = await props.params;
+
+  const seriesData = await fetchComicSeriesData(series);
+
+  if (!seriesData) {
+    notFound();
+  }
+
+  const serverImages = await fetchComicSeriesImagesByChapter(series, chapter);
+
+  if (!serverImages) {
+    notFound();
+  }
 
   const listOfChapters = seriesData.chapters.map((x) => x.comicChapterId);
   const currentPosition = listOfChapters.indexOf(chapter);
