@@ -1,10 +1,6 @@
-import { dehydrate } from "@tanstack/query-core";
-import { HydrationBoundary } from "@tanstack/react-query";
 import type { Metadata } from "next";
 import { Suspense } from "react";
-
 import LoadingLappy from "@/components/LoadingLappy";
-import { getQueryClient } from "@/lib/query-client";
 
 export const metadata: Metadata = {
   title: "Arknights VNS | Truyện tại Trạm",
@@ -13,13 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function ComicPageLayout(props: LayoutProps<"/comic">) {
-  const queryClient = getQueryClient();
-
-  // queryClient.prefetchInfiniteQuery(comicSeriesListingQueryOptions()).then();
-
-  return (
-    <Suspense fallback={<LoadingLappy />}>
-      <HydrationBoundary state={dehydrate(queryClient)}>{props.children}</HydrationBoundary>
-    </Suspense>
-  );
+  return <Suspense fallback={<LoadingLappy />}>{props.children}</Suspense>;
 }
