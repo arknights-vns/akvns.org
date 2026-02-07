@@ -10,6 +10,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* https://github.com/shadcn-ui/ui/issues/2819#issuecomment-3852171862 */
+@custom-variant data-vertical (&[data-orientation="vertical"]);
+@custom-variant data-horizontal (&[data-orientation="horizontal"]);
+
 @utility tab-button {
   @apply [&>button]:rounded-md [&>button]:border [&>button]:bg-neutral-900 [&>button]:px-4 [&>button]:py-2 [&>button]:border-primary! [&>button]:data-active:font-bold [&>button]:data-active:dark:bg-primary;
 }

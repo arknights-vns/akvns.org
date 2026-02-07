@@ -11,6 +11,8 @@
       "apps/**",
       "packages/**",
       "!packages/shadcn-ui/src/components/*",
+      "!packages/shadcn-ui/src/hooks/*",
+      "!packages/shadcn-ui/src/lib/*",
       "!!**/.next",
       "!!**/node_modules",
       "!!**/.source"
