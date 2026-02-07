@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import LoadingLappy from "@/components/LoadingLappy";
 
 export const metadata: Metadata = {
   title: "Arknights VNS | Truyện tại Trạm",
@@ -9,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function ComicPageLayout(props: LayoutProps<"/comic">) {
-  return <Suspense fallback={<LoadingLappy />}>{props.children}</Suspense>;
+  return <Suspense>{props.children}</Suspense>;
 }
