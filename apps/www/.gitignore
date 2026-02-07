@@ -52,14 +52,6 @@ node_modules/
 # Storage
 volumes/
 
-# Build output
-.output
-.tanstack
-dist
-
-# Seed file
-../../packages/database/scripts/seed.ts
-
 # Template content file
 content/**/*
 

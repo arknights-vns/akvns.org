@@ -1,0 +1,7 @@
+packages:
+  - apps/*
+  - packages/*
+
+minimumReleaseAge: 1400
+
+hoist: false

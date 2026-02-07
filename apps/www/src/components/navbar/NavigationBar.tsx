@@ -86,8 +86,6 @@ export default function NavigationBar() {
             </div>
           </DialogContent>
         </Dialog>
-        {/* FIXME: idk */}
-        {/*<ThemeSwitcher />*/}
       </div>
     </header>
   );

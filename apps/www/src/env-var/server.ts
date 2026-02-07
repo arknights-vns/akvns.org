@@ -12,11 +12,6 @@ export const serverEnv = createEnv({
     S3_AWS_REGION: z.string().default("us-east-1"),
     S3_AWS_ACCESS_KEY_ID: z.string(),
     S3_AWS_SECRET_ACCESS_KEY: z.string(),
-
-    CONFIGCAT_API_KEY: z.string(),
-
-    // node -e "console.log(crypto.randomBytes(32).toString('base64url'))"
-    // FLAGS_SECRET: z.hash("sha256", {enc: "base64url"}),
   },
   experimental__runtimeEnv: process.env,
 });

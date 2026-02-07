@@ -1,6 +1,7 @@
+import { ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { eq } from "drizzle-orm";
 import { cacheLife, cacheTag } from "next/cache";
-import { z } from "zod";
+import z from "zod";
 import { comicSeries } from "@/db/schema/vns-schema";
 import { serverEnv } from "@/env-var/server";
 import { s3Client } from "@/lib/aws-s3";
@@ -43,28 +44,26 @@ export async function fetchComicSeriesImagesByChapter(series: string, chapter: s
     const redisCached = (await redisClient.get(REDIS_KEY))!;
     images = await z.array(ComicImage).parseAsync(JSON.parse(redisCached));
   } else {
-    const resp = await s3Client.list(
-      {
-        prefix: `${series}/${chapter}`,
-      },
-      {
-        bucket: process.env.COMIC_ASSETS_AWS_BUCKET,
-      }
+    const resp = await s3Client.send(
+      new ListObjectsV2Command({
+        Bucket: serverEnv.COMIC_ASSETS_AWS_BUCKET,
+        Prefix: `${series}/${chapter}`,
+      })
     );
 
-    const objects = resp.contents;
+    const objects = resp.Contents;
 
-    if (!objects?.filter((x) => x.size && x.size > 0)) {
+    if (!objects?.filter((x) => x.Size && x.Size > 0)) {
       throw new Error("No images on record!");
     }
 
     images = objects
-      .filter((x) => x.size && x.size > 0)
+      .filter((x) => x.Size && x.Size > 0)
       .map((obj) => {
         return {
           // biome-ignore lint/style/noNonNullAssertion: There is.
-          name: obj.key!,
-          url: `${serverEnv.COMIC_ASSETS_URL_PREFIX}/${obj.key}`,
+          name: obj.Key!,
+          url: `${serverEnv.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
         };
       });
   }
