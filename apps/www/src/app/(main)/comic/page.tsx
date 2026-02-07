@@ -5,15 +5,34 @@ import { Button } from "@arknights-vns/shadcn-ui/components/button";
 import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import { Skeleton } from "@arknights-vns/shadcn-ui/components/skeleton";
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
-import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { comicSeriesListingQueryOptions } from "@/react-query/comic";
+import { elysianRealm } from "@/lib/elysian-realm";
 
 export default function ComicListing() {
-  const { data, hasNextPage, fetchNextPage } = useSuspenseInfiniteQuery(comicSeriesListingQueryOptions());
+  const { data, hasNextPage, fetchNextPage } = useInfiniteQuery({
+    queryKey: ["comic"],
+    queryFn: async ({ pageParam }) => {
+      const resp = await elysianRealm.comic.get({
+        query: {
+          page: pageParam,
+        },
+      });
+
+      if (resp.error) {
+        throw new Error("Unable to fetch paginated series listing.");
+      }
+
+      return resp.data;
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      return lastPage?.canMoveNext ? lastPage.next : null;
+    },
+  });
 
   if (!data) {
     return;
