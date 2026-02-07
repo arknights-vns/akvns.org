@@ -2,7 +2,7 @@
 
 import "dotenv/config";
 import { reset } from "drizzle-seed";
-import { comicChapter, comicSeries } from "@/db/schema/vns-schema";
+import { comicChapter, comicContributor, comicSeries } from "@/db/schema/vns-schema";
 import { drizzleDb } from "@/lib/drizzle";
 
 async function seed() {
@@ -10,11 +10,12 @@ async function seed() {
     await reset(tx, {
       comicSeries,
       comicChapter,
+      comicContributor,
     });
 
     await tx.insert(comicSeries).values([
       {
-        comicSeriesId: "lets-eat-together",
+        comicSeriesId: "cung-dung-bua",
         title: "Cùng dùng bữa",
         thumbnail: "https://comic-assets.akvns.org/cung-dung-bua/chapter-0/00.jpg",
         author: "Terra Historicus",
@@ -37,8 +38,8 @@ async function seed() {
 
     await tx.insert(comicChapter).values([
       {
-        comicSeriesId: "lets-eat-together",
-        comicChapterId: "one-shot",
+        comicSeriesId: "cung-dung-bua",
+        comicChapterId: "chapter-0",
         chapterName: "One Shot",
       },
       /// ================================
