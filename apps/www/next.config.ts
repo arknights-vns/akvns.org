@@ -38,8 +38,7 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   experimental: {
     turbopackFileSystemCacheForDev: true,
-    turbopackFileSystemCacheForBuild: true,
-    optimizePackageImports: ["@icons-pack/react-simple-icons"],
+    optimizePackageImports: ["@icons-pack/react-simple-icons", "@sentry/nextjs"],
   },
   poweredByHeader: false,
   transpilePackages: [

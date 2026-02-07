@@ -14,7 +14,6 @@
     "dotenv-cli": "^11.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "turbo": "^2.8.1",
     "ultracite": "^7.1.1"
   },
   "scripts": {
@@ -22,9 +21,9 @@
     "format": "biome check . --write",
     "format:unsafe": "biome check . --write --unsafe",
     "lint": "biome check .",
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "start": "turbo run start"
+    "dev": "pnpm run -r dev",
+    "build": "pnpm run -r build",
+    "start": "pnpm run -r start"
   },
   "bugs": {
     "url": "https://github.com/arknights-vns/akvns.org/issues"

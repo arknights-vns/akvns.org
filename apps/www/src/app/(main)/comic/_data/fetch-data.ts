@@ -15,7 +15,7 @@ import { ComicImage } from "@/zod/comic";
 export async function fetchComicSeriesData(series: string) {
   "use cache";
   cacheTag("comic-data", series);
-  cacheLife("weeks");
+  cacheLife("days");
 
   // noinspection ES6RedundantAwait
   return await drizzleDb.query.comicSeries.findFirst({
@@ -33,7 +33,7 @@ export async function fetchComicSeriesData(series: string) {
 export async function fetchComicSeriesImagesByChapter(series: string, chapter: string) {
   "use cache";
   cacheTag("comic-images", series, chapter);
-  cacheLife("days");
+  cacheLife("max");
 
   const REDIS_KEY = `comic-assets:${series}:${chapter}`;
 

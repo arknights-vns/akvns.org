@@ -14,7 +14,7 @@ import { Separator } from "@arknights-vns/shadcn-ui/components/separator";
 import { Skeleton } from "@arknights-vns/shadcn-ui/components/skeleton";
 import { BookCopy, ListOrdered } from "lucide-react";
 import type { Metadata, Route } from "next";
-import { cacheLife, cacheTag } from "next/cache";
+import { cacheLife } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -40,10 +40,6 @@ export async function generateMetadata(props: PageProps<"/comic/[series]">): Pro
 }
 
 export async function generateStaticParams() {
-  "use cache";
-  cacheTag("comic-listing");
-  cacheLife("hours");
-
   const series = await drizzleDb.query.comicSeries.findMany({
     columns: {
       comicSeriesId: true,
@@ -59,7 +55,7 @@ export async function generateStaticParams() {
 
 export default async function ComicSeriesDetail(properties: PageProps<"/comic/[series]">) {
   "use cache";
-  cacheLife("hours");
+  cacheLife("max");
 
   const { series } = await properties.params;
   const data = await fetchComicSeriesData(series);
@@ -67,18 +63,6 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
   if (!data) {
     notFound();
   }
-
-  // const { data } = useSuspenseQuery(comicSeriesDataQueryOptions(series));
-
-  // useEffect(() => {
-  //   // obligatory: https://react.dev/learn/you-might-not-need-an-effect
-  //   // localStorage counts as one I guess?
-  //   const readItem = localStorage.getItem(`comic-${series}`) ?? "";
-  //   setHasRead(readItem);
-  // }, [series]);
-
-  // const readChapter = data.chapters.filter((ch) => ch.comicChapterId === hasRead);
-  // const isValidPreviousChapter = hasRead && readChapter.length > 0;
 
   return (
     <Suspense>

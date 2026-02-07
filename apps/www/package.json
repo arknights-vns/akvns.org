@@ -31,11 +31,10 @@
     "elysia-healthcheck": "^1.0.0",
     "elysiajs-cdn-cache": "^0.0.13",
     "embla-carousel-auto-scroll": "^8.6.0",
-    "html-react-parser": "^5.2.10",
     "ioredis": "^5.9.2",
     "lucide-react": "^0.562.0",
     "motion": "^12.26.2",
-    "next": "^16.2.0-canary.15",
+    "next": "16.2.0-canary.29",
     "next-seo": "^7.0.1",
     "nuqs": "^2.8.6",
     "postgres": "^3.4.8",
@@ -50,14 +49,11 @@
     "@types/node": "22",
     "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
+    "@typescript/native-preview": "7.0.0-dev.20260206.1",
     "babel-plugin-react-compiler": "^1.0.0",
     "dotenv": "^17.2.3",
     "drizzle-kit": "0.31.8",
     "drizzle-seed": "^0.3.1",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
-  },
-  "engines": {
-    "node": "^22 || ^24"
+    "tsx": "^4.21.0"
   }
 }
