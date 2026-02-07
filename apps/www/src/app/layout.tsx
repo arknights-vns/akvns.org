@@ -50,9 +50,6 @@ function RootLayout(props: LayoutProps<"/">) {
           process.env.NODE_ENV === "development" && "border-2 border-primary"
         )}
       >
-        <aside className="p-2 text-center text-primary">
-          If you are seeing this in production, the dev team will have a fun time with Tus.
-        </aside>
         <NuqsAdapter>
           <Providers>{props.children}</Providers>
           <GoogleAnalytics gaId="G-Y625KEE6HT" />
