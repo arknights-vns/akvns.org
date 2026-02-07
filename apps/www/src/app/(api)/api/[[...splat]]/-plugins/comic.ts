@@ -13,7 +13,13 @@ export const elysiaComic = new Elysia({ prefix: "/comic" }).use(cacheControl()).
     const { page } = query;
 
     const results = await drizzleDb
-      .select()
+      .select({
+        comicSeriesId: comicSeries.comicSeriesId,
+        title: comicSeries.title,
+        author: comicSeries.author,
+        thumbnail: comicSeries.thumbnail,
+        category: comicSeries.category,
+      })
       .from(comicSeries)
       .offset((page - 1) * ITEMS_PER_PAGE)
       .limit(ITEMS_PER_PAGE);

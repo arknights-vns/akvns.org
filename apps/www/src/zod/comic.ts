@@ -25,7 +25,13 @@ export const ComicChapter = createCoercedSelectSchema(comicChapter);
 /**
  * Data for a comic series, extracted from `comic_series` table by `drizzle-zod`.
  */
-export const ComicSeriesData = createCoercedSelectSchema(comicSeries);
+export const ComicSeriesData = createCoercedSelectSchema(comicSeries).omit({
+  synopsis: true,
+  createdAt: true,
+  updatedAt: true,
+  likeCount: true,
+  viewCount: true,
+});
 
 /**
  * Complete comic data.
