@@ -11,7 +11,7 @@
     "db:seed": "bun ./scripts/seed.ts",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
-    "db:push:wipe": "drizzle-kit push --force"
+    "db:push:force": "drizzle-kit push --force"
   },
   "dependencies": {
     "@arknights-vns/shadcn-ui": "workspace:*",
@@ -56,6 +56,8 @@
     "babel-plugin-react-compiler": "^1.0.0",
     "dotenv": "^17.2.3",
     "drizzle-kit": "0.31.8",
+    "drizzle-seed": "^0.3.1",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }
