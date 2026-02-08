@@ -20,7 +20,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleJsonLd } from "next-seo";
 import { Suspense } from "react";
-import { fetchComicSeriesData } from "@/app/(main)/comic/_data/fetch-data";
+import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
 import { drizzleDb } from "@/lib/drizzle";
 
 // https://github.com/vercel/next.js/discussions/84991

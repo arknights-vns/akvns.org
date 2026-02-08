@@ -12,13 +12,14 @@ import { cacheLife } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { fetchComicSeriesData, fetchComicSeriesImagesByChapter } from "@/app/(main)/comic/_data/fetch-data";
 import {
   ScrollProgress,
   ScrollProgressContainer,
   ScrollProgressProvider,
 } from "@/components/animate-ui/primitives/animate/scroll-progress";
 import BottomDock from "@/components/comic/BottomDock";
+import { fetchComicSeriesImagesByChapter } from "@/functions/comic/fetch-series-chapter-images";
+import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
 import { drizzleDb } from "@/lib/drizzle";
 
 export async function generateMetadata(props: PageProps<"/comic/[series]/[chapter]">): Promise<Metadata> {
