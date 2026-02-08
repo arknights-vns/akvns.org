@@ -28,10 +28,6 @@
   "bugs": {
     "url": "https://github.com/arknights-vns/akvns.org/issues"
   },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "engines": {
     "node": "^22 || ^24"
   },

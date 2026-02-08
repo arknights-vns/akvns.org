@@ -1,0 +1,8 @@
+rds_username = "postgres"
+rds_password = "tus-da-the"
+
+domain_name                = "akvns.org"
+terrastationvn_subdomain   = "terrastationvn"
+arknights_vns_subdomain    = "assets"
+
+ssh_public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGx... akvns-ec2-key"

@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@arknights-vns/shadcn-ui/components/button";
 import {
   Dialog,

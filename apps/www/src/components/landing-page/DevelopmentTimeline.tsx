@@ -1,4 +1,3 @@
-import { Timeline } from "@arknights-vns/shadcn-ui/components/extension/timeline";
 import { FavorText, Heading, Paragraph } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import The_Show_Must_Go_On from "@public/timeline/vns-offline-2024.jpg";
 import Dreamchasers from "@public/timeline/vns-offline-2025.jpg";
@@ -6,6 +5,7 @@ import Zeklewa_Collab from "@public/timeline/zeklewa-collab.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import ContentArea from "@/components/ContentArea";
+import { Timeline } from "@/components/ui/timeline";
 
 export default function DevelopmentTimeline() {
   return (
@@ -19,7 +19,6 @@ export default function DevelopmentTimeline() {
           data={[
             {
               title: "2022",
-
               content: (
                 <div className="space-y-4" key="2022">
                   <Paragraph>

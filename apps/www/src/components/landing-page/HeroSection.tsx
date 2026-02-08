@@ -1,7 +1,7 @@
-import RevealText from "@arknights-vns/shadcn-ui/components/extension/reveal-text";
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
 import { ArrowDown } from "lucide-react";
 import { Caveat } from "next/font/google";
+import RevealText from "@/components/ui/reveal-text";
 
 const fontCaveat = Caveat({
   weight: "400",

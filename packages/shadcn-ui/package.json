@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
@@ -41,8 +40,8 @@
   "exports": {
     "./globals.css": "./src/styles/globals.css",
     "./postcss.config": "./postcss.config.mjs",
-    "./lib/*": "./src/lib/*.ts",
-    "./hooks/*": "./src/hooks/*.ts",
+    "./lib/*": "./src/lib/*",
+    "./hooks/*": "./src/hooks/*",
     "./components/*": "./src/components/*.tsx"
   }
 }

@@ -2,7 +2,7 @@
 
 import { Button } from "@arknights-vns/shadcn-ui/components/button";
 import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
-import We_Are_Sorry from "@resources/image/we-are-sorry.jpg";
+import We_Are_Sorry from "@public/we-are-sorry.jpg";
 import { captureException } from "@sentry/nextjs";
 import Image from "next/image";
 import { useEffect } from "react";

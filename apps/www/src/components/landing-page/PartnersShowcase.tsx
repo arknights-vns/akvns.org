@@ -3,7 +3,7 @@
 import { Carousel, CarouselContent, CarouselItem } from "@arknights-vns/shadcn-ui/components/carousel";
 import { FootNote, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
-import partnerList from "@resources/data/partner.json";
+import partnerList from "@public/data/partner.json";
 import AutoScroll from "embla-carousel-auto-scroll";
 import type { Route } from "next";
 import Image from "next/image";

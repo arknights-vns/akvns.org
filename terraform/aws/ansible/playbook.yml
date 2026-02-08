@@ -1,0 +1,92 @@
+---
+- name: Configure EC2 Instance
+  hosts: ec2_instances
+  become: true
+  vars:
+    nodejs_version: "22"
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Install required packages
+      apt:
+        name:
+          - curl
+          - wget
+          - git
+          - build-essential
+        state: present
+
+    - name: Setup NodeSource repository for Node.js 22
+      shell: |
+        curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+      args:
+        creates: /etc/apt/sources.list.d/nodesource.list
+
+    - name: Install Node.js 22
+      apt:
+        name: nodejs
+        state: present
+
+    - name: Install pnpm globally
+      npm:
+        name: pnpm
+        global: true
+        state: present
+
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Create nginx site configuration
+      copy:
+        dest: /etc/nginx/conf.d/akvns.conf
+        content: |
+          upstream nodejs_backend {
+              server 127.0.0.1:3000;
+          }
+
+          server {
+              listen 80;
+              listen [::]:80;
+              server_name akvns.org www.akvns.org;
+              
+              location / {
+                  proxy_pass http://nodejs_backend;
+                  proxy_http_version 1.1;
+                  proxy_set_header Upgrade $http_upgrade;
+                  proxy_set_header Connection 'upgrade';
+                  proxy_set_header Host $host;
+                  proxy_set_header X-Real-IP $remote_addr;
+                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                  proxy_set_header X-Forwarded-Proto $scheme;
+                  proxy_cache_bypass $http_upgrade;
+              }
+          }
+      notify: restart nginx
+
+    - name: Enable and start nginx
+      systemd:
+        name: nginx
+        enabled: true
+        state: started
+
+    - name: Configure firewall for HTTP/HTTPS
+      firewalld:
+        service: "{{ item }}"
+        permanent: true
+        state: enabled
+      loop:
+        - http
+        - https
+      ignore_errors: true
+
+  handlers:
+    - name: restart nginx
+      systemd:
+        name: nginx
+        state: restarted

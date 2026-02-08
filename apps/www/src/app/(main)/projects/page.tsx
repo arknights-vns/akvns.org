@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader } from "@arknights-vns/shadcn-ui/componen
 import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import { ToggleGroup, ToggleGroupItem } from "@arknights-vns/shadcn-ui/components/toggle-group";
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
-import projectsList from "@resources/data/projects.json";
+import projectsList from "@public/data/projects.json";
 import { ExternalLink, Heart, Star, Users } from "lucide-react";
 import type { Route } from "next";
 import Image from "next/image";

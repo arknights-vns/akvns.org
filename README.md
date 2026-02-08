@@ -24,14 +24,14 @@ and... everything is AGPLv3-licensed, so some of you guys will be pissed a lot, 
 
 Probably taking some time looking at the source code would give you the answer, but here is the short list:
 
-| Name      | Usage                                                              |
-|-----------|--------------------------------------------------------------------|
-| Turborepo | Monorepo management                                                |
-| Next.js   | Full-stack development.                                            |
-| shadcn/ui | User Interface                                                     |
-| Drizzle   | ORM Layer                                                          |
-| Postgres  | Database. Yes, just the vanilla version.                           |
-| Biome     | Code linter                                                        |
+| Name      | Usage                             |
+|-----------|-----------------------------------|
+| Next.js   | (kind of) full-stack development. |
+| Elysia.js | The backend.                      |
+| shadcn/ui | User Interface.                   |
+| Drizzle   | ORM Layer                         |
+| Postgres  | Database.                         |
+| Biome     | Code linter                       |
 
 ## What about contributions?
 

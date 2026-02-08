@@ -62,7 +62,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "X-Powered-By",
-            value: "Arknights VNS",
+            value: "Arknights Vietnam Station, terrastationvn, and you <3",
           },
           {
             key: "X-Content-Type-Options",

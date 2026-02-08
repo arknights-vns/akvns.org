@@ -1,9 +1,9 @@
 import {
   Accordion,
-  AccordionContent,
   AccordionItem,
+  AccordionPanel,
   AccordionTrigger,
-} from "@arknights-vns/shadcn-ui/components/accordion";
+} from "@arknights-vns/shadcn-ui/components/animate-ui/components/base/accordion";
 import { Heading, Paragraph } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import VNS_Donate_Example from "@public/VNS_Donate_Example.jpg";
 import Image from "next/image";
@@ -17,24 +17,24 @@ export default function QuestionsForUs() {
         {"Q & A"}
       </Heading>
       <Accordion multiple={true}>
-        <AccordionItem>
+        <AccordionItem value="question-1">
           <AccordionTrigger>
             <Heading kind="h4">Arknights Vietnam Station là gì?</Heading>
           </AccordionTrigger>
-          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+          <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <Paragraph>
               Arknights Vietnam Station [Arknights VNS] là cộng đồng dành cho người chơi tựa game Arknights và
               các sản phẩm liên quan (IP) thuộc công ty Hypergryph. Mọi hoạt động của nhóm đều dựa trên tinh
               thần phi lợi nhuận và vì sự phát triển bền vững của cộng đồng Arknights tại Việt Nam.
             </Paragraph>
-          </AccordionContent>
+          </AccordionPanel>
         </AccordionItem>
 
-        <AccordionItem>
+        <AccordionItem value="question-2">
           <AccordionTrigger>
             <Heading kind="h4">Mối quan hệ giữa chúng tôi với Hypergryph & Yostar là gì?</Heading>
           </AccordionTrigger>
-          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+          <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <Paragraph>
               Chúng tôi là một cộng đồng người chơi hoạt động độc lập. Chúng tôi không có bất kỳ mối quan hệ
               pháp lý ràng buộc hay trực thuộc nào đối với Hypergryph (Nhà phát triển) và Yostar (Nhà phát
@@ -43,14 +43,14 @@ export default function QuestionsForUs() {
                 .
               </Link>
             </Paragraph>
-          </AccordionContent>
+          </AccordionPanel>
         </AccordionItem>
 
-        <AccordionItem>
+        <AccordionItem value="question-3">
           <AccordionTrigger>
             <Heading kind="h4">Website có gắn quảng cáo không?</Heading>
           </AccordionTrigger>
-          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+          <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <Paragraph>
               Không. Website này hoàn toàn không gắn quảng cáo và cũng không cài đặt bất kỳ mã theo dõi chặn
               quảng cáo (block AdBlocker) nào.
@@ -62,14 +62,14 @@ export default function QuestionsForUs() {
               Quảng cáo thường đi ngược lại với sự mượt mà đó, và chúng tôi chọn sự thoải mái của các bạn thay
               vì doanh thu.
             </Paragraph>
-          </AccordionContent>
+          </AccordionPanel>
         </AccordionItem>
 
-        <AccordionItem>
+        <AccordionItem value="question-4">
           <AccordionTrigger>
             <Heading kind="h4">Không có quảng cáo, vậy nguồn thu đến từ đâu để duy trì?</Heading>
           </AccordionTrigger>
-          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+          <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <ul className="list-inside list-disc leading-relaxed">
               <li>
                 <span className="font-bold text-primary">Cái nút "Donate" ở góc phải phía trên</span> - Toàn
@@ -95,14 +95,14 @@ export default function QuestionsForUs() {
                 từ... tiền túi và công việc chính (day job) của các thành viên trong Ban quản trị. {'<(")'}.
               </li>
             </ul>
-          </AccordionContent>
+          </AccordionPanel>
         </AccordionItem>
 
-        <AccordionItem>
+        <AccordionItem value="question-5">
           <AccordionTrigger>
             <Heading kind="h4">Arknights VNS có đang tuyển thành viên không?</Heading>
           </AccordionTrigger>
-          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+          <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <Paragraph>Có 02 cách để bạn gia nhập đội ngũ của chúng tôi:</Paragraph>
             <ul className="list-inside list-disc">
               <li>
@@ -120,29 +120,29 @@ export default function QuestionsForUs() {
               </li>
             </ul>
             <div>Hẹn gặp bạn trong Arknights VNS!</div>
-          </AccordionContent>
+          </AccordionPanel>
         </AccordionItem>
 
-        <AccordionItem>
+        <AccordionItem value="question-6">
           <AccordionTrigger>
             <Heading kind="h4">
               Nhóm có quy định như thế nào về việc thảo luận nội dung chưa ra mắt (Spoiler) từ máy chủ CN?
             </Heading>
           </AccordionTrigger>
-          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+          <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <Paragraph>
               Do đặc thù chênh lệch thời gian giữa máy chủ CN và Global/EN, chúng tôi áp dụng quy định chặt
               chẽ về việc kiểm soát nội dung "Leak & Spoiler". Điều này nhằm đảm bảo sự tôn trọng tối đa đối
               với trải nghiệm khám phá cốt truyện của người chơi Global.
             </Paragraph>
-          </AccordionContent>
+          </AccordionPanel>
         </AccordionItem>
 
-        <AccordionItem>
+        <AccordionItem value="question-7">
           <AccordionTrigger>
             <Heading kind="h4">Arknights VNS có mở rộng cơ hội hợp tác phát triển không?</Heading>
           </AccordionTrigger>
-          <AccordionContent className="space-y-2 text-justify text-muted-foreground md:text-lg">
+          <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <Paragraph>
               Có, chúng tôi luôn tìm kiếm các cơ hội hợp tác phù hợp với giá trị và mục tiêu của cộng đồng.
               Nếu bạn có bất kỳ dự án thú vị hoặc ý tưởng sự kiện nào có thể mang lại lợi ích cho cộng đồng
@@ -168,7 +168,7 @@ export default function QuestionsForUs() {
                 </Link>
               </li>
             </ul>
-          </AccordionContent>
+          </AccordionPanel>
         </AccordionItem>
       </Accordion>
     </ContentArea>

@@ -1,6 +1,6 @@
 import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import { Spinner } from "@arknights-vns/shadcn-ui/components/spinner";
-import lappy from "@resources/image/lappland-arknights.gif";
+import lappy from "@public/lappland-arknights.gif";
 import Image from "next/image";
 
 export default function LoadingLappy() {

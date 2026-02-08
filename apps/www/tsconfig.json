@@ -1,7 +1,6 @@
 {
   "extends": "@arknights-vns/ts-config/nextjs.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "plugins": [
       {
         "name": "next"
@@ -9,8 +8,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@public/*": ["./public/*"],
-      "@resources/*": ["./resources/*"]
+      "@public/*": ["./public/*"]
     }
   },
   "include": [
@@ -21,6 +19,6 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "../../node_modules"
+    "node_modules"
   ]
 }
