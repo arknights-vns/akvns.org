@@ -3,7 +3,8 @@
 import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@arknights-vns/shadcn-ui/components/tabs";
 import crewList from "@resources/data/crew.json";
-import { motion } from "motion/react";
+// biome-ignore lint/performance/noNamespaceImport: docs
+import * as motion from "motion/react-client";
 import { useQueryState } from "nuqs";
 import ContentArea from "@/components/ContentArea";
 import MemberCard from "@/components/MemberCard";
