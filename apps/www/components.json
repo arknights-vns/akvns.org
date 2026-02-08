@@ -5,7 +5,7 @@
   "tsx": true,
   "tailwind": {
     "config": "",
-    "css": "src/styles/globals.css",
+    "css": "../../packages/shadcn-ui/src/styles/globals.css",
     "baseColor": "stone",
     "cssVariables": true,
     "prefix": ""
@@ -14,10 +14,13 @@
   "menuColor": "default",
   "menuAccent": "bold",
   "aliases": {
-    "components": "@arknights-vns/shadcn-ui/components",
+    "components": "@/components",
     "utils": "@arknights-vns/shadcn-ui/lib/utils",
-    "ui": "@arknights-vns/shadcn-ui/components",
+    "ui": "@/components/ui",
     "lib": "@arknights-vns/shadcn-ui/lib",
-    "hooks": "@arknights-vns/shadcn-ui/hooks"
+    "hooks": "@/hooks"
+  },
+  "registries": {
+    "@animate-ui": "https://animate-ui.com/r/{name}.json"
   }
 }

@@ -9,6 +9,9 @@
     "ignoreUnknown": true,
     "includes": [
       "apps/**",
+      "!apps/www/src/components/animate-ui/**/*",
+      "!apps/www/src/lib/get-strict-context.tsx",
+      "!apps/www/src/hooks/use-motion-value-state.tsx",
       "packages/**",
       "!packages/shadcn-ui/src/components/*",
       "!packages/shadcn-ui/src/hooks/*",

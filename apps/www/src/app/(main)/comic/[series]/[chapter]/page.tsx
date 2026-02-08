@@ -1,21 +1,24 @@
-import { Button } from "@arknights-vns/shadcn-ui/components/button";
-import { ButtonGroup } from "@arknights-vns/shadcn-ui/components/button-group";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from "@arknights-vns/shadcn-ui/components/dropdown-menu";
-import { ScrollProgress } from "@arknights-vns/shadcn-ui/components/scroll-progress";
-import { ArrowLeft, ArrowRight, ArrowUpFromLine, BookOpen, StickyNote } from "lucide-react";
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@arknights-vns/shadcn-ui/components/breadcrumb";
+import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import type { Metadata } from "next";
 import { cacheLife } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { fetchComicSeriesData, fetchComicSeriesImagesByChapter } from "@/app/(main)/comic/_data/fetch-data";
+import {
+  ScrollProgress,
+  ScrollProgressContainer,
+  ScrollProgressProvider,
+} from "@/components/animate-ui/primitives/animate/scroll-progress";
+import BottomDock from "@/components/comic/BottomDock";
 import { drizzleDb } from "@/lib/drizzle";
 
 export async function generateMetadata(props: PageProps<"/comic/[series]/[chapter]">): Promise<Metadata> {
@@ -35,9 +38,6 @@ export async function generateMetadata(props: PageProps<"/comic/[series]/[chapte
 }
 
 export async function generateStaticParams() {
-  "use cache";
-  cacheLife("days");
-
   const series = await drizzleDb.query.comicSeries.findMany({
     columns: {
       comicSeriesId: true,
@@ -64,126 +64,76 @@ export async function generateStaticParams() {
 }
 
 export default async function ComicReadPage(props: PageProps<"/comic/[series]/[chapter]">) {
+  "use cache";
+  cacheLife("max");
+
   const { series, chapter } = await props.params;
-
   const seriesData = await fetchComicSeriesData(series);
-
-  if (!seriesData) {
-    notFound();
-  }
-
   const serverImages = await fetchComicSeriesImagesByChapter(series, chapter);
 
-  if (!serverImages) {
+  // biome-ignore lint/complexity/useSimplifiedLogicExpression: no, thanks, De Morgan.
+  if (!seriesData || !serverImages) {
     notFound();
   }
 
   const listOfChapters = seriesData.chapters.map((x) => x.comicChapterId);
-  const currentPosition = listOfChapters.indexOf(chapter);
-
-  const hasPrev = currentPosition - 1 >= 0;
-  const hasNext = currentPosition + 1 < listOfChapters.length;
+  const chapterPosition = listOfChapters.indexOf(chapter);
   const chapterName = seriesData.chapters.filter((x) => x.comicChapterId === chapter)[0]?.chapterName;
 
-  const images = serverImages.map((x, index) => {
-    return (
-      <Image
-        alt={x.name}
-        className="scroll-mt-19 border object-contain"
-        height={380}
-        id={`page-${index + 1}`}
-        key={x.url}
-        src={x.url}
-        width={520}
-      />
-    );
-  });
-
   return (
-    <div className="flex flex-col items-center gap-4">
-      <aside className="place-items-center-safe sticky top-0 z-2 flex w-full flex-col gap-2 bg-background/75 p-2 pt-1 backdrop-blur-lg">
-        <div className="flex gap-1 text-lg">
-          <Link className="hover:underline" href={`/comic/${series}`}>
-            {seriesData.title}
-          </Link>
-        </div>
-        <div className="place-items-center-safe flex justify-between gap-2">
-          <Button disabled={!hasPrev} variant={hasPrev ? "default" : "secondary"}>
-            <Link
-              className="place-items-center-safe flex gap-1"
-              href={hasPrev ? `/comic/${series}/${listOfChapters[currentPosition - 1]}` : "/"}
-            >
-              <ArrowLeft />
-              <span className="hidden md:inline">Chương trước</span>
-            </Link>
-          </Button>
+    <ScrollProgressProvider global={true}>
+      <div className="sticky top-0 flex flex-col">
+        <Breadcrumb className="ml-4 bg-background py-2">
+          <BreadcrumbList>
+            <BreadcrumbLink render={<Link href="/comic">Truyện tại Trạm</Link>} />
+            <BreadcrumbSeparator />
+            <BreadcrumbLink
+              className="hidden md:flex"
+              render={<Link href={`/comic/${series}`}>{seriesData.title}</Link>}
+            />
+            <BreadcrumbEllipsis className="flex md:hidden" />
+            <BreadcrumbSeparator />
+            <BreadcrumbPage> {chapterName}</BreadcrumbPage>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <ScrollProgress className="h-1 rounded-r-full bg-primary" />
+      </div>
 
-          <div className="place-items-center-safe gap-4">
-            <ButtonGroup>
-              {/* Chapter select */}
-              <DropdownMenu>
-                <DropdownMenuTrigger
-                  render={
-                    <Button>
-                      <BookOpen />
-                      {chapterName}
-                    </Button>
-                  }
-                />
-                <DropdownMenuContent align="start" className="w-56">
-                  <DropdownMenuRadioGroup value={chapter}>
-                    {seriesData.chapters.map((entry) => (
-                      <DropdownMenuRadioItem key={entry.id} value={entry.id}>
-                        <Link href={`/comic/${series}/${entry.comicChapterId}`}>{entry.chapterName}</Link>
-                      </DropdownMenuRadioItem>
-                    ))}
-                  </DropdownMenuRadioGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              {/* Jump to page */}
-              <DropdownMenu>
-                <DropdownMenuTrigger
-                  render={
-                    <Button>
-                      <StickyNote />
-                      Nhảy đến
-                    </Button>
-                  }
-                />
-                <DropdownMenuContent align="start" className="w-56">
-                  {serverImages.map((entry, index) => (
-                    <DropdownMenuItem key={entry.url}>
-                      <Link href={{ href: `/comic/${series}/${chapter}`, hash: `page-${index + 1}` }}>
-                        Trang {index + 1}
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </ButtonGroup>
-          </div>
-          <Button disabled={!hasNext} variant={hasNext ? "default" : "secondary"}>
-            <Link
-              className="place-items-center-safe flex gap-1"
-              href={hasNext ? `/comic/${series}/${listOfChapters[currentPosition + 1]}` : "/"}
-            >
-              <span className="hidden md:inline">Chương kế</span>
-              <ArrowRight />
-            </Link>
-          </Button>
+      <div className="flex flex-col gap-4 p-8">
+        <div className="flex flex-col gap-2">
+          <Heading className="text-center text-primary" kind="h1">
+            {seriesData.title}
+          </Heading>
+          <FavorText className="text-center">{chapterName}</FavorText>
         </div>
-        <ScrollProgress className="h-1 self-start rounded-r-full rounded-l-full bg-primary" />
-      </aside>
-      <div className="flex flex-col gap-2">{images.map((x) => x)}</div>
-      <Button className="my-8 p-4">
-        <Link
-          className="place-items-center-safe flex gap-2"
-          href={{ pathname: `/comic/${series}/${chapter}`, hash: "page-1" }}
-        >
-          <ArrowUpFromLine />
-          Về trang nhất
-        </Link>
-      </Button>
-    </div>
+        <ScrollProgressContainer className="place-items-center-safe flex flex-col gap-4">
+          {serverImages.map((x, index) => {
+            return (
+              <Image
+                alt={x.name}
+                className="scroll-mt-26 border object-contain"
+                height={380}
+                id={`page-${index + 1}`}
+                key={x.url}
+                priority={true}
+                src={x.url}
+                width={520}
+              />
+            );
+          })}
+        </ScrollProgressContainer>
+      </div>
+
+      <BottomDock
+        chapterIndex={chapterPosition}
+        chapterList={seriesData.chapters.map((x) => {
+          return {
+            id: x.comicChapterId,
+            name: x.chapterName,
+          };
+        })}
+        comicId={series}
+      />
+    </ScrollProgressProvider>
   );
 }

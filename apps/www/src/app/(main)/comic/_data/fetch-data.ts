@@ -9,6 +9,10 @@ import { drizzleDb } from "@/lib/drizzle";
 import { redisClient } from "@/lib/redis";
 import { ComicImage } from "@/zod/comic";
 
+export function fetchComicListByPage(_page: number) {
+  return;
+}
+
 /**
  * The worst way to get the information.
  */
