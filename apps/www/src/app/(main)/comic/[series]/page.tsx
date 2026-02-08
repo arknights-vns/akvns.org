@@ -36,6 +36,13 @@ export async function generateMetadata(props: PageProps<"/comic/[series]">): Pro
 
   return {
     title: `Arknights VNS | ${comicData.title}`,
+    description: comicData.synopsis,
+    openGraph: {
+      type: "article",
+      title: `Arknights VNS | ${comicData.title}`,
+      description: comicData.synopsis,
+      images: comicData.thumbnail || "https://example.com",
+    },
   };
 }
 
