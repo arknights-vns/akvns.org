@@ -60,6 +60,8 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
   const { series } = await properties.params;
   const data = await fetchComicSeriesData(series);
 
+  const latest = data?.chapters.at(-1);
+
   if (!data) {
     notFound();
   }
@@ -117,12 +119,13 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
               nativeButton={false}
               render={<Link href={`/comic/${series}/${data.chapters[0]?.comicChapterId}`}>Đọc từ đầu</Link>}
             />
-            {/* FIXME: actually implement this */}
             <Button
-              className="border border-primary data-disabled:cursor-default data-disabled:opacity-50"
-              disabled={true}
+              className="border border-primary"
+              disabled={!latest}
               nativeButton={false}
-              render={<Link href={"/you-actually-use-devtool-for-this?" as Route}>Đọc tiếp</Link>}
+              render={
+                <Link href={`/comic/${series}/${latest?.comicChapterId}` as Route}>Chương mới nhất</Link>
+              }
               variant="ghost"
             />
           </div>
