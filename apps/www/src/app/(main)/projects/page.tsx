@@ -28,7 +28,7 @@ export default function ProjectPage() {
         Những dự án của Arknights VNS
       </Heading>
       <FavorText>Các dự án do Arknights VNS hoặc cộng đồng tổ chức</FavorText>
-      <div className="sticky top-18 z-2 flex w-[90vw] justify-evenly bg-background pb-2 md:w-[98vw]">
+      <div className="sticky top-0 z-2 flex w-[90vw] justify-evenly bg-background p-2 md:w-[98vw]">
         <div />
         <div className="place-items-center-safe flex gap-2">
           <div className="hidden font-bold md:inline">Bộ lọc:</div>

@@ -80,7 +80,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
         type="Article"
       />
 
-      <Breadcrumb className="sticky top-18 z-10 bg-background p-2 pl-4">
+      <Breadcrumb className="sticky top-0 ml-4 bg-background p-2">
         <BreadcrumbList>
           <BreadcrumbLink render={<Link href="/comic">Truyện tại Trạm</Link>} />
           <BreadcrumbSeparator />

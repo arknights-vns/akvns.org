@@ -22,7 +22,7 @@ import { links } from "@/components/navbar/navigation-entries";
 
 export default function NavigationBar() {
   return (
-    <header className="sticky top-0 z-1 flex h-18 justify-between bg-background px-4">
+    <header className="flex h-18 justify-between bg-background px-4">
       <div className="place-items-center-safe flex w-[25vw] gap-4">
         <MobileNavigationSidebar links={links} />
         <Link href="/">
