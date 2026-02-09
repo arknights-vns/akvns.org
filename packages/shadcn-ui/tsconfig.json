@@ -1,5 +1,5 @@
 {
-  "extends": "@arknights-vns/ts-config/nextjs.json",
+  "extends": "@arknights-vns/ts-config/react.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

@@ -40,8 +40,11 @@
   "exports": {
     "./globals.css": "./src/styles/globals.css",
     "./postcss.config": "./postcss.config.mjs",
-    "./lib/*": "./src/lib/*",
-    "./hooks/*": "./src/hooks/*",
+    "./lib/*": "./src/lib/*.ts",
+    "./lib/get-strict-context": "./src/lib/get-strict-context.tsx",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./hooks/use-controlled-state": "./src/hooks/use-controlled-state.tsx",
+    "./hooks/use-motion-value-state": "./src/hooks/use-motion-value-state.tsx",
     "./components/*": "./src/components/*.tsx"
   }
 }
