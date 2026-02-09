@@ -36,9 +36,9 @@ export default function QuestionsForUs() {
           </AccordionTrigger>
           <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <Paragraph>
-              Chúng tôi là một cộng đồng người chơi hoạt động độc lập. Chúng tôi không có bất kỳ mối quan hệ
-              pháp lý ràng buộc hay trực thuộc nào đối với Hypergryph (Nhà phát triển) và Yostar (Nhà phát
-              hành)
+              Chúng tôi là một cộng đồng người chơi hoạt động độc lập. Chúng tôi{" "}
+              <span className="font-bold text-primary">không</span> có bất kỳ mối quan hệ pháp lý ràng buộc
+              hay trực thuộc nào đối với Hypergryph (Nhà phát triển) và Yostar (Nhà phát hành)
               <Link className="no-underline!" href="https://www.youtube.com/watch?v=ECZVU4x6Xq0&t=97s">
                 .
               </Link>
@@ -53,7 +53,7 @@ export default function QuestionsForUs() {
           <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <Paragraph>
               Không. Website này hoàn toàn không gắn quảng cáo và cũng không cài đặt bất kỳ mã theo dõi chặn
-              quảng cáo (block AdBlocker) nào.
+              quảng cáo (Adblocker check) nào.
             </Paragraph>
             <Paragraph>
               Thực lòng mà nói, đây là một sự đấu tranh tư tưởng rất dài của đội ngũ phát triển, đặc biệt là
@@ -67,19 +67,17 @@ export default function QuestionsForUs() {
 
         <AccordionItem value="question-4">
           <AccordionTrigger>
-            <Heading kind="h4">Không có quảng cáo, vậy nguồn thu đến từ đâu để duy trì?</Heading>
+            <Heading kind="h4">Nguồn vốn đến từ đâu để duy trì?</Heading>
           </AccordionTrigger>
           <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <ul className="list-inside list-disc leading-relaxed">
               <li>
-                <span className="font-bold text-primary">Cái nút "Donate" ở góc phải phía trên</span> - Toàn
-                bộ số tiền này sẽ được chuyển thẳng vào Quỹ chung để tổ chức các sự kiện lớn như
-                Mini-Festival.
+                <span className="font-bold text-primary">Nút "Donate" trên Website</span> - Toàn bộ số tiền
+                này sẽ được chuyển thẳng vào Quỹ chung để tổ chức các sự kiện lớn như Mini-Festival.
               </li>
               <li>
                 <span className="font-bold text-primary">Donate qua Fanpage</span> - Các khoản ủng hộ tại phần
-                bình luận (comment) của các bài đăng truyện tranh sẽ được chuyển vào Quỹ Team Dịch, sẽ dùng
-                cho các việc như mua raw để dịch.
+                bình luận (comment) của các bài đăng truyện tranh sẽ được chuyển vào Quỹ Team Dịch
                 <figure className="my-4 flex flex-col items-center justify-center">
                   <Image
                     alt="VNS_Donate_Example"
@@ -119,7 +117,6 @@ export default function QuestionsForUs() {
                 động liên hệ để mời bạn gia nhập!
               </li>
             </ul>
-            <div>Hẹn gặp bạn trong Arknights VNS!</div>
           </AccordionPanel>
         </AccordionItem>
 
@@ -146,28 +143,19 @@ export default function QuestionsForUs() {
             <Paragraph>
               Có, chúng tôi luôn tìm kiếm các cơ hội hợp tác phù hợp với giá trị và mục tiêu của cộng đồng.
               Nếu bạn có bất kỳ dự án thú vị hoặc ý tưởng sự kiện nào có thể mang lại lợi ích cho cộng đồng
-              người hâm mộ Arknights tại Việt Nam, đừng ngần ngại liên hệ với chúng tôi qua
+              người hâm mộ Arknights tại Việt Nam, đừng ngần ngại liên hệ với chúng tôi qua Fanpage{" "}
+              <Link className="font-bold text-[#1877f2]" href="https://www.facebook.com/terrastationvn">
+                'Trạm dừng chân chốn Terra'
+              </Link>
+              ,{" "}
+              <Link className="font-bold text-[#1877f2]" href="https://www.facebook.com/shou.huynhf">
+                Facebook cá nhân
+              </Link>{" "}
+              của Head Admin (Shou Huỳnh), hoặc gửi email về địa chỉ:{" "}
+              <Link className="font-bold text-primary" href="mailto:arknightsvns@gmail.com">
+                arknightsvns@gmail.com
+              </Link>
             </Paragraph>
-            <ul className="list-inside list-disc leading-relaxed">
-              <li>
-                Fanpage{" "}
-                <Link className="font-bold text-[#1877f2]" href="https://www.facebook.com/terrastationvn">
-                  'Trạm dừng chân chốn Terra'
-                </Link>
-              </li>
-              <li>
-                <Link className="font-bold text-[#1877f2]" href="https://www.facebook.com/shou.huynhf">
-                  Facebook cá nhân
-                </Link>{" "}
-                của Head Admin.
-              </li>
-              <li>
-                Email{" "}
-                <Link className="font-bold text-primary" href="mailto:arknightsvns@gmail.com">
-                  arknightsvns@gmail.com
-                </Link>
-              </li>
-            </ul>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
