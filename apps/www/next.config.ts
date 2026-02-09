@@ -38,7 +38,7 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   experimental: {
     turbopackFileSystemCacheForDev: true,
-    optimizePackageImports: ["@icons-pack/react-simple-icons", "@sentry/nextjs"],
+    optimizePackageImports: ["@icons-pack/react-simple-icons", "@sentry/nextjs", "motion"],
   },
   poweredByHeader: false,
   transpilePackages: [
@@ -61,8 +61,16 @@ const nextConfig: NextConfig = {
             value: tusWives.join(", "),
           },
           {
-            key: "X-Powered-By",
+            key: "X-Built-By",
             value: "Arknights Vietnam Station, terrastationvn, and you <3",
+          },
+          {
+            key: "X-Powered-By",
+            value: "Next.js 16.0.7 with CVE-2025-55182 unpatched *wink*",
+          },
+          {
+            key: "X-Swyrin-Was-Here",
+            value: "true",
           },
           {
             key: "X-Content-Type-Options",

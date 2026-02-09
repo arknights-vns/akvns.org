@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 export default async function ComicListing() {
   "use cache";
   cacheLife("days");
+  // ^ https://nextjs.org/docs/messages/next-prerender-current-time
+  // cause's from Drizzle, or to be exact, the Date.now() for updatedAt.
 
   const queryClient = getQueryClient();
 

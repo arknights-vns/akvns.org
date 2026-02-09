@@ -33,12 +33,12 @@ export const metadata: Metadata = {
     description: PAGE_DESC,
   },
   keywords: [
-    "arknights vns",
     "akvns",
+    "akvns.org",
+    "arknights vns",
     "arknights vietnam station",
     "terrastationvn",
     "Trạm dừng chân chốn Terra",
-    "Thư viện Laterano",
   ],
 };
 

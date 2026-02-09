@@ -17,11 +17,10 @@ export async function fetchComicSeriesImagesByChapter(series: string, chapter: s
   const REDIS_KEY = `comic-assets:${series}:${chapter}`;
 
   let images: { name: string; url: string }[] = [];
+  const cachedValue = await redisClient.get(REDIS_KEY);
 
-  if (await redisClient.exists(REDIS_KEY)) {
-    // biome-ignore lint/style/noNonNullAssertion: validated for key existence.
-    const redisCached = (await redisClient.get(REDIS_KEY))!;
-    images = await z.array(ComicImage).parseAsync(JSON.parse(redisCached));
+  if (cachedValue) {
+    images = await z.array(ComicImage).parseAsync(JSON.parse(cachedValue));
   } else {
     const resp = await s3Client.send(
       new ListObjectsV2Command({
@@ -37,7 +36,7 @@ export async function fetchComicSeriesImagesByChapter(series: string, chapter: s
     }
 
     images = objects
-      .filter((x) => x.Size && x.Size > 0)
+      .filter((x) => x?.Size && x.Size > 0)
       .map((obj) => {
         return {
           // biome-ignore lint/style/noNonNullAssertion: There is.
