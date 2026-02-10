@@ -35,9 +35,7 @@ export default function HeroSection() {
             <ArrowDown size={24} />
             <span className="hidden md:block">Lướt xuống để xem thêm</span>
           </div>
-          <div className="relative -z-2 text-center text-primary">
-            <span className="hidden md:inline">L2Etd29ybGQteWV0LXRvLWtub3du</span>
-          </div>
+          <div />
         </div>
       </div>
     </div>

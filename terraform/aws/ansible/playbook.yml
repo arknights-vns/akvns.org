@@ -4,6 +4,9 @@
   become: true
   vars:
     nodejs_version: "22"
+    domain_name: akvns.org
+    domain_alias: www.akvns.org
+    email: no.thanks@akvns.org
 
   tasks:
     - name: Update apt cache
@@ -18,15 +21,17 @@
           - wget
           - git
           - build-essential
+          - ca-certificates
+          - gnupg
         state: present
 
-    - name: Setup NodeSource repository for Node.js 22
+    - name: Setup NodeSource repository for Node.js {{ nodejs_version }}
       shell: |
-        curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+        curl -fsSL https://deb.nodesource.com/setup_{{ nodejs_version }}.x | bash -
       args:
         creates: /etc/apt/sources.list.d/nodesource.list
 
-    - name: Install Node.js 22
+    - name: Install Node.js
       apt:
         name: nodejs
         state: present
@@ -42,32 +47,23 @@
         name: nginx
         state: present
 
-    - name: Create nginx site configuration
-      copy:
+    - name: Create AKVNS nginx site configuration
+      template:
+        src: nginx.conf.j2
         dest: /etc/nginx/conf.d/akvns.conf
-        content: |
-          upstream nodejs_backend {
-              server 127.0.0.1:3000;
-          }
-
-          server {
-              listen 80;
-              listen [::]:80;
-              server_name akvns.org www.akvns.org;
-              
-              location / {
-                  proxy_pass http://nodejs_backend;
-                  proxy_http_version 1.1;
-                  proxy_set_header Upgrade $http_upgrade;
-                  proxy_set_header Connection 'upgrade';
-                  proxy_set_header Host $host;
-                  proxy_set_header X-Real-IP $remote_addr;
-                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                  proxy_set_header X-Forwarded-Proto $scheme;
-                  proxy_cache_bypass $http_upgrade;
-              }
-          }
+        owner: root
+        group: root
+        mode: "0644"
       notify: restart nginx
+
+    - name: Remove default nginx site
+      file:
+        path: /etc/nginx/conf.d/default.conf
+        state: absent
+      notify: reload nginx
+
+    - name: Test nginx configuration
+      command: nginx -t
 
     - name: Enable and start nginx
       systemd:
@@ -75,15 +71,24 @@
         enabled: true
         state: started
 
-    - name: Configure firewall for HTTP/HTTPS
-      firewalld:
-        service: "{{ item }}"
-        permanent: true
-        state: enabled
-      loop:
-        - http
-        - https
-      ignore_errors: true
+    - name: Install certbot
+      apt:
+        name:
+          - certbot
+          - python3-certbot-nginx
+      state: present
+
+    - name: Obtain Let's Encrypt SSL certificate
+      command: >
+        certbot --nginx
+        --agree-tos
+        --non-interactive
+        -d {{ domain_name }}
+        -d {{ domain_alias }}
+        -m {{ email }}
+        --redirect
+      args:
+        creates: /etc/letsencrypt/live/{{ domain_name }}/fullchain.pem
 
   handlers:
     - name: restart nginx
