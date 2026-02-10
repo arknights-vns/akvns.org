@@ -14,7 +14,9 @@ jobs:
         with:
           repository: arknights-vns/akvns.org
           ref: main
-          fetch-depth: '1'
+          # https://github.com/actions/checkout/issues/485
+          persist-credentials: false
+          fetch-depth: 1
 
       - name: add arknights-vns/terra to mirror
         run: |
@@ -22,7 +24,7 @@ jobs:
 
       - name: add github identity
         run: |
-          git config user.name "akvns mirror bot"
+          git config user.name "akvns-mirror"
           git config user.email "no.thanks@akvns.org"
 
       - name: create orphan commit
