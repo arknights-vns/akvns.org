@@ -20,6 +20,11 @@ jobs:
         run: |
           git remote add terra https://x-access-token:${{ secrets.TERRA_PAT }}@github.com/arknights-vns/terra.git
 
+      - name: add github identity
+        run: |
+          git config user.name "akvns mirror bot"
+          git config user.email "no.thanks@akvns.org"
+
       - name: create orphan commit
         run: |
           git checkout --orphan public-main
