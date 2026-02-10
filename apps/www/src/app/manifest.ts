@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "For the Dreamchasers, by the Dreamchasers.",
     start_url: "/",
     display: "standalone",
-    background_color: "#fff",
-    theme_color: "#fe0606",
+    background_color: "#0c0a09",
+    theme_color: "#ff2056",
     icons: [
       {
         src: "/favicon.ico",
