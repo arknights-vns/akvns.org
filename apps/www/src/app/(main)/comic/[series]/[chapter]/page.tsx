@@ -5,7 +5,6 @@ import {
 } from "@arknights-vns/shadcn-ui/components/animate-ui/primitives/animate/scroll-progress";
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
@@ -13,10 +12,11 @@ import {
 } from "@arknights-vns/shadcn-ui/components/breadcrumb";
 import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import type { Metadata } from "next";
-import { cacheLife } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ContentArea from "@/components/ContentArea";
 import BottomDock from "@/components/comic/BottomDock";
 import { fetchComicSeriesImagesByChapter } from "@/functions/comic/fetch-series-chapter-images";
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
@@ -66,9 +66,11 @@ export async function generateStaticParams() {
 
 export default async function ComicReadPage(props: PageProps<"/comic/[series]/[chapter]">) {
   "use cache";
+  const { series, chapter } = await props.params;
+
+  cacheTag("comic-images", series, chapter);
   cacheLife("max");
 
-  const { series, chapter } = await props.params;
   const seriesData = await fetchComicSeriesData(series);
   const serverImages = await fetchComicSeriesImagesByChapter(series, chapter);
 
@@ -89,18 +91,17 @@ export default async function ComicReadPage(props: PageProps<"/comic/[series]/[c
             <BreadcrumbLink render={<Link href="/comic">Truyện tại Trạm</Link>} />
             <BreadcrumbSeparator />
             <BreadcrumbLink
-              className="hidden md:flex"
+              className="line-clamp-1 max-w-1/3 text-ellipsis"
               render={<Link href={`/comic/${series}`}>{seriesData.title}</Link>}
             />
-            <BreadcrumbEllipsis className="flex md:hidden" />
             <BreadcrumbSeparator />
-            <BreadcrumbPage> {chapterName}</BreadcrumbPage>
+            <BreadcrumbPage className="line-clamp-1 max-w-1/3 text-ellipsis"> {chapterName}</BreadcrumbPage>
           </BreadcrumbList>
         </Breadcrumb>
         <ScrollProgress className="h-1 rounded-r-full bg-primary" />
       </div>
 
-      <div className="flex flex-col gap-4 p-8">
+      <ContentArea className="flex flex-col gap-4 pt-0! pb-4!">
         <div className="flex flex-col gap-2">
           <Heading className="text-center text-primary" kind="h1">
             {seriesData.title}
@@ -123,7 +124,7 @@ export default async function ComicReadPage(props: PageProps<"/comic/[series]/[c
             );
           })}
         </ScrollProgressContainer>
-      </div>
+      </ContentArea>
 
       <BottomDock
         chapterIndex={chapterPosition}

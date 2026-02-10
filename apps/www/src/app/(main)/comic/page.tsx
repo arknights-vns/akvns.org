@@ -1,7 +1,7 @@
 import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import type { Metadata } from "next";
-import { cacheLife } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 import { Suspense } from "react";
 import ContentArea from "@/components/ContentArea";
 import InfiniteComicList from "@/components/comic/InfiniteComicList";
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 
 export default async function ComicListing() {
   "use cache";
+  cacheTag("comic-list");
   cacheLife("days");
   // ^ https://nextjs.org/docs/messages/next-prerender-current-time
   // cause's from Drizzle, or to be exact, the Date.now() for updatedAt.
