@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
-
+import ContentArea from "@/components/ContentArea";
+import FatFooter from "@/components/FatFooter";
+import NavigationBar from "@/components/navbar/NavigationBar";
 import WeAreCooking from "@/components/WeAreCooking";
 
 export const metadata: Metadata = {
-  title: "Arknights VNS | Not Found",
+  title: "Arknights VNS | Trang không tồn tại",
 };
 
 export default function NotFound() {
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
-      <div>
+    <main>
+      <NavigationBar />
+      <ContentArea className="flex h-[85dvh] items-center justify-center">
         <WeAreCooking />
-      </div>
-    </div>
+      </ContentArea>
+      <FatFooter />
+    </main>
   );
 }
