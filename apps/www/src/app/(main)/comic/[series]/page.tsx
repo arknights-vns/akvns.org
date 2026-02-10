@@ -14,12 +14,11 @@ import { Separator } from "@arknights-vns/shadcn-ui/components/separator";
 import { Skeleton } from "@arknights-vns/shadcn-ui/components/skeleton";
 import { BookCopy, ListOrdered } from "lucide-react";
 import type { Metadata, Route } from "next";
-import { cacheLife } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleJsonLd } from "next-seo";
-import { Suspense } from "react";
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
 import { drizzleDb } from "@/lib/drizzle";
 
@@ -62,11 +61,12 @@ export async function generateStaticParams() {
 
 export default async function ComicSeriesDetail(properties: PageProps<"/comic/[series]">) {
   "use cache";
+  const { series } = await properties.params;
+
+  cacheTag("comic-data", series);
   cacheLife("max");
 
-  const { series } = await properties.params;
   const data = await fetchComicSeriesData(series);
-
   const latest = data?.chapters.at(-1);
 
   if (!data) {
@@ -74,7 +74,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
   }
 
   return (
-    <Suspense>
+    <>
       <ArticleJsonLd
         author={data.author}
         dateModified={data.updatedAt}
@@ -87,7 +87,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
         type="Article"
       />
 
-      <Breadcrumb className="sticky top-0 ml-4 bg-background p-2">
+      <Breadcrumb className="sticky top-0 z-5 ml-4 bg-background p-2">
         <BreadcrumbList>
           <BreadcrumbLink render={<Link href="/comic">Truyện tại Trạm</Link>} />
           <BreadcrumbSeparator />
@@ -209,6 +209,6 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
           </ScrollArea>
         </div>
       </div>
-    </Suspense>
+    </>
   );
 }
