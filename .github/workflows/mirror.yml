@@ -25,16 +25,16 @@ jobs:
           git checkout --orphan public-main
           git add .
           git commit --no-verify -F - <<EOF
-chore: force-push from arknights-vns/akvns.org from $(git rev-parse --short HEAD)
+          chore: force-push from arknights-vns/akvns.org from $(git rev-parse --short HEAD)
 
-Co-authored-by: Tien Dat Pham <dat20036@gmail.com>
-Co-authored-by: Kochiya Shiina <caovanviethung1412@gmail.com>
-Co-authored-by: James-cmd-147 <leanhkhoi983gmail.com>
-Co-authored-by: Nguyễn Phạm Gia Bảo <hello@giabao06.xyz>
-Co-authored-by: shou. <huynhtanganhtu0411@gmail.com>
-Co-authored-by: Đỗ Tấn Lộc <dtl.dotanloc@gmail.com>
-Co-authored-by: Khai Nguyen <manhkhai2606@gmail.com>
-EOF
+          Co-authored-by: Tien Dat Pham <dat20036@gmail.com>
+          Co-authored-by: Kochiya Shiina <caovanviethung1412@gmail.com>
+          Co-authored-by: James-cmd-147 <leanhkhoi983gmail.com>
+          Co-authored-by: Nguyễn Phạm Gia Bảo <hello@giabao06.xyz>
+          Co-authored-by: shou. <huynhtanganhtu0411@gmail.com>
+          Co-authored-by: Đỗ Tấn Lộc <dtl.dotanloc@gmail.com>
+          Co-authored-by: Khai Nguyen <manhkhai2606@gmail.com>
+          EOF
 
       - name: force push
         run: |
