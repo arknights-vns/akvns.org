@@ -3,6 +3,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import type { Metadata } from "next";
 import { cacheLife } from "next/cache";
 import { Suspense } from "react";
+import ContentArea from "@/components/ContentArea";
 import InfiniteComicList from "@/components/comic/InfiniteComicList";
 import { getQueryClient } from "@/lib/query-client";
 import { comicListingOption } from "@/react-query/fetch-all-comic";
@@ -26,7 +27,7 @@ export default async function ComicListing() {
   void queryClient.prefetchInfiniteQuery(comicListingOption);
 
   return (
-    <div className="flex flex-col gap-4">
+    <ContentArea className="flex flex-col gap-4 pt-0!">
       <div className="space-y-4 text-center">
         <Heading className="text-primary" kind="h1">
           Truyện tại Trạm
@@ -34,6 +35,10 @@ export default async function ComicListing() {
         <FavorText>
           Các đầu truyện do đội ngũ dịch thuật @terrastationvn hoặc các bên có hợp tác với Arknights VNS.
         </FavorText>
+        <div>
+          Phần này vẫn đang trong giai đoạn phát triển nên là sẽ thiếu kha khá tính năng, mong bạn thông cảm{" "}
+          {":<"}
+        </div>
       </div>
 
       {/* I feel like this will backshot me back eventually. */}
@@ -42,6 +47,6 @@ export default async function ComicListing() {
           <InfiniteComicList />
         </HydrationBoundary>
       </Suspense>
-    </div>
+    </ContentArea>
   );
 }
