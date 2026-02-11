@@ -1,25 +1,11 @@
 {
   "community": [
     {
-      "name": "Cosplay Gathering #2",
-      "banner": "https://cdn.akvns.org/events/cosplay-gathering-2.jpg",
-      "date": "2024-11-03",
-      "content": "Là hoạt động thường niên bên lề các lễ hội văn hóa lớn, Vietnam Arknights Cosplay Gathering tạo nên sân chơi để các cosplayer của Arknights có thể giao lưu và tỏa sáng. Điểm nhấn là hoạt động chụp ảnh tập thể, là thước đo trực quan khẳng định sự lớn mạnh của cộng đồng Arknights tại Việt Nam.",
-      "post": null
-    },
-    {
-      "name": "Cosplay Gathering #3",
-      "date": "2025-07-20",
+      "name": "Cosplay Gathering",
       "banner": "https://cdn.akvns.org/events/cosplay-gathering-3.jpg",
+      "date": "Hằng \"nửa\" năm @ Hobby Horizon",
       "content": "Là hoạt động thường niên bên lề các lễ hội văn hóa lớn, Vietnam Arknights Cosplay Gathering tạo nên sân chơi để các cosplayer của Arknights có thể giao lưu và tỏa sáng. Điểm nhấn là hoạt động chụp ảnh tập thể, là thước đo trực quan khẳng định sự lớn mạnh của cộng đồng Arknights tại Việt Nam.",
-      "post": null
-    },
-    {
-      "name": "Cosplay Gathering #4",
-      "date": "2025-12-14",
-      "banner": "https://cdn.akvns.org/events/cosplay-gathering-4.jpg",
-      "content": "Là hoạt động thường niên bên lề các lễ hội văn hóa lớn, Vietnam Arknights Cosplay Gathering tạo nên sân chơi để các cosplayer của Arknights có thể giao lưu và tỏa sáng. Điểm nhấn là hoạt động chụp ảnh tập thể, là thước đo trực quan khẳng định sự lớn mạnh của cộng đồng Arknights tại Việt Nam.",
-      "post": null
+      "post": "https://www.youtube.com/watch?v=bO0Bvh9JTRA"
     }
   ],
   "akvns": [
