@@ -127,7 +127,9 @@ export default function ProjectPage() {
                 </Badge>
               </CardHeader>
               <CardContent className="space-y-2">
-                <div className="text-left font-bold text-lg">{entry.name}</div>
+                <div className="text-left font-bold text-lg">
+                  <Link href={entry.post as Route}>{entry.name}</Link>
+                </div>
                 <div className="text-left text-gray-500">{entry.date}</div>
                 <div className="text-justify text-muted-foreground leading-relaxed">{entry.content}</div>
               </CardContent>

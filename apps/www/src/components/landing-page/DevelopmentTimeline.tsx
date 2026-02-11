@@ -11,9 +11,9 @@ export default function DevelopmentTimeline() {
   return (
     <ContentArea className="max-w-[92vw]" id="timeline">
       <Heading className="text-primary" kind="h1">
-        Timeline
+        Hành Trình
       </Heading>
-      <FavorText>Lịch sử hình thành và phát triển của Arknights VNS.</FavorText>
+      <FavorText>Lịch sử hình thành và phát triển của chúng mình.</FavorText>
       <div className="container relative overflow-clip">
         <Timeline
           data={[
@@ -23,8 +23,8 @@ export default function DevelopmentTimeline() {
                 <div className="space-y-4" key="2022">
                   <Paragraph>
                     Hành trình của Arknights VNS bắt đầu từ một bước ngoặt lớn - tách ra để tìm kiếm một hướng
-                    đi mới khác biệt so với Arknights VN Fanclub. Con thuyền khi ấy được chèo lái bởi 6
-                    Founder: <span className="font-bold text-primary">Shou Huỳnh</span>,{" "}
+                    đi mới mẻ. Con thuyền khi ấy được chèo lái bởi 6 Founder:{" "}
+                    <span className="font-bold text-primary">Shou Huỳnh</span>,{" "}
                     <span className="font-bold text-primary">Sơn Trần</span>,{" "}
                     <span className="font-bold text-primary">Bùi Đạt</span>,{" "}
                     <span className="font-bold text-primary">Nguyễn Trang</span>,{" "}
@@ -117,12 +117,19 @@ export default function DevelopmentTimeline() {
               content: (
                 <div className="space-y-4" key="2025">
                   <Paragraph>
-                    Nối tiếp thành công của The Show Must Go On, vào 10/08/2025, Arknights VNS đã tổ chức sự
-                    kiện <span className="font-bold text-primary">"Arknights VNS 2025: Dreamchasers"</span>,
-                    với sự góp mặt của <span className="font-bold text-primary">hơn 150 người tham dự</span>,
-                    quy trình tổ chức chuyên nghiệp và khắc phục gần như triệt để những hạn chế của mùa đầu
-                    tiên, Dreamchasers được cộng đồng công nhận là sự kiện Offline thành công và ấn tượng nhất
-                    trong lịch sử tính đến thời điểm hiện tại.
+                    Nối tiếp thành công của The Show Must Go On, vào 10/08/2025, phối hợp với{" "}
+                    <Link
+                      className="font-bold text-orange-500 underline"
+                      href="https://www.facebook.com/VNCommunityLeague"
+                    >
+                      Vietnam Community League
+                    </Link>
+                    , Arknights VNS đã tổ chức sự kiện{" "}
+                    <span className="font-bold text-primary">"Arknights VNS 2025: Dreamchasers"</span>, với sự
+                    góp mặt của <span className="font-bold text-primary">hơn 150 người tham dự</span>, quy
+                    trình tổ chức chuyên nghiệp và khắc phục gần như triệt để những hạn chế của mùa đầu tiên.
+                    Dreamchasers được cộng đồng công nhận là sự kiện Offline thành công và ấn tượng nhất trong
+                    lịch sử tính đến thời điểm hiện tại.
                   </Paragraph>
                   <Image
                     alt="VNS Offline 2025: Dreamchasers"
@@ -131,16 +138,6 @@ export default function DevelopmentTimeline() {
                     src={Dreamchasers}
                     width={1080}
                   />
-                  <Paragraph>
-                    Và cũng đánh dấu lần đầu tiên Arknights VNS phối hợp với{" "}
-                    <Link
-                      className="font-bold text-orange-500 underline"
-                      href="https://www.facebook.com/VNCommunityLeague"
-                    >
-                      Vietnam Community League
-                    </Link>{" "}
-                    để tổ chức sự kiện cộng đồng.
-                  </Paragraph>
                 </div>
               ),
             },
