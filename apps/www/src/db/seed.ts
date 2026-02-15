@@ -1,6 +1,8 @@
 /// Yes, this is *kind of* production data.
 
 import "dotenv/config";
+
+import { sql } from "drizzle-orm";
 import { reset } from "drizzle-seed";
 import { comicChapter, comicContributor, comicSeries } from "@/db/schema/vns-schema";
 import { drizzleDb } from "@/lib/drizzle";
@@ -12,6 +14,10 @@ async function seed() {
       comicChapter,
       comicContributor,
     });
+
+    await tx.execute(sql`ALTER SEQUENCE comic_series_id_seq RESTART WITH 1`);
+    await tx.execute(sql`ALTER SEQUENCE comic_chapter_id_seq RESTART WITH 1`);
+    await tx.execute(sql`ALTER SEQUENCE comic_contributor_id_seq RESTART WITH 1`);
 
     await tx.insert(comicSeries).values([
       {

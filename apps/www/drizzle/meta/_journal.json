@@ -57,6 +57,13 @@
       "when": 1768356785839,
       "tag": "0007_chief_vivisector",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1771152629148,
+      "tag": "0008_thick_sersi",
+      "breakpoints": true
     }
   ]
 }

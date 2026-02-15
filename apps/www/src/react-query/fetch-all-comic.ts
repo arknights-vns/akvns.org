@@ -6,7 +6,7 @@ export const comicListingOption = infiniteQueryOptions({
   queryFn: ({ pageParam: page }) => {
     return fetchComicListByPage(page);
   },
-  initialPageParam: 1,
+  initialPageParam: 0,
   getNextPageParam: (lastPage) => {
     return lastPage?.canMoveNext ? lastPage.next : null;
     // return 1;

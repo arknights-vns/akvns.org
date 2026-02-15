@@ -1,7 +1,6 @@
 "use server";
-// ^ for some reason redis & postgres keeps being leaked in client.
-//   so that is just low-budget copium.
 
+import { gt } from "drizzle-orm";
 import { cacheLife, cacheTag } from "next/cache";
 import { comicSeries } from "@/db/schema/vns-schema";
 import { drizzleDb } from "@/lib/drizzle";
@@ -9,15 +8,16 @@ import { drizzleDb } from "@/lib/drizzle";
 /**
  * Get (hopefully) paginated comic list.
  */
-export async function fetchComicListByPage(page: number) {
+export async function fetchComicListByPage(lastSeen: number) {
   "use cache";
-  cacheTag("comic-list", page.toString());
+  cacheTag("comic-list", lastSeen.toString());
   cacheLife("days");
 
   const ITEMS_PER_PAGE = 15;
 
   const results = await drizzleDb
     .select({
+      id: comicSeries.id,
       comicSeriesId: comicSeries.comicSeriesId,
       title: comicSeries.title,
       author: comicSeries.author,
@@ -25,12 +25,12 @@ export async function fetchComicListByPage(page: number) {
       category: comicSeries.category,
     })
     .from(comicSeries)
-    .offset((page - 1) * ITEMS_PER_PAGE)
+    .where(gt(comicSeries.id, lastSeen))
     .limit(ITEMS_PER_PAGE);
 
   return {
     message: results,
     canMoveNext: results.length === ITEMS_PER_PAGE,
-    next: results.length === ITEMS_PER_PAGE ? page + 1 : 0,
+    next: results.length === ITEMS_PER_PAGE ? results.at(-1)?.id : -1,
   };
 }

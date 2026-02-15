@@ -17,7 +17,8 @@ export const comicCategoryEnum = pgEnum("comic_category", [
 export const comicSeries = pgTable(
   "comic_series",
   {
-    comicSeriesId: varchar({ length: 255 }).primaryKey(),
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    comicSeriesId: varchar({ length: 255 }),
 
     title: text().notNull(),
     synopsis: text().notNull(),
