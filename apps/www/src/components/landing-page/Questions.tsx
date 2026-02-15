@@ -52,8 +52,8 @@ export default function QuestionsForUs() {
           </AccordionTrigger>
           <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <Paragraph>
-              Không. Website này hoàn toàn không gắn quảng cáo và cũng không cài đặt bất kỳ mã theo dõi chặn
-              quảng cáo (Adblocker check) nào.
+              <span className="font-bold text-primary">Không</span>. Website này hoàn toàn không gắn quảng cáo
+              và cũng không cài đặt bất kỳ mã theo dõi chặn quảng cáo (Adblocker check) nào.
             </Paragraph>
             <Paragraph>
               Thực lòng mà nói, đây là một sự đấu tranh tư tưởng rất dài của đội ngũ phát triển, đặc biệt là
@@ -72,13 +72,16 @@ export default function QuestionsForUs() {
           <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <ul className="list-inside list-disc leading-relaxed">
               <li>
-                <span className="font-bold text-primary">Nút "Donate" trên Website</span> - Toàn bộ số tiền
-                này sẽ được chuyển thẳng vào Quỹ chung để tổ chức các sự kiện lớn như Mini-Festival.
+                <Link className="font-bold text-primary underline" href="/?open-donate=true" scroll={false}>
+                  Nút "Donate" trên Website
+                </Link>{" "}
+                - Toàn bộ số tiền này sẽ được chuyển thẳng vào Quỹ chung để tổ chức các sự kiện lớn như
+                Mini-Festival.
               </li>
               <li>
                 <span className="font-bold text-primary">Donate qua Fanpage</span> - Các khoản ủng hộ tại phần
                 bình luận (comment) của các bài đăng truyện tranh sẽ được chuyển vào Quỹ Team Dịch
-                <figure className="my-4 flex flex-col items-center justify-center">
+                <figure className="my-4 flex flex-col items-center justify-center text-sm">
                   <Image
                     alt="VNS_Donate_Example"
                     className="object-center"
@@ -89,8 +92,9 @@ export default function QuestionsForUs() {
                 </figure>
               </li>
               <li>
-                <span className="font-bold">"Lấy lương nuôi đam mê"</span> - Nguồn tài trợ lớn nhất chính là
-                từ... tiền túi và công việc chính (day job) của các thành viên trong Ban quản trị. {'<(")'}.
+                <span className="font-bold text-primary">"Lấy lương nuôi đam mê"</span> - Nguồn tài trợ lớn
+                nhất chính là từ... tiền túi và công việc chính (day job) của các thành viên trong Ban quản
+                trị. {'<(")'}.
               </li>
             </ul>
           </AccordionPanel>
@@ -128,9 +132,12 @@ export default function QuestionsForUs() {
           </AccordionTrigger>
           <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <Paragraph>
-              Do đặc thù chênh lệch thời gian giữa máy chủ CN và Global/EN, chúng tôi áp dụng quy định chặt
-              chẽ về việc kiểm soát nội dung "Leak & Spoiler". Điều này nhằm đảm bảo sự tôn trọng tối đa đối
-              với trải nghiệm khám phá cốt truyện của người chơi Global.
+              Do đặc thù chênh lệch thời gian giữa máy chủ CN và Global/EN,{" "}
+              <span className="font-bold text-primary">
+                chúng tôi áp dụng quy định chặt chẽ về việc kiểm soát nội dung "Leak & Spoiler"
+              </span>
+              . Điều này nhằm đảm bảo sự tôn trọng tối đa đối với trải nghiệm khám phá cốt truyện của người
+              chơi Global.
             </Paragraph>
           </AccordionPanel>
         </AccordionItem>
