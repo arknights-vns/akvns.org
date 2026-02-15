@@ -17,7 +17,7 @@
     "ultracite": "^7.1.1"
   },
   "scripts": {
-    "prepare": "husky",
+    "prepare": "node -e \"process.exit(process.env.CI ? 0 : 1)\" || husky",
     "format": "biome check . --write",
     "format:unsafe": "biome check . --write --unsafe",
     "lint": "biome check .",
