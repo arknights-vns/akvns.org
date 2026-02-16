@@ -1,0 +1,1 @@
+ALTER TABLE "comic_series" ALTER COLUMN "comicSeriesId" SET NOT NULL;

@@ -1,4 +1,4 @@
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { index, integer, pgEnum, pgTable, text, timestamp, uniqueIndex, varchar } from "drizzle-orm/pg-core";
 
 /**
@@ -18,7 +18,7 @@ export const comicSeries = pgTable(
   "comic_series",
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    comicSeriesId: varchar({ length: 255 }),
+    comicSeriesId: varchar({ length: 255 }).unique().notNull(),
 
     title: text().notNull(),
     synopsis: text().notNull(),
@@ -36,7 +36,20 @@ export const comicSeries = pgTable(
     likeCount: integer().default(0),
     viewCount: integer().default(0),
   },
-  (table) => [index("comic_series_idx").on(table.title, table.author)]
+  (table) => [
+    index("comic_series_id_idx").on(table.id),
+    index("comic_series_seriesId_idx").on(table.comicSeriesId),
+    index("comic_series_idx").on(table.title, table.author),
+    index("comic_title_search_idx").using(
+      "gin",
+      sql`(
+        setweight(to_tsvector('simple', ${table.title}), 'A') ||
+        setweight(to_tsvector('simple', ${table.author}), 'B') ||
+        setweight(to_tsvector('simple', ${table.synopsis}), 'C') ||
+        setweight(to_tsvector('simple', ${table.comicSeriesId}), 'D')
+      )`
+    ),
+  ]
 );
 
 /**

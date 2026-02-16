@@ -1,0 +1,1 @@
+ALTER TABLE "comic_series" ADD CONSTRAINT "comic_series_comicSeriesId_unique" UNIQUE("comicSeriesId");
