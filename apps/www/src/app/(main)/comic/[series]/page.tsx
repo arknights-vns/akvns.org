@@ -118,7 +118,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
               {data.title}
             </Heading>
             <Separator className="h-1" />
-            <Paragraph className="mt-0 text-justify">{data.synopsis}</Paragraph>
+            <Paragraph className="mt-0 whitespace-break-spaces text-justify">{data.synopsis}</Paragraph>
           </div>
           <div className="flex flex-wrap justify-evenly gap-4 [&>a[role=button]]:h-12 [&>a[role=button]]:w-64 [&>a[role=button]]:text-lg">
             <Button
