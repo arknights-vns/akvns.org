@@ -1,6 +1,4 @@
-"use server";
-
-import { gt } from "drizzle-orm";
+import { sql } from "drizzle-orm";
 import { cacheLife, cacheTag } from "next/cache";
 import { comicSeries } from "@/db/schema/vns-schema";
 import { drizzleDb } from "@/lib/drizzle";
@@ -8,12 +6,10 @@ import { drizzleDb } from "@/lib/drizzle";
 /**
  * Get (hopefully) paginated comic list.
  */
-export async function fetchComicListByPage(lastSeen: number) {
+export async function fetchComicListByPage(search: string, page: number, pageSize = 15) {
   "use cache";
-  cacheTag("comic-list", lastSeen.toString());
+  cacheTag("comic-list", search, page.toString(), pageSize.toString());
   cacheLife("days");
-
-  const ITEMS_PER_PAGE = 15;
 
   const results = await drizzleDb
     .select({
@@ -25,12 +21,23 @@ export async function fetchComicListByPage(lastSeen: number) {
       category: comicSeries.category,
     })
     .from(comicSeries)
-    .where(gt(comicSeries.id, lastSeen))
-    .limit(ITEMS_PER_PAGE);
+    .where(
+      search !== ""
+        ? sql`(
+      setweight(to_tsvector('simple', ${comicSeries.title}), 'A') ||
+      setweight(to_tsvector('simple', ${comicSeries.author}), 'B') ||
+      setweight(to_tsvector('simple', ${comicSeries.synopsis}), 'C') ||
+      setweight(to_tsvector('simple', ${comicSeries.comicSeriesId}), 'D')
+      @@ plainto_tsquery('simple', ${search})
+    )`
+        : sql`1 = 1`
+    )
+    .offset((page - 1) * pageSize)
+    .limit(pageSize);
 
   return {
     message: results,
-    canMoveNext: results.length === ITEMS_PER_PAGE,
-    next: results.length === ITEMS_PER_PAGE ? results.at(-1)?.id : -1,
+    canMoveNext: results.length === pageSize,
+    next: results.length === pageSize ? page + 1 : null,
   };
 }
