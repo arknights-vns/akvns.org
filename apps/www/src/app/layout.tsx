@@ -24,12 +24,15 @@ const PAGE_DESC = "For the Dreamchasers, by the Dreamchasers.";
 const PAGE_URL =
   process.env.NODE_ENV === "development" ? "http://localhost:3000" : clientEnv.NEXT_PUBLIC_PRODUCTION_URL;
 
+const trailingSlashRegex = /\/$/;
+const cleanedUrl = PAGE_URL.endsWith("/") ? PAGE_URL.replace(trailingSlashRegex, "") : PAGE_URL;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(PAGE_URL),
+  metadataBase: new URL(cleanedUrl),
   title: PAGE_TITLE,
   description: PAGE_DESC,
   openGraph: {
-    url: new URL(PAGE_URL),
+    url: new URL(cleanedUrl),
     title: PAGE_TITLE,
     description: PAGE_DESC,
   },
