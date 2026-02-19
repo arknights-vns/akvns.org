@@ -24,7 +24,7 @@ export default function DonateButton() {
         render={
           <Button className="border-primary! hover:bg-primary!" variant="outline">
             <HeartHandshake />
-            <div className="">Donate</div>
+            Donate
           </Button>
         }
       />
