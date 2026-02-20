@@ -3,10 +3,10 @@ import type { Metadata, Viewport } from "next";
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import Providers from "@/components/Providers";
-import { clientEnv } from "@/env-var/client";
 import "@arknights-vns/shadcn-ui/globals.css";
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
 import ExuStare from "@/components/ExuStare";
+import { getProductionUrl } from "@/lib/utils";
 
 const fontSans = VNS_Font({
   subsets: ["latin", "vietnamese"],
@@ -20,19 +20,14 @@ const fontMono = VNS_Font_Mono({
 
 const PAGE_TITLE = "Arknights Vietnam Station";
 const PAGE_DESC = "For the Dreamchasers, by the Dreamchasers.";
-
-const PAGE_URL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : clientEnv.NEXT_PUBLIC_PRODUCTION_URL;
-
-const trailingSlashRegex = /\/$/;
-const cleanedUrl = PAGE_URL.endsWith("/") ? PAGE_URL.replace(trailingSlashRegex, "") : PAGE_URL;
+const prodUrl = getProductionUrl();
 
 export const metadata: Metadata = {
-  metadataBase: new URL(cleanedUrl),
+  metadataBase: new URL(prodUrl),
   title: PAGE_TITLE,
   description: PAGE_DESC,
   openGraph: {
-    url: new URL(cleanedUrl),
+    url: new URL(prodUrl),
     title: PAGE_TITLE,
     description: PAGE_DESC,
   },
@@ -40,9 +35,12 @@ export const metadata: Metadata = {
     "akvns",
     "akvns.org",
     "arknights vns",
+    "arknights vietnam",
     "arknights vietnam station",
     "terrastationvn",
-    "Trạm dừng chân chốn Terra",
+    "@terrastationvn",
+    "phoenix frontiers",
+    "trạm dừng chân chốn Terra",
   ],
 };
 

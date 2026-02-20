@@ -1,39 +1,34 @@
 import type { MetadataRoute } from "next";
 import { comicSeries } from "@/db/schema/vns-schema";
-import { clientEnv } from "@/env-var/client";
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
 import { drizzleDb } from "@/lib/drizzle";
-
-const PAGE_URL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : clientEnv.NEXT_PUBLIC_PRODUCTION_URL;
-
-const trailingSlashRegex = /\/$/;
-const cleanedUrl = PAGE_URL.endsWith("/") ? PAGE_URL.replace(trailingSlashRegex, "") : PAGE_URL;
+import { getProductionUrl } from "@/lib/utils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries = await drizzleDb.select({ seriesId: comicSeries.comicSeriesId }).from(comicSeries);
+  const prodUrl = getProductionUrl();
 
   const pages: MetadataRoute.Sitemap = [
     {
-      url: cleanedUrl,
+      url: prodUrl,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${cleanedUrl}/staff`,
+      url: `${prodUrl}/staff`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: `${cleanedUrl}/comic`,
+      url: `${prodUrl}/comic`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: `${cleanedUrl}/projects`,
+      url: `${prodUrl}/projects`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.8,
@@ -44,7 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const seriesData = await fetchComicSeriesData(entry.seriesId);
 
     pages.push({
-      url: `${cleanedUrl}/${seriesData?.comicSeriesId}`,
+      url: `${prodUrl}/${seriesData?.comicSeriesId}`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.8,
@@ -56,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     for (const chapter of seriesData.chapters) {
       pages.push({
-        url: `${cleanedUrl}/${seriesData?.comicSeriesId}/${chapter.comicChapterId}`,
+        url: `${prodUrl}/${seriesData?.comicSeriesId}/${chapter.comicChapterId}`,
         lastModified: new Date(),
         changeFrequency: "never",
         priority: 0.5,

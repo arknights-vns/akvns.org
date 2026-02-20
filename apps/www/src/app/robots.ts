@@ -1,18 +1,14 @@
 import type { MetadataRoute } from "next";
-import { clientEnv } from "@/env-var/client";
-
-const PAGE_URL =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : clientEnv.NEXT_PUBLIC_PRODUCTION_URL;
-
-const trailingSlashRegex = /\/$/;
-const cleanedUrl = PAGE_URL.endsWith("/") ? PAGE_URL.replace(trailingSlashRegex, "") : PAGE_URL;
+import { getProductionUrl } from "@/lib/utils";
 
 export default function robots(): MetadataRoute.Robots {
+  const prodUrl = getProductionUrl();
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${cleanedUrl}/sitemap.xml`,
+    sitemap: `${prodUrl}/sitemap.xml`,
   };
 }
