@@ -26,7 +26,7 @@ export default function StaffPage() {
   return (
     <ContentArea className="justify-self-center-safe place-items-center-safe" id="#all-staffs">
       <Heading className="text-center text-primary" kind="h1">
-        Nhân sự tại Arknights VNS
+        Nhân sự
       </Heading>
       <FavorText className="text-center text-muted-foreground">
         Toàn bộ nhân sự đang hoạt động tại Arknights VNS
