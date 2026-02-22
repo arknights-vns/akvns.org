@@ -66,58 +66,61 @@ export default async function ComicListing(props: PageProps<"/comic">) {
       </Form>
 
       {search !== "" && <div className="self-center font-bold">Kết quả tìm kiếm cho: {search}</div>}
-
-      <ScrollArea className="h-[95dvh] w-full">
-        <div className="p-4">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {content.message.map((entry) => {
-              return (
-                <div className="place-items-center-safe flex flex-col gap-2" key={entry.comicSeriesId}>
-                  {entry.thumbnail === null ? (
-                    <Skeleton className="h-72 w-48" />
-                  ) : (
-                    <Image
-                      alt={entry.comicSeriesId}
-                      className="h-68 w-48 bg-foreground object-cover"
-                      height={272}
-                      priority={true}
-                      src={entry.thumbnail}
-                      width={192}
-                    />
-                  )}
-                  <Badge
-                    className={cn(
-                      "border bg-background p-3 font-bold",
-                      entry.category === "Arknights_VNS" && "border-primary",
-                      entry.category === "Partner" && "border-400",
-                      entry.category === "Collaboration" && "border-black",
-                      entry.category === "Community" && "border-gray-600"
+      {content.message.length > 0 ? (
+        <ScrollArea className="h-[95dvh] w-full">
+          <div className="p-4">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              {content.message.map((entry) => {
+                return (
+                  <div className="place-items-center-safe flex flex-col gap-2" key={entry.comicSeriesId}>
+                    {entry.thumbnail === null ? (
+                      <Skeleton className="h-72 w-48" />
+                    ) : (
+                      <Image
+                        alt={entry.comicSeriesId}
+                        className="h-68 w-48 bg-foreground object-cover"
+                        height={272}
+                        priority={true}
+                        src={entry.thumbnail}
+                        width={192}
+                      />
                     )}
-                  >
-                    {
+                    <Badge
+                      className={cn(
+                        "border bg-background p-3 font-bold",
+                        entry.category === "Arknights_VNS" && "border-primary",
+                        entry.category === "Partner" && "border-400",
+                        entry.category === "Collaboration" && "border-black",
+                        entry.category === "Community" && "border-gray-600"
+                      )}
+                    >
                       {
-                        Arknights_VNS: "@terrastationvn",
-                        Partner: "Partner",
-                        Collaboration: "Collab",
-                        Community: "Community",
-                      }[entry.category]
-                    }
-                  </Badge>
-                  <Link
-                    className="text-center font-bold text-lg text-primary hover:underline"
-                    href={`/comic/${entry.comicSeriesId}` as Route}
-                  >
-                    {entry.title}
-                  </Link>
-                  <div>
-                    <span className="font-bold">Tác giả</span>: {entry.author}
+                        {
+                          Arknights_VNS: "@terrastationvn",
+                          Partner: "Partner",
+                          Collaboration: "Collab",
+                          Community: "Community",
+                        }[entry.category]
+                      }
+                    </Badge>
+                    <Link
+                      className="text-center font-bold text-lg text-primary hover:underline"
+                      href={`/comic/${entry.comicSeriesId}` as Route}
+                    >
+                      {entry.title}
+                    </Link>
+                    <div>
+                      <span className="font-bold">Tác giả</span>: {entry.author}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </ScrollArea>
+        </ScrollArea>
+      ) : (
+        <div className="text-center text-muted-foreground">*Có vẻ như là... không có gì hết?*</div>
+      )}
     </ContentArea>
   );
 }
