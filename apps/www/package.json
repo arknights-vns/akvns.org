@@ -17,12 +17,12 @@
   },
   "dependencies": {
     "@arknights-vns/shadcn-ui": "workspace:*",
-    "@aws-sdk/client-s3": "^3.990.0",
+    "@aws-sdk/client-s3": "^3.995.0",
     "@databuddy/cache": "^0.0.120",
     "@elysiajs/node": "^1.4.4",
     "@icons-pack/react-simple-icons": "^13.11.2",
     "@next/third-parties": "^16.1.6",
-    "@sentry/nextjs": "^10.38.0",
+    "@sentry/nextjs": "^10.39.0",
     "@t3-oss/env-nextjs": "^0.13.10",
     "@tanstack/react-hotkeys": "^0.1.0",
     "@tanstack/react-query": "^5.90.21",
@@ -35,7 +35,7 @@
     "ioredis": "^5.9.3",
     "lucide-react": "^0.562.0",
     "motion": "^12.34.0",
-    "next": "16.2.0-canary.46",
+    "next": "16.2.0-canary.59",
     "next-seo": "^7.1.0",
     "nuqs": "^2.8.8",
     "postgres": "^3.4.8",
@@ -50,11 +50,11 @@
     "@types/node": "^22.19.11",
     "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
+    "@typescript/native-preview": "7.0.0-dev.20260222.1",
     "babel-plugin-react-compiler": "^1.0.0",
     "dotenv": "^17.3.1",
     "drizzle-kit": "^0.31.9",
     "drizzle-seed": "^0.3.1",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "tsx": "^4.21.0"
   }
 }
