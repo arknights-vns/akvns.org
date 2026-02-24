@@ -2,7 +2,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 import "@/env-var/client";
-import "@/env-var/server";
+import { serverEnv } from "@/env-var/server";
 
 const isDev = process.env.NODE_ENV === "development";
 const tusWives = [
@@ -108,8 +108,8 @@ const nextConfig: NextConfig = {
 };
 
 export default withSentryConfig(nextConfig, {
-  org: "tien-dat-pham",
-  project: "arknights-vns",
+  org: serverEnv.SENTRY_ORG,
+  project: serverEnv.SENTRY_PROJECT,
 
   silent: !process.env.CI,
   widenClientFileUpload: true,
@@ -120,11 +120,8 @@ export default withSentryConfig(nextConfig, {
   // side errors will fail.
   // tunnelRoute: "/monitoring",
 
-  webpack: {
-    automaticVercelMonitors: true,
-
-    treeshake: {
-      removeDebugLogging: true,
-    },
+  ...(process.env.VERCEL ? { automaticVercelMonitors: true } : {}),
+  bundleSizeOptimizations: {
+    excludeDebugStatements: true,
   },
 });
