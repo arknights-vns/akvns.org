@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@arknights-vns/ts-config": "workspace:*",
-    "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindcss/postcss": "^4.2.0",
     "@types/node": "^22.19.11",
     "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
