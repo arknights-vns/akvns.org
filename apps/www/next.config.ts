@@ -39,6 +39,9 @@ const nextConfig: NextConfig = {
   experimental: {
     turbopackFileSystemCacheForDev: true,
     optimizePackageImports: ["@icons-pack/react-simple-icons", "@sentry/nextjs", "motion"],
+    sri: {
+      algorithm: "sha384",
+    },
   },
   poweredByHeader: false,
   transpilePackages: [
