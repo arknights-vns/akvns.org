@@ -85,9 +85,11 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
+            // https://github.com/vercel/next.js/discussions/81703
+            // so yeah, 'unsafe-inline' for now.
             value: `
     default-src 'self';
-    script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://*.googletagmanager.com;
+    script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://*.googletagmanager.com https://*.cloudflareinsights.com;
     style-src 'self' 'unsafe-inline';
     connect-src 'self' https://*.sentry.io https://*.google-analytics.com;
     img-src 'self' https://*.akvns.org;
