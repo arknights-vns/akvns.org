@@ -1,3 +1,4 @@
+import { prisma } from "@arknights-vns/database/client";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -20,7 +21,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleJsonLd } from "next-seo";
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
-import { drizzleDb } from "@/lib/drizzle";
 
 // https://github.com/vercel/next.js/discussions/84991
 // export const dynamicParams = false;
@@ -46,15 +46,15 @@ export async function generateMetadata(props: PageProps<"/comic/[series]">): Pro
 }
 
 export async function generateStaticParams() {
-  const series = await drizzleDb.query.comicSeries.findMany({
-    columns: {
-      comicSeriesId: true,
+  const series = await prisma.comicSeries.findMany({
+    select: {
+      series_id: true,
     },
   });
 
   return series.map((entry) => {
     return {
-      series: entry.comicSeriesId,
+      series: entry.series_id,
     };
   });
 }
@@ -77,8 +77,8 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
     <>
       <ArticleJsonLd
         author={data.author}
-        dateModified={data.updatedAt}
-        datePublished={data.createdAt}
+        dateModified={data.updatedAt.toISOString()}
+        datePublished={data.createdAt.toISOString()}
         description={data.synopsis}
         headline={data.title}
         image={data.thumbnail || "https://example.com"}
@@ -103,7 +103,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
             <Skeleton className="h-72 w-48" />
           ) : (
             <Image
-              alt={data.comicSeriesId}
+              alt={data.series_id}
               className="h-96 w-auto object-contain"
               height={576}
               loading="eager"
@@ -124,15 +124,13 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
             <Button
               className="bg-primary/75!"
               nativeButton={false}
-              render={<Link href={`/comic/${series}/${data.chapters[0]?.comicChapterId}`}>Đọc từ đầu</Link>}
+              render={<Link href={`/comic/${series}/${data.chapters[0]?.chapter_id}`}>Đọc từ đầu</Link>}
             />
             <Button
               className="border border-primary"
               disabled={!latest}
               nativeButton={false}
-              render={
-                <Link href={`/comic/${series}/${latest?.comicChapterId}` as Route}>Chương mới nhất</Link>
-              }
+              render={<Link href={`/comic/${series}/${latest?.chapter_id}` as Route}>Chương mới nhất</Link>}
               variant="ghost"
             />
           </div>
@@ -189,13 +187,13 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
           <ScrollArea className="h-144 w-full">
             <div className="flex flex-col gap-2 p-4">
               {data.chapters
-                .sort((x, y) => x.id - y.id)
+                .sort((x, y) => Number(x.id - y.id))
                 .map((chapter) => (
-                  <Item key={chapter.comicChapterId} variant="muted">
+                  <Item key={chapter.chapter_id} variant="muted">
                     <ItemContent>
                       <ItemTitle className="font-bold text-lg text-primary">
-                        <Link href={`/comic/${series}/${chapter.comicChapterId}` as Route}>
-                          {chapter.chapterName}
+                        <Link href={`/comic/${series}/${chapter.chapter_id}` as Route}>
+                          {chapter.chapter_name}
                         </Link>
                       </ItemTitle>
                       <ItemDescription>

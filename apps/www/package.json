@@ -9,16 +9,12 @@
     "typegen:next": "next typegen",
     "build": "next build",
     "start": "next start",
-    "bloatcheck": "next experimental-analyze",
-    "db:seed": "tsx src/db/seed.ts",
-    "db:generate": "drizzle-kit generate",
-    "db:push": "drizzle-kit push",
-    "db:push:force": "drizzle-kit push --force"
+    "bloatcheck": "next experimental-analyze"
   },
   "dependencies": {
+    "@arknights-vns/database": "workspace:*",
     "@arknights-vns/shadcn-ui": "workspace:*",
     "@aws-sdk/client-s3": "^3.995.0",
-    "@databuddy/cache": "^0.0.120",
     "@elysiajs/node": "^1.4.4",
     "@icons-pack/react-simple-icons": "^13.11.2",
     "@next/third-parties": "^16.1.6",
@@ -26,8 +22,6 @@
     "@t3-oss/env-nextjs": "^0.13.10",
     "@tanstack/react-hotkeys": "^0.1.0",
     "@tanstack/react-query": "^5.90.21",
-    "drizzle-orm": "^0.45.1",
-    "drizzle-zod": "^0.8.3",
     "elysia": "^1.4.25",
     "elysia-healthcheck": "^1.0.0",
     "elysiajs-cdn-cache": "^0.0.13",
@@ -38,7 +32,6 @@
     "next": "16.2.0-canary.62",
     "next-seo": "^7.1.0",
     "nuqs": "^2.8.8",
-    "postgres": "^3.4.8",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "zod": "^4.3.6"
@@ -50,10 +43,6 @@
     "@types/react": "19.2.10",
     "@types/react-dom": "19.2.3",
     "@typescript/native-preview": "7.0.0-dev.20260222.1",
-    "babel-plugin-react-compiler": "^1.0.0",
-    "dotenv": "^17.3.1",
-    "drizzle-kit": "^0.31.9",
-    "drizzle-seed": "^0.3.1",
-    "tsx": "^4.21.0"
+    "babel-plugin-react-compiler": "^1.0.0"
   }
 }

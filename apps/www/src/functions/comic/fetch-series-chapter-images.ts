@@ -4,7 +4,11 @@ import { z } from "zod";
 import { serverEnv } from "@/env-var/server";
 import { s3Client } from "@/lib/aws-s3";
 import { redisClient } from "@/lib/redis";
-import { ComicImage } from "@/zod/comic";
+
+const ComicImage = z.object({
+  name: z.string(),
+  url: z.url(),
+});
 
 /**
  * Get the images list.
