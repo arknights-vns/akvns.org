@@ -8,17 +8,21 @@ SELECT
   author,
   thumbnail,
   category,
-  greatest(
-    similarity(series_id, $1),
-    similarity(title, $1),
-    similarity(author, $1)
-  ) as score
+  similarity(search_text, $1) AS score
 FROM "comic_series"
 WHERE (
-  title = ''
-  OR title % $1
-  OR author % $1
-  OR series_id % $1
+  $1 = ''
+  OR search_text % $1
+  OR search_text ILIKE '%' || $1 || '%'
+  OR (
+    -- anytime until EXPLAIN tells me "you are a fucking idiot".
+    length($1) <= 10
+    AND search_text ~* regexp_replace($1, '(.)', '\1.*', 'g')
+  )
 )
 ORDER BY score DESC
-OFFSET (($2 - 1) * COALESCE($3, 15)) LIMIT COALESCE($3, 15);
+OFFSET greatest(($2 - 1) * COALESCE($3, 15), 0)
+LIMIT greatest(COALESCE($3, 15), 15);
+
+-- dear whoever seeing this,
+-- I'm sorry for letting you witness this abomination of a raw query.
