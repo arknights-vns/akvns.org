@@ -1,0 +1,35 @@
+name: Deploy on VNS Headquarter
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy on HQ
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up WireGuard connection
+        uses: egor-tensin/setup-wireguard@v1
+        with:
+          endpoint: '${{ secrets.HQ_ENDPOINT }}'
+          endpoint_public_key: '${{ secrets.HQ_ENDPOINT_PUBKEY }}'
+          ips: '${{ secrets.ACTIONS_IPS }}'
+          allowed_ips: '${{ secrets.ACTIONS_ALLOWED_IPS }}'
+          private_key: '${{ secrets.ACTIONS_PRIVKEY }}'
+          preshared_key: '${{ secrets.HQ_PRESHARED_KEY }}'
+      - name: Execute remote SSH commands using password
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.KEY }}
+          script: |
+            cd ~/terra
+            git reset --hard HEAD
+            git pull --rebase
+            systemctl --user stop vns-website.service
+            pnpm run build
+            systemctl --user start vns-website.service
