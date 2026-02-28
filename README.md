@@ -8,6 +8,7 @@ Well, this is the public source code for the website [akvns.org](https://akvns.o
 
 ## What is inside?
 
+- The dreamchasers websites @ `dreamchasers-*`, with `dev`, `build` and `start` removed for obvious reason.
 - The portfolio website @ `www`
 - The API layer @ `prts`
 - And many more features will be added gradually.
@@ -26,7 +27,7 @@ and... everything is AGPLv3-licensed, so some of you guys will be pissed a lot, 
 Probably taking some time looking at the source code would give you the answer, but here is the short list:
 
 | Name      | Usage                            | Comments                                                                  |
-|-----------|----------------------------------|---------------------------------------------------------------------------|
+| --------- | -------------------------------- | ------------------------------------------------------------------------- |
 | Next.js   | (kind of) full-stack development | yes, we know [TanStack Start](https://tanstack.com/start/latest) exists.  |
 | Elysia.js | The backend layer                | tbf, SaltyAom should have called it Elysia.ts due to how type-safe it is. |
 | Prisma    | ORM Layer                        |                                                                           |
