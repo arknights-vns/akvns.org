@@ -6,7 +6,7 @@
   "license": "AGPL-3.0-or-later",
   "version": "1.0.0",
   "scripts": {
-    "db:generate": "prisma generate",
+    "db:generate": "prisma generate --sql",
     "db:migrate": "prisma migrate dev",
     "db:migrate:empty": "prisma migrate dev --create-only",
     "db:deploy": "prisma migrate deploy",
