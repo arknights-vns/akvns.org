@@ -1,0 +1,322 @@
+{
+    "members": [
+        {
+            "name": "shou.",
+            "internal_name": null,
+            "roles": [
+                "ALL",
+                "Đa-Thê",
+                "Event-Director"
+            ]
+        },
+        {
+            "name": "Shihotori",
+            "internal_name": null,
+            "roles": [
+                "Consultant",
+                "Minigame"
+            ]
+        },
+        {
+            "name": "Kamaeiri",
+            "internal_name": null,
+            "roles": [
+                "Consultant",
+                "MC"
+            ]
+        },
+        {
+            "name": "AkaneOSK",
+            "internal_name": null,
+            "roles": [
+                "Secretary"
+            ]
+        },
+        {
+            "name": "Meruko",
+            "internal_name": null,
+            "roles": [
+                "Secretary",
+                "Logistics",
+                "Minigame"
+            ]
+        },
+        {
+            "name": "WhaTa SixX",
+            "internal_name": null,
+            "roles": [
+                "Multimedia"
+            ]
+        },
+         {
+            "name": "Succhusa",
+            "internal_name": null,
+            "roles": [
+                "Multimedia"
+            ]
+        },
+        {
+            "name": "SADUS",
+            "internal_name": null,
+            "roles": [
+                "Logistics"
+            ]
+        },
+        {
+            "name": "Red",
+            "internal_name": null,
+            "roles": [
+                "Kahoot"
+            ]
+        },
+        {
+            "name": "シイナ•コチヤ",
+            "internal_name": "Shiina",
+            "roles": [
+                "IT",
+                "Minigame",
+                "Multimedia"
+            ]
+        },
+        {
+            "name": "セイタ・エルマー",
+            "internal_name": "Elmer",
+            "roles": [
+                "IT",
+                "Minigame"
+            ]
+        },
+        {
+            "name": "Kazaha Kamito",
+            "internal_name": null,
+            "roles": [
+                "IT",
+                "IT-Technical",
+                "Donator"
+            ]
+        },
+        {
+            "name": "TuanAnh",
+            "internal_name": null,
+            "roles": [
+                "IT",
+                "Kahoot",
+                "Minigame"
+            ]
+        },
+        {
+            "name": "スイリン•です",
+            "internal_name": "Swyrin",
+            "roles": [
+                "IT",
+                "Minigame"
+            ]
+        }
+    ],
+    "partners": [
+        {
+            "name": "Phổ Lang",
+            "internal_name": "Pho Lang",
+            "roles": [
+                "Sponsor"
+            ]
+        },
+         {
+            "name": "bibom10",
+            "internal_name": null,
+            "roles": [
+                "Sponsor"
+            ]
+        },
+        {
+            "name": "Rei",
+            "internal_name": null,
+            "roles": [
+                "Sponsor"
+            ]
+        },
+        {
+            "name": "Staug",
+            "internal_name": null,
+            "roles": [
+                "Donator"
+            ]
+        },
+         {
+            "name": "Higato",
+            "internal_name": null,
+            "roles": [
+                "Donator"
+            ]
+        },
+        {
+            "name": "Admin CED",
+            "internal_name": null,
+            "roles": [
+                "Donator"
+            ]
+        },
+        {
+            "name": "Ｈｙｐｅｒ－Ｖ△",
+            "internal_name": "Hyper-V",
+            "roles": [
+                "Photographer"
+            ]
+        },
+
+        {
+            "name": "Satoh Nguyễn",
+            "internal_name": "Satoh",
+            "roles": [
+                "Photographer"
+            ]
+        },
+        {
+            "name": "Acsyncct",
+            "internal_name": null,
+            "roles": [
+                "Artist"
+            ]
+        },
+        {
+            "name": "Cerberose",
+            "internal_name": null,
+            "roles": [
+                "IT"
+            ]
+        },
+        {
+            "name": "Monoka",
+            "internal_name": null,
+            "roles": [
+                "Illustration-Artist"
+            ]
+        },
+        {
+            "name": "Smol Lappcheto",
+            "internal_name": null,
+            "roles": [
+                "Artist"
+            ]
+        },
+        {
+            "name": "DuyBong",
+            "internal_name": null,
+            "roles": [
+                "Graphic-Designer"
+            ]
+        },
+        {
+            "name": "Lens",
+            "internal_name": null,
+            "roles": [
+                "Graphic-Designer"
+            ]
+        },
+        {
+            "name": "Zopu",
+            "internal_name": null,
+            "roles": [
+                "Graphic-Designer"
+            ]
+        },
+        {
+            "name": "Tkieen",
+            "internal_name": null,
+            "roles": [
+                "Graphic-Designer"
+            ]
+        },
+        {
+            "name": "HieuTrungMc",
+            "internal_name": null,
+            "roles": [
+                "Vietnam-Community-League"
+            ]
+        },
+        {
+            "name": "Hoaq",
+            "internal_name": null,
+            "roles": [
+                "Vietnam-Community-League"
+            ]
+        },
+           {
+            "name": "Orei",
+            "internal_name": null,
+            "roles": [
+                "Vietnam-Community-League"
+            ]
+        },
+        {
+            "name": "Phoeni",
+            "internal_name": null,
+            "roles": [
+                "Vietnam-Community-League"
+            ]
+        },
+        {
+            "name": "Ekkusu Hikari",
+            "internal_name": null,
+            "roles": [
+                "Offline-2024:-Staff"
+            ]
+        },
+        {
+            "name": "Floppa",
+            "internal_name": null,
+            "roles": [
+                "Offline-2024:-Staff"
+            ]
+        },
+        {
+            "name": "Miarow Hans",
+            "internal_name": null,
+            "roles": [
+                "Offline-2024:-Staff"
+            ]
+        },
+          {
+            "name": "Akihito",
+            "internal_name": null,
+            "roles": [
+                "Offline-2024:-Staff"
+            ]
+        },
+        {
+            "name": "Syalis",
+            "internal_name": null,
+            "roles": [
+                "Offline-2024:-Leader"
+            ]
+        },
+        {
+            "name": "Moorce",
+            "internal_name": null,
+            "roles": [
+                "Video-Editor"
+            ]
+        },
+        {
+            "name": "Ryuka",
+            "internal_name": null,
+            "roles": [
+                "Cosplayers-Manager"
+            ]
+        },
+        {
+            "name": "Harlow Kuro",
+            "internal_name": null,
+            "roles": [
+                "Tournament-Caster"
+            ]
+        },
+        {
+            "name": "Hidr0",
+            "internal_name": null,
+            "roles": [
+                "Videographer"
+            ]
+        }
+    ]
+}
