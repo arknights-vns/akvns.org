@@ -1,11 +1,25 @@
+import { prisma } from "@arknights-vns/database/client";
 import type { MetadataRoute } from "next";
-import { comicSeries } from "@/db/schema/vns-schema";
+import { cacheLife, cacheTag } from "next/cache";
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
-import { drizzleDb } from "@/lib/drizzle";
 import { getProductionUrl } from "@/lib/utils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const entries = await drizzleDb.select({ seriesId: comicSeries.comicSeriesId }).from(comicSeries);
+  "use cache";
+  cacheTag("sitemap.xml");
+  cacheLife("days");
+
+  const entries = await prisma.comicSeries.findMany({
+    select: {
+      series_id: true,
+      chapters: {
+        select: {
+          chapter_id: true,
+        },
+      },
+    },
+  });
+
   const prodUrl = getProductionUrl();
 
   const pages: MetadataRoute.Sitemap = [
@@ -36,10 +50,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   for (const entry of entries) {
-    const seriesData = await fetchComicSeriesData(entry.seriesId);
+    const seriesData = await fetchComicSeriesData(entry.series_id);
 
     pages.push({
-      url: `${prodUrl}/${seriesData?.comicSeriesId}`,
+      url: `${prodUrl}/${seriesData?.series_id}`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.8,
@@ -51,7 +65,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     for (const chapter of seriesData.chapters) {
       pages.push({
-        url: `${prodUrl}/${seriesData?.comicSeriesId}/${chapter.comicChapterId}`,
+        url: `${prodUrl}/${seriesData?.series_id}/${chapter.chapter_id}`,
         lastModified: new Date(),
         changeFrequency: "never",
         priority: 0.5,

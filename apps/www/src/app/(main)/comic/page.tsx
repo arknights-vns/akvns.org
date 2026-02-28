@@ -72,12 +72,12 @@ export default async function ComicListing(props: PageProps<"/comic">) {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
               {content.message.map((entry) => {
                 return (
-                  <div className="place-items-center-safe flex flex-col gap-2" key={entry.comicSeriesId}>
+                  <div className="place-items-center-safe flex flex-col gap-2" key={entry.series_id}>
                     {entry.thumbnail === null ? (
                       <Skeleton className="h-72 w-48" />
                     ) : (
                       <Image
-                        alt={entry.comicSeriesId}
+                        alt={entry.series_id}
                         className="h-68 w-48 bg-foreground object-cover"
                         height={272}
                         priority={true}
@@ -105,7 +105,7 @@ export default async function ComicListing(props: PageProps<"/comic">) {
                     </Badge>
                     <Link
                       className="text-center font-bold text-lg text-primary hover:underline"
-                      href={`/comic/${entry.comicSeriesId}` as Route}
+                      href={`/comic/${entry.series_id}` as Route}
                     >
                       {entry.title}
                     </Link>

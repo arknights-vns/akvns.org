@@ -1,1 +1,0 @@
-ALTER TABLE "blog" ALTER COLUMN "slug" SET NOT NULL;

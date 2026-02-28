@@ -2,8 +2,9 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 import "@/env-var/client";
-import "@/env-var/server";
+import { serverEnv } from "@/env-var/server";
 
+// https://discord.com/channels/939851547590934610/1261831260318208081/1451918926828011672
 const isDev = process.env.NODE_ENV === "development";
 const tusWives = [
   "Angelina",
@@ -20,7 +21,6 @@ const tusWives = [
   "Ptilopsis",
   "Vendela",
   "Manticore",
-  "Vendela",
   "Typhon",
   "Dorothy",
   "Viviana",
@@ -38,7 +38,12 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   experimental: {
     turbopackFileSystemCacheForDev: true,
-    optimizePackageImports: ["@icons-pack/react-simple-icons", "@sentry/nextjs", "motion"],
+    optimizePackageImports: [
+      "@icons-pack/react-simple-icons",
+      "@sentry/nextjs",
+      "motion",
+      "@arknights-vns/database",
+    ],
     sri: {
       algorithm: "sha384",
     },
@@ -46,12 +51,13 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   transpilePackages: [
     "@arknights-vns/ts-config",
+    "@arknights-vns/database",
     "@arknights-vns/shadcn-ui",
     "@t3-oss/env-nextjs",
     "@t3-oss/env-core",
   ],
   images: {
-    remotePatterns: [new URL("https://cdn.akvns.org/**"), new URL("https://comic-assets.akvns.org/**")],
+    remotePatterns: [new URL("https://**.akvns.org/**")],
   },
 
   async headers() {
@@ -108,23 +114,15 @@ const nextConfig: NextConfig = {
 };
 
 export default withSentryConfig(nextConfig, {
-  org: "tien-dat-pham",
-  project: "arknights-vns",
+  org: serverEnv.SENTRY_ORG,
+  project: serverEnv.SENTRY_PROJECT,
+  authToken: serverEnv.SENTRY_AUTH_TOKEN,
+  tunnelRoute: "/we-dont-even-care-if-you-block-this-route",
 
   silent: !process.env.CI,
   widenClientFileUpload: true,
 
-  // Uncomment to route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
-  // This can increase your server load as well as your hosting bill.
-  // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
-  // side errors will fail.
-  // tunnelRoute: "/monitoring",
-
-  webpack: {
-    automaticVercelMonitors: true,
-
-    treeshake: {
-      removeDebugLogging: true,
-    },
+  bundleSizeOptimizations: {
+    excludeDebugStatements: true,
   },
 });

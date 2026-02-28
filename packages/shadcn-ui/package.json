@@ -29,12 +29,11 @@
   },
   "devDependencies": {
     "@arknights-vns/ts-config": "workspace:*",
-    "@tailwindcss/postcss": "^4.1.18",
-    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/postcss": "^4.2.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwind-scrollbar": "^4.0.2",
-    "tailwindcss": "^4",
+    "tailwindcss": "^4.2.0",
     "typescript": "^5"
   },
   "exports": {

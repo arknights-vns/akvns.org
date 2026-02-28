@@ -1,3 +1,4 @@
+import { prisma } from "@arknights-vns/database/client";
 import {
   ScrollProgress,
   ScrollProgressContainer,
@@ -20,7 +21,6 @@ import ContentArea from "@/components/ContentArea";
 import BottomDock from "@/components/comic/BottomDock";
 import { fetchComicSeriesImagesByChapter } from "@/functions/comic/fetch-series-chapter-images";
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
-import { drizzleDb } from "@/lib/drizzle";
 
 export async function generateMetadata(props: PageProps<"/comic/[series]/[chapter]">): Promise<Metadata> {
   const { series, chapter } = await props.params;
@@ -31,7 +31,7 @@ export async function generateMetadata(props: PageProps<"/comic/[series]/[chapte
     notFound();
   }
 
-  const currentChapter = comicData.chapters.filter((x) => x.comicChapterId === chapter)[0]?.chapterName;
+  const currentChapter = comicData.chapters.filter((x) => x.chapter_id === chapter)[0]?.chapter_name;
 
   return {
     title: `Arknights VNS | ${comicData.title} | ${currentChapter}`,
@@ -39,23 +39,25 @@ export async function generateMetadata(props: PageProps<"/comic/[series]/[chapte
 }
 
 export async function generateStaticParams() {
-  const series = await drizzleDb.query.comicSeries.findMany({
-    columns: {
-      comicSeriesId: true,
-    },
-    with: {
-      chapters: true,
+  const series = await prisma.comicSeries.findMany({
+    select: {
+      series_id: true,
+      chapters: {
+        select: {
+          chapter_id: true,
+        },
+      },
     },
   });
 
   const entries: { series: string; chapter: string }[] = [];
 
   for (const entry of series) {
-    const chapters = entry.chapters.map((ch) => ch.comicChapterId);
+    const chapters = entry.chapters.map((ch) => ch.chapter_id);
 
     for (const chapter of chapters) {
       entries.push({
-        series: entry.comicSeriesId,
+        series: entry.series_id,
         chapter,
       });
     }
@@ -79,9 +81,9 @@ export default async function ComicReadPage(props: PageProps<"/comic/[series]/[c
     notFound();
   }
 
-  const listOfChapters = seriesData.chapters.map((x) => x.comicChapterId);
+  const listOfChapters = seriesData.chapters.map((x) => x.chapter_id);
   const chapterPosition = listOfChapters.indexOf(chapter);
-  const chapterName = seriesData.chapters.filter((x) => x.comicChapterId === chapter)[0]?.chapterName;
+  const chapterName = seriesData.chapters.filter((x) => x.chapter_id === chapter)[0]?.chapter_name;
 
   return (
     <ScrollProgressProvider global={true}>
@@ -130,8 +132,8 @@ export default async function ComicReadPage(props: PageProps<"/comic/[series]/[c
         chapterIndex={chapterPosition}
         chapterList={seriesData.chapters.map((x) => {
           return {
-            id: x.comicChapterId,
-            name: x.chapterName,
+            id: x.chapter_id,
+            name: x.chapter_name,
           };
         })}
         comicId={series}

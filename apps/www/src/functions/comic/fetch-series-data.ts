@@ -1,7 +1,5 @@
-import { eq } from "drizzle-orm";
+import { prisma } from "@arknights-vns/database/client";
 import { cacheLife, cacheTag } from "next/cache";
-import { comicSeries } from "@/db/schema/vns-schema";
-import { drizzleDb } from "@/lib/drizzle";
 
 /**
  * Fetch comic series data.
@@ -12,11 +10,13 @@ export async function fetchComicSeriesData(series: string) {
   cacheLife("days");
 
   // noinspection ES6RedundantAwait
-  return await drizzleDb.query.comicSeries.findFirst({
-    with: {
+  return await prisma.comicSeries.findFirst({
+    include: {
       chapters: true,
       contributors: true,
     },
-    where: eq(comicSeries.comicSeriesId, series),
+    where: {
+      series_id: series,
+    },
   });
 }

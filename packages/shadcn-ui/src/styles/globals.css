@@ -5,7 +5,6 @@
 @source "../../../components/**/*.{ts,tsx}";
 @source "../**/*.{ts,tsx}";
 
-@plugin "@tailwindcss/typography";
 @plugin "tailwind-scrollbar";
 
 @custom-variant dark (&:is(.dark *));

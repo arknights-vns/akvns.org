@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client"
+  previewFeatures = ["typedSql"]
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ComicCategory {
+  Arknights_VNS
+  Partner
+  Collaboration
+  Community
+}
+
+model ComicSeries {
+  id BigInt @id @default(autoincrement())
+
+  series_id String @unique
+  title     String
+  synopsis  String
+  author    String
+  thumbnail String?
+  category  ComicCategory
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  like BigInt @default(0)
+  view BigInt @default(0)
+
+  chapters     ComicChapter[]
+  contributors ComicContributor[]
+
+  @@unique([series_id, title])
+  @@index([id, series_id, title, author, thumbnail, category])
+  @@map("comic_series")
+}
+
+model ComicChapter {
+  id BigInt @id @default(autoincrement())
+
+  chapter_id   String
+  chapter_name String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  series    ComicSeries @relation(fields: [series_id], references: [series_id])
+  series_id String
+
+  @@index([chapter_id, chapter_name])
+  @@map("comic_chapter")
+}
+
+model ComicContributor {
+  id BigInt @id @default(autoincrement())
+
+  role    String
+  members String[]
+
+  series    ComicSeries @relation(fields: [series_id], references: [series_id])
+  series_id String
+
+  @@index([series_id, role, members])
+  @@map("comic_contributor")
+}

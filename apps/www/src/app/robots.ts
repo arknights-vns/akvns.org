@@ -1,7 +1,13 @@
 import type { MetadataRoute } from "next";
+import { cacheLife, cacheTag } from "next/cache";
 import { getProductionUrl } from "@/lib/utils";
 
-export default function robots(): MetadataRoute.Robots {
+// biome-ignore lint/suspicious/useAwait: "use cache"
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  "use cache";
+  cacheTag("robots.txt");
+  cacheLife("max");
+
   const prodUrl = getProductionUrl();
 
   return {
