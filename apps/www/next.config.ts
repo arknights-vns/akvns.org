@@ -4,6 +4,7 @@ import type { NextConfig } from "next";
 import "@/env-var/client";
 import { serverEnv } from "@/env-var/server";
 
+// https://discord.com/channels/939851547590934610/1261831260318208081/1451918926828011672
 const isDev = process.env.NODE_ENV === "development";
 const tusWives = [
   "Angelina",
@@ -20,7 +21,6 @@ const tusWives = [
   "Ptilopsis",
   "Vendela",
   "Manticore",
-  "Vendela",
   "Typhon",
   "Dorothy",
   "Viviana",
@@ -57,7 +57,7 @@ const nextConfig: NextConfig = {
     "@t3-oss/env-core",
   ],
   images: {
-    remotePatterns: [new URL("https://cdn.akvns.org/**"), new URL("https://comic-assets.akvns.org/**")],
+    remotePatterns: [new URL("https://**.akvns.org/**")],
   },
 
   async headers() {
