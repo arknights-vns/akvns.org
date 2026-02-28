@@ -1,4 +1,4 @@
-import { captureRouterTransitionStart, init, replayIntegration } from "@sentry/nextjs";
+import { captureRouterTransitionStart, init } from "@sentry/nextjs";
 import { clientEnv } from "@/env-var/client";
 
 // https://docs.sentry.io/platforms/javascript/configuration/options/#enabled
@@ -6,12 +6,9 @@ import { clientEnv } from "@/env-var/client";
 process.env.NODE_ENV === "production" &&
   init({
     dsn: clientEnv.NEXT_PUBLIC_SENTRY_DSN,
-    integrations: [replayIntegration()],
-    tracesSampleRate: 1,
+    tracesSampleRate: 0.1,
     enableLogs: true,
-    replaysSessionSampleRate: 0.1,
-    replaysOnErrorSampleRate: 1.0,
-    sendDefaultPii: true,
+    sendDefaultPii: false,
   });
 
 export const onRouterTransitionStart = captureRouterTransitionStart;
