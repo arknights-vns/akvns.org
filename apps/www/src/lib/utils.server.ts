@@ -32,7 +32,7 @@ export async function loadGoogleFont(font: string) {
  *
  * Should be cached unless I misread the doc.
  */
-export async function getStationDefaultOpengraph(): Promise<
+export async function getStationDefaultOpengraphFonts(): Promise<
   {
     name: string;
     data: ArrayBuffer;
