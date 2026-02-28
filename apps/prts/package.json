@@ -1,0 +1,28 @@
+{
+  "name": "prts.akvns.org",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API layer for Arknights VNS website.",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --outDir dist",
+    "start": "cross-env NODE_ENV=production node dist/index.js"
+  },
+  "license": "AGPL-3.0-or-later",
+  "packageManager": "pnpm@10.28.2",
+  "dependencies": {
+    "@elysiajs/node": "^1.4.4",
+    "@sinclair/typebox": "^0.34.48",
+    "cross-env": "^10.1.0",
+    "elysia": "^1.4.25",
+    "elysia-healthcheck": "^1.0.0",
+    "elysiajs-cdn-cache": "^0.0.13",
+    "openapi-types": "^12.1.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.12",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
