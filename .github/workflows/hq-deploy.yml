@@ -27,9 +27,9 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
           script: |
-            cd ~/terra/apps/www
+            cd ~/terra/
             git reset --hard HEAD
             git pull --rebase
             systemctl --user stop vns-website.service
-            pnpm run build
+            ./build-www.sh
             systemctl --user start vns-website.service
