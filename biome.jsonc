@@ -9,6 +9,8 @@
     "ignoreUnknown": true,
     "includes": [
       "apps/**",
+      "!!apps/dreamchasers/*",
+      "!!apps/dreamchasers-db22c983/*",
       "packages/**",
       "!packages/shadcn-ui/src/components/*",
       "!packages/shadcn-ui/src/hooks/*",
@@ -25,7 +27,9 @@
   },
   "overrides": [
     {
-      "includes": ["**/*"],
+      "includes": [
+        "**/*"
+      ],
       "linter": {
         "enabled": true,
         "rules": {
@@ -57,7 +61,12 @@
       }
     },
     {
-      "includes": ["**/*.json", "**/*.jsonc", "!biome.json", "!biome.jsonc"],
+      "includes": [
+        "**/*.json",
+        "**/*.jsonc",
+        "!biome.json",
+        "!biome.jsonc"
+      ],
       "json": {
         "formatter": {
           "enabled": false
@@ -65,7 +74,14 @@
       }
     },
     {
-      "includes": ["*.js", "*.mjs", "*.jsx", "*.ts", ".mts", "*.tsx"],
+      "includes": [
+        "*.js",
+        "*.mjs",
+        "*.jsx",
+        "*.ts",
+        ".mts",
+        "*.tsx"
+      ],
       "assist": {
         "enabled": true,
         "actions": {
@@ -80,8 +96,12 @@
                   ":NODE:",
                   ":PACKAGE:",
                   ":BLANK_LINE:",
-                  ["@resources/**"],
-                  ["@public/**"],
+                  [
+                    "@resources/**"
+                  ],
+                  [
+                    "@public/**"
+                  ],
                   ":BLANK_LINE:",
                   "@/**",
                   ":BLANK_LINE:",
