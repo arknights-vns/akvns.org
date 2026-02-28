@@ -6,7 +6,7 @@ import { clientEnv } from "@/env-var/client";
 process.env.NODE_ENV === "production" &&
   init({
     dsn: clientEnv.NEXT_PUBLIC_SENTRY_DSN,
-    tracesSampleRate: 1,
+    tracesSampleRate: 0.1,
     enableLogs: true,
-    sendDefaultPii: true,
+    sendDefaultPii: false,
   });
