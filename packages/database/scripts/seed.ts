@@ -35,9 +35,9 @@ async function seed() {
           author: "Terra Historicus",
           category: "Arknights_VNS",
           synopsis:
-            "Quá khứ đã qua, hiện tại đã ổn.\n" +
+            "Cùng dùng bữa nào. Mỗi người sẽ có những khẩu vị khác nhau, kể cả anh chị em trong nhà đó!\n" +
             "\n" +
-            "Đây là tuyển tập đời sống thường ngày của các Cán Viên Rhodes Island thông qua những câu chuyện về ẩm thực. Mong hương bếp ấm áp sẽ sưởi ấm con tim và dẫn lối chúng ta bước tiếp.",
+            "Cùng Dùng Bữa là manga được phát hành nhân dịp Tết Âm Lịch ở Trung Quốc (Xuân tiết - 春节) giáp Thìn 2024 về gia đình anh chị em nhà Tuế (Sui) trong trò chơi điện tử Minh Nhật Phương Chu, hay được biết đến nhiều hơn với cái tên Arknights.\n",
         },
         {
           series_id: "records-of-originium-blacksteel",
@@ -54,15 +54,21 @@ async function seed() {
           thumbnail: "https://comic-assets.akvns.org/sui-daily-slices-mundane-mortal-life/chapter-0/00.jpg",
           author: "Terra Historicus",
           category: "Arknights_VNS",
-          synopsis: "n/a",
+          synopsis:
+            "Hôm nay ba bữa, ngày mai hậu thế, tất thảy mộng ảo.\n" +
+            "\n" +
+            "Tuế Gia Thường Nhật: Kiếp Sống Nhân Gian là truyện tranh được phát hành nhằm bổ sung cho cốt truyện của Integrated Strategies #6: Sui's Garden of Grotesqueries, một dòng thời gian / vũ trụ khác về gia đình anh chị em nhà Tuế (Sui) trong trò chơi điện tử Minh Nhật Phương Chu, hay được biết đến nhiều hơn với cái tên Arknights.",
         },
         {
           series_id: "rhodes-kitchen-tidbits",
           title: "Rhodes Kitchen: Tidbits",
-          thumbnail: "",
-          author: "Hypergryph",
+          thumbnail: "https://comic-assets.akvns.org/rhodes-kitchen-tidbits/thumbnail.jpg",
+          author: "Terra Historicus",
           category: "Arknights_VNS",
-          synopsis: "fixme",
+          synopsis:
+            "Quá khứ đã qua, hiện tại đã ổn.\n" +
+            "\n" +
+            "Đây là tuyển tập đời sống thường ngày của các Cán Viên Rhodes Island thông qua những câu chuyện về ẩm thực. Mong hương bếp ấm áp sẽ sưởi ấm con tim và dẫn lối chúng ta bước tiếp.",
         },
         {
           series_id: "octodeco",
@@ -70,23 +76,29 @@ async function seed() {
           thumbnail: "https://comic-assets.akvns.org/octodeco/dont-be-lonely-alone/00.jpg",
           author: "Octodeco",
           category: "Arknights_VNS",
-          synopsis: "fixme",
+          synopsis:
+            "Octodeco là một họa sĩ nổi tiếng trong cộng đồng Arknights với phong cách vẽ độc nhất cùng cốt truyện bám sát theo cốt truyện gốc của tựa game, hoặc cài cắm những chi tiết liên quan đến gameplay và cộng đồng, làm cho truyện tranh của mình có chiều sâu và khai thác các nhân vật tốt hơn.\n" +
+            "\n" +
+            "Trong các bộ truyện của Octodeco, Doctor được xác định là nam (Ông Đốc).\n",
         },
         {
           series_id: "logos-and-rosmontis",
           title: "Logos & Rosmontis",
-          thumbnail: "",
-          author: "Terra Historicus",
+          thumbnail: "https://comic-assets.akvns.org/logos-and-rosmontis/chapter-0/1.jpg",
+          author: "cookKiemoon",
           category: "Arknights_VNS",
-          synopsis: "fixme",
+          synopsis: "Một oneshot nhẹ nhàng về Logos & Rosmontis trên Rhodes Island",
         },
         {
           series_id: "records-of-originium-rhine-lab",
           title: "Records of Originium: Rhine Lab",
-          thumbnail: "",
+          thumbnail: "https://comic-assets.akvns.org/records-of-originium-rhine-lab/chapter-0/2.jpg",
           author: "Terra Historicus",
           category: "Arknights_VNS",
-          synopsis: "fixme",
+          synopsis:
+            "Ifrit phát hiện một vị khách không mời trên Rhodes Island - một cô bé tên Darya. Dáng vẻ nhỏ bé của Darya mang theo một sức nặng vô hình phủ lên Ifrit, Silence và Saria, khơi dậy trong họ những ký ức của một quá khứ đã từng bị chôn giấu.\n" +
+            "\n" +
+            "Chuyện Người Nhiễm Bệnh – Rhine Lab là manga được phát hành nhằm hoàn chỉnh cốt truyện của phe Rhine Lab trong trò chơi điện tử Minh Nhật Phương Chu, hay được biết đến nhiều hơn với cái tên Arknights.\n",
         },
       ],
     });
