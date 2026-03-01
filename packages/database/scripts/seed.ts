@@ -41,7 +41,7 @@ async function seed() {
         },
         {
           series_id: "records-of-originium-blacksteel",
-          title: "Chuyện người nhiễm bệnh - Rhine Lab",
+          title: "Chuyện người nhiễm bệnh - Blacksteel",
           thumbnail: "https://comic-assets.akvns.org/records-of-originium-blacksteel/thumbnail.jpg",
           author: "Terra Historicus",
           category: "Arknights_VNS",
