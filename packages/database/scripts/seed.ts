@@ -31,7 +31,7 @@ async function seed() {
         {
           series_id: "cung-dung-bua",
           title: "Cùng dùng bữa",
-          thumbnail: "https://comic-assets.akvns.org/cung-dung-bua/chapter-0/00.jpg",
+          thumbnail: "https://comic-assets.akvns.org/cung-dung-bua/thumbnail.png",
           author: "Terra Historicus",
           category: "Arknights_VNS",
           synopsis:
@@ -51,7 +51,7 @@ async function seed() {
         {
           series_id: "sui-daily-slices-mundane-mortal-life",
           title: "Tuế Gia Thường Nhật : Kiếp Sống Nhân Gian",
-          thumbnail: "https://comic-assets.akvns.org/sui-daily-slices-mundane-mortal-life/chapter-0/00.jpg",
+          thumbnail: "https://comic-assets.akvns.org/sui-daily-slices-mundane-mortal-life/thumbnail.jpg",
           author: "Terra Historicus",
           category: "Arknights_VNS",
           synopsis:
@@ -108,7 +108,7 @@ async function seed() {
         {
           series_id: "cung-dung-bua",
           chapter_id: "chapter-0",
-          chapter_name: "One Shot",
+          chapter_name: "Oneshot",
         },
         /// ================================
         {
@@ -213,11 +213,6 @@ async function seed() {
         },
         {
           series_id: "octodeco",
-          chapter_id: "dont-be-lonely-alone",
-          chapter_name: "Don't be Lonely, Alone",
-        },
-        {
-          series_id: "octodeco",
           chapter_id: "monhun-1",
           chapter_name: "Monster Hunter Reaction 1",
         },
@@ -234,32 +229,37 @@ async function seed() {
         {
           series_id: "octodeco",
           chapter_id: "side-33",
-          chapter_name: "Side Story 33",
+          chapter_name: "Side Story 33: Mưa Đổ Nặng Hạt",
         },
         {
           series_id: "octodeco",
           chapter_id: "side-34",
-          chapter_name: "Side Story 34",
+          chapter_name: "Side Story 34: Tái Dự Báo: Mưa Đổ Nặng Hạt",
         },
         {
           series_id: "octodeco",
           chapter_id: "side-35",
-          chapter_name: "Side Story 35",
+          chapter_name: "Side Story 35: Mưa",
+        },
+        {
+          series_id: "octodeco",
+          chapter_id: "dont-be-lonely-alone",
+          chapter_name: "Side Story 36: Don't be Lonely, Alone",
         },
         {
           series_id: "octodeco",
           chapter_id: "side-40",
-          chapter_name: "Side Story 40",
+          chapter_name: "Side Story 40: Những Chuyện Đã Qua Không Thể Bị Bỏ Qua",
         },
         {
           series_id: "octodeco",
           chapter_id: "side-58",
-          chapter_name: "Side Story 58",
+          chapter_name: "Side Story 58: Lạc Trong Dòng Suy Nghĩ",
         },
         {
           series_id: "octodeco",
           chapter_id: "side-60",
-          chapter_name: "Side Story 60",
+          chapter_name: "Side Story 60: Tha Hóa",
         },
         {
           series_id: "logos-and-rosmontis",
