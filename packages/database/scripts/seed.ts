@@ -37,7 +37,7 @@ async function seed() {
           synopsis:
             "Cùng dùng bữa nào. Mỗi người sẽ có những khẩu vị khác nhau, kể cả anh chị em trong nhà đó!\n" +
             "\n" +
-            "Cùng Dùng Bữa là manga được phát hành nhân dịp Tết Âm Lịch ở Trung Quốc (Xuân tiết - 春节) giáp Thìn 2024 về gia đình anh chị em nhà Tuế (Sui) trong trò chơi điện tử Minh Nhật Phương Chu, hay được biết đến nhiều hơn với cái tên Arknights.\n",
+            "Cùng Dùng Bữa là manga được phát hành nhân dịp Tết Âm Lịch ở Trung Quốc (Xuân tiết - 春节) giáp Thìn 2024 về gia đình anh chị em nhà Tuế (Sui).\n",
         },
         {
           series_id: "records-of-originium-blacksteel",
@@ -57,7 +57,7 @@ async function seed() {
           synopsis:
             "Hôm nay ba bữa, ngày mai hậu thế, tất thảy mộng ảo.\n" +
             "\n" +
-            "Tuế Gia Thường Nhật: Kiếp Sống Nhân Gian là truyện tranh được phát hành nhằm bổ sung cho cốt truyện của Integrated Strategies #6: Sui's Garden of Grotesqueries, một dòng thời gian / vũ trụ khác về gia đình anh chị em nhà Tuế (Sui) trong trò chơi điện tử Minh Nhật Phương Chu, hay được biết đến nhiều hơn với cái tên Arknights.",
+            "Tuế Gia Thường Nhật: Kiếp Sống Nhân Gian là truyện tranh được phát hành nhằm bổ sung cho cốt truyện của Integrated Strategies #6: Sui's Garden of Grotesqueries, một dòng thời gian / vũ trụ khác về gia đình anh chị em nhà Tuế (Sui).\n",
         },
         {
           series_id: "rhodes-kitchen-tidbits",
@@ -98,7 +98,7 @@ async function seed() {
           synopsis:
             "Ifrit phát hiện một vị khách không mời trên Rhodes Island - một cô bé tên Darya. Dáng vẻ nhỏ bé của Darya mang theo một sức nặng vô hình phủ lên Ifrit, Silence và Saria, khơi dậy trong họ những ký ức của một quá khứ đã từng bị chôn giấu.\n" +
             "\n" +
-            "Chuyện Người Nhiễm Bệnh – Rhine Lab là manga được phát hành nhằm hoàn chỉnh cốt truyện của phe Rhine Lab trong trò chơi điện tử Minh Nhật Phương Chu, hay được biết đến nhiều hơn với cái tên Arknights.\n",
+            "Chuyện Người Nhiễm Bệnh – Rhine Lab là manga được phát hành nhằm hoàn chỉnh cốt truyện của phe Rhine Lab.\n",
         },
       ],
     });
@@ -159,7 +159,7 @@ async function seed() {
         {
           series_id: "sui-daily-slices-mundane-mortal-life",
           chapter_id: "chapter-0",
-          chapter_name: "One-Shot",
+          chapter_name: "Oneshot",
         },
         {
           series_id: "rhodes-kitchen-tidbits",
@@ -264,7 +264,7 @@ async function seed() {
         {
           series_id: "logos-and-rosmontis",
           chapter_id: "chapter-0",
-          chapter_name: "One-Shot",
+          chapter_name: "Oneshot",
         },
         {
           series_id: "records-of-originium-rhine-lab",
