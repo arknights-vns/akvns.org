@@ -41,7 +41,7 @@ async function seed() {
         },
         {
           series_id: "records-of-originium-blacksteel",
-          title: "Records of Originium: Blacksteel",
+          title: "Chuyện người nhiễm bệnh - Rhine Lab",
           thumbnail: "https://comic-assets.akvns.org/records-of-originium-blacksteel/thumbnail.jpg",
           author: "Terra Historicus",
           category: "Arknights_VNS",
@@ -61,7 +61,7 @@ async function seed() {
         },
         {
           series_id: "rhodes-kitchen-tidbits",
-          title: "Rhodes Kitchen: Tidbits",
+          title: "Góc Bếp Rhodes Island",
           thumbnail: "https://comic-assets.akvns.org/rhodes-kitchen-tidbits/thumbnail.jpg",
           author: "Terra Historicus",
           category: "Arknights_VNS",
@@ -72,7 +72,7 @@ async function seed() {
         },
         {
           series_id: "octodeco",
-          title: "Octodeco",
+          title: "Truyện tranh của Octodeco",
           thumbnail: "https://comic-assets.akvns.org/octodeco/dont-be-lonely-alone/00.jpg",
           author: "Octodeco",
           category: "Arknights_VNS",
@@ -91,7 +91,7 @@ async function seed() {
         },
         {
           series_id: "records-of-originium-rhine-lab",
-          title: "Records of Originium: Rhine Lab",
+          title: "Chuyện người nhiễm bệnh - Rhine Lab",
           thumbnail: "https://comic-assets.akvns.org/records-of-originium-rhine-lab/chapter-0/2.jpg",
           author: "Terra Historicus",
           category: "Arknights_VNS",
