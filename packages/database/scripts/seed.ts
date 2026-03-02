@@ -85,6 +85,17 @@ async function seed() {
             "Trong các bộ truyện của Octodeco, Doctor được xác định là nam (Ông Đốc).",
         },
         {
+          series_id: "octodeco-bites",
+          title: "Truyện ngắn của Octodeco",
+          thumbnail: "https://comic-assets.akvns.org/octodeco-bites/monhun-1/001.png",
+          author: "Octodeco",
+          category: "Arknights_VNS",
+          synopsis:
+            "Octodeco là một họa sĩ nổi tiếng trong cộng đồng Arknights với phong cách vẽ độc nhất cùng cốt truyện bám sát theo cốt truyện gốc của tựa game, hoặc cài cắm những chi tiết liên quan đến gameplay và cộng đồng, làm cho truyện tranh của mình có chiều sâu và khai thác các nhân vật tốt hơn.\n" +
+            "\n" +
+            "Trong các bộ truyện của Octodeco, Doctor được xác định là nam (Ông Đốc).",
+        },
+        {
           series_id: "logos-and-rosmontis",
           title: "Logos & Rosmontis",
           thumbnail: "https://comic-assets.akvns.org/logos-and-rosmontis/chapter-0/1.jpg",
@@ -218,20 +229,21 @@ async function seed() {
         },
         /// ================================
         {
-          series_id: "octodeco",
+          series_id: "octodeco-bites",
           chapter_id: "monhun-1",
           chapter_name: "Monster Hunter Reaction 1",
         },
         {
-          series_id: "octodeco",
+          series_id: "octodeco-bites",
           chapter_id: "monhun-2",
           chapter_name: "Monster Hunter Reaction 2",
         },
         {
-          series_id: "octodeco",
+          series_id: "octodeco-bites",
           chapter_id: "monhun-3",
           chapter_name: "Monster Hunter Reaction 3",
         },
+        /// ================================
         {
           series_id: "octodeco",
           chapter_id: "side-33",
