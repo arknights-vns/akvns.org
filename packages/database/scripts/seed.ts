@@ -22,8 +22,11 @@ async function seed() {
      *          JOIN pg_attribute a  ON a.attrelid = t.oid AND a.attnum = d.refobjsubid
      * WHERE s.relkind = 'S';
      */
+    /* language=postgresql */
     await tx.$executeRaw`ALTER SEQUENCE "comic_series_id_seq" RESTART WITH 1`;
+    /* language=postgresql */
     await tx.$executeRaw`ALTER SEQUENCE "comic_chapter_id_seq" RESTART WITH 1`;
+    /* language=postgresql */
     await tx.$executeRaw`ALTER SEQUENCE "comic_contributor_id_seq" RESTART WITH 1`;
 
     await tx.comicSeries.createMany({
@@ -37,7 +40,7 @@ async function seed() {
           synopsis:
             "Cùng dùng bữa nào. Mỗi người sẽ có những khẩu vị khác nhau, kể cả anh chị em trong nhà đó!\n" +
             "\n" +
-            "Cùng Dùng Bữa là manga được phát hành nhân dịp Tết Âm Lịch ở Trung Quốc (Xuân tiết - 春节) giáp Thìn 2024 về gia đình anh chị em nhà Tuế (Sui).\n",
+            "Cùng Dùng Bữa là manga được phát hành nhân dịp Tết Âm Lịch ở Trung Quốc (Xuân tiết - 春节) giáp Thìn 2024 về gia đình anh chị em nhà Tuế (Sui).",
         },
         {
           series_id: "records-of-originium-blacksteel",
@@ -50,14 +53,14 @@ async function seed() {
         },
         {
           series_id: "sui-daily-slices-mundane-mortal-life",
-          title: "Tuế Gia Thường Nhật : Kiếp Sống Nhân Gian",
+          title: "Tuế Gia Thường Nhật: Kiếp Sống Nhân Gian",
           thumbnail: "https://comic-assets.akvns.org/sui-daily-slices-mundane-mortal-life/thumbnail.jpg",
           author: "Terra Historicus",
           category: "Arknights_VNS",
           synopsis:
             "Hôm nay ba bữa, ngày mai hậu thế, tất thảy mộng ảo.\n" +
             "\n" +
-            "Tuế Gia Thường Nhật: Kiếp Sống Nhân Gian là truyện tranh được phát hành nhằm bổ sung cho cốt truyện của Integrated Strategies #6: Sui's Garden of Grotesqueries, một dòng thời gian / vũ trụ khác về gia đình anh chị em nhà Tuế (Sui).\n",
+            "Tuế Gia Thường Nhật: Kiếp Sống Nhân Gian là truyện tranh được phát hành nhằm bổ sung cho cốt truyện của Integrated Strategies #6: Sui's Garden of Grotesqueries, một dòng thời gian / vũ trụ khác về gia đình anh chị em nhà Tuế (Sui).",
         },
         {
           series_id: "rhodes-kitchen-tidbits",
@@ -79,7 +82,7 @@ async function seed() {
           synopsis:
             "Octodeco là một họa sĩ nổi tiếng trong cộng đồng Arknights với phong cách vẽ độc nhất cùng cốt truyện bám sát theo cốt truyện gốc của tựa game, hoặc cài cắm những chi tiết liên quan đến gameplay và cộng đồng, làm cho truyện tranh của mình có chiều sâu và khai thác các nhân vật tốt hơn.\n" +
             "\n" +
-            "Trong các bộ truyện của Octodeco, Doctor được xác định là nam (Ông Đốc).\n",
+            "Trong các bộ truyện của Octodeco, Doctor được xác định là nam (Ông Đốc).",
         },
         {
           series_id: "logos-and-rosmontis",
@@ -98,7 +101,7 @@ async function seed() {
           synopsis:
             "Ifrit phát hiện một vị khách không mời trên Rhodes Island - một cô bé tên Darya. Dáng vẻ nhỏ bé của Darya mang theo một sức nặng vô hình phủ lên Ifrit, Silence và Saria, khơi dậy trong họ những ký ức của một quá khứ đã từng bị chôn giấu.\n" +
             "\n" +
-            "Chuyện Người Nhiễm Bệnh – Rhine Lab là manga được phát hành nhằm hoàn chỉnh cốt truyện của phe Rhine Lab.\n",
+            "Chuyện Người Nhiễm Bệnh – Rhine Lab là manga được phát hành nhằm hoàn chỉnh cốt truyện của phe Rhine Lab.",
         },
       ],
     });
@@ -156,11 +159,13 @@ async function seed() {
           chapter_id: "special-3",
           chapter_name: "Chương Đặc Biệt 3: Đeo vào đi",
         },
+        /// ================================
         {
           series_id: "sui-daily-slices-mundane-mortal-life",
           chapter_id: "chapter-0",
           chapter_name: "Oneshot",
         },
+        /// ================================
         {
           series_id: "rhodes-kitchen-tidbits",
           chapter_id: "chapter-1",
@@ -211,6 +216,7 @@ async function seed() {
           chapter_id: "chapter-10",
           chapter_name: "Chapter 10",
         },
+        /// ================================
         {
           series_id: "octodeco",
           chapter_id: "monhun-1",
@@ -261,11 +267,13 @@ async function seed() {
           chapter_id: "side-60",
           chapter_name: "Side Story 60: Tha Hóa",
         },
+        /// ================================
         {
           series_id: "logos-and-rosmontis",
           chapter_id: "chapter-0",
           chapter_name: "Oneshot",
         },
+        /// ================================
         {
           series_id: "records-of-originium-rhine-lab",
           chapter_id: "chapter-0",
