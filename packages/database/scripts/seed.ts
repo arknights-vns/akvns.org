@@ -43,6 +43,18 @@ async function seed() {
             "Cùng Dùng Bữa là manga được phát hành nhân dịp Tết Âm Lịch ở Trung Quốc (Xuân tiết - 春节) giáp Thìn 2024 về gia đình anh chị em nhà Tuế (Sui).",
         },
         {
+          series_id: "123-rhodes-island",
+          title: "123 Rhodes Island!?",
+          thumbnail: "https://comic-assets.akvns.org/123-rhodes-island/vol-1/001.png",
+          author: "Terra Historicus",
+          category: "Arknights_VNS",
+          synopsis:
+            "Hãy cùng nhau tìm hiểu về các Cán Viên của Rhodes Island với Amiya và Doctor nào!\n" +
+            "\n" +
+            "123 Rhodes Island!? là truyện tranh có màu theo thể loại 4 ô (4-koma) về các Cán Viên (Operators) của Rhodes Island.\n" +
+            "Tuy bám sát theo cốt truyện của các cán viên trong trò chơi, bộ truyện được xác nhận là được làm thuần với mục đích giải trí, và không xem bộ truyện là canon.",
+        },
+        {
           series_id: "records-of-originium-blacksteel",
           title: "Chuyện người nhiễm bệnh - Blacksteel",
           thumbnail: "https://comic-assets.akvns.org/records-of-originium-blacksteel/thumbnail.jpg",
@@ -123,6 +135,12 @@ async function seed() {
           series_id: "cung-dung-bua",
           chapter_id: "chapter-0",
           chapter_name: "Oneshot",
+        },
+        /// ================================
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "vol-1",
+          chapter_name: "Volume 1",
         },
         /// ================================
         {
