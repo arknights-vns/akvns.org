@@ -138,7 +138,7 @@ async function seed() {
         {
           series_id: "records-of-originium-blacksteel",
           chapter_id: "episode-2.5",
-          chapter_name: "Thẩm vấn",
+          chapter_name: "Chương 2.5: Thẩm vấn",
         },
         {
           series_id: "records-of-originium-blacksteel",
