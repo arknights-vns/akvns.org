@@ -139,8 +139,243 @@ async function seed() {
         /// ================================
         {
           series_id: "123-rhodes-island",
-          chapter_id: "vol-1",
-          chapter_name: "Volume 1",
+          chapter_id: "chapter-001",
+          chapter_name: "Chapter 01: Amiya",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-002",
+          chapter_name: "Chapter 02: Doctor",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-003",
+          chapter_name: "Chapter 03: Ling",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-004",
+          chapter_name: "Chapter 04: Lee",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-005",
+          chapter_name: "Chapter 05: Blacknight",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-006",
+          chapter_name: "Chapter 06: Kroos the Keen Glint",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-007",
+          chapter_name: "Chapter 07: Quercus",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-008",
+          chapter_name: "Chapter 08: Goldenglow",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-009",
+          chapter_name: "Chapter 09: Spot",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-010",
+          chapter_name: "Chapter 10: Fiammetta",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-011",
+          chapter_name: "Chapter 11: Enforcer",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-012",
+          chapter_name: "Chapter 12: Kazemaru ",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-013",
+          chapter_name: "Chapter 13: Noir Corne",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-014",
+          chapter_name: "Chapter 14: Horn",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-015",
+          chapter_name: "Chapter 15: Heidi",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-016",
+          chapter_name: "Chapter 16: Chestnut",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-017",
+          chapter_name: "Chapter 17: Rockrock",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-018",
+          chapter_name: "Chapter 18: Savage",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-019",
+          chapter_name: "Chapter 19: Specter the Unchained",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-020",
+          chapter_name: "Chapter 20: Irene",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-021",
+          chapter_name: "Chapter 21: Lumen",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-022",
+          chapter_name: "Chapter 22: Windflit",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-023",
+          chapter_name: "Chapter 23: Blaze",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-024",
+          chapter_name: "Chapter 24: Ebenholz",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-025",
+          chapter_name: "Chapter 25: Hibiscus the Purifier",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-026",
+          chapter_name: "Chapter 26: Czerny",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-027",
+          chapter_name: "Chapter 27: Arene ",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-028",
+          chapter_name: "Chapter 28: Dorothy",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-029",
+          chapter_name: "Chapter 29: Greyy the Lightningbearer",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-030",
+          chapter_name: "Chapter 30: Astgenne",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-031",
+          chapter_name: "Chapter 31: Aciddrop",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-032",
+          chapter_name: "Chapter 32: Hoshiguma",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-033",
+          chapter_name: "Chapter 33: Fang",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-034",
+          chapter_name: "Chapter 34: Gavial the Invicible",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-035",
+          chapter_name: "Chapter 35: Pozëmka ",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-036",
+          chapter_name: "Chapter 36: Cantabile",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-037",
+          chapter_name: "Chapter 37: Minimalist",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-038",
+          chapter_name: "Chapter 38: Shaw",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-039",
+          chapter_name: "Chapter 39: Yato",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-040",
+          chapter_name: "Chapter 40: Młynar",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-041",
+          chapter_name: "Chapter 41: Proviso",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-042",
+          chapter_name: "Chapter 42: Luo Xiaohei",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-043",
+          chapter_name: "Chapter 43: Dobermann",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-044",
+          chapter_name: "Chapter 44: Vanilla",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-045",
+          chapter_name: "Chapter 45: Stainless",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-046",
+          chapter_name: "Chapter 46: Paprika",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-047",
+          chapter_name: "Chapter 47: Totter",
+        },
+        {
+          series_id: "123-rhodes-island",
+          chapter_id: "chapter-048",
+          chapter_name: "Chapter 48: Dagda",
         },
         /// ================================
         {
