@@ -2,7 +2,8 @@
 .next
 .source
 node_modules
-.idea
+.idea/*
+!.idea/tailwindcss.xml
 .vscode
 apps/www/.env
 !.env.example
