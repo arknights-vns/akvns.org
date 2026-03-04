@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { clientEnv } from "@/env-var/client";
+import { getProductionUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Arknights VNS | Dự án",
   description: "Toàn bộ dự án Arknights VNS đã thực hiện.",
   alternates: {
-    canonical: `${clientEnv.NEXT_PUBLIC_PRODUCTION_URL}/projects`,
+    canonical: `${getProductionUrl()}/projects`,
   },
 };
 
