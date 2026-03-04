@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { clientEnv } from "@/env-var/client";
 
-const trailingSlashRegex = /\/+$/;
+const trailingSlashRegex = /\/+$/g;
 
 /**
  * Get the production URL.
@@ -12,7 +12,7 @@ export function getProductionUrl() {
   const PAGE_URL =
     process.env.NODE_ENV === "development" ? "http://localhost:3000" : clientEnv.NEXT_PUBLIC_PRODUCTION_URL;
 
-  return PAGE_URL.replace(trailingSlashRegex, "");
+  return PAGE_URL.replaceAll(trailingSlashRegex, "");
 }
 
 /**
