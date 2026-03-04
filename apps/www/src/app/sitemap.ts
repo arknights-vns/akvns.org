@@ -7,7 +7,7 @@ import { getProductionUrl } from "@/lib/utils";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   "use cache";
   cacheTag("sitemap.xml");
-  cacheLife("days");
+  cacheLife("max");
 
   const entries = await prisma.comicSeries.findMany({
     select: {
