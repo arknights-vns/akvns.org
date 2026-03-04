@@ -21,25 +21,26 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArticleJsonLd } from "next-seo";
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
+import { createMetadata } from "@/lib/utils";
 
 // https://github.com/vercel/next.js/discussions/84991
 // export const dynamicParams = false;
 
 export async function generateMetadata(props: PageProps<"/comic/[series]">): Promise<Metadata> {
   const { series } = await props.params;
-  const comicData = await fetchComicSeriesData(series);
 
-  if (!comicData) {
-    notFound();
-  }
+  // biome-ignore lint/style/noNonNullAssertion: can't prerender if null.
+  const comicData = (await fetchComicSeriesData(series))!;
+  const metadata = createMetadata(comicData.title, comicData.synopsis, [
+    `arknights vns ${comicData.title}`,
+    `terrastationvn ${comicData.title}`,
+  ]);
 
   return {
-    title: `Arknights VNS | ${comicData.title}`,
-    description: comicData.synopsis,
+    ...metadata,
     openGraph: {
-      type: "article",
-      title: `Arknights VNS | ${comicData.title}`,
-      description: comicData.synopsis,
+      ...metadata.openGraph,
+      type: "book",
       images: comicData.thumbnail || "https://example.com",
     },
   };

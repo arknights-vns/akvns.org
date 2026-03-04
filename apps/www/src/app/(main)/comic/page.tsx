@@ -13,6 +13,7 @@ import Link from "next/link";
 import { createLoader, parseAsInteger, parseAsString } from "nuqs/server";
 import ContentArea from "@/components/ContentArea";
 import { fetchComicListByPage } from "@/functions/comic/fetch-comic-list";
+import { createMetadata } from "@/lib/utils";
 
 export const coordinatesSearchParams = {
   search: parseAsString.withDefault(""),
@@ -23,9 +24,11 @@ export const coordinatesSearchParams = {
 export const loadSearchParams = createLoader(coordinatesSearchParams);
 
 export const metadata: Metadata = {
-  title: "Arknights VNS | Truyện tại Trạm",
-  description:
+  ...createMetadata(
+    "Truyện tại Trạm",
     "Các đầu truyện do đội ngũ dịch thuật @terrastationvn hoặc các bên có hợp tác với Arknights VNS.",
+    ["arknights vns truyện", "arknights vns truyện tại trạm"]
+  ),
 };
 
 export default async function ComicListing(props: PageProps<"/comic">) {

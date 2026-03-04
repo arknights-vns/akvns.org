@@ -6,7 +6,7 @@ import Providers from "@/components/Providers";
 import "@arknights-vns/shadcn-ui/globals.css";
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
 import ExuStare from "@/components/ExuStare";
-import { getProductionUrl } from "@/lib/utils";
+import { createMetadata } from "@/lib/utils";
 
 const fontSans = VNS_Font({
   subsets: ["latin", "vietnamese"],
@@ -20,28 +20,13 @@ const fontMono = VNS_Font_Mono({
 
 const PAGE_TITLE = "Arknights Vietnam Station";
 const PAGE_DESC = "For the Dreamchasers, by the Dreamchasers.";
-const prodUrl = getProductionUrl();
 
 export const metadata: Metadata = {
-  metadataBase: new URL(prodUrl),
-  title: PAGE_TITLE,
-  description: PAGE_DESC,
-  openGraph: {
-    url: new URL(prodUrl),
-    title: PAGE_TITLE,
-    description: PAGE_DESC,
+  ...createMetadata(PAGE_TITLE, PAGE_DESC),
+  title: {
+    template: "Arknights VNS | %s",
+    default: "Arknights VNS | Trang chủ",
   },
-  keywords: [
-    "akvns",
-    "akvns.org",
-    "arknights vns",
-    "arknights vietnam",
-    "arknights vietnam station",
-    "terrastationvn",
-    "@terrastationvn",
-    "phoenix frontiers",
-    "trạm dừng chân chốn Terra",
-  ],
 };
 
 export const viewport: Viewport = {

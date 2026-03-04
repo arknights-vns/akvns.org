@@ -21,25 +21,26 @@ import ContentArea from "@/components/ContentArea";
 import BottomDock from "@/components/comic/BottomDock";
 import { fetchComicSeriesImagesByChapter } from "@/functions/comic/fetch-series-chapter-images";
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
+import { createMetadata } from "@/lib/utils";
 
 export async function generateMetadata(props: PageProps<"/comic/[series]/[chapter]">): Promise<Metadata> {
   const { series, chapter } = await props.params;
 
-  const comicData = await fetchComicSeriesData(series);
-
-  if (!comicData) {
-    notFound();
-  }
+  // biome-ignore lint/style/noNonNullAssertion: can't prerender if null.
+  const comicData = (await fetchComicSeriesData(series))!;
 
   const currentChapter = comicData.chapters.filter((x) => x.chapter_id === chapter)[0]?.chapter_name;
 
+  const metadata = createMetadata(`${comicData.title} | ${currentChapter}`, comicData.synopsis, [
+    `arknights vns ${comicData.title} ${currentChapter}`,
+    `terrastationvn ${comicData.title} ${currentChapter}`,
+  ]);
+
   return {
-    title: `Arknights VNS | ${comicData.title} | ${currentChapter}`,
-    description: comicData.synopsis,
+    ...metadata,
     openGraph: {
+      ...metadata.openGraph,
       type: "article",
-      title: `Arknights VNS | ${comicData.title} | ${currentChapter}`,
-      description: comicData.synopsis,
       images: comicData.thumbnail || "https://example.com",
     },
   };
