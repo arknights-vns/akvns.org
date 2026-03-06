@@ -61,16 +61,14 @@ export default function QuestionsForUs() {
               rất hấp dẫn, nhưng sau cùng, chúng tôi quyết định đặt Trải nghiệm người dùng (UX) lên hàng đầu.
               Quảng cáo thường đi ngược lại với sự mượt mà đó, và chúng tôi chọn sự thoải mái của các bạn thay
               vì doanh thu.
-              <Paragraph>
-                Tuy nhiên Website có thu thập thông tin truy cập (Tần suất truy cập tổng thể của nhiều người
-                dùng, thời gian, độ trễ máy chủ, hiệu năng) để giúp chúng minh tối ưu website hơn nữa. Website
-                sẽ không thu thập bất kỷ thông tin cá nhân (PII) nào của bạn.{" "}
-              </Paragraph>
-              <Paragraph>
-                <span className="text-muted-foreground">
-                  Adblock thoải mái đi, web không có quảng cáo đâu xd
-                </span>
-              </Paragraph>
+            </Paragraph>
+            <Paragraph>
+              Tuy nhiên Website có thu thập thông tin truy cập (Tần suất truy cập tổng thể của nhiều người
+              dùng, thời gian, độ trễ máy chủ, hiệu năng) để giúp chúng minh tối ưu website hơn nữa. Website
+              sẽ không thu thập bất kỷ thông tin cá nhân (PII) nào của bạn.{" "}
+            </Paragraph>
+            <Paragraph>
+              <span className="text-muted">Adblock thoải mái đi, web không có quảng cáo đâu xd</span>
             </Paragraph>
           </AccordionPanel>
         </AccordionItem>
