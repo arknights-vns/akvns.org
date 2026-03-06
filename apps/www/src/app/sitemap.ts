@@ -12,9 +12,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries = await prisma.comicSeries.findMany({
     select: {
       series_id: true,
+      updatedAt: true,
       chapters: {
         select: {
           chapter_id: true,
+          updatedAt: true,
         },
       },
     },
@@ -53,8 +55,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const seriesData = await fetchComicSeriesData(entry.series_id);
 
     pages.push({
-      url: `${prodUrl}/${seriesData?.series_id}`,
-      lastModified: new Date(),
+      url: `${prodUrl}/comic/${seriesData?.series_id}`,
+      lastModified: entry.updatedAt,
       changeFrequency: "daily",
       priority: 0.8,
     });
@@ -65,9 +67,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     for (const chapter of seriesData.chapters) {
       pages.push({
-        url: `${prodUrl}/${seriesData?.series_id}/${chapter.chapter_id}`,
-        lastModified: new Date(),
-        changeFrequency: "never",
+        url: `${prodUrl}/comic/${seriesData?.series_id}/${chapter.chapter_id}`,
+        lastModified: chapter.updatedAt,
+        changeFrequency: "monthly",
         priority: 0.5,
       });
     }
