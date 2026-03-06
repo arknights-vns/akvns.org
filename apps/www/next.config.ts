@@ -75,7 +75,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "X-Powered-By",
-            value: "Next.js 16.0.7 with CVE-2025-55182 unpatched *wink*",
+            value: "Next.js 16.0.6 with CVE-2025-55182 and CVE-2025-66478 left unpatched *wink*",
           },
           {
             key: "X-Swyrin-Was-Here",
