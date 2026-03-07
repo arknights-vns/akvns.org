@@ -8,6 +8,7 @@ minimumReleaseAge: 1400
 
 minimumReleaseAgeExclude:
   - next
+  - '@next/third-parties'
   - '@next/env'
   - '@next/swc-darwin-arm64'
   - '@next/swc-darwin-x64'
