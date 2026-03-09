@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { serverEnv } from "@/env-var/server";
 
 const navigations: {
   group: string;
@@ -22,13 +23,13 @@ const navigations: {
         cloak: true,
         displayText: "Arknights VNS",
         heading: "Discord",
-        href: "https://discord.gg/akvns",
+        href: serverEnv.VNS_DISCORD_SERVER as Route,
       },
       {
         cloak: true,
         displayText: "Phoenix Frontiers Hub",
         heading: "Discord",
-        href: "https://discord.gg/SRFjXSFu",
+        href: serverEnv.PFR_DISCORD_SERVER as Route,
       },
     ],
   },

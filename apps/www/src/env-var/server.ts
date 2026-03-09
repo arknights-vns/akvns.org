@@ -16,6 +16,9 @@ export const serverEnv = createEnv({
     SENTRY_ORG: z.string().default("arknights-vns"),
     SENTRY_PROJECT: z.string().default("arknights-vns"),
     SENTRY_AUTH_TOKEN: z.string(),
+
+    VNS_DISCORD_SERVER: z.url().default("https://discord.gg/akvns"),
+    PFR_DISCORD_SERVER: z.url().default("https://discord.gg/SRFjXSFu"),
   },
   experimental__runtimeEnv: process.env,
 });

@@ -8,8 +8,8 @@ interface MultiNavigation {
 }
 
 interface NormalNavigation {
-  href: Route;
   hash: string;
+  href: Route;
   label: string;
   type: "link";
 }

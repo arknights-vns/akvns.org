@@ -1,6 +1,7 @@
 import { Button } from "@arknights-vns/shadcn-ui/components/button";
 import { SiDiscord, SiFacebook } from "@icons-pack/react-simple-icons";
 import VNS_Icon from "@public/VNS_Icon.svg";
+import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -8,6 +9,7 @@ import DonateButton from "@/components/DonateButton";
 import DesktopNavigationMenu from "@/components/navbar/DesktopNavigationMenu";
 import MobileNavigationSidebar from "@/components/navbar/MobileNavigationSidebar";
 import { links } from "@/components/navbar/navigation-entries";
+import { serverEnv } from "@/env-var/server";
 
 export default function NavigationBar() {
   return (
@@ -36,7 +38,7 @@ export default function NavigationBar() {
           className="border-[#5865F2]! hover:bg-[#5865F2]!"
           nativeButton={false}
           render={
-            <Link href="https://discord.gg/arknights-vns">
+            <Link href={serverEnv.VNS_DISCORD_SERVER as Route}>
               <SiDiscord />
               <span className="sr-only">Discord</span>
             </Link>
