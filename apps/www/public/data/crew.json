@@ -399,8 +399,8 @@
     }
   },
   {
-    "name": "Linku",
-    "avatar": "https://cdn.akvns.org/crew/Linku.jpg",
+    "name": "ShioharaK",
+    "avatar": "https://cdn.akvns.org/crew/ShioharaK.jpg",
     "categories": [
       "translation"
     ],
@@ -415,7 +415,7 @@
       "translation"
     ],
     "roles": {
-      "translation": "JP Translator"
+      "translation": "Translator"
     }
   }
 ]
