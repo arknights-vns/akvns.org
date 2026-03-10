@@ -35,16 +35,14 @@ To be serious, anything that implements the [LSP specification](https://en.wikip
 ## Git contributions
 
 - Each commit should do single thing.
-
   - Or, you can do multiple things, just keep it small.
 
 - We **DO NOT** use Conventional Commit for commit messages. Write like you write as a human.
-
   - We (mostly) use simple present tense for action.
 
   - We (mostly) start with lower case word, and ends with a period.
 
-  - We are not a professional team so joking is allowed *where appropriate*, just don't make it like the mental asylum.
+  - We are not a professional team so joking is allowed _where appropriate_, just don't make it like the mental asylum.
 
 - The headline should be short (~70-80 characters), everything else should be written after a double-newline for clarity.
 

@@ -1,6 +1,3 @@
-/** biome-ignore-all lint/performance/noImgElement: next.js does not work here. */
-/** and same for TailwindCSS - there is `tw`, but I love rawdog :D */
-
 import { getProductionUrl } from "@/lib/utils";
 
 const prodUrl = getProductionUrl();
@@ -19,7 +16,7 @@ export async function loadGoogleFont(font: string) {
 
   const url = `https://fonts.googleapis.com/css2?family=${font}`;
   const css = await (await fetch(url)).text();
-  // biome-ignore lint/performance/useTopLevelRegex: Vercel.
+
   const resource = css.match(/src: url\((.+)\) format\('(opentype|truetype)'\)/);
 
   if (resource) {

@@ -1,31 +1,31 @@
 {
   "name": "arknights-vns",
   "version": "1.0.0",
-  "license": "AGPL-3.0-or-later",
   "description": "Random stuffs for akvns.org family of websites.",
-  "author": "Arknights Vietnam Station",
   "homepage": "https://github.com/arknights-vns/akvns.org#readme",
+  "bugs": {
+    "url": "https://github.com/arknights-vns/akvns.org/issues"
+  },
+  "license": "AGPL-3.0-or-later",
+  "author": "Arknights Vietnam Station",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arknights-vns/akvns.org.git"
   },
-  "devDependencies": {
-    "@biomejs/biome": "2.4.4",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "ultracite": "^7.2.3"
-  },
   "scripts": {
     "prepare": "node -e \"process.exit(process.env.CI ? 0 : 1)\" || husky",
-    "format": "biome check . --write",
-    "format:unsafe": "biome check . --write --unsafe",
-    "lint": "biome check .",
+    "lint": "oxlint",
+    "format": "oxfmt",
     "dev": "pnpm run -r  --parallel dev",
     "build": "pnpm run -r --parallel build",
     "start": "pnpm run -r  --parallel start"
   },
-  "bugs": {
-    "url": "https://github.com/arknights-vns/akvns.org/issues"
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "oxfmt": "^0.36.0",
+    "oxlint": "^1.51.0",
+    "oxlint-tsgolint": "^0.16.0"
   },
   "engines": {
     "node": "^22"

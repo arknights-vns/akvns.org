@@ -1,9 +1,13 @@
 {
   "name": "@arknights-vns/database",
+  "version": "1.0.0",
+  "license": "AGPL-3.0-or-later",
   "author": "Arknights Vietnam Station",
   "type": "module",
-  "license": "AGPL-3.0-or-later",
-  "version": "1.0.0",
+  "exports": {
+    "./client": "./client.ts",
+    "./generated/*": "./generated/prisma/*.ts"
+  },
   "scripts": {
     "db:generate": "prisma generate --sql",
     "db:migrate": "prisma migrate dev",
@@ -25,9 +29,5 @@
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
-  "packageManager": "pnpm@10.28.2",
-  "exports": {
-    "./client": "./client.ts",
-    "./generated/*": "./generated/prisma/*.ts"
-  }
+  "packageManager": "pnpm@10.28.2"
 }

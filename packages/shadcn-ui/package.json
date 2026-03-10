@@ -3,6 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "exports": {
+    "./globals.css": "./src/styles/globals.css",
+    "./postcss.config": "./postcss.config.mjs",
+    "./lib/*": "./src/lib/*.ts",
+    "./lib/get-strict-context": "./src/lib/get-strict-context.tsx",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./hooks/use-controlled-state": "./src/hooks/use-controlled-state.tsx",
+    "./hooks/use-motion-value-state": "./src/hooks/use-motion-value-state.tsx",
+    "./components/*": "./src/components/*.tsx"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -36,15 +46,5 @@
     "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "^4.2.0",
     "typescript": "^5"
-  },
-  "exports": {
-    "./globals.css": "./src/styles/globals.css",
-    "./postcss.config": "./postcss.config.mjs",
-    "./lib/*": "./src/lib/*.ts",
-    "./lib/get-strict-context": "./src/lib/get-strict-context.tsx",
-    "./hooks/*": "./src/hooks/*.ts",
-    "./hooks/use-controlled-state": "./src/hooks/use-controlled-state.tsx",
-    "./hooks/use-motion-value-state": "./src/hooks/use-motion-value-state.tsx",
-    "./components/*": "./src/components/*.tsx"
   }
 }

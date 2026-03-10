@@ -29,7 +29,6 @@ import { createMetadata } from "@/lib/utils";
 export async function generateMetadata(props: PageProps<"/comic/[series]">): Promise<Metadata> {
   const { series } = await props.params;
 
-  // biome-ignore lint/style/noNonNullAssertion: can't prerender if null.
   const comicData = (await fetchComicSeriesData(series))!;
   const metadata = createMetadata(comicData.title, comicData.synopsis, [
     `arknights vns ${comicData.title}`,

@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "useTabs": false,
+  "tabWidth": 2,
+  "printWidth": 110,
+  "singleQuote": false,
+  "jsxSingleQuote": false,
+  "quoteProps": "as-needed",
+  "trailingComma": "all",
+  "semi": true,
+  "arrowParens": "always",
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "ignorePatterns": [
+    "apps/dreamchasers/*",
+    "apps/dreamchasers-db22c983/*",
+    "packages/shadcn-ui/src/components/*",
+    "packages/shadcn-ui/src/hooks/*",
+    "packages/shadcn-ui/src/lib/*",
+    "packages/database/generated/prisma/*"
+  ]
+}

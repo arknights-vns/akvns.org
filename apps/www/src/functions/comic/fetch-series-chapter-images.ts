@@ -30,7 +30,7 @@ export async function fetchComicSeriesImagesByChapter(series: string, chapter: s
       new ListObjectsV2Command({
         Bucket: serverEnv.COMIC_ASSETS_AWS_BUCKET,
         Prefix: `${series}/${chapter}`,
-      })
+      }),
     );
 
     const objects = resp.Contents;
@@ -43,7 +43,6 @@ export async function fetchComicSeriesImagesByChapter(series: string, chapter: s
       .filter((x) => x?.Size && x.Size > 0)
       .map((obj) => {
         return {
-          // biome-ignore lint/style/noNonNullAssertion: There is.
           name: obj.Key!,
           url: `${serverEnv.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
         };

@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ...createMetadata(
     "Truyện tại Trạm",
     "Các đầu truyện do đội ngũ dịch thuật @terrastationvn hoặc các bên có hợp tác với Arknights VNS.",
-    ["arknights vns truyện", "arknights vns truyện tại trạm"]
+    ["arknights vns truyện", "arknights vns truyện tại trạm"],
   ),
 };
 
@@ -92,7 +92,7 @@ export default async function ComicListing(props: PageProps<"/comic">) {
                       entry.category === "Arknights_VNS" && "border-primary",
                       entry.category === "Partner" && "border-400",
                       entry.category === "Collaboration" && "border-black",
-                      entry.category === "Community" && "border-gray-600"
+                      entry.category === "Community" && "border-gray-600",
                     )}
                   >
                     {

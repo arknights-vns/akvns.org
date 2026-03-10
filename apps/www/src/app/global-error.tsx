@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 export default function GlobalError({
   error,
-  // biome-ignore lint/correctness/noUnusedFunctionParameters: required by Next.js?
+  // eslint-disable-next-line no-unused-vars
   reset,
 }: {
   error: Error & { digest?: string };

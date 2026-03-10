@@ -6,6 +6,6 @@ export default async function ProjectsOGImage() {
     <DefaultOpengraph description="Toàn bộ nhân sự đang hoạt động tại Arknights VNS." title="Nhân sự" />,
     {
       fonts: [...(await getStationDefaultOpengraphFonts())],
-    }
+    },
   );
 }
