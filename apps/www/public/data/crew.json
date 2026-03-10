@@ -2,9 +2,7 @@
   {
     "name": "Sơn Trần",
     "avatar": "https://cdn.akvns.org/crew/ST.jpg",
-    "categories": [
-      "founder"
-    ],
+    "categories": ["founder"],
     "roles": {
       "founder": "Founder"
     }
@@ -12,9 +10,7 @@
   {
     "name": "Bùi Đạt",
     "avatar": "https://cdn.akvns.org/crew/Bùi Đạt.jpg",
-    "categories": [
-      "founder"
-    ],
+    "categories": ["founder"],
     "roles": {
       "founder": "Founder"
     }
@@ -22,13 +18,7 @@
   {
     "name": "Shou Huỳnh",
     "avatar": "https://cdn.akvns.org/crew/shou.jpg",
-    "categories": [
-      "facebook-mod",
-      "discord-mod",
-      "dreamchasers",
-      "translation",
-      "founder"
-    ],
+    "categories": ["facebook-mod", "discord-mod", "dreamchasers", "translation", "founder"],
     "roles": {
       "founder": "Founder",
       "facebook-mod": "Lead Administrator",
@@ -40,10 +30,7 @@
   {
     "name": "Nguyễn Đức Dương",
     "avatar": "https://cdn.akvns.org/crew/Nguyễn Đức Dương.jpg",
-    "categories": [
-      "facebook-mod",
-      "founder"
-    ],
+    "categories": ["facebook-mod", "founder"],
     "roles": {
       "facebook-mod": "Senior Administrator",
       "founder": "Founder"
@@ -52,10 +39,7 @@
   {
     "name": "Nguyễn Trang",
     "avatar": "https://cdn.akvns.org/crew/Nguyễn Trang.jpg",
-    "categories": [
-      "facebook-mod",
-      "founder"
-    ],
+    "categories": ["facebook-mod", "founder"],
     "roles": {
       "founder": "Founder",
       "facebook-mod": "Administrator"
@@ -64,9 +48,7 @@
   {
     "name": "Nguyệt Vi Hoa Thiên",
     "avatar": "https://cdn.akvns.org/crew/Syalis.jpg",
-    "categories": [
-      "facebook-mod"
-    ],
+    "categories": ["facebook-mod"],
     "roles": {
       "facebook-mod": "Administrator"
     }
@@ -74,10 +56,7 @@
   {
     "name": "Lisk",
     "avatar": "https://cdn.akvns.org/crew/Lisk.jpg",
-    "categories": [
-      "facebook-mod",
-      "translation"
-    ],
+    "categories": ["facebook-mod", "translation"],
     "roles": {
       "facebook-mod": "[Gen 00] Moderator",
       "translation": "Translator"
@@ -86,9 +65,7 @@
   {
     "name": "Miarow De Hans",
     "avatar": "https://cdn.akvns.org/crew/Miarow Hans.jpg",
-    "categories": [
-      "facebook-mod"
-    ],
+    "categories": ["facebook-mod"],
     "roles": {
       "facebook-mod": "[Gen 00] Moderator"
     }
@@ -96,9 +73,7 @@
   {
     "name": "Quang Trường",
     "avatar": "https://cdn.akvns.org/crew/Quang Trường.jpg",
-    "categories": [
-      "facebook-mod"
-    ],
+    "categories": ["facebook-mod"],
     "roles": {
       "facebook-mod": "[Gen 00] Moderator"
     }
@@ -106,9 +81,7 @@
   {
     "name": "Luong Dung",
     "avatar": "https://cdn.akvns.org/crew/Luong Dung.jpg",
-    "categories": [
-      "facebook-mod"
-    ],
+    "categories": ["facebook-mod"],
     "roles": {
       "facebook-mod": "[Gen 00] Moderator"
     }
@@ -116,9 +89,7 @@
   {
     "name": "Bùi Minh Anh",
     "avatar": "https://cdn.akvns.org/crew/Bùi Minh Anh.png",
-    "categories": [
-      "facebook-mod"
-    ],
+    "categories": ["facebook-mod"],
     "roles": {
       "facebook-mod": "[Gen 01] Moderator"
     }
@@ -126,9 +97,7 @@
   {
     "name": "Trịnh Trung Kiên",
     "avatar": "https://cdn.akvns.org/crew/Trịnh Trung Kiên.jpg",
-    "categories": [
-      "facebook-mod"
-    ],
+    "categories": ["facebook-mod"],
     "roles": {
       "facebook-mod": "[Gen 01] Moderator"
     }
@@ -136,9 +105,7 @@
   {
     "name": "Nguyễn Trung Kiên",
     "avatar": "https://cdn.akvns.org/crew/Nguyễn Trung Kiên.jpg",
-    "categories": [
-      "facebook-mod"
-    ],
+    "categories": ["facebook-mod"],
     "roles": {
       "facebook-mod": "[Gen 01] Moderator"
     }
@@ -146,10 +113,7 @@
   {
     "name": "Meruko",
     "avatar": "https://cdn.akvns.org/crew/Meruko.jpg",
-    "categories": [
-      "facebook-mod",
-      "dreamchasers"
-    ],
+    "categories": ["facebook-mod", "dreamchasers"],
     "roles": {
       "facebook-mod": "[Gen 01] Moderator",
       "dreamchasers": "General Consultant"
@@ -158,9 +122,7 @@
   {
     "name": "Minh Trần",
     "avatar": "https://cdn.akvns.org/crew/Minh Trần.jpg",
-    "categories": [
-      "facebook-mod"
-    ],
+    "categories": ["facebook-mod"],
     "roles": {
       "facebook-mod": "[Gen 02] Moderator"
     }
@@ -168,9 +130,7 @@
   {
     "name": "Kwang Tạ",
     "avatar": "https://cdn.akvns.org/crew/Kwang.jpg",
-    "categories": [
-      "facebook-mod"
-    ],
+    "categories": ["facebook-mod"],
     "roles": {
       "facebook-mod": "[Gen 02] Moderator"
     }
@@ -178,9 +138,7 @@
   {
     "name": "JM Nguyễn",
     "avatar": "https://cdn.akvns.org/crew/JM.jpg",
-    "categories": [
-      "facebook-mod"
-    ],
+    "categories": ["facebook-mod"],
     "roles": {
       "facebook-mod": "[Gen 02] Moderator"
     }
@@ -188,11 +146,7 @@
   {
     "name": "Kazaha Kamito",
     "avatar": "https://cdn.akvns.org/crew/Kamito.jpg",
-    "categories": [
-      "discord-mod",
-      "dreamchasers",
-      "founder"
-    ],
+    "categories": ["discord-mod", "dreamchasers", "founder"],
     "roles": {
       "founder": "Founder",
       "discord-mod": "Administrator",
@@ -202,9 +156,7 @@
   {
     "name": "Ein Schwarz",
     "avatar": "https://cdn.akvns.org/crew/Ein Schwarz.png",
-    "categories": [
-      "discord-mod"
-    ],
+    "categories": ["discord-mod"],
     "roles": {
       "discord-mod": "Moderator"
     }
@@ -212,9 +164,7 @@
   {
     "name": "Thorns",
     "avatar": "https://cdn.akvns.org/crew/Thorns.png",
-    "categories": [
-      "discord-mod"
-    ],
+    "categories": ["discord-mod"],
     "roles": {
       "discord-mod": "Moderator"
     }
@@ -222,9 +172,7 @@
   {
     "name": "Hamaru",
     "avatar": "https://cdn.akvns.org/crew/Hamaru.png",
-    "categories": [
-      "discord-mod"
-    ],
+    "categories": ["discord-mod"],
     "roles": {
       "discord-mod": "Moderator"
     }
@@ -232,10 +180,7 @@
   {
     "name": "Sadus",
     "avatar": "https://cdn.akvns.org/crew/Sadus.jpg",
-    "categories": [
-      "discord-mod",
-      "dreamchasers"
-    ],
+    "categories": ["discord-mod", "dreamchasers"],
     "roles": {
       "discord-mod": "Moderator",
       "dreamchasers": "Secretary"
@@ -244,9 +189,7 @@
   {
     "name": "Hestia Rita",
     "avatar": "https://cdn.akvns.org/crew/Hestia Rita.jpg",
-    "categories": [
-      "discord-mod"
-    ],
+    "categories": ["discord-mod"],
     "roles": {
       "discord-mod": "Moderator"
     }
@@ -254,9 +197,7 @@
   {
     "name": "manh.",
     "avatar": "https://cdn.akvns.org/crew/manh..png",
-    "categories": [
-      "discord-mod"
-    ],
+    "categories": ["discord-mod"],
     "roles": {
       "discord-mod": "Moderator"
     }
@@ -264,9 +205,7 @@
   {
     "name": "Kamaeiri",
     "avatar": "https://cdn.akvns.org/crew/Kamaeiri.jpg",
-    "categories": [
-      "dreamchasers"
-    ],
+    "categories": ["dreamchasers"],
     "roles": {
       "dreamchasers": "Senior Consultant"
     }
@@ -274,9 +213,7 @@
   {
     "name": "Shihotori",
     "avatar": "https://cdn.akvns.org/crew/Shihotori.jpg",
-    "categories": [
-      "dreamchasers"
-    ],
+    "categories": ["dreamchasers"],
     "roles": {
       "dreamchasers": "Technician"
     }
@@ -284,9 +221,7 @@
   {
     "name": "East",
     "avatar": "https://cdn.akvns.org/crew/AkaneOSK.jpg",
-    "categories": [
-      "dreamchasers"
-    ],
+    "categories": ["dreamchasers"],
     "roles": {
       "dreamchasers": "Secretary"
     }
@@ -294,9 +229,7 @@
   {
     "name": "Silver",
     "avatar": "https://cdn.akvns.org/crew/TuanAnh.jpg",
-    "categories": [
-      "dreamchasers"
-    ],
+    "categories": ["dreamchasers"],
     "roles": {
       "dreamchasers": "Minigames Advisor"
     }
@@ -304,9 +237,7 @@
   {
     "name": "Swyrin",
     "avatar": "https://cdn.akvns.org/crew/Swyrin.jpg",
-    "categories": [
-      "dreamchasers"
-    ],
+    "categories": ["dreamchasers"],
     "roles": {
       "dreamchasers": "IT - Cái gì cũng làm"
     },
@@ -320,9 +251,7 @@
   {
     "name": "Shiina Kochiya",
     "avatar": "https://cdn.akvns.org/crew/Shiina.jpg",
-    "categories": [
-      "dreamchasers"
-    ],
+    "categories": ["dreamchasers"],
     "roles": {
       "dreamchasers": "IT - Front-End"
     }
@@ -330,9 +259,7 @@
   {
     "name": "jameshanderson",
     "avatar": "https://cdn.akvns.org/crew/jameshanderson.jpg",
-    "categories": [
-      "dreamchasers"
-    ],
+    "categories": ["dreamchasers"],
     "roles": {
       "dreamchasers": "IT - Front-End"
     }
@@ -340,9 +267,7 @@
   {
     "name": "giabao06",
     "avatar": "https://cdn.akvns.org/crew/Elmer.jpg",
-    "categories": [
-      "dreamchasers"
-    ],
+    "categories": ["dreamchasers"],
     "roles": {
       "dreamchasers": "IT - SysAdmin"
     }
@@ -350,9 +275,7 @@
   {
     "name": "Succhusa",
     "avatar": "https://cdn.akvns.org/crew/Succhusa.jpg",
-    "categories": [
-      "dreamchasers"
-    ],
+    "categories": ["dreamchasers"],
     "roles": {
       "dreamchasers": "Graphic Designer"
     }
@@ -360,9 +283,7 @@
   {
     "name": "noname4now",
     "avatar": "https://cdn.akvns.org/crew/noname4now.jpg",
-    "categories": [
-      "dreamchasers"
-    ],
+    "categories": ["dreamchasers"],
     "quote": "Culi hàng hiệu của Swyrin",
     "roles": {
       "dreamchasers": "IT - Front-End"
@@ -371,9 +292,7 @@
   {
     "name": "Peashooter",
     "avatar": "https://cdn.akvns.org/crew/Peashooter.jpg",
-    "categories": [
-      "dreamchasers"
-    ],
+    "categories": ["dreamchasers"],
     "roles": {
       "dreamchasers": "IT - Back-End"
     }
@@ -381,9 +300,7 @@
   {
     "name": "Rosaline",
     "avatar": "https://cdn.akvns.org/crew/Rosaline.jpg",
-    "categories": [
-      "translation"
-    ],
+    "categories": ["translation"],
     "roles": {
       "translation": "Co-Leader"
     }
@@ -391,9 +308,7 @@
   {
     "name": "I Love Priestess",
     "avatar": "https://cdn.akvns.org/crew/I Love Priestess.jpg",
-    "categories": [
-      "translation"
-    ],
+    "categories": ["translation"],
     "roles": {
       "translation": "Co-Leader"
     }
@@ -401,9 +316,7 @@
   {
     "name": "Ken",
     "avatar": "https://cdn.akvns.org/crew/Ken.jpg",
-    "categories": [
-      "translation"
-    ],
+    "categories": ["translation"],
     "roles": {
       "translation": "Translator"
     }
@@ -411,9 +324,7 @@
   {
     "name": "ShioharaK",
     "avatar": "https://cdn.akvns.org/crew/ShioharaK.jpg",
-    "categories": [
-      "translation"
-    ],
+    "categories": ["translation"],
     "roles": {
       "translation": "Translator"
     }
@@ -421,9 +332,7 @@
   {
     "name": "鹿島ブレイズ",
     "avatar": "https://cdn.akvns.org/crew/鹿島ブレイズ.jpg",
-    "categories": [
-      "translation"
-    ],
+    "categories": ["translation"],
     "roles": {
       "translation": "Translator"
     }

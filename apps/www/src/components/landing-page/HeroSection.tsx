@@ -18,7 +18,7 @@ export default function HeroSection() {
           <RevealText
             className={cn(
               fontCaveat.className,
-              "text-center font-caveat text-6xl text-primary text-shadow-lg text-shadow-red-600/30 md:text-8xl"
+              "text-center font-caveat text-6xl text-primary text-shadow-lg text-shadow-red-600/30 md:text-8xl",
             )}
             direction="up"
           >

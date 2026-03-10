@@ -89,7 +89,7 @@ export default function ProjectPage() {
                       "absolute top-3 right-3 bg-muted",
                       category === "akvns" && "border-primary hover:bg-primary",
                       category === "community" && "border-amber-400 hover:bg-amber-400",
-                      category === "crossover" && "border-cyan-300 hover:bg-cyan-300"
+                      category === "crossover" && "border-cyan-300 hover:bg-cyan-300",
                     )}
                     nativeButton={false}
                     render={
@@ -106,7 +106,7 @@ export default function ProjectPage() {
                     "absolute bottom-3 left-3 bg-muted p-3",
                     category === "akvns" && "border-primary",
                     category === "community" && "border-amber-400",
-                    category === "crossover" && "border-cyan-300"
+                    category === "crossover" && "border-cyan-300",
                   )}
                 >
                   {category === "akvns" && (
@@ -134,7 +134,7 @@ export default function ProjectPage() {
                 <div className="text-justify text-muted-foreground leading-relaxed">{entry.content}</div>
               </CardContent>
             </Card>
-          ))
+          )),
         )}
       </div>
     </ContentArea>

@@ -26,7 +26,6 @@ import { createMetadata } from "@/lib/utils";
 export async function generateMetadata(props: PageProps<"/comic/[series]/[chapter]">): Promise<Metadata> {
   const { series, chapter } = await props.params;
 
-  // biome-ignore lint/style/noNonNullAssertion: can't prerender if null.
   const comicData = (await fetchComicSeriesData(series))!;
 
   const currentChapter = comicData.chapters.filter((x) => x.chapter_id === chapter)[0]?.chapter_name;
@@ -84,7 +83,6 @@ export default async function ComicReadPage(props: PageProps<"/comic/[series]/[c
   const seriesData = await fetchComicSeriesData(series);
   const serverImages = await fetchComicSeriesImagesByChapter(series, chapter);
 
-  // biome-ignore lint/complexity/useSimplifiedLogicExpression: no, thanks, De Morgan.
   if (!seriesData || !serverImages) {
     notFound();
   }

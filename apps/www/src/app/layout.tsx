@@ -42,7 +42,7 @@ function RootLayout(props: LayoutProps<"/">) {
       <body
         className={cn(
           `${fontSans.variable} ${fontMono.variable} font-sans antialiased`,
-          process.env.NODE_ENV === "development" && "border-2 border-primary"
+          process.env.NODE_ENV === "development" && "border-2 border-primary",
         )}
       >
         <NuqsAdapter>

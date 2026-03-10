@@ -9,6 +9,6 @@ export default async function OgImage() {
     />,
     {
       fonts: [...(await getStationDefaultOpengraphFonts())],
-    }
+    },
   );
 }

@@ -34,7 +34,6 @@ export default function BottomDock(props: BottomDockProps) {
   const hasPrev = chapterIndex - 1 >= 0;
   const hasNext = chapterIndex + 1 < chapterList.length;
 
-  // biome-ignore lint/style/noNonNullAssertion: hopefully bound-checked
   const currentChapter = chapterList[chapterIndex]!;
 
   const items = chapterList.map((x) => {
@@ -67,7 +66,7 @@ export default function BottomDock(props: BottomDockProps) {
           opacity: visible ? 1 : 0,
         }}
         className={cn(
-          "place-items-center-safe fixed inset-x-0 bottom-2 z-10 mx-auto flex max-w-fit gap-x-4 rounded-2xl border-2 bg-background p-3"
+          "place-items-center-safe fixed inset-x-0 bottom-2 z-10 mx-auto flex max-w-fit gap-x-4 rounded-2xl border-2 bg-background p-3",
         )}
         initial={{
           opacity: 1,
