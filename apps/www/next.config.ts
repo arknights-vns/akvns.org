@@ -79,10 +79,6 @@ const nextConfig: NextConfig = {
             value: "Next.js 16.0.6 with CVE-2025-55182 and CVE-2025-66478 left unpatched *wink*",
           },
           {
-            key: "X-Swyrin-Was-Here",
-            value: "true",
-          },
-          {
             key: "X-Content-Type-Options",
             value: "nosniff",
           },
@@ -96,7 +92,7 @@ const nextConfig: NextConfig = {
             // so yeah, 'unsafe-inline' for now.
             value: `
     default-src 'self';
-    script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://*.googletagmanager.com https://*.cloudflareinsights.com;
+    script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://*.googletagmanager.com https://*.cloudflareinsights.com https://www.clarity.ms;
     style-src 'self' 'unsafe-inline';
     connect-src 'self' https://*.sentry.io https://*.google-analytics.com;
     img-src 'self' https://*.akvns.org;

@@ -6,7 +6,7 @@ const trailingSlashRegex = /\/+$/g;
 /**
  * Get the production URL.
  *
- * Hopefully it works, like I use this in both Server & Client components <(")
+ * @remarks Hopefully it works, like I use this in both Server & Client components <(")
  */
 export function getProductionUrl() {
   const PAGE_URL =
@@ -16,9 +16,9 @@ export function getProductionUrl() {
 }
 
 /**
- * get default Next.js metadata.
+ * Get default Next.js SEO metadata.
  *
- * Server Components only.
+ * @remarks Server Components only.
  */
 export function createMetadata(title: string, description: string, keywords: string[] = []): Metadata {
   const prodUrl = getProductionUrl();
