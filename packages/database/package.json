@@ -1,7 +1,6 @@
 {
   "name": "@arknights-vns/database",
   "author": "Arknights Vietnam Station",
-  "description": "",
   "type": "module",
   "license": "AGPL-3.0-or-later",
   "version": "1.0.0",
