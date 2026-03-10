@@ -6,6 +6,7 @@ import Providers from "@/components/Providers";
 import "@arknights-vns/shadcn-ui/globals.css";
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
 import ExuStare from "@/components/ExuStare";
+import { serverEnv } from "@/env-var/server";
 import { createMetadata } from "@/lib/utils";
 
 const fontSans = VNS_Font({
@@ -47,8 +48,8 @@ function RootLayout(props: LayoutProps<"/">) {
         <NuqsAdapter>
           <Providers>{props.children}</Providers>
           <ExuStare />
-          <GoogleAnalytics gaId="G-Y625KEE6HT" />
-          <GoogleTagManager gtmId="GTM-PT7MFG5F" />
+          <GoogleAnalytics gaId={serverEnv.GOOGLE_ANALYTICS_ID} />
+          <GoogleTagManager gtmId={serverEnv.GOOGLE_TAG_MANAGER_ID} />
         </NuqsAdapter>
       </body>
     </html>

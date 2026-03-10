@@ -19,6 +19,8 @@ export const serverEnv = createEnv({
 
     VNS_DISCORD_SERVER: z.url().default("https://discord.gg/akvns"),
     PFR_DISCORD_SERVER: z.url().default("https://discord.gg/SRFjXSFu"),
+    GOOGLE_ANALYTICS_ID: z.string().default("G-Y625KEE6HT"),
+    GOOGLE_TAG_MANAGER_ID: z.string().default("GTM-PT7MFG5F"),
   },
   experimental__runtimeEnv: process.env,
 });
