@@ -1,8 +1,6 @@
 {
   "name": "@arknights-vns/database",
-  "version": "1.0.0",
-  "license": "AGPL-3.0-or-later",
-  "author": "Arknights Vietnam Station",
+  "version": "0.0.0",
   "type": "module",
   "exports": {
     "./client": "./client.ts",

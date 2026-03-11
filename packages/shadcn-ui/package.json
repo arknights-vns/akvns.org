@@ -1,7 +1,6 @@
 {
   "name": "@arknights-vns/shadcn-ui",
   "version": "0.0.0",
-  "private": true,
   "type": "module",
   "exports": {
     "./globals.css": "./src/styles/globals.css",
@@ -12,9 +11,6 @@
     "./hooks/use-controlled-state": "./src/hooks/use-controlled-state.tsx",
     "./hooks/use-motion-value-state": "./src/hooks/use-motion-value-state.tsx",
     "./components/*": "./src/components/*.tsx"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@base-ui/react": "1.0.0",

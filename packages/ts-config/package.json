@@ -1,9 +1,4 @@
 {
   "name": "@arknights-vns/ts-config",
-  "version": "0.0.0",
-  "private": true,
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  }
+  "version": "0.0.0"
 }
