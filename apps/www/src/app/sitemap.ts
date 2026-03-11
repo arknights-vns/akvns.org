@@ -1,6 +1,8 @@
-import { prisma } from "@arknights-vns/database/client";
 import type { MetadataRoute } from "next";
+
+import { prisma } from "@arknights-vns/database/client";
 import { cacheLife, cacheTag } from "next/cache";
+
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
 import { getProductionUrl } from "@/lib/utils";
 
@@ -52,6 +54,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   for (const entry of entries) {
+    // oxlint-disable-next-line no-await-in-loop
     const seriesData = await fetchComicSeriesData(entry.series_id);
 
     pages.push({
@@ -61,11 +64,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     });
 
-    if (!seriesData) {
-      continue;
-    }
-
-    for (const chapter of seriesData.chapters) {
+    // oxlint-disable-next-line typescript/no-non-null-assertion
+    for (const chapter of seriesData!.chapters) {
       pages.push({
         url: `${prodUrl}/comic/${seriesData?.series_id}/${chapter.chapter_id}`,
         lastModified: chapter.updatedAt,

@@ -1,6 +1,7 @@
 import { ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { cacheLife, cacheTag } from "next/cache";
 import { z } from "zod";
+
 import { serverEnv } from "@/env-var/server";
 import { s3Client } from "@/lib/aws-s3";
 import { redisClient } from "@/lib/redis";
@@ -41,12 +42,10 @@ export async function fetchComicSeriesImagesByChapter(series: string, chapter: s
 
     images = objects
       .filter((x) => x?.Size && x.Size > 0)
-      .map((obj) => {
-        return {
-          name: obj.Key!,
-          url: `${serverEnv.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
-        };
-      });
+      .map((obj, idx) => ({
+        name: obj.Key ?? `how-did-we-get-here-${idx}`,
+        url: `${serverEnv.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
+      }));
   }
 
   await redisClient.set(REDIS_KEY, JSON.stringify(images), "EX", 7 * 24 * 60 * 60);

@@ -14,6 +14,7 @@ import {
 } from "@arknights-vns/shadcn-ui/components/sheet";
 import { ChevronDown, Menu } from "lucide-react";
 import Link from "next/link";
+
 import type { NavComponentProps } from "@/components/navbar/navigation-type";
 
 export default function MobileNavigationSidebar(props: NavComponentProps) {

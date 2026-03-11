@@ -1,10 +1,12 @@
+import type { Route } from "next";
+
 import { Button } from "@arknights-vns/shadcn-ui/components/button";
 import { SiDiscord, SiFacebook } from "@icons-pack/react-simple-icons";
 import VNS_Icon from "@public/VNS_Icon.svg";
-import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
+
 import DonateButton from "@/components/DonateButton";
 import DesktopNavigationMenu from "@/components/navbar/DesktopNavigationMenu";
 import MobileNavigationSidebar from "@/components/navbar/MobileNavigationSidebar";
@@ -46,7 +48,7 @@ export default function NavigationBar() {
           size="icon-lg"
           variant="outline"
         />
-        <Suspense fallback={null}>
+        <Suspense>
           <DonateButton />
         </Suspense>
       </div>

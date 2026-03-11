@@ -1,3 +1,5 @@
+import type { Metadata, Route } from "next";
+
 import { prisma } from "@arknights-vns/database/client";
 import {
   Breadcrumb,
@@ -14,12 +16,12 @@ import { ScrollArea } from "@arknights-vns/shadcn-ui/components/scroll-area";
 import { Separator } from "@arknights-vns/shadcn-ui/components/separator";
 import { Skeleton } from "@arknights-vns/shadcn-ui/components/skeleton";
 import { BookCopy, ListOrdered } from "lucide-react";
-import type { Metadata, Route } from "next";
+import { ArticleJsonLd } from "next-seo";
 import { cacheLife, cacheTag } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArticleJsonLd } from "next-seo";
+
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
 import { createMetadata } from "@/lib/utils";
 
@@ -29,7 +31,12 @@ import { createMetadata } from "@/lib/utils";
 export async function generateMetadata(props: PageProps<"/comic/[series]">): Promise<Metadata> {
   const { series } = await props.params;
 
-  const comicData = (await fetchComicSeriesData(series))!;
+  const comicData = await fetchComicSeriesData(series);
+
+  if (!comicData) {
+    return {};
+  }
+
   const metadata = createMetadata(comicData.title, comicData.synopsis, [
     `arknights vns ${comicData.title}`,
     `terrastationvn ${comicData.title}`,
@@ -52,11 +59,9 @@ export async function generateStaticParams() {
     },
   });
 
-  return series.map((entry) => {
-    return {
-      series: entry.series_id,
-    };
-  });
+  return series.map((entry) => ({
+    series: entry.series_id,
+  }));
 }
 
 export default async function ComicSeriesDetail(properties: PageProps<"/comic/[series]">) {
@@ -187,7 +192,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
           <ScrollArea className="h-144 w-full">
             <div className="flex flex-col gap-2 p-4">
               {data.chapters
-                .sort((x, y) => Number(x.id - y.id))
+                .toSorted((left, right) => Number(left.id - right.id))
                 .map((chapter) => (
                   <Item key={chapter.chapter_id} variant="muted">
                     <ItemContent>

@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@arknights-vns/shadcn-
 import crewList from "@public/data/crew.json";
 import * as motion from "motion/react-client";
 import { useQueryState } from "nuqs";
+
 import ContentArea from "@/components/ContentArea";
 import MemberCard from "@/components/MemberCard";
 
@@ -30,7 +31,7 @@ export default function StaffPage() {
       <FavorText className="text-center text-muted-foreground">
         Toàn bộ nhân sự đang hoạt động tại Arknights VNS
       </FavorText>
-      <Tabs className="w-full gap-y-8" onValueChange={(value) => setTab(value)} value={tab}>
+      <Tabs className="w-full gap-y-8" onValueChange={async (value) => setTab(value)} value={tab}>
         <TabsList className="tab-button mb-12 grid h-auto grid-cols-2 gap-3 self-center bg-transparent md:grid-cols-4">
           {typedKeys.map((group) => (
             <TabsTrigger key={group} value={group}>

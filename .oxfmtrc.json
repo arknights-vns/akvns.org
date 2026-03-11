@@ -18,5 +18,27 @@
     "packages/shadcn-ui/src/hooks/*",
     "packages/shadcn-ui/src/lib/*",
     "packages/database/generated/prisma/*"
-  ]
+  ],
+  "sortImports": {
+    "groups": [
+      "type-import",
+      [
+        "value-builtin",
+        "value-external"
+      ],
+      "type-internal",
+      "value-internal",
+      [
+        "type-parent",
+        "type-sibling",
+        "type-index"
+      ],
+      [
+        "value-parent",
+        "value-sibling",
+        "value-index"
+      ],
+      "unknown"
+    ]
+  }
 }

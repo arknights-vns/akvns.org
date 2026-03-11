@@ -8,13 +8,14 @@ import { Heading, Paragraph } from "@arknights-vns/shadcn-ui/components/extensio
 import VNS_Donate_Example from "@public/VNS_Donate_Example.jpg";
 import Image from "next/image";
 import Link from "next/link";
+
 import ContentArea from "@/components/ContentArea";
 
 export default function QuestionsForUs() {
   return (
     <ContentArea className="w-[95vw] md:w-[80vw] lg:w-[75vw]" id="q-n-a">
       <Heading className="text-primary" kind="h1">
-        {"Q & A"}
+        Q & A
       </Heading>
       <Accordion multiple={true}>
         <AccordionItem value="question-1">

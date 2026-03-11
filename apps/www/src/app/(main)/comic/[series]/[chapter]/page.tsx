@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+
 import { prisma } from "@arknights-vns/database/client";
 import {
   ScrollProgress,
@@ -12,13 +14,13 @@ import {
   BreadcrumbSeparator,
 } from "@arknights-vns/shadcn-ui/components/breadcrumb";
 import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
-import type { Metadata } from "next";
 import { cacheLife, cacheTag } from "next/cache";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ContentArea from "@/components/ContentArea";
+
 import BottomDock from "@/components/comic/BottomDock";
+import ContentArea from "@/components/ContentArea";
 import { fetchComicSeriesImagesByChapter } from "@/functions/comic/fetch-series-chapter-images";
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
 import { createMetadata } from "@/lib/utils";
@@ -26,9 +28,13 @@ import { createMetadata } from "@/lib/utils";
 export async function generateMetadata(props: PageProps<"/comic/[series]/[chapter]">): Promise<Metadata> {
   const { series, chapter } = await props.params;
 
-  const comicData = (await fetchComicSeriesData(series))!;
+  const comicData = await fetchComicSeriesData(series);
 
-  const currentChapter = comicData.chapters.filter((x) => x.chapter_id === chapter)[0]?.chapter_name;
+  if (!comicData) {
+    return {};
+  }
+
+  const currentChapter = comicData.chapters.find((ch) => ch.chapter_id === chapter)?.chapter_name;
 
   const metadata = createMetadata(`${comicData.title} | ${currentChapter}`, comicData.synopsis, [
     `arknights vns ${comicData.title} ${currentChapter}`,
@@ -89,7 +95,7 @@ export default async function ComicReadPage(props: PageProps<"/comic/[series]/[c
 
   const listOfChapters = seriesData.chapters.map((x) => x.chapter_id);
   const chapterPosition = listOfChapters.indexOf(chapter);
-  const chapterName = seriesData.chapters.filter((x) => x.chapter_id === chapter)[0]?.chapter_name;
+  const chapterName = seriesData.chapters.find((x) => x.chapter_id === chapter)?.chapter_name;
 
   return (
     <ScrollProgressProvider global={true}>
@@ -117,31 +123,27 @@ export default async function ComicReadPage(props: PageProps<"/comic/[series]/[c
           <FavorText className="text-center">{chapterName}</FavorText>
         </div>
         <ScrollProgressContainer className="place-items-center-safe flex flex-col gap-4">
-          {serverImages.map((x, index) => {
-            return (
-              <Image
-                alt={x.name}
-                className="scroll-mt-26 border object-contain"
-                height={380}
-                id={`page-${index + 1}`}
-                key={x.url}
-                priority={true}
-                src={x.url}
-                width={520}
-              />
-            );
-          })}
+          {serverImages.map((img, index) => (
+            <Image
+              alt={img.name}
+              className="scroll-mt-26 border object-contain"
+              height={380}
+              id={`page-${index + 1}`}
+              key={img.url}
+              priority={true}
+              src={img.url}
+              width={520}
+            />
+          ))}
         </ScrollProgressContainer>
       </ContentArea>
 
       <BottomDock
         chapterIndex={chapterPosition}
-        chapterList={seriesData.chapters.map((x) => {
-          return {
-            id: x.chapter_id,
-            name: x.chapter_name,
-          };
-        })}
+        chapterList={seriesData.chapters.map((x) => ({
+          id: x.chapter_id,
+          name: x.chapter_name,
+        }))}
         comicId={series}
       />
     </ScrollProgressProvider>

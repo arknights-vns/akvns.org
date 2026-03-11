@@ -1,13 +1,15 @@
 "use client";
 
+import type { Route } from "next";
+
 import { Carousel, CarouselContent, CarouselItem } from "@arknights-vns/shadcn-ui/components/carousel";
 import { FootNote, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
 import partnerList from "@public/data/partner.json";
 import AutoScroll from "embla-carousel-auto-scroll";
-import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
 import ContentArea from "@/components/ContentArea";
 
 export default function PartnersShowcase() {
@@ -54,22 +56,20 @@ export default function PartnersShowcase() {
       <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
         {partnerList
           .filter((data) => data.type === "artist")
-          .map((entry) => {
-            return (
-              <div className="place-items-center-safe flex flex-col gap-2" key={entry.title}>
-                <Link className={cn(entry.url === "#" && "pointer-events-none")} href={entry.url as Route}>
-                  <Image
-                    alt={entry.title}
-                    className="size-37.5 rounded-full border-2"
-                    height={150}
-                    src={entry.image}
-                    width={150}
-                  />
-                </Link>
-                <FootNote className="font-bold text-lg">{entry.title}</FootNote>
-              </div>
-            );
-          })}
+          .map((entry) => (
+            <div className="place-items-center-safe flex flex-col gap-2" key={entry.title}>
+              <Link className={cn(entry.url === "#" && "pointer-events-none")} href={entry.url as Route}>
+                <Image
+                  alt={entry.title}
+                  className="size-37.5 rounded-full border-2"
+                  height={150}
+                  src={entry.image}
+                  width={150}
+                />
+              </Link>
+              <FootNote className="font-bold text-lg">{entry.title}</FootNote>
+            </div>
+          ))}
       </div>
     </ContentArea>
   );

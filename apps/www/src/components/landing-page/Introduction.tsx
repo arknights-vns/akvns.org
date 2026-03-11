@@ -2,6 +2,7 @@ import { Heading, Paragraph } from "@arknights-vns/shadcn-ui/components/extensio
 import Amiya_Dreamchasers from "@public/Amiya_Dreamchasers.png";
 import Image from "next/image";
 import Link from "next/link";
+
 import ContentArea from "@/components/ContentArea";
 
 export default function Introduction() {

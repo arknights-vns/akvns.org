@@ -1,5 +1,7 @@
 "use client";
 
+import type { Route } from "next";
+
 import { Badge } from "@arknights-vns/shadcn-ui/components/badge";
 import { Button } from "@arknights-vns/shadcn-ui/components/button";
 import { Card, CardContent, CardHeader } from "@arknights-vns/shadcn-ui/components/card";
@@ -8,10 +10,10 @@ import { ToggleGroup, ToggleGroupItem } from "@arknights-vns/shadcn-ui/component
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
 import projectsList from "@public/data/projects.json";
 import { ExternalLink, Heart, Star, Users } from "lucide-react";
-import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { parseAsArrayOf, parseAsString, useQueryState } from "nuqs";
+
 import ContentArea from "@/components/ContentArea";
 
 type CategoryType = "akvns" | "community" | "crossover";
@@ -35,7 +37,7 @@ export default function ProjectPage() {
           <ToggleGroup
             className="place-items-center-safe flex-wrap"
             multiple={true}
-            onValueChange={(groupValue) => setSelection(groupValue)}
+            onValueChange={async (groupValue) => setSelection(groupValue)}
             size="lg"
             spacing={2}
             value={selection}

@@ -1,4 +1,9 @@
-/** biome-ignore-all lint/suspicious/noConsole: why do I have to? */
+// oxlint-disable promise/prefer-await-to-callbacks
+// oxlint-disable unicorn/no-process-exit
+// oxlint-disable no-console
+// oxlint-disable import/no-relative-parent-imports
+// oxlint-disable promise/prefer-await-to-then
+
 import { prisma } from "../client";
 
 async function seed() {
@@ -614,7 +619,7 @@ seed()
     console.info("Seed complete.");
     process.exit(0);
   })
-  .catch((err) => {
-    console.error("We are fucking cooked.", err);
+  .catch((error: unknown) => {
+    console.error("We are fucking cooked.", error);
     process.exit(-1);
   });

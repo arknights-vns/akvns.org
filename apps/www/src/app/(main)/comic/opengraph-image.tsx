@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+
 import { DefaultOpengraph, getStationDefaultOpengraphFonts } from "@/components/opengraph/DefaultOpengraph";
 
 export default async function OgImage() {

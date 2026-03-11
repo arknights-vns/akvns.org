@@ -15,7 +15,9 @@
   "scripts": {
     "prepare": "node -e \"process.exit(process.env.CI ? 0 : 1)\" || husky",
     "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
     "format": "oxfmt",
+    "predev": "pnpm run -r  --parallel db:generate",
     "dev": "pnpm run -r  --parallel dev",
     "build": "pnpm run -r --parallel build",
     "start": "pnpm run -r  --parallel start"

@@ -15,6 +15,7 @@ export async function fetchComicListByPage(search: string, page = 1, pageSize = 
   return {
     message: results,
     canMoveNext: results.length === pageSize,
+    // oxlint-disable-next-line unicorn/no-null
     next: results.length === pageSize ? page + 1 : null,
   };
 }

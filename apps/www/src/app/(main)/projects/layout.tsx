@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+
 import { Suspense } from "react";
+
 import { createMetadata, getProductionUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {

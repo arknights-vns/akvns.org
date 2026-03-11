@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import ContentArea from "@/components/ContentArea";
 import FatFooter from "@/components/FatFooter";
 import NavigationBar from "@/components/navbar/NavigationBar";

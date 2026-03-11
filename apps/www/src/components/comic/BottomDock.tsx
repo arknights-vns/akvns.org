@@ -34,27 +34,22 @@ export default function BottomDock(props: BottomDockProps) {
   const hasPrev = chapterIndex - 1 >= 0;
   const hasNext = chapterIndex + 1 < chapterList.length;
 
-  const currentChapter = chapterList[chapterIndex]!;
+  const currentChapter = chapterList[chapterIndex] ?? { id: "", name: "" };
 
-  const items = chapterList.map((x) => {
-    return {
-      label: x.name,
-      value: x.id,
-    };
-  });
+  const items = chapterList.map((chapter) => ({
+    label: chapter.name,
+    value: chapter.id,
+  }));
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
-    // Check if current is not undefined and is a number
-    if (typeof current === "number") {
-      const direction = current! - scrollYProgress.getPrevious()!;
+    const direction = current - (scrollYProgress.getPrevious() ?? 0);
 
-      if (scrollYProgress.get() < 0.01) {
-        setVisible(false);
-      } else if (direction < 0) {
-        setVisible(false);
-      } else {
-        setVisible(true);
-      }
+    if (scrollYProgress.get() < 0.01) {
+      setVisible(false);
+    } else if (direction < 0) {
+      setVisible(false);
+    } else {
+      setVisible(true);
     }
   });
 
@@ -95,16 +90,14 @@ export default function BottomDock(props: BottomDockProps) {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Chọn chương</SelectLabel>
-                {chapterList.map((entry) => {
-                  return (
-                    <SelectItem
-                      className="hover:cursor-pointer"
-                      key={entry.id}
-                      render={<Link href={`/comic/${comicId}/${entry.id}`}>{entry.name}</Link>}
-                      value={entry.id}
-                    />
-                  );
-                })}
+                {chapterList.map((entry) => (
+                  <SelectItem
+                    className="hover:cursor-pointer"
+                    key={entry.id}
+                    render={<Link href={`/comic/${comicId}/${entry.id}`}>{entry.name}</Link>}
+                    value={entry.id}
+                  />
+                ))}
               </SelectGroup>
             </SelectContent>
           </Select>

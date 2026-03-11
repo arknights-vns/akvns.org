@@ -1,10 +1,12 @@
 import Script from "next/script";
+
 import { serverEnv } from "@/env-var/server";
 
 export default function MicroslopClarity() {
   return (
     <Script
       // @ts-expect-error Next.js being grumpy at times.
+      // oxlint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: `(function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

@@ -1,5 +1,6 @@
 import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import crewList from "@public/data/crew.json";
+
 import ContentArea from "@/components/ContentArea";
 import MemberCard from "@/components/MemberCard";
 

@@ -15,12 +15,13 @@ export async function loadGoogleFont(font: string) {
   cacheLife("max");
 
   const url = `https://fonts.googleapis.com/css2?family=${font}`;
+  // oxlint-disable-next-line unicorn/no-await-expression-member
   const css = await (await fetch(url)).text();
 
   const resource = css.match(/src: url\((.+)\) format\('(opentype|truetype)'\)/);
 
   if (resource) {
-    // biome-ignore lint/style/noNonNullAssertion: Vercel.
+    // oxlint-disable-next-line typescript/no-non-null-assertion
     const response = await fetch(resource[1]!);
 
     if (response.status === 200) {

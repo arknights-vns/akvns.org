@@ -3,13 +3,13 @@
 import { motion, useInView } from "motion/react";
 import React from "react";
 
-export type RevealTextProps = {
+export interface RevealTextProps {
   children: string;
   direction?: "up" | "down" | "left" | "right";
   delay?: number;
   triggerOnView?: boolean;
   className?: string;
-};
+}
 
 const REVEAL_ANIMATION_DURATION_S = 0.6;
 const MILLISECONDS_TO_SECONDS = 1000;
@@ -34,6 +34,7 @@ const RevealText: React.FC<RevealTextProps> = ({
 
   return (
     <motion.span
+      // oxlint-disable-next-line no-undefined
       animate={animate ? { x: 0, y: 0, opacity: 1 } : undefined}
       className={className}
       initial={directionVariants[direction]}

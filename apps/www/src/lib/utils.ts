@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+
 import { clientEnv } from "@/env-var/client";
 
 const trailingSlashRegex = /\/+$/g;

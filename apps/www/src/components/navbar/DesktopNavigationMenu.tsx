@@ -9,6 +9,7 @@ import {
 } from "@arknights-vns/shadcn-ui/components/navigation-menu";
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
 import Link from "next/link";
+
 import type { NavComponentProps } from "@/components/navbar/navigation-type";
 
 export default function DesktopNavigationMenu(props: NavComponentProps) {

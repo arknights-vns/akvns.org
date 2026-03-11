@@ -1,4 +1,5 @@
 import { Handshake, Info } from "lucide-react";
+
 import type { Navigable } from "@/components/navbar/navigation-type";
 
 export const links: Navigable[] = [

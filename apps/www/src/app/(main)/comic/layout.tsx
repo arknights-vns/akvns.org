@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+
 import LoadingLappy from "@/components/LoadingLappy";
 
 export default function ComicPageLayout(props: LayoutProps<"/comic">) {

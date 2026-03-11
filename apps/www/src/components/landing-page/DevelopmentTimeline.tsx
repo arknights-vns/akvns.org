@@ -4,6 +4,7 @@ import Dreamchasers from "@public/timeline/vns-offline-2025.jpg";
 import Zeklewa_Collab from "@public/timeline/zeklewa-collab.jpg";
 import Image from "next/image";
 import Link from "next/link";
+
 import ContentArea from "@/components/ContentArea";
 import { Timeline } from "@/components/ui/timeline";
 

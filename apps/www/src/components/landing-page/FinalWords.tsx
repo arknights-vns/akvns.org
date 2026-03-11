@@ -7,6 +7,7 @@ import {
 } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import Image from "next/image";
 import Link from "next/link";
+
 import groupPic from "@/app/opengraph-image.jpg";
 import ContentArea from "@/components/ContentArea";
 

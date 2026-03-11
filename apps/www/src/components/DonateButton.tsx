@@ -19,7 +19,7 @@ export default function DonateButton() {
   const [openDonate, setOpenDonate] = useQueryState("open-donate", parseAsBoolean.withDefault(false));
 
   return (
-    <Dialog onOpenChange={(x) => setOpenDonate(x)} open={openDonate}>
+    <Dialog onOpenChange={async (x) => setOpenDonate(x)} open={openDonate}>
       <DialogTrigger
         render={
           <Button className="border-primary! hover:bg-primary!" variant="outline">

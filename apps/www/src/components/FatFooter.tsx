@@ -1,10 +1,12 @@
+import type { Route } from "next";
+
 import { Heading, Paragraph } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import { SiFacebook, SiGithub, SiSteam, SiYoutube } from "@icons-pack/react-simple-icons";
 import VNS_Logo from "@public/VNS_Wordmark.png";
 import { ArrowUpRight } from "lucide-react";
-import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
+
 import { serverEnv } from "@/env-var/server";
 
 const navigations: {
@@ -13,7 +15,7 @@ const navigations: {
     cloak: boolean;
     displayText: string;
     heading: string;
-    href: Route;
+    href: string;
   }>[];
 }[] = [
   {
@@ -23,13 +25,13 @@ const navigations: {
         cloak: true,
         displayText: "Arknights VNS",
         heading: "Discord",
-        href: serverEnv.VNS_DISCORD_SERVER as Route,
+        href: serverEnv.VNS_DISCORD_SERVER,
       },
       {
         cloak: true,
         displayText: "Phoenix Frontiers Hub",
         heading: "Discord",
-        href: serverEnv.PFR_DISCORD_SERVER as Route,
+        href: serverEnv.PFR_DISCORD_SERVER,
       },
     ],
   },

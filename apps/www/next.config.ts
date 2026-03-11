@@ -1,7 +1,8 @@
-import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
-import "@/env-var/client";
+import { withSentryConfig } from "@sentry/nextjs";
+
+import { clientEnv as _ignored } from "@/env-var/client";
 import { serverEnv } from "@/env-var/server";
 
 // https://discord.com/channels/939851547590934610/1261831260318208081/1451918926828011672

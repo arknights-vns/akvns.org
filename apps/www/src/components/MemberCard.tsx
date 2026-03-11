@@ -13,7 +13,7 @@ interface MemberProps {
   role: string;
   avatar: string;
   quote: string;
-  links: { [entry: string]: string };
+  links: Record<string, string>;
 }
 
 export default function MemberCard(props: MemberProps) {
