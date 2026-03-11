@@ -34,7 +34,7 @@ export default function DesktopNavigationMenu(props: NavComponentProps) {
                               className="flex flex-col items-start"
                               href={{ pathname: subentry.href, hash: subentry.hash }}
                             >
-                              <div className="place-items-center-safe flex gap-2 font-bold">
+                              <div className="flex place-items-center-safe gap-2 font-bold">
                                 {subentry.icon && <subentry.icon size={16} />}
                                 {subentry.label}
                               </div>

@@ -8,7 +8,7 @@ import QuestionsForUs from "@/components/landing-page/Questions";
 
 export default function LandingPage() {
   return (
-    <div className="place-items-center-safe flex w-full flex-col">
+    <div className="flex w-full flex-col place-items-center-safe">
       <HeroSection />
       <Introduction />
       <PartnersShowcase />

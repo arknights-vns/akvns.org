@@ -21,9 +21,9 @@ export default function GlobalError({
   return (
     <html lang="vi">
       <body>
-        <div className="place-items-center-safe flex h-[90lvh] flex-col justify-evenly">
+        <div className="flex h-[90lvh] flex-col place-items-center-safe justify-evenly">
           <div />
-          <div className="place-items-center-safe flex max-w-[90vw] flex-col gap-4">
+          <div className="flex max-w-[90vw] flex-col place-items-center-safe gap-4">
             <Image alt="error image" className="max-w-[90vw]" src={We_Are_Sorry} width={520} />
             <Heading className="text-center text-primary" kind="h2">
               Well... đã có lỗi xảy ra, và tụi mình rất tiếc về điều đó.

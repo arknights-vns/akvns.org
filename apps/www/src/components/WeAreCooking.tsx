@@ -14,7 +14,7 @@ export default function WeAreCooking() {
   return (
     <Card className="flex max-w-sm drop-shadow-xl md:max-w-lg">
       <CardHeader>
-        <CardTitle className="font-bold text-xl">Welp...</CardTitle>
+        <CardTitle className="text-xl font-bold">Welp...</CardTitle>
         <CardDescription>Phần này của website đang trong quá trình được nấu bạn nhé!</CardDescription>
       </CardHeader>
       <CardContent>
@@ -26,7 +26,7 @@ export default function WeAreCooking() {
         <div className="flex w-full place-content-evenly items-center [&_a]:font-extrabold">
           <Button>
             <Link
-              className="place-items-center-safe flex gap-2"
+              className="flex place-items-center-safe gap-2"
               href="https://www.youtube.com/watch?v=gDWMnwYkZpc"
             >
               <Play />
@@ -35,7 +35,7 @@ export default function WeAreCooking() {
           </Button>
           <Button>
             <Link
-              className="place-items-center-safe flex gap-2"
+              className="flex place-items-center-safe gap-2"
               href="https://www.youtube.com/playlist?list=PLz3PfnkGmWoIfd7L6AipXMCYKLt6ursH8"
             >
               <Play />
@@ -43,7 +43,7 @@ export default function WeAreCooking() {
             </Link>
           </Button>
         </div>
-        <div className="text-muted-foreground text-xs">* Tus không trả lương team IT để làm cái này.</div>
+        <div className="text-xs text-muted-foreground">* Tus không trả lương team IT để làm cái này.</div>
       </CardFooter>
     </Card>
   );

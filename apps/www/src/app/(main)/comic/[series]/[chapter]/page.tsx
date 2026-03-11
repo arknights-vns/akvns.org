@@ -122,7 +122,7 @@ export default async function ComicReadPage(props: PageProps<"/comic/[series]/[c
           </Heading>
           <FavorText className="text-center">{chapterName}</FavorText>
         </div>
-        <ScrollProgressContainer className="place-items-center-safe flex flex-col gap-4">
+        <ScrollProgressContainer className="flex flex-col place-items-center-safe gap-4">
           {serverImages.map((img, index) => (
             <Image
               alt={img.name}

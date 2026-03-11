@@ -61,7 +61,7 @@ export default function BottomDock(props: BottomDockProps) {
           opacity: visible ? 1 : 0,
         }}
         className={cn(
-          "place-items-center-safe fixed inset-x-0 bottom-2 z-10 mx-auto flex max-w-fit gap-x-4 rounded-2xl border-2 bg-background p-3",
+          "fixed inset-x-0 bottom-2 z-10 mx-auto flex max-w-fit place-items-center-safe gap-x-4 rounded-2xl border-2 bg-background p-3",
         )}
         initial={{
           opacity: 1,

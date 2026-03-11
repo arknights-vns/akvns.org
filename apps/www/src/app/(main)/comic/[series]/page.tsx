@@ -123,7 +123,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
               {data.title}
             </Heading>
             <Separator className="h-1" />
-            <Paragraph className="mt-0 whitespace-break-spaces text-justify">{data.synopsis}</Paragraph>
+            <Paragraph className="mt-0 text-justify whitespace-break-spaces">{data.synopsis}</Paragraph>
           </div>
           <div className="flex flex-wrap justify-evenly gap-4 [&>a[role=button]]:h-12 [&>a[role=button]]:w-64 [&>a[role=button]]:text-lg">
             <Button
@@ -142,7 +142,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
         </div>
 
         <div className="flex flex-col gap-2 p-2">
-          <Heading className="place-items-center-safe flex gap-2 font-bold text-primary" kind="h1">
+          <Heading className="flex place-items-center-safe gap-2 font-bold text-primary" kind="h1">
             <BookCopy />
             Thông tin truyện
           </Heading>
@@ -184,7 +184,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
         </div>
 
         <div className="flex flex-col gap-2 p-2">
-          <Heading className="place-items-center-safe flex gap-2 font-bold text-primary" kind="h1">
+          <Heading className="flex place-items-center-safe gap-2 font-bold text-primary" kind="h1">
             <ListOrdered />
             Danh sách chương
           </Heading>
@@ -196,7 +196,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
                 .map((chapter) => (
                   <Item key={chapter.chapter_id} variant="muted">
                     <ItemContent>
-                      <ItemTitle className="font-bold text-lg text-primary">
+                      <ItemTitle className="text-lg font-bold text-primary">
                         <Link href={`/comic/${series}/${chapter.chapter_id}` as Route}>
                           {chapter.chapter_name}
                         </Link>

@@ -18,7 +18,7 @@ interface MemberProps {
 
 export default function MemberCard(props: MemberProps) {
   return (
-    <Card className="place-items-center-safe mt-12 h-42 w-67">
+    <Card className="mt-12 h-42 w-67 place-items-center-safe">
       <CardHeader className="mt-8 flex w-full flex-col items-center justify-center space-y-4 pb-2">
         <Image
           alt={`${props.name}-${props.role}`}
@@ -27,7 +27,7 @@ export default function MemberCard(props: MemberProps) {
           src={props.avatar !== "" ? props.avatar : "/#"}
           width={96}
         />
-        <CardTitle className="font-bold text-xl">{props.name}</CardTitle>
+        <CardTitle className="text-xl font-bold">{props.name}</CardTitle>
         <CardDescription className="font-semibold text-primary">{props.role}</CardDescription>
       </CardHeader>
       <CardContent />

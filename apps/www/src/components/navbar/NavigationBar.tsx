@@ -16,14 +16,14 @@ import { serverEnv } from "@/env-var/server";
 export default function NavigationBar() {
   return (
     <header className="flex h-18 justify-between bg-background px-4">
-      <div className="place-items-center-safe flex w-[25vw] gap-4">
+      <div className="flex w-[25vw] place-items-center-safe gap-4">
         <MobileNavigationSidebar links={links} />
         <Link href="/">
           <Image alt="VNS_Logo_Header" className="dark:invert" height={52} loading="eager" src={VNS_Icon} />
         </Link>
       </div>
       <DesktopNavigationMenu links={links} />
-      <div className="place-items-center-safe flex w-[25vw] justify-end gap-2">
+      <div className="flex w-[25vw] place-items-center-safe justify-end gap-2">
         <Button
           className="border-[#1877f2]! hover:bg-[#1877f2]!"
           nativeButton={false}

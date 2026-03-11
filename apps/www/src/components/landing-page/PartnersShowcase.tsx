@@ -35,7 +35,7 @@ export default function PartnersShowcase() {
             .filter((data) => data.type === "fanpage")
             .map((data) => (
               <CarouselItem
-                className="place-items-center-safe flex basis-1/2 flex-col gap-2 md:basis-1/4 lg:basis-1/5"
+                className="flex basis-1/2 flex-col place-items-center-safe gap-2 md:basis-1/4 lg:basis-1/5"
                 key={data.title}
               >
                 <Link className={cn(data.url === "#" && "pointer-events-none")} href={data.url as Route}>
@@ -47,7 +47,7 @@ export default function PartnersShowcase() {
                     width={150}
                   />
                 </Link>
-                <FootNote className="font-bold text-lg">{data.title}</FootNote>
+                <FootNote className="text-lg font-bold">{data.title}</FootNote>
               </CarouselItem>
             ))}
         </CarouselContent>
@@ -57,7 +57,7 @@ export default function PartnersShowcase() {
         {partnerList
           .filter((data) => data.type === "artist")
           .map((entry) => (
-            <div className="place-items-center-safe flex flex-col gap-2" key={entry.title}>
+            <div className="flex flex-col place-items-center-safe gap-2" key={entry.title}>
               <Link className={cn(entry.url === "#" && "pointer-events-none")} href={entry.url as Route}>
                 <Image
                   alt={entry.title}
@@ -67,7 +67,7 @@ export default function PartnersShowcase() {
                   width={150}
                 />
               </Link>
-              <FootNote className="font-bold text-lg">{entry.title}</FootNote>
+              <FootNote className="text-lg font-bold">{entry.title}</FootNote>
             </div>
           ))}
       </div>

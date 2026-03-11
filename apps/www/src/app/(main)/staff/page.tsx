@@ -24,7 +24,7 @@ export default function StaffPage() {
   const [tab, setTab] = useQueryState("tab", { defaultValue: "facebook-mod" });
 
   return (
-    <ContentArea className="justify-self-center-safe place-items-center-safe" id="#all-staffs">
+    <ContentArea className="place-items-center-safe justify-self-center-safe" id="#all-staffs">
       <Heading className="text-center text-primary" kind="h1">
         Nhân sự
       </Heading>
@@ -32,7 +32,7 @@ export default function StaffPage() {
         Toàn bộ nhân sự đang hoạt động tại Arknights VNS
       </FavorText>
       <Tabs className="w-full gap-y-8" onValueChange={async (value) => setTab(value)} value={tab}>
-        <TabsList className="tab-button mb-12 grid h-auto grid-cols-2 gap-3 self-center bg-transparent md:grid-cols-4">
+        <TabsList className="mb-12 grid h-auto grid-cols-2 gap-3 self-center tab-button bg-transparent md:grid-cols-4">
           {typedKeys.map((group) => (
             <TabsTrigger key={group} value={group}>
               {entries[group]}
@@ -44,7 +44,7 @@ export default function StaffPage() {
 
           return (
             <TabsContent
-              className="self-center-safe place-items-center-safe grid grid-cols-1 gap-8 pt-4 md:grid-cols-3 lg:grid-cols-4"
+              className="grid grid-cols-1 place-items-center-safe gap-8 self-center-safe pt-4 md:grid-cols-3 lg:grid-cols-4"
               key={group}
               value={group.toLowerCase()}
             >

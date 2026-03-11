@@ -15,7 +15,7 @@ export default function DevelopmentTimeline() {
         Hành Trình
       </Heading>
       <FavorText>Lịch sử hình thành và phát triển của chúng mình.</FavorText>
-      <div className="container relative overflow-clip">
+      <div className="relative container overflow-clip">
         <Timeline
           data={[
             {

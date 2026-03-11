@@ -11,7 +11,7 @@ export default function FoundersShowcase() {
         Founder
       </Heading>
       <FavorText>Những người đã đặt nền móng phát triển Arknights VNS</FavorText>
-      <div className="place-items-center-safe grid grid-cols-1 gap-8 pt-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 place-items-center-safe gap-8 pt-4 md:grid-cols-2 lg:grid-cols-3">
         {crewList
           .filter((entry) => entry.categories.includes("founder"))
           .map((member) => (

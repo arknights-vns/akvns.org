@@ -30,7 +30,7 @@ export default function DonateButton() {
       />
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="place-items-center-safe flex gap-2 font-bold text-2xl">
+          <DialogTitle className="flex place-items-center-safe gap-2 text-2xl font-bold">
             <Heart className="fill-primary stroke-primary" /> Thank you!
           </DialogTitle>
           <DialogDescription>Cảm ơn bạn đã ủng hộ Arknights VNS!</DialogDescription>

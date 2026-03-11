@@ -25,17 +25,17 @@ export default function ProjectPage() {
     selection.length > 0 ? (selection as CategoryType[]) : ["akvns", "community", "crossover"];
 
   return (
-    <ContentArea className="place-items-center-safe flex flex-col gap-4 text-center" id="projects">
+    <ContentArea className="flex flex-col place-items-center-safe gap-4 text-center" id="projects">
       <Heading className="text-primary" kind="h1">
         Những dự án của Arknights VNS
       </Heading>
       <FavorText>Các dự án do Arknights VNS hoặc cộng đồng tổ chức</FavorText>
       <div className="sticky top-0 z-2 flex w-[90vw] justify-evenly bg-background p-2 md:w-[98vw]">
         <div />
-        <div className="place-items-center-safe flex gap-2">
+        <div className="flex place-items-center-safe gap-2">
           <div className="hidden font-bold md:inline">Bộ lọc:</div>
           <ToggleGroup
-            className="place-items-center-safe flex-wrap"
+            className="flex-wrap place-items-center-safe"
             multiple={true}
             onValueChange={async (groupValue) => setSelection(groupValue)}
             size="lg"
@@ -129,11 +129,11 @@ export default function ProjectPage() {
                 </Badge>
               </CardHeader>
               <CardContent className="space-y-2">
-                <div className="text-left font-bold text-lg">
+                <div className="text-left text-lg font-bold">
                   <Link href={entry.post as Route}>{entry.name}</Link>
                 </div>
                 <div className="text-left text-gray-500">{entry.date}</div>
-                <div className="text-justify text-muted-foreground leading-relaxed">{entry.content}</div>
+                <div className="text-justify leading-relaxed text-muted-foreground">{entry.content}</div>
               </CardContent>
             </Card>
           )),

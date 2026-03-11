@@ -74,7 +74,7 @@ export default async function ComicListing(props: PageProps<"/comic">) {
         <div className="p-4">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {content.message.map((entry) => (
-              <div className="place-items-center-safe flex flex-col gap-2" key={entry.series_id}>
+              <div className="flex flex-col place-items-center-safe gap-2" key={entry.series_id}>
                 {entry.thumbnail === null ? (
                   <Skeleton className="h-72 w-48" />
                 ) : (
@@ -106,7 +106,7 @@ export default async function ComicListing(props: PageProps<"/comic">) {
                   }
                 </Badge>
                 <Link
-                  className="text-center font-bold text-lg text-primary hover:underline"
+                  className="text-center text-lg font-bold text-primary hover:underline"
                   href={`/comic/${entry.series_id}` as Route}
                 >
                   {entry.title}

@@ -55,12 +55,12 @@ const navigations: {
  */
 export default function FatFooter() {
   return (
-    <footer className="flex flex-col justify-between border-primary/25 border-t" id="footer">
-      <div className="md:place-items-center-safe flex flex-col-reverse justify-evenly gap-x-6 md:flex-row">
+    <footer className="flex flex-col justify-between border-t border-primary/25" id="footer">
+      <div className="flex flex-col-reverse justify-evenly gap-x-6 md:flex-row md:place-items-center-safe">
         {/* Logo */}
         <div className="mt-8 flex w-full flex-col place-items-center justify-evenly gap-4 md:w-fit [&_img]:dark:invert">
           <Image alt="VNS_Logo_Footer" className="self-center-safe" src={VNS_Logo} width={250} />
-          <div className="place-items-center-safe my-4 flex gap-x-2">
+          <div className="my-4 flex place-items-center-safe gap-x-2">
             <Link href="https://www.facebook.com/terrastationvn">
               <SiFacebook />
             </Link>
@@ -78,7 +78,7 @@ export default function FatFooter() {
             </Link>
           </div>
         </div>
-        <div className="md:place-items-center-safe flex flex-col gap-8 md:flex-row">
+        <div className="flex flex-col gap-8 md:flex-row md:place-items-center-safe">
           {navigations.map((nav) => (
             <div className="ml-8 grid h-full grid-cols-1 grid-rows-2 gap-y-2" key={nav.group}>
               <Heading className="self-end font-bold text-primary" kind="h2">
@@ -86,14 +86,14 @@ export default function FatFooter() {
               </Heading>
               <ul className="flex flex-col gap-y-2">
                 {nav.items.map((item) => (
-                  <li className="place-items-center-safe flex gap-1" key={item.displayText}>
+                  <li className="flex place-items-center-safe gap-1" key={item.displayText}>
                     <Link href={item.href as Route}>
                       {item.heading && <>{item.heading}: </>}
                       <span className="font-bold underline decoration-primary decoration-dashed underline-offset-4">
                         {item.cloak ? item.displayText : item.href}
                       </span>
                     </Link>
-                    <ArrowUpRight className="self-center stroke-3 stroke-primary" size={12} />
+                    <ArrowUpRight className="self-center stroke-primary stroke-3" size={12} />
                   </li>
                 ))}
               </ul>
@@ -101,7 +101,7 @@ export default function FatFooter() {
           ))}
         </div>
       </div>
-      <div className="place-items-center-safe mx-4 text-center font-inter text-muted-foreground text-xs [&>p]:not-first:mt-0">
+      <div className="font-inter mx-4 place-items-center-safe text-center text-xs text-muted-foreground [&>p]:not-first:mt-0">
         <Paragraph>
           "Arknights" là thương hiệu đã được đăng ký bởi Hypergryph Network Technology Co., Ltd. "Arknights:
           Endfield" là thương hiệu đã được đăng ký bởi GRYPH FRONTIER PTE. LTD. Những thương hiệu khác thuộc

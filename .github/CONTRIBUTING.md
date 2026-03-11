@@ -16,7 +16,8 @@ There **WILL NOT** be any exception for this.
 ## Code of Conduct
 
 I believe you have found yourself [the Code of Conduct](https://github.com/arknights-vns/akvns.org/blob/main/CODE_OF_CONDUCT.md) in this repository.
-  - TL;DR for that CoC: common sense.
+
+- TL;DR for that CoC: common sense.
 
 ## Editor of Choice
 

@@ -1,15 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "nextjs",
-    "typescript",
-    "react",
-    "jsx-a11y",
-    "eslint",
-    "unicorn",
-    "node",
-    "promise"
-  ],
+  "plugins": ["nextjs", "typescript", "react", "jsx-a11y", "eslint", "unicorn", "node", "promise"],
   "options": {
     "typeAware": true,
     "typeCheck": true
@@ -36,9 +27,7 @@
     "react/jsx-filename-extension": [
       "error",
       {
-        "extensions": [
-          "tsx"
-        ]
+        "extensions": ["tsx"]
       }
     ],
     "react/jsx-max-depth": [
@@ -76,29 +65,19 @@
   },
   "overrides": [
     {
-      "files": [
-        "apps/www/src/components/opengraph/DefaultOpengraph.tsx"
-      ],
+      "files": ["apps/www/src/components/opengraph/DefaultOpengraph.tsx"],
       "rules": {
         "nextjs/no-img-element": "off"
       }
     },
     {
-      "files": [
-        "apps/**/*.tsx",
-        "apps/**/sitemap.ts",
-        "apps/**/robots.tsx",
-        "apps/**/next.config.ts"
-      ],
+      "files": ["apps/**/*.tsx", "apps/**/sitemap.ts", "apps/**/robots.tsx", "apps/**/next.config.ts"],
       "rules": {
         "react/only-export-components": "off",
-        "react/jsx-boolean-value": [
-          "error",
-          "always"
-        ],
+        "react/jsx-boolean-value": ["error", "always"],
         "typescript/no-unsafe-type-assertion": "off",
         "unicorn/filename-case": "off"
       }
-    },
+    }
   ]
 }

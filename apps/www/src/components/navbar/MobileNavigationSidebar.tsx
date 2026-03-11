@@ -45,7 +45,7 @@ export default function MobileNavigationSidebar(props: NavComponentProps) {
                   <CollapsibleContent className="ml-4 space-y-4">
                     {entry.children.map((subentry) => (
                       <Link
-                        className="place-items-center-safe flex gap-2 p-1"
+                        className="flex place-items-center-safe gap-2 p-1"
                         href={{ pathname: subentry.href, hash: subentry.hash }}
                         key={`${entry.label}-${subentry.label}`}
                       >

@@ -14,7 +14,7 @@
 @custom-variant data-horizontal (&[data-orientation="horizontal"]);
 
 @utility tab-button {
-  @apply [&>button]:rounded-md [&>button]:border [&>button]:bg-neutral-900 [&>button]:px-4 [&>button]:py-2 [&>button]:border-primary! [&>button]:data-active:font-bold [&>button]:data-active:dark:bg-primary;
+  @apply [&>button]:rounded-md [&>button]:border [&>button]:border-primary! [&>button]:bg-neutral-900 [&>button]:px-4 [&>button]:py-2 [&>button]:data-active:font-bold [&>button]:data-active:dark:bg-primary;
 }
 
 @theme inline {
@@ -132,7 +132,7 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    @apply scrollbar-thin scrollbar-thumb-neutral-400 scrollbar-track-secondary scroll-smooth;
+    @apply scrollbar-thin scroll-smooth scrollbar-thumb-neutral-400 scrollbar-track-secondary;
   }
 
   body {
