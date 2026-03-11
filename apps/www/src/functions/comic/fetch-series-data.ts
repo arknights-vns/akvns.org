@@ -1,4 +1,5 @@
 import { prisma } from "@arknights-vns/database/client";
+import * as Sentry from "@sentry/nextjs";
 import { cacheLife, cacheTag } from "next/cache";
 
 /**
@@ -9,14 +10,25 @@ export async function fetchComicSeriesData(series: string) {
   cacheTag("comic-data", series);
   cacheLife("days");
 
-  // noinspection ES6RedundantAwait
-  return await prisma.comicSeries.findFirst({
-    include: {
-      chapters: true,
-      contributors: true,
+  const result = Sentry.startSpan(
+    {
+      name: "Query Comic Data",
+      op: "comic.series.query",
+      attributes: {
+        "comic.series.name": series,
+      },
     },
-    where: {
-      series_id: series,
-    },
-  });
+    async () =>
+      await prisma.comicSeries.findFirst({
+        include: {
+          chapters: true,
+          contributors: true,
+        },
+        where: {
+          series_id: series,
+        },
+      }),
+  );
+
+  return result;
 }

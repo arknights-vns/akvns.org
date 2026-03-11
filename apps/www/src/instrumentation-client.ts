@@ -1,16 +1,12 @@
-import { captureRouterTransitionStart, init } from "@sentry/nextjs";
+import * as Sentry from "@sentry/nextjs";
 
 import { clientEnv } from "@/env-var/client";
 
-// https://docs.sentry.io/platforms/javascript/configuration/options/#enabled
-// "To disable Sentry completely, depending on environment, call Sentry.init conditionally."
-if (process.env.NODE_ENV === "production") {
-  init({
-    dsn: clientEnv.NEXT_PUBLIC_SENTRY_DSN,
-    tracesSampleRate: 0.1,
-    enableLogs: true,
-    sendDefaultPii: false,
-  });
-}
+Sentry.init({
+  dsn: clientEnv.NEXT_PUBLIC_SENTRY_DSN,
+  tracesSampleRate: process.env.NODE_ENV === "development" ? 1 : 0.3,
+  enableLogs: true,
+  sendDefaultPii: false,
+});
 
-export const onRouterTransitionStart = captureRouterTransitionStart;
+export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

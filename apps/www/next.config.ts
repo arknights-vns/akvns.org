@@ -40,12 +40,7 @@ const nextConfig: NextConfig = {
   experimental: {
     turbopackFileSystemCacheForDev: true,
     cachedNavigations: true,
-    optimizePackageImports: [
-      "@icons-pack/react-simple-icons",
-      "@sentry/nextjs",
-      "motion",
-      "@arknights-vns/database",
-    ],
+    optimizePackageImports: ["@icons-pack/react-simple-icons", "motion"],
     sri: {
       algorithm: "sha384",
     },

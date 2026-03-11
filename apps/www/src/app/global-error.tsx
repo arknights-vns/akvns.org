@@ -2,7 +2,7 @@
 
 import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import We_Are_Sorry from "@public/we-are-sorry.jpg";
-import { captureException } from "@sentry/nextjs";
+import * as Sentry from "@sentry/nextjs";
 import Image from "next/image";
 import { useEffect } from "react";
 
@@ -15,7 +15,7 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    captureException(error);
+    Sentry.captureException(error);
   }, [error]);
 
   return (
