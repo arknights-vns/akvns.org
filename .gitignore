@@ -3,8 +3,16 @@
 .source
 node_modules
 .idea/*
+!.idea/.gitignore
 !.idea/tailwindcss.xml
+!.idea/externalDependencies.xml
+!.idea/akvns.org.iml
+!.idea/OxcSettings.xml
+!.idea/OxfmtSettings.xml
+!.idea/jsLibraryMappings.xml
+!.idea/vcs.xml
+!.idea/compiler.xml
 .vscode
-apps/www/.env
+**/.env
 !.env.example
 out
