@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="OxcSettings">
+    <option name="fixAllOnSave" value="true" />
     <flags>
       <entry key="disable_nested_config" value="true" />
     </flags>
     <option name="runTrigger" value="ON_SAVE" />
     <option name="typeAware" value="true" />
+    <option name="unusedDisableDirectives" value="DENY" />
   </component>
 </project>

@@ -4,7 +4,6 @@ import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-// oxlint-disable-next-line import/no-unassigned-import
 import "@arknights-vns/shadcn-ui/globals.css";
 import ExuStare from "@/components/ExuStare";
 import Providers from "@/components/Providers";
