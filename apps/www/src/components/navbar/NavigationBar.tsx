@@ -1,3 +1,5 @@
+"use client";
+
 import type { Route } from "next";
 
 import { Button } from "@arknights-vns/shadcn-ui/components/button";
@@ -11,7 +13,7 @@ import DonateButton from "@/components/DonateButton";
 import DesktopNavigationMenu from "@/components/navbar/DesktopNavigationMenu";
 import MobileNavigationSidebar from "@/components/navbar/MobileNavigationSidebar";
 import { links } from "@/components/navbar/navigation-entries";
-import { serverEnv } from "@/env-var/server";
+import { clientEnv } from "@/env-var/client";
 
 export default function NavigationBar() {
   return (
@@ -40,7 +42,7 @@ export default function NavigationBar() {
           className="border-[#5865F2]! hover:bg-[#5865F2]!"
           nativeButton={false}
           render={
-            <Link href={serverEnv.VNS_DISCORD_SERVER as Route}>
+            <Link href={clientEnv.NEXT_PUBLIC_VNS_DISCORD_SERVER as Route}>
               <SiDiscord />
               <span className="sr-only">Discord</span>
             </Link>

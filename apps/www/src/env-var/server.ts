@@ -17,9 +17,6 @@ export const serverEnv = createEnv({
     SENTRY_PROJECT: z.string().default("arknights-vns"),
     SENTRY_AUTH_TOKEN: z.string(),
 
-    VNS_DISCORD_SERVER: z.url().default("https://discord.gg/akvns"),
-    PFR_DISCORD_SERVER: z.url().default("https://discord.gg/SRFjXSFu"),
-
     MICROSOFT_CLARITY_PROJECT_ID: z.string().default("vtcuc1ictq"),
     GOOGLE_ANALYTICS_ID: z.string().default("G-Y625KEE6HT"),
     GOOGLE_TAG_MANAGER_ID: z.string().default("GTM-PT7MFG5F"),
