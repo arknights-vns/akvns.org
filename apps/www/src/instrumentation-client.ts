@@ -16,6 +16,34 @@ Sentry.init({
       maskAllInputs: true,
       blockAllMedia: true,
     }),
+    Sentry.feedbackIntegration({
+      showEmail: false,
+      // emailLabel: "Email liên lạc",
+      // emailPlaceholder: "tus.dep.trai@akvns.org",
+
+      triggerLabel: "Feedback",
+      formTitle: "Góp ý cho website",
+      nameLabel: "Tên liên lạc",
+      namePlaceholder: "Shou Huỳnh",
+      messageLabel: "Nội dung",
+      messagePlaceholder: "(Càng cụ thể càng tốt)",
+      submitButtonLabel: "Gửi",
+      cancelButtonLabel: "Mình đổi ý rồi",
+      isRequiredLabel: "(bắt buộc)",
+      addScreenshotButtonLabel: "Thêm ảnh minh họa",
+      removeScreenshotButtonLabel: "Chắc không cần minh họa đâu",
+      highlightText: "Tập trung",
+      hideToolText: "Ẩn đi",
+      removeHighlightText: "Xóa",
+      successMessageText: "Cảm ơn bạn đã feedback!",
+
+      showBranding: false,
+      colorScheme: "dark",
+      themeDark: {
+        background: "#1c1917",
+        accentBackground: "#ff2056",
+      },
+    }),
   ],
 });
 
