@@ -78,14 +78,16 @@ export default async function ComicListing(props: PageProps<"/comic">) {
                 {entry.thumbnail === null ? (
                   <Skeleton className="h-72 w-48" />
                 ) : (
-                  <Image
-                    alt={entry.series_id}
-                    className="h-68 w-48 bg-foreground object-cover"
-                    height={272}
-                    priority={true}
-                    src={entry.thumbnail}
-                    width={192}
-                  />
+                  <Link href={`/comic/${entry.series_id}` as Route}>
+                    <Image
+                      alt={entry.series_id}
+                      className="h-68 w-48 bg-foreground object-cover"
+                      height={272}
+                      priority={true}
+                      src={entry.thumbnail}
+                      width={192}
+                    />
+                  </Link>
                 )}
                 <Badge
                   className={cn(

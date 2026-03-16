@@ -89,7 +89,7 @@ export default async function ComicReadPage(props: PageProps<"/comic/[series]/[c
   const seriesData = await fetchComicSeriesData(series);
   const serverImages = await fetchComicSeriesImagesByChapter(series, chapter);
 
-  if (!seriesData || !serverImages) {
+  if (!(seriesData && serverImages)) {
     notFound();
   }
 
