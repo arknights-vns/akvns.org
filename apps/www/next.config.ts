@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 import { withSentryConfig } from "@sentry/nextjs";
 
-import { clientEnv as _ignored } from "@/env-var/client";
+import "@/env-var/client";
 import { serverEnv } from "@/env-var/server";
 
 // https://discord.com/channels/939851547590934610/1261831260318208081/1451918926828011672
@@ -112,7 +112,7 @@ export default withSentryConfig(nextConfig, {
   authToken: serverEnv.SENTRY_AUTH_TOKEN,
   tunnelRoute: "/we-dont-even-care-if-you-block-this-route",
 
-  silent: !process.env.CI,
+  silent: false,
   widenClientFileUpload: true,
 
   bundleSizeOptimizations: {
