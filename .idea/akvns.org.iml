@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/apps/dreamchasers" />
       <excludeFolder url="file://$MODULE_DIR$/apps/dreamchasers-db22c983" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/database/generated" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
