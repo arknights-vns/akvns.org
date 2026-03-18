@@ -13,11 +13,10 @@
     "url": "git+https://github.com/arknights-vns/akvns.org.git"
   },
   "scripts": {
-    "prepare": "node -e \"process.exit(process.env.CI ? 0 : 1)\" || husky",
+    "prepare": "husky",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "format": "oxfmt",
-    "predev": "pnpm run -r --if-present --parallel db:generate",
     "dev": "pnpm run -r --if-present --parallel dev",
     "build": "pnpm run -r --if-present --parallel build",
     "start": "pnpm run -r --if-present --parallel start"
