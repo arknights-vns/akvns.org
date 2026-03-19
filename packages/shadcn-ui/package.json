@@ -5,7 +5,7 @@
   "type": "module",
   "exports": {
     "./globals.css": "./src/styles/globals.css",
-    "./postcss.config": "./postcss.config.mjs",
+    "./postcss.config": "./postcss.config.ts",
     "./lib/*": "./src/lib/*.ts",
     "./lib/get-strict-context": "./src/lib/get-strict-context.tsx",
     "./hooks/*": "./src/hooks/*.ts",

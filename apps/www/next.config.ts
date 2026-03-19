@@ -49,7 +49,6 @@ const nextConfig: NextConfig = {
   transpilePackages: [
     "@arknights-vns/ts-config",
     "@arknights-vns/database",
-    "@arknights-vns/shadcn-ui",
     "@t3-oss/env-nextjs",
     "@t3-oss/env-core",
   ],
