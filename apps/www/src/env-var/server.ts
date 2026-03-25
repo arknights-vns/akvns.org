@@ -19,7 +19,6 @@ export const serverEnv = createEnv({
 
     MICROSOFT_CLARITY_PROJECT_ID: z.string().default("vtcuc1ictq"),
     GOOGLE_ANALYTICS_ID: z.string().default("G-Y625KEE6HT"),
-    GOOGLE_TAG_MANAGER_ID: z.string().default("GTM-PT7MFG5F"),
   },
   experimental__runtimeEnv: process.env,
 });
