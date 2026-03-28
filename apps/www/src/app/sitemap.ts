@@ -1,16 +1,11 @@
 import type { MetadataRoute } from "next";
 
 import { prisma } from "@arknights-vns/database/client";
-import { cacheLife, cacheTag } from "next/cache";
 
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
 import { getProductionUrl } from "@/lib/utils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  "use cache";
-  cacheTag("sitemap.xml");
-  cacheLife("max");
-
   const entries = await prisma.comicSeries.findMany({
     select: {
       series_id: true,
