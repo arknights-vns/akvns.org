@@ -63,16 +63,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 0.8,
     });
-
-    // oxlint-disable-next-line typescript/no-non-null-assertion
-    for (const chapter of seriesData!.chapters) {
-      pages.push({
-        url: `${prodUrl}/comic/${seriesData?.series_id}/${chapter.chapter_id}`,
-        lastModified: chapter.updatedAt,
-        changeFrequency: "monthly",
-        priority: 0.5,
-      });
-    }
   }
 
   return pages;
