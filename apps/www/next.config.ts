@@ -34,12 +34,13 @@ const tusWives = [
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  reactCompiler: true,
+  reactCompiler: !isDev,
   typedRoutes: true,
   cacheComponents: true,
   experimental: {
-    turbopackFileSystemCacheForDev: true,
+    appNewScrollHandler: true,
     cachedNavigations: true,
+    turbopackFileSystemCacheForDev: true,
     optimizePackageImports: ["@icons-pack/react-simple-icons", "motion"],
     sri: {
       algorithm: "sha384",
