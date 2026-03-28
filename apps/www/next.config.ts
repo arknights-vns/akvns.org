@@ -43,7 +43,7 @@ const nextConfig: NextConfig = {
     turbopackFileSystemCacheForDev: true,
     optimizePackageImports: ["@icons-pack/react-simple-icons", "motion"],
     sri: {
-      algorithm: "sha384",
+      algorithm: "sha512",
     },
   },
   poweredByHeader: false,
