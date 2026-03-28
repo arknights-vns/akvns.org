@@ -29,17 +29,17 @@
     "next": "catalog:nextjs-canary",
     "next-seo": "^7.2.0",
     "nuqs": "^2.8.8",
-    "react": "catalog:",
-    "react-dom": "catalog:",
+    "react": "catalog:react",
+    "react-dom": "catalog:react",
     "zod": "^4.3.6"
   },
   "devDependencies": {
     "@arknights-vns/ts-config": "workspace:*",
     "@tailwindcss/postcss": "catalog:",
     "@types/node": "catalog:node22",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
-    "babel-plugin-react-compiler": "^1.0.0",
+    "@types/react": "catalog:react",
+    "@types/react-dom": "catalog:react",
+    "babel-plugin-react-compiler": "catalog:react",
     "typescript": "catalog:"
   }
 }

@@ -15,15 +15,17 @@ overrides:
   lodash@>=4.0.0 <=4.17.22: ">=4.17.23"
 
 catalog:
-  react: ^19
-  react-dom: ^19
-  "@types/react": ^19
-  "@types/react-dom": ^19
   tailwindcss: ^4
   "@tailwindcss/postcss": ^4
   typescript: ^5
 
 catalogs:
+  react:
+    react: ^19
+    react-dom: ^19
+    "@types/react": ^19
+    "@types/react-dom": ^19
+    babel-plugin-react-compiler: ^1.0.0
   node22:
     "@types/node": ^22
   nextjs-canary:
