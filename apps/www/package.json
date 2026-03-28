@@ -8,6 +8,7 @@
     "dev:inspect": "next dev --inspect",
     "typegen:next": "next typegen",
     "build": "next build",
+    "build:debug": "next build --debug-prerender",
     "start": "next start",
     "bloatcheck": "next experimental-analyze"
   },
