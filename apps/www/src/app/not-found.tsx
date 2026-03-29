@@ -6,7 +6,7 @@ import NavigationBar from "@/components/navbar/NavigationBar";
 import WeAreCooking from "@/components/WeAreCooking";
 
 export const metadata: Metadata = {
-  title: "Arknights VNS | Trang không tồn tại",
+  title: "Trang không tồn tại",
 };
 
 export default function NotFound() {
