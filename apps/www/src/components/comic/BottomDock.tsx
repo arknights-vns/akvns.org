@@ -77,7 +77,11 @@ export default function BottomDock(props: BottomDockProps) {
             disabled={!hasPrev}
             nativeButton={false}
             render={
-              <Link data-disabled={!hasPrev} href={`/comic/${comicId}/${chapterList[chapterIndex - 1]?.id}`}>
+              <Link
+                data-disabled={!hasPrev}
+                href={`/comic/${comicId}/${chapterList[chapterIndex - 1]?.id}`}
+                prefetch={false}
+              >
                 <ArrowLeft /> <span className="hidden md:inline">Chương trước</span>
               </Link>
             }
@@ -106,7 +110,11 @@ export default function BottomDock(props: BottomDockProps) {
             className="border border-primary data-[disabled=true]:pointer-events-none data-[disabled=true]:bg-muted data-[disabled=true]:opacity-50"
             nativeButton={false}
             render={
-              <Link data-disabled={!hasNext} href={`/comic/${comicId}/${chapterList[chapterIndex + 1]?.id}`}>
+              <Link
+                data-disabled={!hasNext}
+                href={`/comic/${comicId}/${chapterList[chapterIndex + 1]?.id}`}
+                prefetch={false}
+              >
                 <span className="hidden md:inline">Chương sau</span> <ArrowRight />
               </Link>
             }

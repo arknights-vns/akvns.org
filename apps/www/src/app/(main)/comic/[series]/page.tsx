@@ -197,7 +197,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
                   <Item key={chapter.chapter_id} variant="muted">
                     <ItemContent>
                       <ItemTitle className="text-lg font-bold text-primary">
-                        <Link href={`/comic/${series}/${chapter.chapter_id}` as Route}>
+                        <Link href={`/comic/${series}/${chapter.chapter_id}` as Route} prefetch={false}>
                           {chapter.chapter_name}
                         </Link>
                       </ItemTitle>
