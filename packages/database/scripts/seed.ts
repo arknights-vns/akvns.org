@@ -40,7 +40,7 @@ async function seed() {
           series_id: "cung-dung-bua",
           title: "Cùng dùng bữa",
           thumbnail: "https://comic-assets.akvns.org/cung-dung-bua/thumbnail.png",
-          author: "Terra Historicus",
+          author: "Hypergryph & Terra Historicus",
           category: "Arknights_VNS",
           synopsis:
             "Cùng dùng bữa nào. Mỗi người sẽ có những khẩu vị khác nhau, kể cả anh chị em trong nhà đó!\n" +
@@ -51,7 +51,7 @@ async function seed() {
           series_id: "123-rhodes-island",
           title: "123 Rhodes Island!?",
           thumbnail: "https://comic-assets.akvns.org/123-rhodes-island/vol-1/001.png",
-          author: "Terra Historicus",
+          author: "Hypergryph & Terra Historicus",
           category: "Arknights_VNS",
           synopsis:
             "Hãy cùng nhau tìm hiểu về các Cán Viên của Rhodes Island với Amiya và Doctor nào!\n" +
@@ -63,7 +63,7 @@ async function seed() {
           series_id: "records-of-originium-blacksteel",
           title: "Chuyện người nhiễm bệnh - Blacksteel",
           thumbnail: "https://comic-assets.akvns.org/records-of-originium-blacksteel/thumbnail.jpg",
-          author: "Terra Historicus",
+          author: "Hypergryph & Terra Historicus",
           category: "Arknights_VNS",
           synopsis:
             "Một câu chuyện giữa Franka, Liskarm, Vanilla, và Jessica từ Blacksteel Worldwide trước khi họ trở thành Cán Viên của Rhodes Island",
@@ -72,7 +72,7 @@ async function seed() {
           series_id: "sui-daily-slices-mundane-mortal-life",
           title: "Tuế Gia Thường Nhật: Kiếp Sống Nhân Gian",
           thumbnail: "https://comic-assets.akvns.org/sui-daily-slices-mundane-mortal-life/thumbnail.jpg",
-          author: "Terra Historicus",
+          author: "Hypergryph & Terra Historicus",
           category: "Arknights_VNS",
           synopsis:
             "Hôm nay ba bữa, ngày mai hậu thế, tất thảy mộng ảo.\n" +
@@ -83,7 +83,7 @@ async function seed() {
           series_id: "rhodes-kitchen-tidbits",
           title: "Góc Bếp Rhodes Island",
           thumbnail: "https://comic-assets.akvns.org/rhodes-kitchen-tidbits/thumbnail.jpg",
-          author: "Terra Historicus",
+          author: "Hypergryph & Terra Historicus",
           category: "Arknights_VNS",
           synopsis:
             "Quá khứ đã qua, hiện tại đã ổn.\n" +
@@ -124,7 +124,7 @@ async function seed() {
           series_id: "records-of-originium-rhine-lab",
           title: "Chuyện người nhiễm bệnh - Rhine Lab",
           thumbnail: "https://comic-assets.akvns.org/records-of-originium-rhine-lab/chapter-0/2.jpg",
-          author: "Terra Historicus",
+          author: "Hypergryph & Terra Historicus",
           category: "Arknights_VNS",
           synopsis:
             "Ifrit phát hiện một vị khách không mời trên Rhodes Island - một cô bé tên Darya. Dáng vẻ nhỏ bé của Darya mang theo một sức nặng vô hình phủ lên Ifrit, Silence và Saria, khơi dậy trong họ những ký ức của một quá khứ đã từng bị chôn giấu.\n" +
