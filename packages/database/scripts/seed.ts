@@ -753,6 +753,26 @@ async function seed() {
           role: "Quality Checker",
           members: ["shou."],
         },
+        {
+          series_id: "rhodes-kitchen-tidbits",
+          role: "Translator",
+          members: ["Shihotori"],
+        },
+        {
+          series_id: "rhodes-kitchen-tidbits",
+          role: "Proofreader",
+          members: ["shou."],
+        },
+        {
+          series_id: "rhodes-kitchen-tidbits",
+          role: "Editor",
+          members: ["Shihotori"],
+        },
+        {
+          series_id: "rhodes-kitchen-tidbits",
+          role: "Quality Checker",
+          members: ["shou."],
+        },
       ],
     });
   });
