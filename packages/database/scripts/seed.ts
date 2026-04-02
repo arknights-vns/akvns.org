@@ -611,6 +611,150 @@ async function seed() {
         },
       ],
     });
+    await tx.comicContributor.createMany({
+      data: [
+        {
+          series_id: "123-rhodes-island",
+          role: "Translator",
+          members: ["shou."],
+        },
+        {
+          series_id: "123-rhodes-island",
+          role: "Proofreader",
+          members: ["Rosaline"],
+        },
+        {
+          series_id: "123-rhodes-island",
+          role: "Editor",
+          members: ["shou."],
+        },
+        {
+          series_id: "123-rhodes-island",
+          role: "Quality Checker",
+          members: ["Rosaline"],
+        },
+        {
+          series_id: "records-of-originium-rhine-lab",
+          role: "Translator",
+          members: ["Silverglow"],
+        },
+        {
+          series_id: "records-of-originium-rhine-lab",
+          role: "Proofreader",
+          members: ["Shihotori"],
+        },
+        {
+          series_id: "records-of-originium-rhine-lab",
+          role: "Editor",
+          members: ["Kusodoji"],
+        },
+        {
+          series_id: "records-of-originium-rhine-lab",
+          role: "Quality Checker",
+          members: ["Shihotori"],
+        },
+        {
+          series_id: "cung-dung-bua",
+          role: "Translator",
+          members: ["Shihotori"],
+        },
+        {
+          series_id: "cung-dung-bua",
+          role: "Proofreader",
+          members: ["shou."],
+        },
+        {
+          series_id: "cung-dung-bua",
+          role: "Editor",
+          members: ["Kazure"],
+        },
+        {
+          series_id: "cung-dung-bua",
+          role: "Quality Checker",
+          members: ["shou.", "Shihotori"],
+        },
+        {
+          series_id: "records-of-originium-blacksteel",
+          role: "Translator",
+          members: ["Shihotori"],
+        },
+        {
+          series_id: "records-of-originium-blacksteel",
+          role: "Proofreader",
+          members: ["shou."],
+        },
+        {
+          series_id: "records-of-originium-blacksteel",
+          role: "Editor",
+          members: ["Shihotori"],
+        },
+        {
+          series_id: "records-of-originium-blacksteel",
+          role: "Quality Checker",
+          members: ["shou."],
+        },
+        {
+          series_id: "sui-daily-slices-mundane-mortal-life",
+          role: "Translator",
+          members: ["shou."],
+        },
+        {
+          series_id: "sui-daily-slices-mundane-mortal-life",
+          role: "Proofreader",
+          members: ["Nym (from CED)"],
+        },
+        {
+          series_id: "sui-daily-slices-mundane-mortal-life",
+          role: "Editor",
+          members: ["ILovePriestess"],
+        },
+        {
+          series_id: "sui-daily-slices-mundane-mortal-life",
+          role: "Quality Checker",
+          members: ["shou.", "Nym"],
+        },
+        {
+          series_id: "octodeco",
+          role: "Translator",
+          members: ["Ken"],
+        },
+        {
+          series_id: "octodeco",
+          role: "Proofreader",
+          members: ["shou."],
+        },
+        {
+          series_id: "octodeco",
+          role: "Editor",
+          members: ["Ken"],
+        },
+        {
+          series_id: "octodeco",
+          role: "Quality Checker",
+          members: ["shou."],
+        },
+        {
+          series_id: "octodeco-bites",
+          role: "Translator",
+          members: ["Ken"],
+        },
+        {
+          series_id: "octodeco-bites",
+          role: "Proofreader",
+          members: ["shou."],
+        },
+        {
+          series_id: "octodeco-bites",
+          role: "Editor",
+          members: ["Ken"],
+        },
+        {
+          series_id: "octodeco-bites",
+          role: "Quality Checker",
+          members: ["shou."],
+        },
+      ],
+    });
   });
 }
 
