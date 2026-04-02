@@ -166,7 +166,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
                 <span className="font-bold">Thông tin nhóm dịch: </span>
                 {data.contributors.length > 0 ? (
                   <ul className="list-disc">
-                    <Paragraph className="mt-4 gap-4 space-y-2 text-lg">
+                    <Paragraph className="mt-1 ml-8 gap-4 text-lg">
                       {data.contributors.map((contributor) => (
                         <li key={contributor.id} className="list-inside list-disc">
                           <strong>{contributor.role}: </strong>
