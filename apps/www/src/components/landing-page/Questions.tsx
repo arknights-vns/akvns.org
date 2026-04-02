@@ -39,7 +39,7 @@ export default function QuestionsForUs() {
             <Paragraph>
               Chúng tôi là một cộng đồng người chơi phi lợi nhuận hoạt động độc lập vì cộng đồng Arknights tại
               Việt Nam. Chúng tôi <span className="font-bold text-primary">không</span> có bất kỳ mối quan hệ
-              pháp lý ràng buộc hay trực thuộc nào đối với Hypergryph/GRYPHLINE và Yostar.
+              pháp lý ràng buộc hay trực thuộc nào đối với Hypergryph/GRYPHLINE và Yostar
               <Link className="no-underline!" href="https://www.youtube.com/watch?v=ECZVU4x6Xq0&t=97s">
                 .
               </Link>
@@ -103,7 +103,7 @@ export default function QuestionsForUs() {
               <li>
                 <span className="font-bold text-primary">"Lấy lương nuôi đam mê"</span> - tiền túi và công
                 việc chính (day job) của các thành viên trong team Arknights VNS
-                {'<(")'}.
+                {' <(")'}.
               </li>
             </ul>
           </AccordionPanel>
@@ -118,8 +118,10 @@ export default function QuestionsForUs() {
               Chúng tôi luôn tìm kiếm các cơ hội hợp tác phù hợp với giá trị và mục tiêu của cộng đồng. Nếu
               bạn có bất kỳ dự án thú vị hoặc ý tưởng sự kiện nào có thể mang lại lợi ích cho cộng đồng người
               hâm mộ Arknights tại Việt Nam, đừng ngần ngại liên hệ với chúng tôi qua Fanpage 'Trạm dừng chân
-              chốn Terra, Facebook của Lead Admin (Shou Huỳnh), hoặc gửi email về địa chỉ:
-              <Link href={"mailto:arknightsvns@gmail.com"}>arknightsvns@gmail.com</Link>
+              chốn Terra, Facebook của Lead Admin (Shou Huỳnh), hoặc gửi email về địa chỉ:{" "}
+              <Link href="mailto:arknightsvns@gmail.com" className="text-primary">
+                arknightsvns@gmail.com
+              </Link>
             </Paragraph>
           </AccordionPanel>
         </AccordionItem>

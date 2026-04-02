@@ -29,8 +29,8 @@ export default function DevelopmentTimeline() {
                     <span className="font-bold text-primary">Bùi Đạt</span>,{" "}
                     <span className="font-bold text-primary">Nguyễn Trang</span>,{" "}
                     <span className="font-bold text-primary">Kazaha Kamito</span> và{" "}
-                    <span className="font-bold text-primary">Nguyễn Đức Dương</span>
-                    chủ động tách khỏi Arknights VN Fanclub để tìm kiếm một hướng đi mới.
+                    <span className="font-bold text-primary">Nguyễn Đức Dương</span> chủ động tách khỏi
+                    Arknights VN Fanclub để tìm kiếm một hướng đi mới.
                   </Paragraph>
                   <Paragraph>
                     Giai đoạn khởi đầu đã đặt ra những bài toán nan giải cho cả nhóm, khi không chỉ đối mặt
@@ -98,9 +98,9 @@ export default function DevelopmentTimeline() {
                   <Paragraph>
                     Sau thời gian dài vắng bóng các hoạt động Offline, ngày 14/01/2024, Shou Huỳnh cùng đội
                     ngũ Ban Tổ chức đã thổi bùng ngọn lửa đam mê của cộng đồng bằng sự kiện{" "}
-                    <span className="font-bold text-primary">'The Show Must Go On!'</span> tại TP.HCM. . Với
-                    mô hình mini-festival, kết hợp với nhiều họa sĩ và seller có tiếng trong cộng đồng, cùng
-                    sự hưởng ứng của <span className="font-bold text-primary">hơn 140 người tham dự</span>,
+                    <span className="font-bold text-primary">'The Show Must Go On!'</span> tại TP.HCM. Với mô
+                    hình mini-festival, kết hợp với nhiều họa sĩ và seller có tiếng trong cộng đồng, cùng sự
+                    hưởng ứng của <span className="font-bold text-primary">hơn 140 người tham dự</span>,
                     Offline năm 2024 chính là bước đệm lịch sử cho nhiều chuỗi sự kiện về sau của Arknights
                     VNS
                   </Paragraph>
