@@ -42,6 +42,36 @@
     "type": "fanpage"
   },
   {
+    "image": "https://cdn.akvns.org/partners/little-swallows-bird-nest.jpg",
+    "title": "Little Swallow's Bird Nest",
+    "url": "https://www.facebook.com/profile.php?id=61585363964965",
+    "type": "fanpage"
+  },
+  {
+    "image": "https://cdn.akvns.org/partners/flower-in-the-sea.jpg",
+    "title": "Flower In The Sea",
+    "url": "https://www.facebook.com/profile.php?id=61584559653047",
+    "type": "fanpage"
+  },
+  {
+    "image": "https://cdn.akvns.org/partners/hoc-vien-bach-kinh-xay-xu-talos-ii.jpg",
+    "title": "Học Viện Bách Kinh Xây Xứ Talos-II",
+    "url": "https://www.facebook.com/profile.php?id=61587987395213",
+    "type": "fanpage"
+  },
+  {
+    "image": "https://cdn.akvns.org/partners/koa9v1.jpg",
+    "title": "Koa9v1",
+    "url": "https://www.facebook.com/KOA9official",
+    "type": "fanpage"
+  },
+  {
+    "image": "https://cdn.akvns.org/partners/ams-simping.jpg",
+    "title": "Một cái page sìn A, M và S ",
+    "url": "https://www.facebook.com/AMS.simping/",
+    "type": "fanpage"
+  },
+  {
     "image": "https://cdn.akvns.org/partners/monoka.jpg",
     "title": "Monoka",
     "url": "#",
@@ -62,6 +92,12 @@
   {
     "image": "https://cdn.akvns.org/partners/zeklewa.jpg",
     "title": "Zeklewa",
+    "url": "#",
+    "type": "artist"
+  }  ,
+  {
+    "image": "https://cdn.akvns.org/partners/didiKim205.jpg",
+    "title": "didiKim205",
     "url": "#",
     "type": "artist"
   }
