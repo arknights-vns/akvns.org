@@ -154,10 +154,6 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
                 {data.author}
               </li>
               <li>
-                <span className="font-bold">Ngày đăng truyện: </span>
-                {new Date(data.createdAt).toDateString()}
-              </li>
-              <li>
                 <span className="font-bold">Cập nhật gần nhất: </span>
                 {new Date(data.updatedAt).toDateString()}
               </li>
