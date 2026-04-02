@@ -13,7 +13,7 @@ const entries = {
   "facebook-mod": "Facebook Moderator",
   "discord-mod": "Discord Moderator",
   dreamchasers: "Dreamchasers",
-  translation: "Translation Team",
+  translation: "@terrastationvn",
 };
 
 // https://www.charpeni.com/blog/properly-type-object-keys-and-object-entries
