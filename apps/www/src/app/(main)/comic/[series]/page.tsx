@@ -155,7 +155,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
               </li>
               <li>
                 <span className="font-bold">Cập nhật gần nhất: </span>
-                {new Date(data.updatedAt).toDateString()}
+                {new Date(data.updatedAt).toLocaleDateString("vi-VN")}
               </li>
               <li>
                 {/* https://stackoverflow.com/a/5899394 */}
