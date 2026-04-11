@@ -5,6 +5,9 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "@arknights-vns/shadcn-ui/globals.css";
+import { Suspense } from "react";
+
+import DearUserPleaseUseAdBlocker from "@/components/DearUserPleaseUseAdBlocker";
 import ExuStare from "@/components/ExuStare";
 import Providers from "@/components/Providers";
 import { serverEnv } from "@/env-var/server";
@@ -47,7 +50,13 @@ function RootLayout(props: LayoutProps<"/">) {
         )}
       >
         <NuqsAdapter>
-          <Providers>{props.children}</Providers>
+          <Providers>
+            {props.children}
+            {/* https://nextjs.org/docs/messages/next-prerender-current-time-client */}
+            <Suspense>
+              <DearUserPleaseUseAdBlocker />
+            </Suspense>
+          </Providers>
           <ExuStare />
           <GoogleAnalytics gaId={serverEnv.GOOGLE_ANALYTICS_ID} />
         </NuqsAdapter>
