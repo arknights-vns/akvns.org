@@ -10,7 +10,8 @@
     "build": "next build",
     "build:debug": "next build --debug-prerender",
     "start": "next start",
-    "bloatcheck": "next experimental-analyze"
+    "bloatcheck": "next experimental-analyze",
+    "test": "playwright test"
   },
   "dependencies": {
     "@arknights-vns/database": "workspace:*",
@@ -35,11 +36,13 @@
   },
   "devDependencies": {
     "@arknights-vns/ts-config": "workspace:*",
+    "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "catalog:",
     "@types/node": "catalog:node22",
     "@types/react": "catalog:react",
     "@types/react-dom": "catalog:react",
     "babel-plugin-react-compiler": "catalog:react",
+    "dotenv": "^17.3.1",
     "typescript": "catalog:"
   }
 }

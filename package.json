@@ -13,17 +13,17 @@
     "url": "git+https://github.com/arknights-vns/akvns.org.git"
   },
   "scripts": {
-    "prepare": "husky",
+    "prepare": "lefthook install --reset-hooks-path",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "format": "oxfmt",
     "dev": "pnpm run -r --if-present --parallel dev",
     "build": "pnpm run -r --if-present --parallel build",
-    "start": "pnpm run -r --if-present --parallel start"
+    "start": "pnpm run -r --if-present --parallel start",
+    "test": "pnpm run -r --if-present --parallel test"
   },
   "devDependencies": {
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
+    "lefthook": "^2.1.5",
     "oxfmt": "0.41.0",
     "oxlint": "1.56.0",
     "oxlint-tsgolint": "0.17.0"
