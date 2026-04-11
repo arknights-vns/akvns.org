@@ -3,6 +3,6 @@
   <component name="TypeScriptCompiler">
     <option name="memoryAutoIncrease" value="true" />
     <option name="useServicePoweredTypesEnabledManually" value="true" />
-    <option name="versionType" value="EMBEDDED" />
+    <option name="versionType" value="EMBEDDED_TS_GO" />
   </component>
 </project>

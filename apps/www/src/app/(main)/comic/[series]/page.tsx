@@ -154,21 +154,17 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
                 {data.author}
               </li>
               <li>
-                <span className="font-bold">Ngày đăng truyện: </span>
-                {new Date(data.createdAt).toDateString()}
-              </li>
-              <li>
                 <span className="font-bold">Cập nhật gần nhất: </span>
-                {new Date(data.updatedAt).toDateString()}
+                {new Date(data.updatedAt).toLocaleDateString("vi-VN")}
               </li>
               <li>
                 {/* https://stackoverflow.com/a/5899394 */}
                 <span className="font-bold">Thông tin nhóm dịch: </span>
                 {data.contributors.length > 0 ? (
                   <ul className="list-disc">
-                    <Paragraph className="mt-4 gap-4 space-y-2 text-lg">
+                    <Paragraph className="mt-1 ml-8 gap-4 text-lg">
                       {data.contributors.map((contributor) => (
-                        <li key={contributor.id}>
+                        <li key={contributor.id} className="list-inside list-[square]">
                           <strong>{contributor.role}: </strong>
                           {contributor.members.join(", ")}
                         </li>
@@ -197,7 +193,7 @@ export default async function ComicSeriesDetail(properties: PageProps<"/comic/[s
                   <Item key={chapter.chapter_id} variant="muted">
                     <ItemContent>
                       <ItemTitle className="text-lg font-bold text-primary">
-                        <Link href={`/comic/${series}/${chapter.chapter_id}` as Route}>
+                        <Link href={`/comic/${series}/${chapter.chapter_id}` as Route} prefetch={false}>
                           {chapter.chapter_name}
                         </Link>
                       </ItemTitle>

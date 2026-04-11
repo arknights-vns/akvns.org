@@ -33,13 +33,13 @@ export default function QuestionsForUs() {
 
         <AccordionItem value="question-2">
           <AccordionTrigger>
-            <Heading kind="h4">Mối quan hệ giữa chúng tôi với Hypergryph & Yostar là gì?</Heading>
+            <Heading kind="h4">Mối quan hệ giữa chúng tôi với Arknights là gì?</Heading>
           </AccordionTrigger>
           <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
             <Paragraph>
-              Chúng tôi là một cộng đồng người chơi hoạt động độc lập. Chúng tôi{" "}
-              <span className="font-bold text-primary">không</span> có bất kỳ mối quan hệ pháp lý ràng buộc
-              hay trực thuộc nào đối với Hypergryph (Nhà phát triển) và Yostar (Nhà phát hành)
+              Chúng tôi là một cộng đồng người chơi phi lợi nhuận hoạt động độc lập vì cộng đồng Arknights tại
+              Việt Nam. Chúng tôi <span className="font-bold text-primary">không</span> có bất kỳ mối quan hệ
+              pháp lý ràng buộc hay trực thuộc nào đối với Hypergryph/GRYPHLINE và Yostar
               <Link className="no-underline!" href="https://www.youtube.com/watch?v=ECZVU4x6Xq0&t=97s">
                 .
               </Link>
@@ -101,15 +101,32 @@ export default function QuestionsForUs() {
                 </figure>
               </li>
               <li>
-                <span className="font-bold text-primary">"Lấy lương nuôi đam mê"</span> - Nguồn tài trợ lớn
-                nhất chính là từ... tiền túi và công việc chính (day job) của các thành viên trong Ban quản
-                trị. {'<(")'}.
+                <span className="font-bold text-primary">"Lấy lương nuôi đam mê"</span> - tiền túi và công
+                việc chính (day job) của các thành viên trong team Arknights VNS
+                {' <(")'}.
               </li>
             </ul>
           </AccordionPanel>
         </AccordionItem>
 
         <AccordionItem value="question-5">
+          <AccordionTrigger>
+            <Heading kind="h4">Arknights VNS có mở rộng cơ hội hợp tác phát triển không?</Heading>
+          </AccordionTrigger>
+          <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
+            <Paragraph>
+              Chúng tôi luôn tìm kiếm các cơ hội hợp tác phù hợp với giá trị và mục tiêu của cộng đồng. Nếu
+              bạn có bất kỳ dự án thú vị hoặc ý tưởng sự kiện nào có thể mang lại lợi ích cho cộng đồng người
+              hâm mộ Arknights tại Việt Nam, đừng ngần ngại liên hệ với chúng tôi qua Fanpage 'Trạm dừng chân
+              chốn Terra, Facebook của Lead Admin (Shou Huỳnh), hoặc gửi email về địa chỉ:{" "}
+              <Link href="mailto:arknightsvns@gmail.com" className="text-primary">
+                arknightsvns@gmail.com
+              </Link>
+            </Paragraph>
+          </AccordionPanel>
+        </AccordionItem>
+
+        <AccordionItem value="question-6">
           <AccordionTrigger>
             <Heading kind="h4">Arknights VNS có đang tuyển thành viên không?</Heading>
           </AccordionTrigger>
@@ -130,48 +147,6 @@ export default function QuestionsForUs() {
                 động liên hệ để mời bạn gia nhập!
               </li>
             </ul>
-          </AccordionPanel>
-        </AccordionItem>
-
-        <AccordionItem value="question-6">
-          <AccordionTrigger>
-            <Heading kind="h4">
-              Nhóm có quy định như thế nào về việc thảo luận nội dung chưa ra mắt (Spoiler) từ máy chủ CN?
-            </Heading>
-          </AccordionTrigger>
-          <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
-            <Paragraph>
-              Do đặc thù chênh lệch thời gian giữa máy chủ CN và Global/EN,{" "}
-              <span className="font-bold text-primary">
-                chúng tôi áp dụng quy định chặt chẽ về việc kiểm soát nội dung "Leak & Spoiler"
-              </span>
-              . Điều này nhằm đảm bảo sự tôn trọng tối đa đối với trải nghiệm khám phá cốt truyện của người
-              chơi Global.
-            </Paragraph>
-          </AccordionPanel>
-        </AccordionItem>
-
-        <AccordionItem value="question-7">
-          <AccordionTrigger>
-            <Heading kind="h4">Arknights VNS có mở rộng cơ hội hợp tác phát triển không?</Heading>
-          </AccordionTrigger>
-          <AccordionPanel className="space-y-2 text-justify text-muted-foreground md:text-lg">
-            <Paragraph>
-              Có, chúng tôi luôn tìm kiếm các cơ hội hợp tác phù hợp với giá trị và mục tiêu của cộng đồng.
-              Nếu bạn có bất kỳ dự án thú vị hoặc ý tưởng sự kiện nào có thể mang lại lợi ích cho cộng đồng
-              người hâm mộ Arknights tại Việt Nam, đừng ngần ngại liên hệ với chúng tôi qua Fanpage{" "}
-              <Link className="font-bold text-[#1877f2]" href="https://www.facebook.com/terrastationvn">
-                'Trạm dừng chân chốn Terra'
-              </Link>
-              ,{" "}
-              <Link className="font-bold text-[#1877f2]" href="https://www.facebook.com/shou.huynhf">
-                Facebook cá nhân
-              </Link>{" "}
-              của Head Admin (Shou Huỳnh), hoặc gửi email về địa chỉ:{" "}
-              <Link className="font-bold text-primary" href="mailto:arknightsvns@gmail.com">
-                arknightsvns@gmail.com
-              </Link>
-            </Paragraph>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>

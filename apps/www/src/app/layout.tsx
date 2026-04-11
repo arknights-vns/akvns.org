@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "@arknights-vns/shadcn-ui/globals.css";
@@ -59,7 +59,6 @@ function RootLayout(props: LayoutProps<"/">) {
           </Providers>
           <ExuStare />
           <GoogleAnalytics gaId={serverEnv.GOOGLE_ANALYTICS_ID} />
-          <GoogleTagManager gtmId={serverEnv.GOOGLE_TAG_MANAGER_ID} />
         </NuqsAdapter>
       </body>
     </html>

@@ -1,12 +1,14 @@
 {
   "name": "@arknights-vns/database",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "exports": {
     "./client": "./client.ts",
     "./generated/*": "./generated/prisma/*.ts"
   },
   "scripts": {
+    "prepare": "prisma generate --sql",
     "db:generate": "prisma generate --sql",
     "db:migrate": "prisma migrate dev",
     "db:migrate:empty": "prisma migrate dev --create-only",
@@ -15,17 +17,16 @@
     "db:seed": "prisma db seed"
   },
   "dependencies": {
-    "@prisma/adapter-pg": "7.4.1",
-    "@prisma/client": "7.4.1",
+    "@prisma/adapter-pg": "catalog:prisma",
+    "@prisma/client": "catalog:prisma",
     "pg": "^8.18.0"
   },
   "devDependencies": {
-    "@types/node": "^22.19.11",
+    "@types/node": "catalog:node22",
     "@types/pg": "^8.16.0",
     "dotenv": "^17.3.1",
-    "prisma": "7.4.2",
+    "prisma": "catalog:prisma",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
-  },
-  "packageManager": "pnpm@10.28.2"
+    "typescript": "catalog:"
+  }
 }

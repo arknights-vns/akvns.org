@@ -1,0 +1,44 @@
+{
+  "extends": ["../../.oxlintrc.json"],
+  "plugins": ["nextjs", "react", "jsx-a11y"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": ["tsx"]
+      }
+    ],
+    "react/jsx-max-depth": [
+      "error",
+      {
+        "max": 10
+      }
+    ],
+    "react/jsx-curly-brace-presence": [
+      "error",
+      {
+        "children": "never",
+        "propElementValues": "always",
+        "props": "never"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["src/components/opengraph/DefaultOpengraph.tsx"],
+      "rules": {
+        "nextjs/no-img-element": "off"
+      }
+    },
+    {
+      "files": ["src/**/*.tsx", "src/**/sitemap.ts", "src/**/robots.tsx", "src/**/next.config.ts"],
+      "rules": {
+        "react/only-export-components": "off",
+        "react/jsx-boolean-value": ["error", "always"],
+        "typescript/no-unsafe-type-assertion": "off",
+        "unicorn/filename-case": "off"
+      }
+    }
+  ]
+}

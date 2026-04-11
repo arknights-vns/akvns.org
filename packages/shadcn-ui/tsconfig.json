@@ -1,7 +1,6 @@
 {
   "extends": "@arknights-vns/ts-config/react.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@arknights-vns/shadcn-ui/*": ["./src/*"]
     }

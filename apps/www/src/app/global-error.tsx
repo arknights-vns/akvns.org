@@ -1,19 +1,14 @@
 "use client";
 
+import type { ErrorInfo } from "next/error";
+
 import { FavorText, Heading } from "@arknights-vns/shadcn-ui/components/extension/typography";
 import We_Are_Sorry from "@public/we-are-sorry.jpg";
 import * as Sentry from "@sentry/nextjs";
 import Image from "next/image";
 import { useEffect } from "react";
 
-export default function GlobalError({
-  error,
-  // eslint-disable-next-line no-unused-vars
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
+export default function GlobalError({ error, unstable_retry: _ }: ErrorInfo) {
   useEffect(() => {
     Sentry.captureException(error);
   }, [error]);

@@ -143,4 +143,10 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+
+  #sentry-feedback {
+    --font-family: var(--font-vns);
+    --background: var(--card);
+    --accent-background: var(--color-accent);
+  }
 }

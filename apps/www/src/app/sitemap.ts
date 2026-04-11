@@ -1,16 +1,11 @@
 import type { MetadataRoute } from "next";
 
 import { prisma } from "@arknights-vns/database/client";
-import { cacheLife, cacheTag } from "next/cache";
 
 import { fetchComicSeriesData } from "@/functions/comic/fetch-series-data";
 import { getProductionUrl } from "@/lib/utils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  "use cache";
-  cacheTag("sitemap.xml");
-  cacheLife("max");
-
   const entries = await prisma.comicSeries.findMany({
     select: {
       series_id: true,
@@ -63,16 +58,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 0.8,
     });
-
-    // oxlint-disable-next-line typescript/no-non-null-assertion
-    for (const chapter of seriesData!.chapters) {
-      pages.push({
-        url: `${prodUrl}/comic/${seriesData?.series_id}/${chapter.chapter_id}`,
-        lastModified: chapter.updatedAt,
-        changeFrequency: "monthly",
-        priority: 0.5,
-      });
-    }
   }
 
   return pages;

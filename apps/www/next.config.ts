@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 import { withSentryConfig } from "@sentry/nextjs";
 
-import { clientEnv as _ignored } from "@/env-var/client";
+import "@/env-var/client";
 import { serverEnv } from "@/env-var/server";
 
 // https://discord.com/channels/939851547590934610/1261831260318208081/1451918926828011672
@@ -34,22 +34,22 @@ const tusWives = [
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  reactCompiler: true,
+  reactCompiler: !isDev,
   typedRoutes: true,
   cacheComponents: true,
   experimental: {
-    turbopackFileSystemCacheForDev: true,
+    appNewScrollHandler: true,
     cachedNavigations: true,
+    turbopackFileSystemCacheForDev: true,
     optimizePackageImports: ["@icons-pack/react-simple-icons", "motion"],
     sri: {
-      algorithm: "sha384",
+      algorithm: "sha512",
     },
   },
   poweredByHeader: false,
   transpilePackages: [
     "@arknights-vns/ts-config",
     "@arknights-vns/database",
-    "@arknights-vns/shadcn-ui",
     "@t3-oss/env-nextjs",
     "@t3-oss/env-core",
   ],
@@ -112,7 +112,7 @@ export default withSentryConfig(nextConfig, {
   authToken: serverEnv.SENTRY_AUTH_TOKEN,
   tunnelRoute: "/we-dont-even-care-if-you-block-this-route",
 
-  silent: !process.env.CI,
+  silent: false,
   widenClientFileUpload: true,
 
   bundleSizeOptimizations: {

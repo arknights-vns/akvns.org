@@ -9,7 +9,7 @@
 
 - [ ] I have the authority to perform this PR, either on my own behalf or my current employer.
 
-- [ ] I have used appropriate [closing keyword](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests#linking-a-pull-request-to-an-issue) for related issues and/or PRs.
+- [ ] I have used the appropriate [closing keyword](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests#linking-a-pull-request-to-an-issue) for related issues and/or PRs.
 
 ## Test plan
 

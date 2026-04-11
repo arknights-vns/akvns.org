@@ -1,0 +1,9 @@
+{
+  "extends": ["../../.oxlintrc.json"],
+  "plugins": ["nextjs", "react", "jsx-a11y"],
+  "ignorePatterns": [
+    "src/components/*",
+    "src/hooks/*",
+    "src/lib/*"
+  ]
+}

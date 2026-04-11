@@ -38,7 +38,11 @@ export default function PartnersShowcase() {
                 className="flex basis-1/2 flex-col place-items-center-safe gap-2 md:basis-1/4 lg:basis-1/5"
                 key={data.title}
               >
-                <Link className={cn(data.url === "#" && "pointer-events-none")} href={data.url as Route}>
+                <Link
+                  className={cn(data.url === "#" && "pointer-events-none")}
+                  href={data.url as Route}
+                  prefetch={false}
+                >
                   <Image
                     alt={data.title}
                     className="aspect-square size-37.5 rounded-full border-2"
@@ -58,7 +62,11 @@ export default function PartnersShowcase() {
           .filter((data) => data.type === "artist")
           .map((entry) => (
             <div className="flex flex-col place-items-center-safe gap-2" key={entry.title}>
-              <Link className={cn(entry.url === "#" && "pointer-events-none")} href={entry.url as Route}>
+              <Link
+                className={cn(entry.url === "#" && "pointer-events-none")}
+                href={entry.url as Route}
+                prefetch={false}
+              >
                 <Image
                   alt={entry.title}
                   className="size-37.5 rounded-full border-2"
