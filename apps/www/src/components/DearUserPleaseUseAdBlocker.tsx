@@ -15,19 +15,17 @@ export default function DearUserPleaseUseAdBlocker() {
     queryKey: ["adblock-check"],
   });
 
-  const currentTime = new Date(
-    new Date(Date.now()).toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" }),
-  );
+  const currentTime = new Date(Date.now());
 
   // quite stupid that JS uses 0-index for month
   // and... 1-index for day.
   const isAprilFool = currentTime.getMonth() === 3 && currentTime.getDate() === 1;
 
-  const hasUBO = isAprilFool && error;
+  const hasUBO = error !== null;
 
   return (
-    <Dialog open={!hasUBO}>
-      <DialogContent showCloseButton={false}>
+    <Dialog open={isAprilFool && !hasUBO}>
+      <DialogContent showCloseButton={false} data-testid="april-fool-adblock">
         <DialogHeader>
           <DialogTitle>AdBlock đâu?</DialogTitle>
           <DialogDescription>Vì một Internet sạch hơn :D</DialogDescription>
