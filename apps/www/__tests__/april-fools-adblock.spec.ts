@@ -17,3 +17,13 @@ test("april fools [adblock] works on April 2nd", async ({ page }) => {
 
   await expect(elem).toBeHidden();
 });
+
+test("april fools [adblock] works behind URL query parameter", async ({ page }) => {
+  await page.goto("/?i-really-want-adblock=true");
+  const elem1 = page.getByTestId("april-fool-adblock");
+  await expect(elem1).toBeVisible();
+
+  await page.goto("/");
+  const elem2 = page.getByTestId("april-fool-adblock");
+  await expect(elem2).toBeHidden();
+});

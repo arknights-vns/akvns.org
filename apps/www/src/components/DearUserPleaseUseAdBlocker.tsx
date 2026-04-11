@@ -8,12 +8,15 @@ import {
   DialogTitle,
 } from "@arknights-vns/shadcn-ui/components/dialog";
 import { useQuery } from "@tanstack/react-query";
+import { parseAsBoolean, useQueryState } from "nuqs";
 
 export default function DearUserPleaseUseAdBlocker() {
   const { error } = useQuery({
     queryFn: async () => await fetch("https://www.google-analytics.com"),
     queryKey: ["adblock-check"],
   });
+
+  const [adBlock, _] = useQueryState("i-really-want-adblock", parseAsBoolean.withDefault(false));
 
   const currentTime = new Date(Date.now());
 
@@ -23,8 +26,10 @@ export default function DearUserPleaseUseAdBlocker() {
 
   const hasUBO = error !== null;
 
+  const shouldShow = adBlock || (isAprilFool && !hasUBO);
+
   return (
-    <Dialog open={isAprilFool && !hasUBO}>
+    <Dialog open={shouldShow}>
       <DialogContent showCloseButton={false} data-testid="april-fool-adblock">
         <DialogHeader>
           <DialogTitle>AdBlock đâu?</DialogTitle>
