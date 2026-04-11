@@ -19,7 +19,8 @@
     "format": "oxfmt",
     "dev": "pnpm run -r --if-present --parallel dev",
     "build": "pnpm run -r --if-present --parallel build",
-    "start": "pnpm run -r --if-present --parallel start"
+    "start": "pnpm run -r --if-present --parallel start",
+    "test": "pnpm run -r --if-present --parallel test"
   },
   "devDependencies": {
     "lefthook": "^2.1.5",
