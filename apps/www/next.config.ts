@@ -33,18 +33,17 @@ const tusWives = [
 ];
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
   reactCompiler: !isDev,
   typedRoutes: true,
   cacheComponents: true,
   experimental: {
-    appNewScrollHandler: true,
-    cachedNavigations: true,
-    turbopackFileSystemCacheForDev: true,
     optimizePackageImports: ["@icons-pack/react-simple-icons", "motion"],
-    sri: {
-      algorithm: "sha512",
-    },
+    sri: isDev
+      ? // oxlint-disable-next-line no-undefined
+        undefined
+      : {
+          algorithm: "sha512",
+        },
   },
   poweredByHeader: false,
   transpilePackages: [
@@ -106,16 +105,20 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withSentryConfig(nextConfig, {
-  org: serverEnv.SENTRY_ORG,
-  project: serverEnv.SENTRY_PROJECT,
-  authToken: serverEnv.SENTRY_AUTH_TOKEN,
-  tunnelRoute: "/we-dont-even-care-if-you-block-this-route",
+const finalConfig = isDev
+  ? nextConfig
+  : withSentryConfig(nextConfig, {
+      org: serverEnv.SENTRY_ORG,
+      project: serverEnv.SENTRY_PROJECT,
+      authToken: serverEnv.SENTRY_AUTH_TOKEN,
+      tunnelRoute: "/we-dont-even-care-if-you-block-this-route",
 
-  silent: false,
-  widenClientFileUpload: true,
+      silent: false,
+      widenClientFileUpload: true,
 
-  bundleSizeOptimizations: {
-    excludeDebugStatements: true,
-  },
-});
+      bundleSizeOptimizations: {
+        excludeDebugStatements: true,
+      },
+    });
+
+export default finalConfig;
