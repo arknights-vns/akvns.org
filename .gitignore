@@ -12,7 +12,6 @@ node_modules
 !.idea/jsLibraryMappings.xml
 !.idea/vcs.xml
 !.idea/compiler.xml
-.vscode
 **/.env
 !.env.example
 out
