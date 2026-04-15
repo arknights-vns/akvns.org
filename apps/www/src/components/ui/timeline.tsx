@@ -14,10 +14,16 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
-    }
+    if (!ref.current) return;
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setHeight(entry.contentRect.height);
+      }
+    });
+    resizeObserver.observe(ref.current);
+    return () => {
+      resizeObserver.disconnect();
+    };
   }, [ref]);
 
   const { scrollYProgress } = useScroll({
