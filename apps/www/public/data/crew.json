@@ -87,6 +87,14 @@
     }
   },
   {
+    "name": "Kazure Hoàng",
+    "avatar": "https://cdn.akvns.org/crew/kazure.jpg",
+    "categories": ["facebook-mod"],
+    "roles": {
+      "facebook-mod": "[Gen 00] Moderator"
+    }
+  },
+  {
     "name": "Bùi Minh Anh",
     "avatar": "https://cdn.akvns.org/crew/Bùi Minh Anh.png",
     "categories": ["facebook-mod"],

@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { ArrowUp } from "lucide-react";
+import { Button } from "@arknights-vns/shadcn-ui/components/button";
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
+import { ArrowUp } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,6 +22,7 @@ export function ScrollToTop() {
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
+  // oxlint-disable-next-line unicorn/consistent-function-scoping
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -29,17 +31,15 @@ export function ScrollToTop() {
   };
 
   return (
-    <button
+    <Button
       onClick={scrollToTop}
       aria-label="Scroll to top"
       className={cn(
-        "fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-all duration-300 hover:bg-primary/90 hover:scale-110",
-        isVisible
-          ? "translate-y-0 opacity-100"
-          : "translate-y-10 opacity-0 pointer-events-none"
+        "fixed right-8 bottom-8 z-50 flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-all duration-300 hover:scale-110 hover:bg-primary/90",
+        isVisible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-10 opacity-0",
       )}
     >
-      <ArrowUp className="h-6 w-6" />
-    </button>
+      <ArrowUp className="size-6" />
+    </Button>
   );
 }

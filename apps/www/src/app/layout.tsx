@@ -1,16 +1,15 @@
 import type { Metadata, Viewport } from "next";
 
 import { cn } from "@arknights-vns/shadcn-ui/lib/utils";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Quicksand as VNS_Font, JetBrains_Mono as VNS_Font_Mono } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import "@arknights-vns/shadcn-ui/globals.css";
 import { Suspense } from "react";
 
+import Analytics from "@/components/Analytics";
 import DearUserPleaseUseAdBlocker from "@/components/DearUserPleaseUseAdBlocker";
 import ExuStare from "@/components/ExuStare";
 import Providers from "@/components/Providers";
-import { serverEnv } from "@/env-var/server";
 import { createMetadata } from "@/lib/utils";
 
 const fontSans = VNS_Font({
@@ -58,7 +57,7 @@ function RootLayout(props: LayoutProps<"/">) {
             </Suspense>
           </Providers>
           <ExuStare />
-          <GoogleAnalytics gaId={serverEnv.GOOGLE_ANALYTICS_ID} />
+          <Analytics />
         </NuqsAdapter>
       </body>
     </html>
