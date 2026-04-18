@@ -1,0 +1,26 @@
+{
+  "files.associations": {
+    "packages/shadcn-ui/src/styles/globals.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "tailwindCSS.experimental.configFile": {
+    "packages/shadcn-ui/src/styles/globals.css": "apps/www/**",
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "files.exclude": {
+    "apps/dreamchasers*/**": true
+  }
+}
