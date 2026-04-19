@@ -87,7 +87,7 @@ const nextConfig: NextConfig = {
     default-src 'self';
     script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://*.googletagmanager.com https://*.cloudflareinsights.com https://www.clarity.ms;
     style-src 'self' 'unsafe-inline';
-    connect-src 'self' https://*.sentry.io https://*.google-analytics.com;
+    connect-src 'self' https://*.google-analytics.com;
     img-src 'self' https://*.akvns.org;
     font-src 'self';
     object-src 'none';
