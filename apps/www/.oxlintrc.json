@@ -1,12 +1,20 @@
 {
-  "extends": ["../../.oxlintrc.json"],
-  "plugins": ["nextjs", "react", "jsx-a11y"],
+  "extends": [
+    "../../.oxlintrc.json"
+  ],
+  "plugins": [
+    "nextjs",
+    "react",
+    "jsx-a11y"
+  ],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
       "error",
       {
-        "extensions": ["tsx"]
+        "extensions": [
+          "tsx"
+        ]
       }
     ],
     "react/jsx-max-depth": [
@@ -22,20 +30,39 @@
         "propElementValues": "always",
         "props": "never"
       }
+    ],
+    "node/no-process-env": "off",
+    "import/no-unassigned-import": [
+      "error",
+      {
+        "allow": [
+          "@arknights-vns/shadcn-ui/globals.css"
+        ]
+      }
     ]
   },
   "overrides": [
     {
-      "files": ["src/components/opengraph/DefaultOpengraph.tsx"],
+      "files": [
+        "src/components/opengraph/DefaultOpengraph.tsx"
+      ],
       "rules": {
         "nextjs/no-img-element": "off"
       }
     },
     {
-      "files": ["src/**/*.tsx", "src/**/sitemap.ts", "src/**/robots.tsx", "src/**/next.config.ts"],
+      "files": [
+        "src/**/*.tsx",
+        "src/**/sitemap.ts",
+        "src/**/robots.tsx",
+        "src/**/next.config.ts"
+      ],
       "rules": {
         "react/only-export-components": "off",
-        "react/jsx-boolean-value": ["error", "always"],
+        "react/jsx-boolean-value": [
+          "error",
+          "always"
+        ],
         "typescript/no-unsafe-type-assertion": "off",
         "unicorn/filename-case": "off"
       }
