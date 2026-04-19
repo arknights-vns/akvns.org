@@ -2,6 +2,9 @@ packages:
   - apps/*
   - "!apps/dreamchasers"
   - "!apps/dreamchasers-db22c983"
+  # we are the echoes, true and free
+  # the code recalls eternally
+  - "!apps/8-bit-highway"
   - packages/*
 
 hoist: false
