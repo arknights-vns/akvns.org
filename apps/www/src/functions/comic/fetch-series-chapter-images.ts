@@ -1,5 +1,4 @@
 import { ListObjectsV2Command } from "@aws-sdk/client-s3";
-import * as Sentry from "@sentry/nextjs";
 import { cacheLife, cacheTag } from "next/cache";
 import { z } from "zod";
 
@@ -22,51 +21,34 @@ export async function fetchComicSeriesImagesByChapter(series: string, chapter: s
 
   const REDIS_KEY = `comic-assets:${series}:${chapter}`;
 
-  const images = Sentry.startSpan(
-    {
-      name: "Query Comic Images",
-      op: "comic.series.image",
-      attributes: {
-        "comic.series.name": series,
-        "comic.series.chapter": chapter,
-      },
-    },
-    async (span) => {
-      let currentImages: { name: string; url: string }[] = [];
-      const cachedValue = await redisClient.get(REDIS_KEY);
+  let currentImages: { name: string; url: string }[] = [];
+  const cachedValue = await redisClient.get(REDIS_KEY);
 
-      if (cachedValue) {
-        span.setAttribute("comic.series.chapter.images.cached", "true");
-        return await z.array(ComicImage).parseAsync(JSON.parse(cachedValue));
-      }
+  if (cachedValue) {
+    return await z.array(ComicImage).parseAsync(JSON.parse(cachedValue));
+  }
 
-      span.setAttribute("comic.series.chapter.images.cached", "false");
-
-      const resp = await s3Client.send(
-        new ListObjectsV2Command({
-          Bucket: serverEnv.COMIC_ASSETS_AWS_BUCKET,
-          Prefix: `${series}/${chapter}`,
-        }),
-      );
-
-      const objects = resp.Contents;
-
-      if (!objects?.filter((x) => x.Size && x.Size > 0)) {
-        throw new Error("No images on record!");
-      }
-
-      currentImages = objects
-        .filter((x) => x?.Size && x.Size > 0)
-        .map((obj, idx) => ({
-          name: obj.Key ?? `how-did-we-get-here-${idx}`,
-          url: `${serverEnv.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
-        }));
-
-      await redisClient.set(REDIS_KEY, JSON.stringify(currentImages), "EX", 7 * 24 * 60 * 60);
-
-      return currentImages;
-    },
+  const resp = await s3Client.send(
+    new ListObjectsV2Command({
+      Bucket: serverEnv.COMIC_ASSETS_AWS_BUCKET,
+      Prefix: `${series}/${chapter}`,
+    }),
   );
 
-  return images;
+  const objects = resp.Contents;
+
+  if (!objects?.filter((x) => x.Size && x.Size > 0)) {
+    throw new Error("No images on record!");
+  }
+
+  currentImages = objects
+    .filter((x) => x?.Size && x.Size > 0)
+    .map((obj, idx) => ({
+      name: obj.Key ?? `how-did-we-get-here-${idx}`,
+      url: `${serverEnv.COMIC_ASSETS_URL_PREFIX}/${obj.Key}`,
+    }));
+
+  await redisClient.set(REDIS_KEY, JSON.stringify(currentImages), "EX", 7 * 24 * 60 * 60);
+
+  return currentImages;
 }

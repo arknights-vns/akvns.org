@@ -5,17 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc --outDir dist",
-    "start": "cross-env NODE_ENV=production node dist/index.js"
+    "start": "tsx src/index.ts"
   },
   "dependencies": {
     "@elysiajs/node": "^1.4.4",
-    "cross-env": "^10.1.0",
     "elysia": "^1.4.25",
     "elysia-healthcheck": "^1.0.0",
     "elysiajs-cdn-cache": "^0.0.13"
   },
   "devDependencies": {
+    "@arknights-vns/ts-config": "workspace:",
     "@types/node": "catalog:node22",
     "tsx": "^4.21.0",
     "typescript": "catalog:"

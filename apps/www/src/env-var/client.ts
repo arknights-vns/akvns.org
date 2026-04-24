@@ -4,13 +4,11 @@ import { z } from "zod";
 export const clientEnv = createEnv({
   client: {
     NEXT_PUBLIC_PRODUCTION_URL: z.url().default("https://akvns.org"),
-    NEXT_PUBLIC_SENTRY_DSN: z.url(),
     NEXT_PUBLIC_VNS_DISCORD_SERVER: z.url().default("https://discord.gg/akvns"),
     NEXT_PUBLIC_PFR_DISCORD_SERVER: z.url().default("https://discord.gg/4F7R5r93TX"),
   },
   runtimeEnv: {
     NEXT_PUBLIC_PRODUCTION_URL: process.env.NEXT_PUBLIC_PRODUCTION_URL,
-    NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
     NEXT_PUBLIC_VNS_DISCORD_SERVER: process.env.NEXT_PUBLIC_VNS_DISCORD_SERVER,
     NEXT_PUBLIC_PFR_DISCORD_SERVER: process.env.NEXT_PUBLIC_PFR_DISCORD_SERVER,
   },

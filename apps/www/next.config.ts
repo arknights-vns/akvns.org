@@ -1,9 +1,7 @@
 import type { NextConfig } from "next";
 
-import { withSentryConfig } from "@sentry/nextjs";
-
 import "@/env-var/client";
-import { serverEnv } from "@/env-var/server";
+import "@/env-var/server";
 
 // https://discord.com/channels/939851547590934610/1261831260318208081/1451918926828011672
 const isDev = process.env.NODE_ENV === "development";
@@ -89,7 +87,7 @@ const nextConfig: NextConfig = {
     default-src 'self';
     script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://*.googletagmanager.com https://*.cloudflareinsights.com https://www.clarity.ms;
     style-src 'self' 'unsafe-inline';
-    connect-src 'self' https://*.sentry.io https://*.google-analytics.com;
+    connect-src 'self' https://*.google-analytics.com;
     img-src 'self' https://*.akvns.org;
     font-src 'self';
     object-src 'none';
@@ -105,20 +103,6 @@ const nextConfig: NextConfig = {
   },
 };
 
-const finalConfig = isDev
-  ? nextConfig
-  : withSentryConfig(nextConfig, {
-      org: serverEnv.SENTRY_ORG,
-      project: serverEnv.SENTRY_PROJECT,
-      authToken: serverEnv.SENTRY_AUTH_TOKEN,
-      tunnelRoute: "/we-dont-even-care-if-you-block-this-route",
+const theFinalsConfig = nextConfig
 
-      silent: false,
-      widenClientFileUpload: true,
-
-      bundleSizeOptimizations: {
-        excludeDebugStatements: true,
-      },
-    });
-
-export default finalConfig;
+export default theFinalsConfig;

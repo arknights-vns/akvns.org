@@ -13,10 +13,6 @@ export const serverEnv = createEnv({
     S3_AWS_ACCESS_KEY_ID: z.string(),
     S3_AWS_SECRET_ACCESS_KEY: z.string(),
 
-    SENTRY_ORG: z.string().default("arknights-vns"),
-    SENTRY_PROJECT: z.string().default("arknights-vns"),
-    SENTRY_AUTH_TOKEN: z.string(),
-
     MICROSOFT_CLARITY_PROJECT_ID: z.string().default("vtcuc1ictq"),
     GOOGLE_ANALYTICS_ID: z.string().default("G-Y625KEE6HT"),
   },
